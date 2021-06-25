@@ -92,7 +92,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ULTIMA2021\ProyectoULTIMA\SistemaDeChatInstitucional\CapaLogica\CapaLogica.csproj">
+    <ProjectReference Include="..\CapaLogica\CapaLogica.csproj">
       <Project>{66855f56-cf4a-4155-9ae2-9cb50f63982c}</Project>
       <Name>CapaLogica</Name>
     </ProjectReference>
