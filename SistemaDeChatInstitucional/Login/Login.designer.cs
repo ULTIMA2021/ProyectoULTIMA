@@ -1,4 +1,4 @@
-﻿namespace AlumnoApp.Login_Alumno_y_Docente
+﻿namespace Login
 {
     partial class Login
     {
@@ -242,4 +242,4 @@
         private System.Windows.Forms.PictureBox picOcultar;
         private System.Windows.Forms.Label lblErrorMessage;
     }
- }
+}
