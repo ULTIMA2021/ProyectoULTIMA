@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AppAlumno.Properties
+namespace Login.Properties
 {
 
 
