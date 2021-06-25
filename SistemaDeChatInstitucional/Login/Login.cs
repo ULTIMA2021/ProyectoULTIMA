@@ -133,9 +133,7 @@ namespace AlumnoApp.Login_Alumno_y_Docente
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Formulario_Alumno.FormularioAlumno formulario = new Formulario_Alumno.FormularioAlumno();
-            formulario.Show();
-            this.Hide();
+            
         }
     }
 }
