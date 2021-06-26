@@ -56,21 +56,21 @@ namespace AppAlumno
           //  this.button1.BackColor = Color.FromArgb(26, 32, 40);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDocentes_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(subMenuDocentes);
            // this.button1.BackColor = Color.Blue;
            // this.btnMiPerfil.BackColor = Color.FromArgb(26, 32, 40);
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnAgenda_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnMensajes_Click(object sender, EventArgs e)
         {
-            esconderSubMenu();
+            
         }
     }
 }

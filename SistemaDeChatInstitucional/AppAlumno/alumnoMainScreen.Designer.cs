@@ -31,20 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(alumnoMainScreen));
             this.panelOpciones = new System.Windows.Forms.Panel();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.btnMensajes = new System.Windows.Forms.Button();
+            this.btnAgenda = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnInstitucion = new System.Windows.Forms.Button();
+            this.btnMisDocentes = new System.Windows.Forms.Button();
+            this.btnDocentes = new System.Windows.Forms.Button();
             this.subMenuMiPerfil = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAsignaturas = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnMiPerfil = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblNombre = new System.Windows.Forms.Label();
             this.fotoAlumno = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.panelContenedor.SuspendLayout();
             this.subMenuDocentes.SuspendLayout();
             this.subMenuMiPerfil.SuspendLayout();
@@ -65,10 +65,10 @@
             // 
             this.panelContenedor.AutoScroll = true;
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.panelContenedor.Controls.Add(this.button6);
-            this.panelContenedor.Controls.Add(this.button5);
+            this.panelContenedor.Controls.Add(this.btnMensajes);
+            this.panelContenedor.Controls.Add(this.btnAgenda);
             this.panelContenedor.Controls.Add(this.subMenuDocentes);
-            this.panelContenedor.Controls.Add(this.button1);
+            this.panelContenedor.Controls.Add(this.btnDocentes);
             this.panelContenedor.Controls.Add(this.subMenuMiPerfil);
             this.panelContenedor.Controls.Add(this.btnMiPerfil);
             this.panelContenedor.Controls.Add(this.panel2);
@@ -78,11 +78,53 @@
             this.panelContenedor.Size = new System.Drawing.Size(191, 525);
             this.panelContenedor.TabIndex = 1;
             // 
+            // btnMensajes
+            // 
+            this.btnMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnMensajes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMensajes.FlatAppearance.BorderSize = 0;
+            this.btnMensajes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnMensajes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMensajes.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMensajes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMensajes.Image = ((System.Drawing.Image)(resources.GetObject("btnMensajes.Image")));
+            this.btnMensajes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMensajes.Location = new System.Drawing.Point(0, 464);
+            this.btnMensajes.Name = "btnMensajes";
+            this.btnMensajes.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.btnMensajes.Size = new System.Drawing.Size(191, 36);
+            this.btnMensajes.TabIndex = 8;
+            this.btnMensajes.Text = "            Mensajes";
+            this.btnMensajes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMensajes.UseVisualStyleBackColor = false;
+            this.btnMensajes.Click += new System.EventHandler(this.btnMensajes_Click);
+            // 
+            // btnAgenda
+            // 
+            this.btnAgenda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnAgenda.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAgenda.FlatAppearance.BorderSize = 0;
+            this.btnAgenda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnAgenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgenda.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgenda.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAgenda.Image = ((System.Drawing.Image)(resources.GetObject("btnAgenda.Image")));
+            this.btnAgenda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgenda.Location = new System.Drawing.Point(0, 428);
+            this.btnAgenda.Name = "btnAgenda";
+            this.btnAgenda.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.btnAgenda.Size = new System.Drawing.Size(191, 36);
+            this.btnAgenda.TabIndex = 7;
+            this.btnAgenda.Text = "            Agenda";
+            this.btnAgenda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgenda.UseVisualStyleBackColor = false;
+            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
+            // 
             // subMenuDocentes
             // 
             this.subMenuDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.subMenuDocentes.Controls.Add(this.button4);
-            this.subMenuDocentes.Controls.Add(this.button3);
+            this.subMenuDocentes.Controls.Add(this.btnInstitucion);
+            this.subMenuDocentes.Controls.Add(this.btnMisDocentes);
             this.subMenuDocentes.Dock = System.Windows.Forms.DockStyle.Top;
             this.subMenuDocentes.Location = new System.Drawing.Point(0, 337);
             this.subMenuDocentes.Name = "subMenuDocentes";
@@ -90,63 +132,65 @@
             this.subMenuDocentes.TabIndex = 6;
             this.subMenuDocentes.Visible = false;
             // 
-            // button4
+            // btnInstitucion
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(0, 48);
-            this.button4.Name = "button4";
-            this.button4.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.button4.Size = new System.Drawing.Size(191, 36);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Editar datos";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnInstitucion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnInstitucion.FlatAppearance.BorderSize = 0;
+            this.btnInstitucion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            this.btnInstitucion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInstitucion.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstitucion.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnInstitucion.Location = new System.Drawing.Point(0, 48);
+            this.btnInstitucion.Name = "btnInstitucion";
+            this.btnInstitucion.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnInstitucion.Size = new System.Drawing.Size(191, 36);
+            this.btnInstitucion.TabIndex = 7;
+            this.btnInstitucion.Text = "Institucion";
+            this.btnInstitucion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInstitucion.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnMisDocentes
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(0, 6);
-            this.button3.Name = "button3";
-            this.button3.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.button3.Size = new System.Drawing.Size(191, 36);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Editar datos";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnMisDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnMisDocentes.FlatAppearance.BorderSize = 0;
+            this.btnMisDocentes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            this.btnMisDocentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMisDocentes.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMisDocentes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMisDocentes.Location = new System.Drawing.Point(0, 6);
+            this.btnMisDocentes.Name = "btnMisDocentes";
+            this.btnMisDocentes.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnMisDocentes.Size = new System.Drawing.Size(191, 36);
+            this.btnMisDocentes.TabIndex = 6;
+            this.btnMisDocentes.Text = "Mis docentes";
+            this.btnMisDocentes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMisDocentes.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnDocentes
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(0, 301);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(191, 36);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Docentes";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.btnDocentes.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDocentes.FlatAppearance.BorderSize = 0;
+            this.btnDocentes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnDocentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDocentes.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDocentes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDocentes.Image = ((System.Drawing.Image)(resources.GetObject("btnDocentes.Image")));
+            this.btnDocentes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDocentes.Location = new System.Drawing.Point(0, 301);
+            this.btnDocentes.Name = "btnDocentes";
+            this.btnDocentes.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.btnDocentes.Size = new System.Drawing.Size(191, 36);
+            this.btnDocentes.TabIndex = 5;
+            this.btnDocentes.Text = "            Docentes";
+            this.btnDocentes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDocentes.UseVisualStyleBackColor = false;
+            this.btnDocentes.Click += new System.EventHandler(this.btnDocentes_Click);
             // 
             // subMenuMiPerfil
             // 
             this.subMenuMiPerfil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.subMenuMiPerfil.Controls.Add(this.button2);
+            this.subMenuMiPerfil.Controls.Add(this.btnAsignaturas);
             this.subMenuMiPerfil.Controls.Add(this.btnEditar);
             this.subMenuMiPerfil.Dock = System.Windows.Forms.DockStyle.Top;
             this.subMenuMiPerfil.Location = new System.Drawing.Point(0, 211);
@@ -155,22 +199,22 @@
             this.subMenuMiPerfil.TabIndex = 4;
             this.subMenuMiPerfil.Visible = false;
             // 
-            // button2
+            // btnAsignaturas
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(0, 48);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(191, 36);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Mis asignaturas";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnAsignaturas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnAsignaturas.FlatAppearance.BorderSize = 0;
+            this.btnAsignaturas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            this.btnAsignaturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignaturas.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAsignaturas.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAsignaturas.Location = new System.Drawing.Point(0, 48);
+            this.btnAsignaturas.Name = "btnAsignaturas";
+            this.btnAsignaturas.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
+            this.btnAsignaturas.Size = new System.Drawing.Size(191, 36);
+            this.btnAsignaturas.TabIndex = 6;
+            this.btnAsignaturas.Text = "Mis asignaturas";
+            this.btnAsignaturas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAsignaturas.UseVisualStyleBackColor = false;
             // 
             // btnEditar
             // 
@@ -182,10 +226,10 @@
             this.btnEditar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnEditar.Location = new System.Drawing.Point(0, 6);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Padding = new System.Windows.Forms.Padding(28, 0, 0, 0);
+            this.btnEditar.Padding = new System.Windows.Forms.Padding(50, 0, 0, 0);
             this.btnEditar.Size = new System.Drawing.Size(191, 36);
             this.btnEditar.TabIndex = 5;
-            this.btnEditar.Text = "Editar datos";
+            this.btnEditar.Text = "Configuracion";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEditar.UseVisualStyleBackColor = false;
             // 
@@ -198,12 +242,14 @@
             this.btnMiPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMiPerfil.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMiPerfil.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMiPerfil.Image = ((System.Drawing.Image)(resources.GetObject("btnMiPerfil.Image")));
+            this.btnMiPerfil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMiPerfil.Location = new System.Drawing.Point(0, 175);
             this.btnMiPerfil.Name = "btnMiPerfil";
-            this.btnMiPerfil.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnMiPerfil.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.btnMiPerfil.Size = new System.Drawing.Size(191, 36);
             this.btnMiPerfil.TabIndex = 2;
-            this.btnMiPerfil.Text = "Mi perfil";
+            this.btnMiPerfil.Text = "            Mi perfil";
             this.btnMiPerfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMiPerfil.UseVisualStyleBackColor = false;
             this.btnMiPerfil.Click += new System.EventHandler(this.btnMiPerfil_Click);
@@ -248,44 +294,6 @@
             this.panel1.Size = new System.Drawing.Size(664, 525);
             this.panel1.TabIndex = 2;
             // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.button5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(0, 428);
-            this.button5.Name = "button5";
-            this.button5.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.button5.Size = new System.Drawing.Size(191, 36);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Agenda";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.button6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(0, 464);
-            this.button6.Name = "button6";
-            this.button6.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.button6.Size = new System.Drawing.Size(191, 36);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "Mensajes";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // alumnoMainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,7 +319,7 @@
         private System.Windows.Forms.Panel panelOpciones;
         private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Panel subMenuMiPerfil;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAsignaturas;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnMiPerfil;
         private System.Windows.Forms.Panel panel2;
@@ -319,10 +327,10 @@
         private System.Windows.Forms.PictureBox fotoAlumno;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel subMenuDocentes;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnInstitucion;
+        private System.Windows.Forms.Button btnMisDocentes;
+        private System.Windows.Forms.Button btnDocentes;
+        private System.Windows.Forms.Button btnMensajes;
+        private System.Windows.Forms.Button btnAgenda;
     }
 }
