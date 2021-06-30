@@ -33,6 +33,7 @@ namespace AppAlumno
             
         }
 
+
         public void mostrarSubMenu(Panel subMenu)
         {
             if(subMenu.Visible == false)
@@ -48,36 +49,56 @@ namespace AppAlumno
             
         }
 
+
+        private Form ventanaActiva = null;
+        public void openScreen(Form ventana)
+        {
+
+            if (ventanaActiva != null)
+            {
+                ventanaActiva.Close();
+            }
+            ventanaActiva = ventana;
+            ventana.TopLevel = false;
+            ventana.Dock = DockStyle.Fill;
+            panelContenedor.Controls.Add(ventana);
+            panelContenedor.Tag = ventana;
+            ventana.BringToFront();
+            ventana.Show();
+           
+        }
+
         
         private void btnMiPerfil_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(subMenuMiPerfil);
-          //  this.btnMiPerfil.BackColor = Color.Blue;
-          //  this.button1.BackColor = Color.FromArgb(26, 32, 40);
         }
+
 
         private void btnDocentes_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(subMenuDocentes);
-           // this.button1.BackColor = Color.Blue;
-           // this.btnMiPerfil.BackColor = Color.FromArgb(26, 32, 40);
         }
+
 
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
         }
 
+
         private void btnMensajes_Click(object sender, EventArgs e)
         {
             
         }
+
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
             
         }
+
 
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
@@ -87,16 +108,28 @@ namespace AppAlumno
         }
 
         
-
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
+
         private void btnNormal_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
             btnMaximizar.BringToFront();
+        }
+
+
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            openScreen(new configuracion());
+        }
+
+
+        private void btnAsignaturas_Click(object sender, EventArgs e)
+        {
+            openScreen(new menuScreens.misAsignaturas());
         }
     }
 }

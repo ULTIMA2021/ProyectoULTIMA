@@ -33,7 +33,8 @@
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.panelContenedor = new System.Windows.Forms.Panel();
+            this.btnNormal = new System.Windows.Forms.Button();
+            this.panelInfo = new System.Windows.Forms.Panel();
             this.btnMensajes = new System.Windows.Forms.Button();
             this.btnAgenda = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
@@ -42,15 +43,14 @@
             this.btnDocentes = new System.Windows.Forms.Button();
             this.subMenuMiPerfil = new System.Windows.Forms.Panel();
             this.btnAsignaturas = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
+            this.btnConfiguracion = new System.Windows.Forms.Button();
             this.btnMiPerfil = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblNombre = new System.Windows.Forms.Label();
             this.fotoAlumno = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnNormal = new System.Windows.Forms.Button();
+            this.panelContenedor = new System.Windows.Forms.Panel();
             this.panelOpciones.SuspendLayout();
-            this.panelContenedor.SuspendLayout();
+            this.panelInfo.SuspendLayout();
             this.subMenuDocentes.SuspendLayout();
             this.subMenuMiPerfil.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -67,64 +67,79 @@
             this.panelOpciones.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelOpciones.Location = new System.Drawing.Point(0, 0);
             this.panelOpciones.Name = "panelOpciones";
-            this.panelOpciones.Size = new System.Drawing.Size(855, 36);
+            this.panelOpciones.Size = new System.Drawing.Size(912, 36);
             this.panelOpciones.TabIndex = 0;
             // 
             // btnMinimizar
             // 
             this.btnMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimizar.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnMinimizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimizar.Font = new System.Drawing.Font("Impact", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimizar.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMinimizar.Location = new System.Drawing.Point(753, 0);
+            this.btnMinimizar.Location = new System.Drawing.Point(810, 0);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(36, 36);
             this.btnMinimizar.TabIndex = 2;
             this.btnMinimizar.Text = "__";
             this.btnMinimizar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnMinimizar.UseVisualStyleBackColor = true;
+            this.btnMinimizar.UseVisualStyleBackColor = false;
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
             // 
             // btnMaximizar
             // 
             this.btnMaximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximizar.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnMaximizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMaximizar.Image = ((System.Drawing.Image)(resources.GetObject("btnMaximizar.Image")));
-            this.btnMaximizar.Location = new System.Drawing.Point(786, 0);
+            this.btnMaximizar.Location = new System.Drawing.Point(843, 0);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Size = new System.Drawing.Size(36, 36);
             this.btnMaximizar.TabIndex = 1;
-            this.btnMaximizar.UseVisualStyleBackColor = true;
+            this.btnMaximizar.UseVisualStyleBackColor = false;
             this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(819, 0);
+            this.btnExit.Location = new System.Drawing.Point(876, 0);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(36, 36);
             this.btnExit.TabIndex = 0;
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // panelContenedor
+            // btnNormal
             // 
-            this.panelContenedor.AutoScroll = true;
-            this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.panelContenedor.Controls.Add(this.btnMensajes);
-            this.panelContenedor.Controls.Add(this.btnAgenda);
-            this.panelContenedor.Controls.Add(this.subMenuDocentes);
-            this.panelContenedor.Controls.Add(this.btnDocentes);
-            this.panelContenedor.Controls.Add(this.subMenuMiPerfil);
-            this.panelContenedor.Controls.Add(this.btnMiPerfil);
-            this.panelContenedor.Controls.Add(this.panel2);
-            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelContenedor.Location = new System.Drawing.Point(0, 36);
-            this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(191, 529);
-            this.panelContenedor.TabIndex = 1;
+            this.btnNormal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNormal.Image = ((System.Drawing.Image)(resources.GetObject("btnNormal.Image")));
+            this.btnNormal.Location = new System.Drawing.Point(843, 0);
+            this.btnNormal.Name = "btnNormal";
+            this.btnNormal.Size = new System.Drawing.Size(36, 36);
+            this.btnNormal.TabIndex = 3;
+            this.btnNormal.UseVisualStyleBackColor = true;
+            this.btnNormal.Click += new System.EventHandler(this.btnNormal_Click);
+            // 
+            // panelInfo
+            // 
+            this.panelInfo.AutoScroll = true;
+            this.panelInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.panelInfo.Controls.Add(this.btnMensajes);
+            this.panelInfo.Controls.Add(this.btnAgenda);
+            this.panelInfo.Controls.Add(this.subMenuDocentes);
+            this.panelInfo.Controls.Add(this.btnDocentes);
+            this.panelInfo.Controls.Add(this.subMenuMiPerfil);
+            this.panelInfo.Controls.Add(this.btnMiPerfil);
+            this.panelInfo.Controls.Add(this.panel2);
+            this.panelInfo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelInfo.Location = new System.Drawing.Point(0, 36);
+            this.panelInfo.Name = "panelInfo";
+            this.panelInfo.Size = new System.Drawing.Size(191, 491);
+            this.panelInfo.TabIndex = 1;
             // 
             // btnMensajes
             // 
@@ -242,7 +257,7 @@
             // 
             this.subMenuMiPerfil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
             this.subMenuMiPerfil.Controls.Add(this.btnAsignaturas);
-            this.subMenuMiPerfil.Controls.Add(this.btnEditar);
+            this.subMenuMiPerfil.Controls.Add(this.btnConfiguracion);
             this.subMenuMiPerfil.Dock = System.Windows.Forms.DockStyle.Top;
             this.subMenuMiPerfil.Location = new System.Drawing.Point(0, 247);
             this.subMenuMiPerfil.Name = "subMenuMiPerfil";
@@ -266,23 +281,25 @@
             this.btnAsignaturas.Text = "●  Mis asignaturas";
             this.btnAsignaturas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAsignaturas.UseVisualStyleBackColor = false;
+            this.btnAsignaturas.Click += new System.EventHandler(this.btnAsignaturas_Click);
             // 
-            // btnEditar
+            // btnConfiguracion
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.btnEditar.FlatAppearance.BorderSize = 0;
-            this.btnEditar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            this.btnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditar.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEditar.Location = new System.Drawing.Point(0, 3);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.btnEditar.Size = new System.Drawing.Size(191, 36);
-            this.btnEditar.TabIndex = 5;
-            this.btnEditar.Text = "●  Configuracion";
-            this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditar.UseVisualStyleBackColor = false;
+            this.btnConfiguracion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnConfiguracion.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracion.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracion.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguracion.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConfiguracion.Location = new System.Drawing.Point(0, 3);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.btnConfiguracion.Size = new System.Drawing.Size(191, 36);
+            this.btnConfiguracion.TabIndex = 5;
+            this.btnConfiguracion.Text = "●  Configuracion";
+            this.btnConfiguracion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfiguracion.UseVisualStyleBackColor = false;
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
             // btnMiPerfil
             // 
@@ -337,40 +354,28 @@
             this.fotoAlumno.TabIndex = 0;
             this.fotoAlumno.TabStop = false;
             // 
-            // panel1
+            // panelContenedor
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(191, 36);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(664, 529);
-            this.panel1.TabIndex = 2;
-            // 
-            // btnNormal
-            // 
-            this.btnNormal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNormal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNormal.Image = ((System.Drawing.Image)(resources.GetObject("btnNormal.Image")));
-            this.btnNormal.Location = new System.Drawing.Point(786, 0);
-            this.btnNormal.Name = "btnNormal";
-            this.btnNormal.Size = new System.Drawing.Size(36, 36);
-            this.btnNormal.TabIndex = 3;
-            this.btnNormal.UseVisualStyleBackColor = true;
-            this.btnNormal.Click += new System.EventHandler(this.btnNormal_Click);
+            this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenedor.Location = new System.Drawing.Point(191, 36);
+            this.panelContenedor.Name = "panelContenedor";
+            this.panelContenedor.Size = new System.Drawing.Size(721, 491);
+            this.panelContenedor.TabIndex = 2;
             // 
             // alumnoMainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 565);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(912, 527);
             this.Controls.Add(this.panelContenedor);
+            this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.panelOpciones);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "alumnoMainScreen";
             this.Text = "alumnoMainScreen";
             this.panelOpciones.ResumeLayout(false);
-            this.panelContenedor.ResumeLayout(false);
+            this.panelInfo.ResumeLayout(false);
             this.subMenuDocentes.ResumeLayout(false);
             this.subMenuMiPerfil.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -383,15 +388,15 @@
         #endregion
 
         private System.Windows.Forms.Panel panelOpciones;
-        private System.Windows.Forms.Panel panelContenedor;
+        private System.Windows.Forms.Panel panelInfo;
         private System.Windows.Forms.Panel subMenuMiPerfil;
         private System.Windows.Forms.Button btnAsignaturas;
-        private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.Button btnConfiguracion;
         private System.Windows.Forms.Button btnMiPerfil;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.PictureBox fotoAlumno;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Panel subMenuDocentes;
         private System.Windows.Forms.Button btnInstitucion;
         private System.Windows.Forms.Button btnMisDocentes;
