@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace AppAlumno
         public alumnoMainScreen()
         {
             InitializeComponent();
+            
+
         }
 
         public void esconderSubMenu()
@@ -22,8 +25,6 @@ namespace AppAlumno
             if(subMenuMiPerfil.Visible == true)
             {
                 subMenuMiPerfil.Visible = false;
-                
-                
             }
 
             if (subMenuDocentes.Visible == true)
@@ -123,7 +124,7 @@ namespace AppAlumno
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            openScreen(new configuracion());
+            openScreen(new menuScreens.configuracion());
         }
 
 
