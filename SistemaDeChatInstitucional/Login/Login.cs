@@ -30,7 +30,10 @@ namespace Login
                     {
                         // Aca validamos cada usuario, si existen acceden y sino tira un error
 
-                        MessageBox.Show("Existe en la base de datos");
+                        this.Hide();
+                        bienvenido bv = new bienvenido();
+                        bv.ShowDialog();
+                        
                     }
                     else
                     {
