@@ -50,9 +50,9 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.fotoAlumno = new System.Windows.Forms.PictureBox();
             this.panelContenedor = new System.Windows.Forms.Panel();
-            this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
             this.panelOpciones.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.subMenuDocentes.SuspendLayout();
@@ -171,6 +171,7 @@
             this.btnMisDocentes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnMisDocentes.Name = "btnMisDocentes";
             this.btnMisDocentes.UseVisualStyleBackColor = false;
+            this.btnMisDocentes.Click += new System.EventHandler(this.btnMisDocentes_Click);
             // 
             // btnDocentes
             // 
@@ -253,17 +254,17 @@
             resources.ApplyResources(this.panelContenedor, "panelContenedor");
             this.panelContenedor.Name = "panelContenedor";
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.label1.Name = "label1";
-            // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label2.Name = "label2";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label1.Name = "label1";
             // 
             // alumnoMainScreen
             // 

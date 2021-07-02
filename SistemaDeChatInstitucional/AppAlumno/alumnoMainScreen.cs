@@ -132,5 +132,12 @@ namespace AppAlumno
         {
             openScreen(new menuScreens.misAsignaturas());
         }
+
+        private void btnMisDocentes_Click(object sender, EventArgs e)
+        {
+            openScreen(new menuScreens.misDocentes());
+
+            
+        }
     }
 }

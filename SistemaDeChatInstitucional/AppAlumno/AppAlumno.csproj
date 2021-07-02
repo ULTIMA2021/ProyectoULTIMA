@@ -68,6 +68,12 @@
     <Compile Include="menuScreens\misAsignaturas.Designer.cs">
       <DependentUpon>misAsignaturas.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\misDocentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\misDocentes.Designer.cs">
+      <DependentUpon>misDocentes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="alumnoMainScreen.resx">
@@ -78,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\misAsignaturas.resx">
       <DependentUpon>misAsignaturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\misDocentes.resx">
+      <DependentUpon>misDocentes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -117,87 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;btnMinimizar.Name" xml:space="preserve">
-    <value>btnMinimizar</value>
-  </data>
-  <data name="&gt;&gt;btnMinimizar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMinimizar.Parent" xml:space="preserve">
-    <value>panelOpciones</value>
-  </data>
-  <data name="&gt;&gt;btnMinimizar.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizar.Name" xml:space="preserve">
-    <value>btnMaximizar</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizar.Parent" xml:space="preserve">
-    <value>panelOpciones</value>
-  </data>
-  <data name="&gt;&gt;btnMaximizar.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnExit.Name" xml:space="preserve">
-    <value>btnExit</value>
-  </data>
-  <data name="&gt;&gt;btnExit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnExit.Parent" xml:space="preserve">
-    <value>panelOpciones</value>
-  </data>
-  <data name="&gt;&gt;btnExit.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnNormal.Name" xml:space="preserve">
-    <value>btnNormal</value>
-  </data>
-  <data name="&gt;&gt;btnNormal.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnNormal.Parent" xml:space="preserve">
-    <value>panelOpciones</value>
-  </data>
-  <data name="&gt;&gt;btnNormal.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panelOpciones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="panelOpciones.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panelOpciones.Size" type="System.Drawing.Size, System.Drawing">
-    <value>912, 36</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panelOpciones.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelOpciones.Name" xml:space="preserve">
-    <value>panelOpciones</value>
-  </data>
-  <data name="&gt;&gt;panelOpciones.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelOpciones.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelOpciones.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="btnMinimizar.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="btnMinimizar.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnMinimizar.Font" type="System.Drawing.Font, System.Drawing">
     <value>Impact, 14.25pt, style=Bold</value>
   </data>
@@ -210,6 +137,7 @@
   <data name="btnMinimizar.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 36</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnMinimizar.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -353,6 +281,30 @@
   <data name="&gt;&gt;btnNormal.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="panelOpciones.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panelOpciones.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panelOpciones.Size" type="System.Drawing.Size, System.Drawing">
+    <value>912, 36</value>
+  </data>
+  <data name="panelOpciones.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelOpciones.Name" xml:space="preserve">
+    <value>panelOpciones</value>
+  </data>
+  <data name="&gt;&gt;panelOpciones.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelOpciones.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelOpciones.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="panelInfo.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -465,6 +417,30 @@
   <data name="&gt;&gt;btnAgenda.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="btnInstitucion.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnInstitucion.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cambria, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnInstitucion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 45</value>
+  </data>
+  <data name="btnInstitucion.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>45, 0, 0, 0</value>
+  </data>
+  <data name="btnInstitucion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 36</value>
+  </data>
+  <data name="btnInstitucion.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="btnInstitucion.Text" xml:space="preserve">
+    <value>●  Institucion</value>
+  </data>
+  <data name="btnInstitucion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="&gt;&gt;btnInstitucion.Name" xml:space="preserve">
     <value>btnInstitucion</value>
   </data>
@@ -476,6 +452,30 @@
   </data>
   <data name="&gt;&gt;btnInstitucion.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnMisDocentes.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnMisDocentes.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cambria, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnMisDocentes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 3</value>
+  </data>
+  <data name="btnMisDocentes.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>45, 0, 0, 0</value>
+  </data>
+  <data name="btnMisDocentes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 36</value>
+  </data>
+  <data name="btnMisDocentes.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnMisDocentes.Text" xml:space="preserve">
+    <value>●  Mis docentes</value>
+  </data>
+  <data name="btnMisDocentes.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;btnMisDocentes.Name" xml:space="preserve">
     <value>btnMisDocentes</value>
@@ -573,6 +573,30 @@
   <data name="&gt;&gt;btnDocentes.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="btnAsignaturas.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnAsignaturas.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cambria, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnAsignaturas.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 45</value>
+  </data>
+  <data name="btnAsignaturas.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>45, 0, 0, 0</value>
+  </data>
+  <data name="btnAsignaturas.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 36</value>
+  </data>
+  <data name="btnAsignaturas.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnAsignaturas.Text" xml:space="preserve">
+    <value>●  Mis asignaturas</value>
+  </data>
+  <data name="btnAsignaturas.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="&gt;&gt;btnAsignaturas.Name" xml:space="preserve">
     <value>btnAsignaturas</value>
   </data>
@@ -584,6 +608,30 @@
   </data>
   <data name="&gt;&gt;btnAsignaturas.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="btnConfiguracion.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnConfiguracion.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cambria, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnConfiguracion.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 3</value>
+  </data>
+  <data name="btnConfiguracion.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>45, 0, 0, 0</value>
+  </data>
+  <data name="btnConfiguracion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 36</value>
+  </data>
+  <data name="btnConfiguracion.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnConfiguracion.Text" xml:space="preserve">
+    <value>●  Configuracion</value>
+  </data>
+  <data name="btnConfiguracion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;btnConfiguracion.Name" xml:space="preserve">
     <value>btnConfiguracion</value>
@@ -847,149 +895,26 @@
   <data name="&gt;&gt;panelInfo.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="btnInstitucion.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="btnInstitucion.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Cambria, 9.75pt, style=Bold</value>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe Script, 48pt, style=Bold</value>
   </data>
-  <data name="btnInstitucion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 45</value>
+  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="btnInstitucion.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>45, 0, 0, 0</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>122, 211</value>
   </data>
-  <data name="btnInstitucion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 36</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>499, 106</value>
   </data>
-  <data name="btnInstitucion.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="btnInstitucion.Text" xml:space="preserve">
-    <value>●  Institucion</value>
-  </data>
-  <data name="btnInstitucion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnInstitucion.Name" xml:space="preserve">
-    <value>btnInstitucion</value>
-  </data>
-  <data name="&gt;&gt;btnInstitucion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnInstitucion.Parent" xml:space="preserve">
-    <value>subMenuDocentes</value>
-  </data>
-  <data name="&gt;&gt;btnInstitucion.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnMisDocentes.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnMisDocentes.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Cambria, 9.75pt, style=Bold</value>
-  </data>
-  <data name="btnMisDocentes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 3</value>
-  </data>
-  <data name="btnMisDocentes.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>45, 0, 0, 0</value>
-  </data>
-  <data name="btnMisDocentes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 36</value>
-  </data>
-  <data name="btnMisDocentes.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btnMisDocentes.Text" xml:space="preserve">
-    <value>●  Mis docentes</value>
-  </data>
-  <data name="btnMisDocentes.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnMisDocentes.Name" xml:space="preserve">
-    <value>btnMisDocentes</value>
-  </data>
-  <data name="&gt;&gt;btnMisDocentes.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMisDocentes.Parent" xml:space="preserve">
-    <value>subMenuDocentes</value>
-  </data>
-  <data name="&gt;&gt;btnMisDocentes.ZOrder" xml:space="preserve">
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="btnAsignaturas.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnAsignaturas.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Cambria, 9.75pt, style=Bold</value>
-  </data>
-  <data name="btnAsignaturas.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 45</value>
-  </data>
-  <data name="btnAsignaturas.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>45, 0, 0, 0</value>
-  </data>
-  <data name="btnAsignaturas.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 36</value>
-  </data>
-  <data name="btnAsignaturas.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="btnAsignaturas.Text" xml:space="preserve">
-    <value>●  Mis asignaturas</value>
-  </data>
-  <data name="btnAsignaturas.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnAsignaturas.Name" xml:space="preserve">
-    <value>btnAsignaturas</value>
-  </data>
-  <data name="&gt;&gt;btnAsignaturas.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAsignaturas.Parent" xml:space="preserve">
-    <value>subMenuMiPerfil</value>
-  </data>
-  <data name="&gt;&gt;btnAsignaturas.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnConfiguracion.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnConfiguracion.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Cambria, 9.75pt, style=Bold</value>
-  </data>
-  <data name="btnConfiguracion.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 3</value>
-  </data>
-  <data name="btnConfiguracion.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>45, 0, 0, 0</value>
-  </data>
-  <data name="btnConfiguracion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 36</value>
-  </data>
-  <data name="btnConfiguracion.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="btnConfiguracion.Text" xml:space="preserve">
-    <value>●  Configuracion</value>
-  </data>
-  <data name="btnConfiguracion.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracion.Name" xml:space="preserve">
-    <value>btnConfiguracion</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracion.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracion.Parent" xml:space="preserve">
-    <value>subMenuMiPerfil</value>
-  </data>
-  <data name="&gt;&gt;btnConfiguracion.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>institucional</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -1002,6 +927,24 @@
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe Script, 48pt, style=Bold</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 105</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>331, 106</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Sistema </value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
@@ -1037,69 +980,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panelContenedor.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe Script, 48pt, style=Bold</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 105</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>331, 106</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Sistema </value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panelContenedor</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe Script, 48pt, style=Bold</value>
-  </data>
-  <data name="label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>122, 211</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>499, 106</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>institucional</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>panelContenedor</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
