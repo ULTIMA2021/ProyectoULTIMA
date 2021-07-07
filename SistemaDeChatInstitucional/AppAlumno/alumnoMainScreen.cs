@@ -144,5 +144,10 @@ namespace AppAlumno
 
             
         }
+
+        private void btnNuevoMensaje_Click(object sender, EventArgs e)
+        {
+            openScreen(new menuScreens.NuevoMensaje());
+        }
     }
 }

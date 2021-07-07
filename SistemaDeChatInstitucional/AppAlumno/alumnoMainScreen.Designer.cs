@@ -288,6 +288,7 @@
             this.btnNuevoMensaje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnNuevoMensaje.Name = "btnNuevoMensaje";
             this.btnNuevoMensaje.UseVisualStyleBackColor = false;
+            this.btnNuevoMensaje.Click += new System.EventHandler(this.btnNuevoMensaje_Click);
             // 
             // btnMisMensajes
             // 
