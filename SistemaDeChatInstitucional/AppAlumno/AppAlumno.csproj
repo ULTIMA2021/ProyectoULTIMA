@@ -74,6 +74,12 @@
     <Compile Include="menuScreens\misDocentes.Designer.cs">
       <DependentUpon>misDocentes.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\misMensajes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\misMensajes.Designer.cs">
+      <DependentUpon>misMensajes.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\NuevoMensaje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\misDocentes.resx">
       <DependentUpon>misDocentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\misMensajes.resx">
+      <DependentUpon>misMensajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\NuevoMensaje.resx">
       <DependentUpon>NuevoMensaje.cs</DependentUpon>

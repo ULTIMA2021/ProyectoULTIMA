@@ -36,6 +36,9 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnNormal = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.subMenuMensajes = new System.Windows.Forms.Panel();
+            this.btnMisMensajes = new System.Windows.Forms.Button();
+            this.btnNuevoMensaje = new System.Windows.Forms.Button();
             this.btnMensajes = new System.Windows.Forms.Button();
             this.btnAgenda = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
@@ -53,17 +56,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
-            this.subMenuMensajes = new System.Windows.Forms.Panel();
-            this.btnNuevoMensaje = new System.Windows.Forms.Button();
-            this.btnMisMensajes = new System.Windows.Forms.Button();
             this.panelOpciones.SuspendLayout();
             this.panelInfo.SuspendLayout();
+            this.subMenuMensajes.SuspendLayout();
             this.subMenuDocentes.SuspendLayout();
             this.subMenuMiPerfil.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fotoAlumno)).BeginInit();
             this.panelContenedor.SuspendLayout();
-            this.subMenuMensajes.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelOpciones
@@ -80,6 +80,7 @@
             // 
             resources.ApplyResources(this.btnMinimizar, "btnMinimizar");
             this.btnMinimizar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnMinimizar.FlatAppearance.BorderSize = 0;
             this.btnMinimizar.Name = "btnMinimizar";
             this.ttInformacion.SetToolTip(this.btnMinimizar, resources.GetString("btnMinimizar.ToolTip"));
             this.btnMinimizar.UseVisualStyleBackColor = false;
@@ -89,6 +90,7 @@
             // 
             resources.ApplyResources(this.btnMaximizar, "btnMaximizar");
             this.btnMaximizar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnMaximizar.FlatAppearance.BorderSize = 0;
             this.btnMaximizar.Name = "btnMaximizar";
             this.ttInformacion.SetToolTip(this.btnMaximizar, resources.GetString("btnMaximizar.ToolTip"));
             this.btnMaximizar.UseVisualStyleBackColor = false;
@@ -98,6 +100,7 @@
             // 
             resources.ApplyResources(this.btnExit, "btnExit");
             this.btnExit.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.Name = "btnExit";
             this.ttInformacion.SetToolTip(this.btnExit, resources.GetString("btnExit.ToolTip"));
             this.btnExit.UseVisualStyleBackColor = false;
@@ -124,6 +127,36 @@
             this.panelInfo.Controls.Add(this.btnMiPerfil);
             this.panelInfo.Controls.Add(this.panel2);
             this.panelInfo.Name = "panelInfo";
+            // 
+            // subMenuMensajes
+            // 
+            this.subMenuMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.subMenuMensajes.Controls.Add(this.btnMisMensajes);
+            this.subMenuMensajes.Controls.Add(this.btnNuevoMensaje);
+            resources.ApplyResources(this.subMenuMensajes, "subMenuMensajes");
+            this.subMenuMensajes.Name = "subMenuMensajes";
+            // 
+            // btnMisMensajes
+            // 
+            this.btnMisMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnMisMensajes.FlatAppearance.BorderSize = 0;
+            this.btnMisMensajes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            resources.ApplyResources(this.btnMisMensajes, "btnMisMensajes");
+            this.btnMisMensajes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMisMensajes.Name = "btnMisMensajes";
+            this.btnMisMensajes.UseVisualStyleBackColor = false;
+            this.btnMisMensajes.Click += new System.EventHandler(this.btnMisMensajes_Click);
+            // 
+            // btnNuevoMensaje
+            // 
+            this.btnNuevoMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnNuevoMensaje.FlatAppearance.BorderSize = 0;
+            this.btnNuevoMensaje.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            resources.ApplyResources(this.btnNuevoMensaje, "btnNuevoMensaje");
+            this.btnNuevoMensaje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNuevoMensaje.Name = "btnNuevoMensaje";
+            this.btnNuevoMensaje.UseVisualStyleBackColor = false;
+            this.btnNuevoMensaje.Click += new System.EventHandler(this.btnNuevoMensaje_Click);
             // 
             // btnMensajes
             // 
@@ -271,35 +304,6 @@
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Name = "label1";
             // 
-            // subMenuMensajes
-            // 
-            this.subMenuMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.subMenuMensajes.Controls.Add(this.btnMisMensajes);
-            this.subMenuMensajes.Controls.Add(this.btnNuevoMensaje);
-            resources.ApplyResources(this.subMenuMensajes, "subMenuMensajes");
-            this.subMenuMensajes.Name = "subMenuMensajes";
-            // 
-            // btnNuevoMensaje
-            // 
-            this.btnNuevoMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.btnNuevoMensaje.FlatAppearance.BorderSize = 0;
-            this.btnNuevoMensaje.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            resources.ApplyResources(this.btnNuevoMensaje, "btnNuevoMensaje");
-            this.btnNuevoMensaje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNuevoMensaje.Name = "btnNuevoMensaje";
-            this.btnNuevoMensaje.UseVisualStyleBackColor = false;
-            this.btnNuevoMensaje.Click += new System.EventHandler(this.btnNuevoMensaje_Click);
-            // 
-            // btnMisMensajes
-            // 
-            this.btnMisMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.btnMisMensajes.FlatAppearance.BorderSize = 0;
-            this.btnMisMensajes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            resources.ApplyResources(this.btnMisMensajes, "btnMisMensajes");
-            this.btnMisMensajes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMisMensajes.Name = "btnMisMensajes";
-            this.btnMisMensajes.UseVisualStyleBackColor = false;
-            // 
             // alumnoMainScreen
             // 
             resources.ApplyResources(this, "$this");
@@ -311,6 +315,7 @@
             this.Name = "alumnoMainScreen";
             this.panelOpciones.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
+            this.subMenuMensajes.ResumeLayout(false);
             this.subMenuDocentes.ResumeLayout(false);
             this.subMenuMiPerfil.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -318,7 +323,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.fotoAlumno)).EndInit();
             this.panelContenedor.ResumeLayout(false);
             this.panelContenedor.PerformLayout();
-            this.subMenuMensajes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
