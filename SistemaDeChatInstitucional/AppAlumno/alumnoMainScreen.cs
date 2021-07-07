@@ -31,7 +31,12 @@ namespace AppAlumno
             {
                 subMenuDocentes.Visible = false;
             }
-            
+
+            if (subMenuMensajes.Visible == true)
+            {
+                subMenuMensajes.Visible = false;
+            }
+
         }
 
 
@@ -90,7 +95,7 @@ namespace AppAlumno
 
         private void btnMensajes_Click(object sender, EventArgs e)
         {
-            
+            mostrarSubMenu(subMenuMensajes);
         }
 
 

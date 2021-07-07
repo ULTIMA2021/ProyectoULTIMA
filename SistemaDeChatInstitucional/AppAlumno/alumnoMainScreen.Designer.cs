@@ -53,6 +53,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
+            this.subMenuMensajes = new System.Windows.Forms.Panel();
+            this.btnNuevoMensaje = new System.Windows.Forms.Button();
+            this.btnMisMensajes = new System.Windows.Forms.Button();
             this.panelOpciones.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.subMenuDocentes.SuspendLayout();
@@ -60,6 +63,7 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fotoAlumno)).BeginInit();
             this.panelContenedor.SuspendLayout();
+            this.subMenuMensajes.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelOpciones
@@ -111,6 +115,7 @@
             // 
             resources.ApplyResources(this.panelInfo, "panelInfo");
             this.panelInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.panelInfo.Controls.Add(this.subMenuMensajes);
             this.panelInfo.Controls.Add(this.btnMensajes);
             this.panelInfo.Controls.Add(this.btnAgenda);
             this.panelInfo.Controls.Add(this.subMenuDocentes);
@@ -266,6 +271,34 @@
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Name = "label1";
             // 
+            // subMenuMensajes
+            // 
+            this.subMenuMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.subMenuMensajes.Controls.Add(this.btnMisMensajes);
+            this.subMenuMensajes.Controls.Add(this.btnNuevoMensaje);
+            resources.ApplyResources(this.subMenuMensajes, "subMenuMensajes");
+            this.subMenuMensajes.Name = "subMenuMensajes";
+            // 
+            // btnNuevoMensaje
+            // 
+            this.btnNuevoMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnNuevoMensaje.FlatAppearance.BorderSize = 0;
+            this.btnNuevoMensaje.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            resources.ApplyResources(this.btnNuevoMensaje, "btnNuevoMensaje");
+            this.btnNuevoMensaje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnNuevoMensaje.Name = "btnNuevoMensaje";
+            this.btnNuevoMensaje.UseVisualStyleBackColor = false;
+            // 
+            // btnMisMensajes
+            // 
+            this.btnMisMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnMisMensajes.FlatAppearance.BorderSize = 0;
+            this.btnMisMensajes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            resources.ApplyResources(this.btnMisMensajes, "btnMisMensajes");
+            this.btnMisMensajes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMisMensajes.Name = "btnMisMensajes";
+            this.btnMisMensajes.UseVisualStyleBackColor = false;
+            // 
             // alumnoMainScreen
             // 
             resources.ApplyResources(this, "$this");
@@ -284,6 +317,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.fotoAlumno)).EndInit();
             this.panelContenedor.ResumeLayout(false);
             this.panelContenedor.PerformLayout();
+            this.subMenuMensajes.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -313,5 +347,8 @@
         private System.Windows.Forms.ToolTip ttInformacion;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel subMenuMensajes;
+        private System.Windows.Forms.Button btnMisMensajes;
+        private System.Windows.Forms.Button btnNuevoMensaje;
     }
 }
