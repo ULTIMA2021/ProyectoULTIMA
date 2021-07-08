@@ -21,21 +21,22 @@ namespace CapaDeDatos
             this.InicializarConexion();
             MySqlConnection conexion = new MySqlConnection(
                  "server=" + this.IpDb + ";" +
-                "userid=" + this.NombreDb + ";" +
-                "password=" + this.UsuarioDb + ";" +
-                "database=" + this.PasswordDb + ";"
+                "userid=" + this.UsuarioDb + ";" +
+                "password=" + this.PasswordDb + ";" +
+                "database=" + this.NombreDb + ";"
                 );
 
             conexion.Open();
+            Console.WriteLine("Conexion abierta");
 
         }
 
         protected void InicializarConexion()
         {
-            this.IpDb = "192.168.80.1";
-            this.NombreDb = "base";
+            this.IpDb = "localhost";
+            this.NombreDb = "ultimaDB";
             this.UsuarioDb = "root";
-            this.PasswordDb = "1234";
+            this.PasswordDb = "andylu30";
         }
     }
 }
