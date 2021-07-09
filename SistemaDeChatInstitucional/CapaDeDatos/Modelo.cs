@@ -14,12 +14,20 @@ namespace CapaDeDatos
         protected string NombreDb;
         protected string UsuarioDb;
         protected string PasswordDb;
+        protected MySqlConnection conexion;
+        protected MySqlCommand comando;
         protected MySqlDataReader lector;
 
         public Modelo()
         {
+            connection();
+
+        }
+
+        public void connection()
+        {
             this.InicializarConexion();
-            MySqlConnection conexion = new MySqlConnection(
+            conexion = new MySqlConnection(
                  "server=" + this.IpDb + ";" +
                 "userid=" + this.UsuarioDb + ";" +
                 "password=" + this.PasswordDb + ";" +
@@ -27,8 +35,10 @@ namespace CapaDeDatos
                 );
 
             conexion.Open();
-            Console.WriteLine("Conexion abierta");
-
+            this.comando = new MySqlCommand();
+            this.comando.Connection = this.conexion;
+            
+            
         }
 
         protected void InicializarConexion()
@@ -38,5 +48,7 @@ namespace CapaDeDatos
             this.UsuarioDb = "root";
             this.PasswordDb = "andylu30";
         }
+
+       
     }
 }

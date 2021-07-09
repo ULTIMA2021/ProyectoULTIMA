@@ -11,7 +11,7 @@ namespace CapaLogica
     {
         
 
-        public static bool AltaDeAlumno(int cedula, string nombre, string apellido, string clave)
+        public static bool AltaDeAlumno(string cedula, string nombre, string apellido, string clave)
         {
             PersonaModelo Alumno = new PersonaModelo();
 
@@ -27,26 +27,60 @@ namespace CapaLogica
         }
 
 
-        public static void verificarPersona(string user, string pass)
-        {
-            PersonaModelo persona = new PersonaModelo();
+        
 
-            persona.getPersona(user, pass);
+        public static bool verificarAlumno(string user, string pass)
+        {
+            bool resultado = false;
+            PersonaModelo p = new PersonaModelo();
+            List<PersonaModelo> personas = p.obtenerAlumno();
+            foreach (PersonaModelo per in personas)
+            {
+                if(per.Cedula == user && per.Clave == pass)
+                {
+                    resultado = true;
+                }
+                
+            }
+
+            return resultado;
+        }
+
+        public static bool verificarDocente(string user, string pass)
+        {
+            bool resultado = false;
+            PersonaModelo p = new PersonaModelo();
+            List<PersonaModelo> personas = p.obtenerDocente();
+            foreach (PersonaModelo per in personas)
+            {
+                if (per.Cedula == user && per.Clave == pass)
+                {
+                    resultado = true;
+                }
+
+            }
+
+            return resultado;
         }
 
 
-        public static void verificarAlumno(string user)
+        public static bool verificarAdmin(string user, string pass)
         {
-            PersonaModelo persona = new PersonaModelo();
+            bool resultado = false;
+            PersonaModelo p = new PersonaModelo();
+            List<PersonaModelo> personas = p.obtenerAdmin();
+            foreach (PersonaModelo per in personas)
+            {
+                if (per.Cedula == user && per.Clave == pass)
+                {
+                    resultado = true;
+                }
 
-            persona.getAlumno(user);
+            }
+
+            return resultado;
         }
 
-        public static void conectar()
-        {
-            Modelo modelo = new Modelo();
-            
-        }
 
     }
 }

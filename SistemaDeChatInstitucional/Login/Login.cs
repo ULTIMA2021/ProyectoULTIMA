@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaLogica;
+using AppAlumno;
+using AppDocente;
 
 namespace Login
 
@@ -17,6 +20,7 @@ namespace Login
         {
             InitializeComponent();
             this.CenterToScreen();
+            
 
         }
 
@@ -26,41 +30,66 @@ namespace Login
             {
                 if (txtContra.Text != "Contraseña")
                 {
-                    if (txtContra.Text != "")
+                    try {
+                        validarUsuario();
+                    }
+                    catch(Exception ex)
                     {
-                        // Aca validamos cada usuario, si existen acceden y sino tira un error
+                        MessageBox.Show(ex.Message);
+                    }
 
-                        this.Hide();
-                        bienvenido bv = new bienvenido();
-                        bv.ShowDialog();
-                        
-                    }
-                    else
-                    {
-                        errorMessage("* Usuario y/o contraseña incorrectos.");
-                    }
-                        
-                }
-                
-                else errorMessage("* Ingrese contraseña.");
+                }else errorMessage("* Ingrese contraseña.");
 
                
-            }
-            else errorMessage("* Ingrese un usuario.");
+            } else errorMessage("* Ingrese un usuario.");
 
-
-
+            
 
         }
+
+        private void validarUsuario()
+        {
+            var validarAlumno = AlumnoControlador.verificarAlumno(txtUsuario.Text, txtContra.Text);
+            var validarDocente = AlumnoControlador.verificarDocente(txtUsuario.Text, txtContra.Text);
+            var validarAdmin = AlumnoControlador.verificarAdmin(txtUsuario.Text, txtContra.Text);
+
+            if (validarAlumno == true)
+            {
+                this.Hide();
+                bienvenido bv = new bienvenido();
+                bv.ShowDialog();
+                alumnoMainScreen ams = new alumnoMainScreen();
+                ams.Show();
+
+            }else if(validarDocente == true)
+            {
+                this.Hide();
+                bienvenido bv = new bienvenido();
+                bv.ShowDialog();
+                Form1 f1 = new Form1();
+                f1.Show();
+            }
+            else if (validarAdmin == true)
+            {
+                this.Hide();
+                MessageBox.Show("Es administrador");
+
+            } else{
+
+                errorMessage("* Usuario y/o contraseña incorrectos.");
+                txtUsuario.Text = "Usuario";
+                txtContra.PasswordChar = '\0';
+                txtContra.Text = "Contraseña";
+            }
+        }
+
+       
 
         public void errorMessage(string msg)
         {
             lblErrorMessage.Text = msg;
             lblErrorMessage.Visible = true;
         }
-
-
-
 
 
         private void btnExit_Click(object sender, EventArgs e)

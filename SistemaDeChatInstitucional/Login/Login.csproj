@@ -89,5 +89,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppAdmin\AppAdmin.csproj">
+      <Project>{3c6a0004-e803-415a-ba27-bb750cf1e025}</Project>
+      <Name>AppAdmin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppAlumno\AppAlumno.csproj">
+      <Project>{dcbc3250-731a-42d9-a418-0c07af86681c}</Project>
+      <Name>AppAlumno</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AppDocente\AppDocente.csproj">
+      <Project>{0c44af75-d045-4d8a-bda7-bf8d91504b4e}</Project>
+      <Name>AppDocente</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaLogica\CapaLogica.csproj">
+      <Project>{66855f56-cf4a-4155-9ae2-9cb50f63982c}</Project>
+      <Name>CapaLogica</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

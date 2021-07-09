@@ -60,16 +60,18 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 20;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timer2
             // 
+            this.timer2.Interval = 20;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(157, 216);
-            this.progressBar1.Maximum = 30;
+            this.progressBar1.Maximum = 80;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(349, 23);
             this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;

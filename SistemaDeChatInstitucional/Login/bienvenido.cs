@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AppAlumno;
 
 namespace Login
 {
@@ -24,9 +25,10 @@ namespace Login
                 this.Opacity += 0.05;
             }
             progressBar1.Value += 1;
-            if(progressBar1.Value == 30 )
+            if(progressBar1.Value == 80 )
             {
                 timer1.Stop();
+                
                 timer2.Start();
             }
         }
@@ -40,6 +42,8 @@ namespace Login
                 this.Close();
                 
                 
+
+
             }
         }
 
