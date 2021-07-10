@@ -13,11 +13,10 @@ namespace AppAlumno
 {
     public partial class alumnoMainScreen : Form
     {
-
-        public alumnoMainScreen(Session session)
+        public alumnoMainScreen()
         {
             InitializeComponent();
-            lblNombre.Text = $"{session.nombre} {session.apellido}";
+            
         }
 
         public void esconderSubMenu()
@@ -129,7 +128,7 @@ namespace AppAlumno
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.configuracion(AlumnoControlador.getSession()));
+            openScreen(new menuScreens.configuracion());
         }
 
 
@@ -153,6 +152,11 @@ namespace AppAlumno
         private void btnMisMensajes_Click(object sender, EventArgs e)
         {
             openScreen(new menuScreens.misMensajes());
+        }
+
+        private void alumnoMainScreen_Load(object sender, EventArgs e)
+        {
+            lblNombre.Text = $"{Session.nombre} {Session.apellido}";
         }
     }
 }

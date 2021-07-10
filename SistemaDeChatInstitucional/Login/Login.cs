@@ -28,50 +28,43 @@ namespace Login
             {
                 if (txtContra.Text != "Contraseña")
                 {
-                    try {
+                    try
+                    {
                         validarUsuario();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
 
-                }else errorMessage("* Ingrese contraseña.");
-
-               
-            } else errorMessage("* Ingrese un usuario.");
-
-            
-
+                }
+                else errorMessage("* Ingrese contraseña.");
+            }
+            else errorMessage("* Ingrese un usuario.");
         }
 
         private void validarUsuario()
         {
-            var validarAlumno = AlumnoControlador.verificarAlumno(txtUsuario.Text, txtContra.Text);
-            var validarDocente = AlumnoControlador.verificarDocente(txtUsuario.Text, txtContra.Text);
-            var validarAdmin = AlumnoControlador.verificarAdmin(txtUsuario.Text, txtContra.Text);
-
-            if (validarAlumno == true)
+            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
-                bienvenido bv = new bienvenido(AlumnoControlador.getSession());
+                bienvenido bv = new bienvenido();
                 bv.ShowDialog();
-                alumnoMainScreen ams = new alumnoMainScreen(AlumnoControlador.getSession());
+                alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
 
-            }else if(validarDocente == true)
+            }else if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
-                bienvenido bv = new bienvenido(AlumnoControlador.getSession());
+                bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 Form1 f1 = new Form1();
                 f1.Show();
             }
-            else if (validarAdmin == true)
+            else if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
                 MessageBox.Show("Es administrador");
-
             } else{
 
                 errorMessage("* Usuario y/o contraseña incorrectos.");
@@ -80,8 +73,6 @@ namespace Login
                 txtContra.Text = "Contraseña";
             }
         }
-
-       
 
         public void errorMessage(string msg)
         {

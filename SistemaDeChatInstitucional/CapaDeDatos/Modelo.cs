@@ -21,7 +21,6 @@ namespace CapaDeDatos
         public Modelo()
         {
             connection();
-
         }
 
         public void connection()
@@ -36,7 +35,7 @@ namespace CapaDeDatos
 
             conexion.Open();
             this.comando = new MySqlCommand();
-            this.comando.Connection = this.conexion; 
+            this.comando.Connection = this.conexion;
         }
 
         protected void InicializarConexion()
@@ -46,7 +45,5 @@ namespace CapaDeDatos
             this.UsuarioDb = "root";
             this.PasswordDb = "9682031";
         }
-
-       
     }
 }

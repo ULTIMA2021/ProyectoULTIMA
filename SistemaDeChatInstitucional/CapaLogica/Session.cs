@@ -7,18 +7,26 @@ using CapaDeDatos;
 
 namespace CapaLogica
 {
-    public class Session
+    public static class Session
     {
-        public  string cedula { get; set; }
-        public  string nombre { get; set; }
-        public  string apellido { get; set; }
-        public  string clave { get; set; }
+        public static string cedula { get; set; }
+        public static string nombre { get; set; }
+        public static string apellido { get; set; }
+        public static string clave { get; set; }
+        //foto
+        //avatar
 
-        public string toString()
+        public static void saveToCache(PersonaModelo per)
+        {
+            Session.cedula = per.Cedula;
+            Session.nombre = per.Nombre;
+            Session.apellido = per.Apellido;
+            Session.clave = per.Clave;
+        }
+        public static string toString()
         {
             return "Session ToString: "+ cedula + " " + nombre + " " + apellido +" "+ clave;
         }
-        //foto
-        //avatar
+        
     }
 }

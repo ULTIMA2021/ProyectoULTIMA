@@ -16,14 +16,12 @@ namespace AppAlumno.menuScreens
 {
     public partial class configuracion : Form
     {
-        public configuracion( Session session)
+
+        public configuracion()
         {
             InitializeComponent();
-            txtNombre.Text= session.nombre;
-            txtApellido.Text = session.apellido;
-            txtUsuario.Text = session.cedula;
-        }
 
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -61,6 +59,13 @@ namespace AppAlumno.menuScreens
 
 
 
+        }
+
+        private void configuracion_Load(object sender, EventArgs e)
+        {
+            txtNombre.Text = Session.nombre;
+            txtApellido.Text = Session.apellido;
+            txtUsuario.Text = Session.cedula;
         }
     }
 }

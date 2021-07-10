@@ -313,6 +313,7 @@
             this.Controls.Add(this.panelOpciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "alumnoMainScreen";
+            this.Load += new System.EventHandler(this.alumnoMainScreen_Load);
             this.panelOpciones.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.subMenuMensajes.ResumeLayout(false);

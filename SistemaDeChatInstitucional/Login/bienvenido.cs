@@ -14,13 +14,11 @@ namespace Login
 {
     public partial class bienvenido : Form
     {
-        public bienvenido(Session session)
+        public bienvenido()
         {
             InitializeComponent();
-            lblUser.Text = $"{session.nombre} {session.apellido}";
-
+            
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if(this.Opacity < 1)
@@ -52,8 +50,10 @@ namespace Login
 
         private void bienvenido_Load(object sender, EventArgs e)
         {
+            lblUser.Text = $"{Session.nombre} {Session.apellido}";
             this.Opacity = 0.0;
             timer1.Start();
+
         }
     }
 }
