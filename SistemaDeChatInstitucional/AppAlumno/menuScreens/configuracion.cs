@@ -10,14 +10,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaLogica;
 
 namespace AppAlumno.menuScreens
 {
     public partial class configuracion : Form
     {
-        public configuracion()
+        public configuracion( Session session)
         {
             InitializeComponent();
+            txtNombre.Text= session.nombre;
+            txtApellido.Text = session.apellido;
+            txtUsuario.Text = session.cedula;
         }
 
         private void btnExit_Click(object sender, EventArgs e)

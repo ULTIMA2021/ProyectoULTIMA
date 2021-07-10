@@ -8,16 +8,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using CapaLogica;
 namespace AppAlumno
 {
     public partial class alumnoMainScreen : Form
     {
-        public alumnoMainScreen()
+
+        public alumnoMainScreen(Session session)
         {
             InitializeComponent();
-            
-
+            lblNombre.Text = $"{session.nombre} {session.apellido}";
         }
 
         public void esconderSubMenu()
@@ -129,7 +129,7 @@ namespace AppAlumno
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.configuracion());
+            openScreen(new menuScreens.configuracion(AlumnoControlador.getSession()));
         }
 
 

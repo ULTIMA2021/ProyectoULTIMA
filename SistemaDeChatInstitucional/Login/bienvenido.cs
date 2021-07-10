@@ -8,14 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AppAlumno;
+using CapaLogica;
 
 namespace Login
 {
     public partial class bienvenido : Form
     {
-        public bienvenido()
+        public bienvenido(Session session)
         {
             InitializeComponent();
+            lblUser.Text = $"{session.nombre} {session.apellido}";
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)

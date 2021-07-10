@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblUser = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -47,16 +47,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Bienvenido";
             // 
-            // label2
+            // lblUser
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(271, 116);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 37);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Usuario";
+            this.lblUser.AutoSize = true;
+            this.lblUser.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblUser.Location = new System.Drawing.Point(271, 116);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(121, 37);
+            this.lblUser.TabIndex = 1;
+            this.lblUser.Text = "Usuario";
             // 
             // timer1
             // 
@@ -84,7 +84,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
             this.ClientSize = new System.Drawing.Size(663, 277);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblUser);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "bienvenido";
@@ -99,7 +99,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.ProgressBar progressBar1;

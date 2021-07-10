@@ -36,9 +36,7 @@ namespace CapaDeDatos
 
             conexion.Open();
             this.comando = new MySqlCommand();
-            this.comando.Connection = this.conexion;
-            
-            
+            this.comando.Connection = this.conexion; 
         }
 
         protected void InicializarConexion()
@@ -46,7 +44,7 @@ namespace CapaDeDatos
             this.IpDb = "localhost";
             this.NombreDb = "ultimaDB";
             this.UsuarioDb = "root";
-            this.PasswordDb = "andylu30";
+            this.PasswordDb = "9682031";
         }
 
        

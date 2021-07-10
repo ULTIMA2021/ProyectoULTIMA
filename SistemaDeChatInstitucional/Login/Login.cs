@@ -20,8 +20,6 @@ namespace Login
         {
             InitializeComponent();
             this.CenterToScreen();
-            
-
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -56,15 +54,15 @@ namespace Login
             if (validarAlumno == true)
             {
                 this.Hide();
-                bienvenido bv = new bienvenido();
+                bienvenido bv = new bienvenido(AlumnoControlador.getSession());
                 bv.ShowDialog();
-                alumnoMainScreen ams = new alumnoMainScreen();
+                alumnoMainScreen ams = new alumnoMainScreen(AlumnoControlador.getSession());
                 ams.Show();
 
             }else if(validarDocente == true)
             {
                 this.Hide();
-                bienvenido bv = new bienvenido();
+                bienvenido bv = new bienvenido(AlumnoControlador.getSession());
                 bv.ShowDialog();
                 Form1 f1 = new Form1();
                 f1.Show();
@@ -105,10 +103,6 @@ namespace Login
             }
 
             lblErrorMessage.Visible = false;
-
-
-
-
 
         }
 
