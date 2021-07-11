@@ -53,14 +53,15 @@ namespace Login
                 bv.ShowDialog();
                 alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
+                
 
             }else if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
-                Form1 f1 = new Form1();
-                f1.Show();
+                docenteMainScreen dms = new docenteMainScreen();
+                dms.Show();
             }
             else if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
             {
@@ -154,6 +155,16 @@ namespace Login
           //  Formulario_Alumno.FormularioAlumno formulario = new Formulario_Alumno.FormularioAlumno();
            // formulario.Show();
            // this.Hide();
+        }
+
+        private void logout(string sender, FormClosedEventArgs e)
+        {
+            alumnoMainScreen ams = new alumnoMainScreen();
+            txtUsuario.Text = "Usuario";
+            txtUsuario.Text = "Contraseña";
+            lblErrorMessage.Visible = false;
+            this.Show();
+            txtUsuario.Focus();
         }
     }
 }

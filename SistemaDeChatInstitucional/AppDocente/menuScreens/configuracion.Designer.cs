@@ -1,4 +1,4 @@
-﻿namespace AppAlumno.menuScreens
+﻿namespace AppDocente.menuScreens
 {
     partial class configuracion
     {
@@ -140,10 +140,10 @@
             this.lineShape1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 62;
-            this.lineShape1.X2 = 635;
-            this.lineShape1.Y1 = 290;
-            this.lineShape1.Y2 = 290;
+            this.lineShape1.X1 = 61;
+            this.lineShape1.X2 = 634;
+            this.lineShape1.Y1 = 289;
+            this.lineShape1.Y2 = 289;
             // 
             // label5
             // 

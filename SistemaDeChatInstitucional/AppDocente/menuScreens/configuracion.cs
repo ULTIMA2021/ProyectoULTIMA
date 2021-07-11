@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
-namespace AppAlumno.menuScreens
+namespace AppDocente.menuScreens
 {
     public partial class configuracion : Form
     {

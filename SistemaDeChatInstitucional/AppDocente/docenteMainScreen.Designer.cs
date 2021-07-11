@@ -1,6 +1,6 @@
-﻿namespace AppAlumno
+﻿namespace AppDocente
 {
-    partial class alumnoMainScreen
+    partial class docenteMainScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(alumnoMainScreen));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(docenteMainScreen));
             this.panelOpciones = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnMaximizar = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
@@ -43,8 +44,8 @@
             this.btnAgenda = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
             this.btnInstitucion = new System.Windows.Forms.Button();
-            this.btnMisDocentes = new System.Windows.Forms.Button();
-            this.btnDocentes = new System.Windows.Forms.Button();
+            this.btnMisAlumnos = new System.Windows.Forms.Button();
+            this.btnAlumnos = new System.Windows.Forms.Button();
             this.subMenuMiPerfil = new System.Windows.Forms.Panel();
             this.btnAsignaturas = new System.Windows.Forms.Button();
             this.btnConfiguracion = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
-            this.btnLogout = new System.Windows.Forms.Button();
             this.panelOpciones.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.subMenuMensajes.SuspendLayout();
@@ -70,12 +70,19 @@
             // panelOpciones
             // 
             this.panelOpciones.BackColor = System.Drawing.Color.Blue;
+            this.panelOpciones.Controls.Add(this.label3);
             this.panelOpciones.Controls.Add(this.btnMinimizar);
             this.panelOpciones.Controls.Add(this.btnMaximizar);
             this.panelOpciones.Controls.Add(this.btnExit);
             this.panelOpciones.Controls.Add(this.btnNormal);
             resources.ApplyResources(this.panelOpciones, "panelOpciones");
             this.panelOpciones.Name = "panelOpciones";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Name = "label3";
             // 
             // btnMinimizar
             // 
@@ -119,12 +126,11 @@
             // 
             resources.ApplyResources(this.panelInfo, "panelInfo");
             this.panelInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.panelInfo.Controls.Add(this.btnLogout);
             this.panelInfo.Controls.Add(this.subMenuMensajes);
             this.panelInfo.Controls.Add(this.btnMensajes);
             this.panelInfo.Controls.Add(this.btnAgenda);
             this.panelInfo.Controls.Add(this.subMenuDocentes);
-            this.panelInfo.Controls.Add(this.btnDocentes);
+            this.panelInfo.Controls.Add(this.btnAlumnos);
             this.panelInfo.Controls.Add(this.subMenuMiPerfil);
             this.panelInfo.Controls.Add(this.btnMiPerfil);
             this.panelInfo.Controls.Add(this.panel2);
@@ -188,7 +194,7 @@
             // 
             this.subMenuDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
             this.subMenuDocentes.Controls.Add(this.btnInstitucion);
-            this.subMenuDocentes.Controls.Add(this.btnMisDocentes);
+            this.subMenuDocentes.Controls.Add(this.btnMisAlumnos);
             resources.ApplyResources(this.subMenuDocentes, "subMenuDocentes");
             this.subMenuDocentes.Name = "subMenuDocentes";
             // 
@@ -202,28 +208,28 @@
             this.btnInstitucion.Name = "btnInstitucion";
             this.btnInstitucion.UseVisualStyleBackColor = false;
             // 
-            // btnMisDocentes
+            // btnMisAlumnos
             // 
-            this.btnMisDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.btnMisDocentes.FlatAppearance.BorderSize = 0;
-            this.btnMisDocentes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            resources.ApplyResources(this.btnMisDocentes, "btnMisDocentes");
-            this.btnMisDocentes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMisDocentes.Name = "btnMisDocentes";
-            this.btnMisDocentes.UseVisualStyleBackColor = false;
-            this.btnMisDocentes.Click += new System.EventHandler(this.btnMisDocentes_Click);
+            this.btnMisAlumnos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            this.btnMisAlumnos.FlatAppearance.BorderSize = 0;
+            this.btnMisAlumnos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
+            resources.ApplyResources(this.btnMisAlumnos, "btnMisAlumnos");
+            this.btnMisAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnMisAlumnos.Name = "btnMisAlumnos";
+            this.btnMisAlumnos.UseVisualStyleBackColor = false;
+            this.btnMisAlumnos.Click += new System.EventHandler(this.btnMisAlumnos_Click);
             // 
-            // btnDocentes
+            // btnAlumnos
             // 
-            this.btnDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            resources.ApplyResources(this.btnDocentes, "btnDocentes");
-            this.btnDocentes.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnDocentes.FlatAppearance.BorderSize = 0;
-            this.btnDocentes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.btnDocentes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDocentes.Name = "btnDocentes";
-            this.btnDocentes.UseVisualStyleBackColor = false;
-            this.btnDocentes.Click += new System.EventHandler(this.btnDocentes_Click);
+            this.btnAlumnos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            resources.ApplyResources(this.btnAlumnos, "btnAlumnos");
+            this.btnAlumnos.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnAlumnos.FlatAppearance.BorderSize = 0;
+            this.btnAlumnos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnAlumnos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAlumnos.Name = "btnAlumnos";
+            this.btnAlumnos.UseVisualStyleBackColor = false;
+            this.btnAlumnos.Click += new System.EventHandler(this.btnAlumnos_Click);
             // 
             // subMenuMiPerfil
             // 
@@ -306,19 +312,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Name = "label1";
             // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            resources.ApplyResources(this.btnLogout, "btnLogout");
-            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // alumnoMainScreen
+            // docenteMainScreen
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -326,9 +320,10 @@
             this.Controls.Add(this.panelInfo);
             this.Controls.Add(this.panelOpciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "alumnoMainScreen";
+            this.Name = "docenteMainScreen";
             this.Load += new System.EventHandler(this.alumnoMainScreen_Load);
             this.panelOpciones.ResumeLayout(false);
+            this.panelOpciones.PerformLayout();
             this.panelInfo.ResumeLayout(false);
             this.subMenuMensajes.ResumeLayout(false);
             this.subMenuDocentes.ResumeLayout(false);
@@ -356,8 +351,8 @@
         private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Panel subMenuDocentes;
         private System.Windows.Forms.Button btnInstitucion;
-        private System.Windows.Forms.Button btnMisDocentes;
-        private System.Windows.Forms.Button btnDocentes;
+        private System.Windows.Forms.Button btnMisAlumnos;
+        private System.Windows.Forms.Button btnAlumnos;
         private System.Windows.Forms.Button btnMensajes;
         private System.Windows.Forms.Button btnAgenda;
         private System.Windows.Forms.Button btnMinimizar;
@@ -370,6 +365,6 @@
         private System.Windows.Forms.Panel subMenuMensajes;
         private System.Windows.Forms.Button btnMisMensajes;
         private System.Windows.Forms.Button btnNuevoMensaje;
-        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Label label3;
     }
 }

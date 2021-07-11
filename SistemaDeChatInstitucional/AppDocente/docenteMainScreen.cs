@@ -9,11 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
-namespace AppAlumno
+
+namespace AppDocente
 {
-    public partial class alumnoMainScreen : Form
+    public partial class docenteMainScreen : Form
     {
-        public alumnoMainScreen()
+        public docenteMainScreen()
         {
             InitializeComponent();
             
@@ -80,7 +81,7 @@ namespace AppAlumno
         }
 
 
-        private void btnDocentes_Click(object sender, EventArgs e)
+        private void btnAlumnos_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(subMenuDocentes);
         }
@@ -89,6 +90,7 @@ namespace AppAlumno
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
+            openScreen(new menuScreens.agenda());
         }
 
 
@@ -134,34 +136,29 @@ namespace AppAlumno
 
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.misAsignaturas());
+          //  openScreen(new menuScreens.misAsignaturas());
         }
 
-        private void btnMisDocentes_Click(object sender, EventArgs e)
+        private void btnMisAlumnos_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.misDocentes());
+          //  openScreen(new menuScreens.misDocentes());
 
             
         }
 
         private void btnNuevoMensaje_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.NuevoMensaje());
+         //   openScreen(new menuScreens.NuevoMensaje());
         }
 
         private void btnMisMensajes_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.misMensajes());
+          //  openScreen(new menuScreens.misMensajes());
         }
 
         private void alumnoMainScreen_Load(object sender, EventArgs e)
         {
             lblNombre.Text = $"{Session.nombre} {Session.apellido}";
-        }
-
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
