@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaLogica;
 
 namespace AppAlumno.menuScreens
 {
@@ -15,6 +16,7 @@ namespace AppAlumno.menuScreens
         public misAsignaturas()
         {
             InitializeComponent();
+          //  dgvAsignaturas.DataSource = AlumnoControlador.listarMaterias();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

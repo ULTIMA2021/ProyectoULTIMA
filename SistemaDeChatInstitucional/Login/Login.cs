@@ -24,6 +24,7 @@ namespace Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
             if (txtUsuario.Text != "Usuario")
             {
                 if (txtContra.Text != "Contraseña")

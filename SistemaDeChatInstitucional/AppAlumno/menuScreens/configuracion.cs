@@ -42,7 +42,13 @@ namespace AppAlumno.menuScreens
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
-           // guardarFoto();
+            // guardarFoto();
+            if (AlumnoControlador.obtenerAlum(Session.cedula))
+            {
+                   txtNombre.Text = Session.nombre;
+                   txtApellido.Text = Session.apellido;
+                   txtUsuario.Text = Session.cedula;
+            }
         }
 
 
@@ -63,9 +69,9 @@ namespace AppAlumno.menuScreens
 
         private void configuracion_Load(object sender, EventArgs e)
         {
-            txtNombre.Text = Session.nombre;
-            txtApellido.Text = Session.apellido;
-            txtUsuario.Text = Session.cedula;
+         //   txtNombre.Text = Session.nombre;
+         //   txtApellido.Text = Session.apellido;
+         //   txtUsuario.Text = Session.cedula;
         }
     }
 }
