@@ -11,6 +11,7 @@ namespace CapaLogica
 {
     public static class AlumnoControlador
     {
+        
         public static bool AltaDeAlumno(string cedula, string nombre, string apellido, string clave)
         {
             PersonaModelo Alumno = new PersonaModelo();
@@ -134,5 +135,52 @@ namespace CapaLogica
             u.obtenerAlumno(ci);
             return true;
         }
+
+
+        public static DataTable obtenerDocentes()
+        {
+            UsuarioModelo u = new UsuarioModelo();
+            PersonaModelo p = new PersonaModelo();
+            List<PersonaModelo> docentes = u.obtenerDocente();
+            DataTable tabla = new DataTable();
+
+
+            tabla.Columns.Add("Cedula");
+            tabla.Columns.Add("Nombre");
+            tabla.Columns.Add("Apellido");
+            
+            
+
+            foreach (PersonaModelo docente in docentes)
+            {
+                tabla.Rows.Add(docente.Cedula, docente.Nombre, docente.Apellido);
+            }
+
+
+            return tabla;
+        }
+
+
+        public static void prepararMensaje( string docenteCi, string alumnoCi, string titulo, string cpStatus, DateTime cpFechaHora)
+        {
+            ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+            
+            cp.prepararMensaje(docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora);
+        }
+
+
+        public static void enviarMensaje(int idConsultaPrivada, string contenido, string attachment,
+                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus)
+        {
+            ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+            cp.enviarMensaje(idConsultaPrivada, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus);
+        }
+
+        public static int idConsultaPrivada(int ciDocente, int ciAlumno)
+        {
+            ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+
+            return cp.getIdConsultas(ciDocente, ciAlumno);
+        } 
     }
 }

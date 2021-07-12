@@ -15,8 +15,9 @@ namespace CapaDeDatos
         public string Nombre;
         public string Apellido;
         public string Clave;
+        public int idConsulta;
 
-        
+
         //foto
         //avatar
         public bool isDeleted;
@@ -25,8 +26,8 @@ namespace CapaDeDatos
 
         public void Guardar()
         {
-            MySqlCommand comando = new MySqlCommand();
-            comando.CommandText = "INSERT INTO Persona (ci,nombre,apellido,clave) VALUES(" +
+          //  MySqlCommand comando = new MySqlCommand();
+            this.comando.CommandText = "INSERT INTO Persona (ci,nombre,apellido,clave) VALUES(" +
                                     "@cedula,@nombre,@apellido,@clave);";
 
             comando.Parameters.AddWithValue("@cedula", this.Cedula);
@@ -36,7 +37,7 @@ namespace CapaDeDatos
             comando.Prepare();
             EjecutarQuery(comando);
         }
-        private void EjecutarQuery(MySqlCommand comando)
+        public void EjecutarQuery(MySqlCommand comando)
         {
             comando.ExecuteNonQuery();
         }
@@ -116,9 +117,17 @@ namespace CapaDeDatos
 
         }   */
 
+
+       
+
+           
+
+
+
+
     }
 
 
-    
+
 
 }

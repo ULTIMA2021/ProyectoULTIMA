@@ -86,6 +86,13 @@ namespace CapaDeDatos
             return p.obtenerUsuario(this.comando);
         }
 
+        public List<PersonaModelo> obtenerDatosDocente()
+        {
+            this.comando.CommandText = "SELECT p.nombre, p.apellido FROM Docente d INNER JOIN Persona p ON " +
+                                         "(d.ci=p.ci);";
+            return p.obtenerUsuario(this.comando);
+        }
+
 
         public List<PersonaModelo> obtenerAdmin()
         {
