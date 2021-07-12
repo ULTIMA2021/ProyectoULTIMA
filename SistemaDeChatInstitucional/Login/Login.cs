@@ -151,9 +151,12 @@ namespace Login
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-          //  Formulario_Alumno.FormularioAlumno formulario = new Formulario_Alumno.FormularioAlumno();
-           // formulario.Show();
-           // this.Hide();
+            showRegisterForm(sender,e);
+        }
+        private void showRegisterForm(object sender, EventArgs e)
+        {
+            FormularioRegistro formularioRegistro = new FormularioRegistro();
+            formularioRegistro.ShowDialog();
         }
     }
 }
