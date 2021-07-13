@@ -48,15 +48,18 @@ namespace Login
         {
             if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
             {
-                this.Hide();
+                
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
-               
-                
+               // ams.FormClosed += logout;
+                this.Hide();
+                 
 
-            }else if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
+
+            }
+            else if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
                 bienvenido bv = new bienvenido();

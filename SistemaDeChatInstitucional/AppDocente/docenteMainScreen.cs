@@ -153,7 +153,7 @@ namespace AppDocente
 
         private void btnMisMensajes_Click(object sender, EventArgs e)
         {
-          //  openScreen(new menuScreens.misMensajes());
+            openScreen(new menuScreens.misMensajes());
         }
 
         private void alumnoMainScreen_Load(object sender, EventArgs e)
