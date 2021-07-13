@@ -25,7 +25,9 @@ namespace AppAlumno.menuScreens
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
-            string ciDocente = dgvListaDocentes.CurrentRow.Cells[0].Value.ToString();
+            Console.WriteLine($"selected row: " + dgvListaDocentes.CurrentRow.Index);
+            string ciDocente = AlumnoControlador.getCiFromDataGrid(dgvListaDocentes.CurrentRow.Index);
+
             string titulo = txtAsunto.Text;
             DateTime fecha = DateTime.Today;
             int idConsultaPrivada = AlumnoControlador.idConsultaPrivada(Int32.Parse(ciDocente), Int32.Parse(Session.cedula));
@@ -36,7 +38,9 @@ namespace AppAlumno.menuScreens
 
         private void NuevoMensaje_Load(object sender, EventArgs e)
         {
-            dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes();
+
+            dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes(6);
+
         }
     }
 }

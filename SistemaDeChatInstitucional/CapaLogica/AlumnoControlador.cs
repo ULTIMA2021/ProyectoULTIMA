@@ -134,7 +134,7 @@ namespace CapaLogica
         public static DataTable obtenerDocentes()
         {
             UsuarioModelo u = new UsuarioModelo();
-            PersonaModelo p = new PersonaModelo();
+            //PersonaModelo p = new PersonaModelo();
             List<PersonaModelo> docentes = u.obtenerDocente();
             DataTable tabla = new DataTable();
             tabla.Columns.Add("Cedula");
@@ -142,9 +142,28 @@ namespace CapaLogica
             tabla.Columns.Add("Apellido");
             foreach (PersonaModelo docente in docentes)
             {
-                tabla.Rows.Add(docente.Cedula, docente.Nombre, docente.Apellido);
+                tabla.Rows.Add( docente.Nombre, docente.Apellido);
             }
             return tabla;
+        }
+
+        public static DataTable obtenerDocentes(int dummy) {
+            UsuarioModelo u = new UsuarioModelo();
+            List<PersonaModelo> MisDocentes = u.obtenerDocente();
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("Nombre");
+            tabla.Columns.Add("Apellido");
+            foreach (PersonaModelo docente in MisDocentes)
+            {
+                tabla.Rows.Add(docente.Nombre, docente.Apellido);
+            }
+            return tabla;
+        }
+
+        public static string getCiFromDataGrid(int indexOfSelectedRow) {
+            UsuarioModelo u = new UsuarioModelo();
+            List<PersonaModelo> MisDocentes = u.obtenerDocente();
+            return MisDocentes[indexOfSelectedRow].Cedula; 
         }
 
         public static void prepararMensaje(int idConsultaPrivada,string docenteCi, string alumnoCi,

@@ -21,41 +21,34 @@ namespace CapaDeDatos
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a INNER JOIN Persona p ON " +
                                          "(a.ci=p.ci);";
             return p.obtenerUsuario(this.comando);
-
-            
         }
 
         // prueba
         public List<PersonaModelo> lista(string ci, Func<List<PersonaModelo>> metodo)
         {
            List<PersonaModelo> personas = new List<PersonaModelo>();
-            
             foreach (PersonaModelo usuario in metodo())
             {
                 if (ci == usuario.Cedula)
                 {
                     lector = this.comando.ExecuteReader();
-                      PersonaModelo u = new PersonaModelo();
+                    PersonaModelo u = new PersonaModelo();
                     PersonaModelo p = new PersonaModelo();
                     u.Cedula = p.Cedula;
                     u.Nombre = p.Nombre;
                     u.Apellido = p.Apellido;
-
                     personas.Add(u);
                 }
-
             }
             lector.Close();
             return personas;
         }
 
-
         public List<PersonaModelo> obtenerAlumno(string ci)
         {
-
             return lista(ci, obtenerAlumno);
         }
-
+        
         /*   public List<PersonaModelo> obtenerAlumno(string ci)
            {
                List<PersonaModelo> personas = new List<PersonaModelo>();
@@ -92,7 +85,6 @@ namespace CapaDeDatos
                                          "(d.ci=p.ci);";
             return p.obtenerUsuario(this.comando);
         }
-
 
         public List<PersonaModelo> obtenerAdmin()
         {

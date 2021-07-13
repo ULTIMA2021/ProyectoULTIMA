@@ -18,12 +18,6 @@ namespace CapaDeDatos
         public string titulo;
         public string cpStatus;
         public DateTime cpFechaHora;
-        /*
-        public void EjecutarQuery(MySqlCommand comando)
-        {
-            comando.ExecuteNonQuery();
-        }
-        */
 
         public void prepararMensaje(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)
@@ -75,7 +69,6 @@ namespace CapaDeDatos
             return consultas;
         }
 
-
         public int getIdConsultas(int ciDocente, int ciAlumno)
         {
             List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno);
@@ -92,9 +85,47 @@ namespace CapaDeDatos
             return lastId;
         }
 
-        public int getConsultas(int ciDocente)
+        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente)
         {
-            return ciDocente;
+            List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
+            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            {
+                if (ciDocente == consulta.ciDocente)
+                {
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    cp.idConsultaPrivada = consulta.idConsultaPrivada;
+                    cp.ciDocente = consulta.ciDocente;
+                    cp.ciAlumno = consulta.ciAlumno;
+                    cp.cpFechaHora = consulta.cpFechaHora ;
+                    cp.cpStatus = consulta.cpStatus;
+                    cp.titulo = consulta.titulo;
+                    consultas.Add(cp);
+                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                    Console.WriteLine(cp.ToString());
+                }
+            }
+            return consultas;
+        }
+
+        public List<ConsultaPrivadaModelo> getConsultas(string ciAlumno) {
+            List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
+            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            {
+                if (ciAlumno == consulta.ciAlumno.ToString())
+                {
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    cp.idConsultaPrivada = consulta.idConsultaPrivada;
+                    cp.ciDocente = consulta.ciDocente;
+                    cp.ciAlumno = consulta.ciAlumno;
+                    cp.cpFechaHora = consulta.cpFechaHora;
+                    cp.cpStatus = consulta.cpStatus;
+                    cp.titulo = consulta.titulo;
+                    consultas.Add(cp);
+                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                    Console.WriteLine(cp.ToString());
+                }
+            }
+            return consultas;
         }
 
         public List<ConsultaPrivadaModelo> getConsultas()

@@ -80,6 +80,7 @@
             // 
             // dgvListaDocentes
             // 
+            this.dgvListaDocentes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvListaDocentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaDocentes.Location = new System.Drawing.Point(82, 85);
             this.dgvListaDocentes.Name = "dgvListaDocentes";

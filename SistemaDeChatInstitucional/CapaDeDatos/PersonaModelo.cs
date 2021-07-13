@@ -49,14 +49,13 @@ namespace CapaDeDatos
                 p.Clave = lector[1].ToString();
                 p.Nombre = lector[2].ToString();
                 p.Apellido = lector[3].ToString();
-                
                 personas.Add(p);
             }
             lector.Close();
             return personas;
         }
         
-        //retorna una persona-alumno si la encuentra
+        //retorna UNA persona-alumno si la ci y la clave estan bien 
         public List<PersonaModelo> validarAlumno(string user, string pass)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p WHERE  " +
