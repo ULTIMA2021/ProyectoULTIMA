@@ -53,6 +53,7 @@ namespace Login
                 bv.ShowDialog();
                 alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
+               
                 
 
             }else if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
@@ -75,6 +76,8 @@ namespace Login
                 txtContra.Text = "Contraseña";
             }
         }
+
+        
 
         public void errorMessage(string msg)
         {
@@ -159,7 +162,7 @@ namespace Login
 
         private void logout(string sender, FormClosedEventArgs e)
         {
-            alumnoMainScreen ams = new alumnoMainScreen();
+           // alumnoMainScreen ams = new alumnoMainScreen();
             txtUsuario.Text = "Usuario";
             txtUsuario.Text = "Contraseña";
             lblErrorMessage.Visible = false;
