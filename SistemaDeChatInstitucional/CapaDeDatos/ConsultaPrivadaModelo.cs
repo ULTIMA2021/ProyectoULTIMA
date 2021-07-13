@@ -76,7 +76,6 @@ namespace CapaDeDatos
         }
 
 
-        //PROBAR CON ALUMNO QUE NO ESTE EN TABLA consultaPrivada
         public int getIdConsultas(int ciDocente, int ciAlumno)
         {
             List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno);
@@ -88,11 +87,8 @@ namespace CapaDeDatos
             catch (InvalidOperationException e)
             {
                 Console.WriteLine("ERROR: " + e);
-                return 1;
+                return 0;
                  }
-            lastId++;
-            //int lastId = consultas.Last().idConsultaPrivada;
-            //lector = this.comando.ExecuteReader();
             return lastId;
         }
 
