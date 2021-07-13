@@ -11,7 +11,6 @@ namespace CapaLogica
 {
     public static class AlumnoControlador
     {
-        
         public static bool AltaDeAlumno(string cedula, string nombre, string apellido, string clave)
         {
             PersonaModelo Alumno = new PersonaModelo();
@@ -41,21 +40,17 @@ namespace CapaLogica
             return lista(user, pass, p.validarAlumno);
         }
 
-
         public static bool isDocente(string user, string pass)
         {
             PersonaModelo p = new PersonaModelo();
             return lista(user, pass, p.validarDocente);
         }
 
-
         public static bool isAdmin(string user, string pass)
         {
             PersonaModelo p = new PersonaModelo();
             return lista(user, pass, p.validarAdmin);
         }
-
-
 
         /*    public static bool isAlumno(string user, string pass)    ------------->>>> desde aca parte original de validar usuarios
             {
@@ -136,51 +131,44 @@ namespace CapaLogica
             return true;
         }
 
-
         public static DataTable obtenerDocentes()
         {
             UsuarioModelo u = new UsuarioModelo();
             PersonaModelo p = new PersonaModelo();
             List<PersonaModelo> docentes = u.obtenerDocente();
             DataTable tabla = new DataTable();
-
-
             tabla.Columns.Add("Cedula");
             tabla.Columns.Add("Nombre");
             tabla.Columns.Add("Apellido");
-            
-            
-
             foreach (PersonaModelo docente in docentes)
             {
                 tabla.Rows.Add(docente.Cedula, docente.Nombre, docente.Apellido);
             }
-
-
             return tabla;
         }
 
-
-        public static void prepararMensaje( string docenteCi, string alumnoCi, string titulo, string cpStatus, DateTime cpFechaHora)
+        public static void prepararMensaje(int idConsultaPrivada,string docenteCi, string alumnoCi,
+            string titulo, string cpStatus, DateTime cpFechaHora)
         {
             ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
-            
-            cp.prepararMensaje(docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora);
+            cp.prepararMensaje(idConsultaPrivada,docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora);
         }
 
-
-        public static void enviarMensaje(int idConsultaPrivada, string contenido, string attachment,
+        public static void enviarMensaje(int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
                                    DateTime cp_mensajeFechaHora, string cp_mensajeStatus)
         {
             ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
-            cp.enviarMensaje(idConsultaPrivada, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus);
+            cp.enviarMensaje(idConsultaPrivada, ciDocente, ciAlumno, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus);
         }
 
         public static int idConsultaPrivada(int ciDocente, int ciAlumno)
         {
             ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
-
-            return cp.getIdConsultas(ciDocente, ciAlumno);
+            int idConsultaPrivada= cp.getIdConsultas(ciDocente, ciAlumno);
+            Console.WriteLine($"EL ID DE LA CONSULTA PREVIA ES: {idConsultaPrivada}");
+            idConsultaPrivada++;
+            Console.WriteLine($"EL ID DE LA CONSULTA NUEVA ES: {idConsultaPrivada}");
+            return idConsultaPrivada;
         } 
     }
 }

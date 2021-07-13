@@ -29,11 +29,9 @@ namespace AppAlumno.menuScreens
             string titulo = txtAsunto.Text;
             DateTime fecha = DateTime.Today;
             int idConsultaPrivada = AlumnoControlador.idConsultaPrivada(Int32.Parse(ciDocente), Int32.Parse(Session.cedula));
-         //   int idConsultaPrivada = AlumnoControlador.idConsultaPrivada(ciDocente, Session.cedula);
-            
-            
-            AlumnoControlador.prepararMensaje(ciDocente, Session.cedula, titulo, "pendiente", fecha);
-            AlumnoControlador.enviarMensaje(idConsultaPrivada, txtMensaje.Text, "archivo", fecha, "recibido");
+            AlumnoControlador.prepararMensaje(idConsultaPrivada,ciDocente, Session.cedula, titulo, "pendiente", fecha);
+            AlumnoControlador.enviarMensaje(idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(Session.cedula),
+                txtMensaje.Text, "archivo", fecha, "recibido");
         }
 
         private void NuevoMensaje_Load(object sender, EventArgs e)

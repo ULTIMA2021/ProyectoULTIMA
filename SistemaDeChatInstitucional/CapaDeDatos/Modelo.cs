@@ -38,12 +38,17 @@ namespace CapaDeDatos
             this.comando.Connection = this.conexion;
         }
 
+        public void EjecutarQuery(MySqlCommand comando)
+        {
+            comando.ExecuteNonQuery();
+        }
+
         protected void InicializarConexion()
         {
             this.IpDb = "localhost";
             this.NombreDb = "ultimaDB";
             this.UsuarioDb = "root";
-            this.PasswordDb = "andylu30";
+            this.PasswordDb = "9682031";
         }
     }
 }

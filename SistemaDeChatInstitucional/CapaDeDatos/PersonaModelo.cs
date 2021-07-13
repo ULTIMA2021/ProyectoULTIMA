@@ -16,8 +16,6 @@ namespace CapaDeDatos
         public string Apellido;
         public string Clave;
         public int idConsulta;
-
-
         //foto
         //avatar
         public bool isDeleted;
@@ -36,10 +34,6 @@ namespace CapaDeDatos
             comando.Parameters.AddWithValue("@clave", this.Clave);
             comando.Prepare();
             EjecutarQuery(comando);
-        }
-        public void EjecutarQuery(MySqlCommand comando)
-        {
-            comando.ExecuteNonQuery();
         }
 
         //metodo usado para cargar datos del resultado SQL a una lista
@@ -61,7 +55,6 @@ namespace CapaDeDatos
             lector.Close();
             return personas;
         }
-
         
         //retorna una persona-alumno si la encuentra
         public List<PersonaModelo> validarAlumno(string user, string pass)
@@ -73,7 +66,6 @@ namespace CapaDeDatos
             return obtenerUsuario(this.comando);
         }
 
-        
         public List<PersonaModelo> validarDocente(string user, string pass)
         {
             this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM Docente d,Persona p WHERE  " +
@@ -89,6 +81,7 @@ namespace CapaDeDatos
                                          "(a.ci=p.ci);";
             return obtenerUsuario(this.comando);
         }
+
         public List<PersonaModelo> validarAdmin(string user, string pass)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Administrador a,Persona p WHERE  " +
@@ -116,18 +109,5 @@ namespace CapaDeDatos
             return materias;
 
         }   */
-
-
-       
-
-           
-
-
-
-
     }
-
-
-
-
 }
