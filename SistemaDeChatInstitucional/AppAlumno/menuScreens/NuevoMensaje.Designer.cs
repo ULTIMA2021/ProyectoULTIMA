@@ -105,6 +105,7 @@
             this.dgvListaDocentes.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListaDocentes.EnableHeadersVisualStyles = false;
             this.dgvListaDocentes.Location = new System.Drawing.Point(82, 85);
+            this.dgvListaDocentes.MultiSelect = false;
             this.dgvListaDocentes.Name = "dgvListaDocentes";
             this.dgvListaDocentes.ReadOnly = true;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;

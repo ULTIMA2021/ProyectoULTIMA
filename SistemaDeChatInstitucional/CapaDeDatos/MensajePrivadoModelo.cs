@@ -78,17 +78,18 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
             return cargarMensajePrivadoALista(this.comando);
         }
-        public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno,string ciDocente)
+
+
+        public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_Mensaje cpm" +
+               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_Mensaje cpm " +
                "WHERE cpm.idConsultaPrivada=@idConsultaPrivada AND cpm.ciAlumno=@ciAlumno AND cpm.ciDocente=@ciDocente ; ";
-            this.comando.Parameters.AddWithValue("idConsultaPrivada", ciDocente);
-            this.comando.Parameters.AddWithValue("ciAlumno", ciDocente);
+            this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
+            this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
             return cargarMensajePrivadoALista(this.comando);
         }
-
         public override string ToString()
         {
             return $"Consulta {this.idConsultaPrivada}\tAlumno {this.ciAlumno}\tDocente {this.ciDocente}\n" +

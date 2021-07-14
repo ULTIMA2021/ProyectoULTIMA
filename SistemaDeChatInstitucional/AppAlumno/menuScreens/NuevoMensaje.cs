@@ -31,9 +31,7 @@ namespace AppAlumno.menuScreens
 
         private void enviarMensaje()
         {
-            Console.WriteLine($"selected row: " + dgvListaDocentes.CurrentRow.Index);
-            string ciDocente = AlumnoControlador.getCiFromDataGrid(dgvListaDocentes.CurrentRow.Index);
-
+            string ciDocente = dgvListaDocentes.CurrentRow.Cells[0].Value.ToString();
             string titulo = txtAsunto.Text;
             DateTime fecha = DateTime.Today;
             int idConsultaPrivada = AlumnoControlador.GetidConsultaPrivada(Int32.Parse(ciDocente), Int32.Parse(Session.cedula));
@@ -45,8 +43,6 @@ namespace AppAlumno.menuScreens
             else
             {
                 AlumnoControlador.prepararMensaje(idConsultaPrivada, ciDocente, Session.cedula, titulo, "pendiente", fecha);
-                
-                //since this is creating a new thread it wont have msgs in it so pass 1 as the idCP_mensaje
                 AlumnoControlador.enviarMensaje(1 ,idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(Session.cedula),
                     txtMensaje.Text, null, fecha, "recibido");
                 MessageBox.Show("Mensaje enviado.", "Mensaje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -60,8 +56,8 @@ namespace AppAlumno.menuScreens
         private void NuevoMensaje_Load(object sender, EventArgs e)
         {
             //fix this so i dont have to put a dummy int as parameter
-            dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes(6);
-          // dgvListaDocentes.Columns["Nombre"].Visible = false;
+           dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes(6);
+           dgvListaDocentes.Columns["Cedula"].Visible = false;
         }
     }
 }

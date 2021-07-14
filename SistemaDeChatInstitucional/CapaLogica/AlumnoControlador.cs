@@ -145,7 +145,7 @@ namespace CapaLogica
             tabla.Columns.Add("Apellido");
             foreach (PersonaModelo docente in docentes)
             {
-                tabla.Rows.Add( docente.Nombre, docente.Apellido);
+                tabla.Rows.Add( docente.Cedula,docente.Nombre, docente.Apellido);
             }
             return tabla;
         }
@@ -155,19 +155,14 @@ namespace CapaLogica
             UsuarioModelo u = new UsuarioModelo();
             List<PersonaModelo> MisDocentes = u.obtenerDocente();
             DataTable tabla = new DataTable();
+            tabla.Columns.Add("Cedula");
             tabla.Columns.Add("Nombre");
             tabla.Columns.Add("Apellido");
             foreach (PersonaModelo docente in MisDocentes)
             {
-                tabla.Rows.Add(docente.Nombre, docente.Apellido);
+                tabla.Rows.Add(docente.Cedula,docente.Nombre, docente.Apellido);
             }
             return tabla;
-        }
-
-        public static string getCiFromDataGrid(int indexOfSelectedRow) {
-            UsuarioModelo u = new UsuarioModelo();
-            List<PersonaModelo> MisDocentes = u.obtenerDocente();
-            return MisDocentes[indexOfSelectedRow].Cedula; 
         }
 
         public static void prepararMensaje(int idConsultaPrivada,string docenteCi, string alumnoCi,
@@ -193,6 +188,7 @@ namespace CapaLogica
             Console.WriteLine($"EL ID DE LA CONSULTA NUEVA ES: {idConsultaPrivada}");
             return idConsultaPrivada;
         }
+
         //SELECT idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora FROM ConsultaPrivada
         public static DataTable ConsultasPrivada() {
             ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
@@ -210,7 +206,7 @@ namespace CapaLogica
             tabla.Columns.Add("Fecha Creada");
             foreach (ConsultaPrivadaModelo c in listaConsulta)
             { 
-                tabla.Rows.Add(c.titulo, c.cpStatus, c.cpFechaHora);
+                tabla.Rows.Add(c.idConsultaPrivada,c.ciDocente,c.ciAlumno,c.titulo, c.cpStatus, c.cpFechaHora);
             }
             return tabla;
         }
@@ -229,14 +225,15 @@ namespace CapaLogica
             return g;
         }
         */
-    public static void getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente) {
+
+        public static void getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente) {
             //string msgs;
             MensajePrivadoModelo mpm = new MensajePrivadoModelo();
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
                Console.WriteLine($"\n{m.ToString()}\n");
             }
-           // return msgs;
+            // return msgs;
         }
 
         public static int getidCp_Mensaje(int idConsultaPrivada,string ci)

@@ -58,9 +58,14 @@
             // 
             // dgvMisMensajes
             // 
+            this.dgvMisMensajes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMisMensajes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMisMensajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMisMensajes.Location = new System.Drawing.Point(57, 128);
+            this.dgvMisMensajes.MultiSelect = false;
             this.dgvMisMensajes.Name = "dgvMisMensajes";
+            this.dgvMisMensajes.ReadOnly = true;
+            this.dgvMisMensajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMisMensajes.Size = new System.Drawing.Size(481, 241);
             this.dgvMisMensajes.TabIndex = 2;
             // 
