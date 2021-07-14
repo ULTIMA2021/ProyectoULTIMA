@@ -19,7 +19,7 @@ namespace CapaDeDatos
         public string cpStatus;
         public DateTime cpFechaHora;
 
-        public void prepararMensaje(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
+        public void crearConsultaPrivada(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)
         {
             this.comando.CommandText = "INSERT INTO ConsultaPrivada (idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora) VALUES(" +
@@ -30,23 +30,6 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("titulo", titulo);
             this.comando.Parameters.AddWithValue("cpStatus", cpStatus);
             this.comando.Parameters.AddWithValue("cpFechaHora", cpFechaHora);
-            this.comando.Prepare();
-            EjecutarQuery(this.comando);
-        }
-
-        public void enviarMensaje(int idConsultaPrivada,int ciDocente,int ciAlumno, string contenido, string attachment,
-                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus)
-        {
-            this.comando.CommandText = "INSERT INTO CP_mensaje (idConsultaPrivada,ciDocente,ciAlumno, contenido, attachment, " +
-                                        "cp_mensajeFechaHora, cp_mensajeStatus) VALUES(@idConsultaPrivada, " +
-                                        "@ciDocente, @ciAlumno, @contenido, @attachment, @cp_mensajeFechaHora, @cp_mensajeStatus);";
-            this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
-            this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
-            this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
-            this.comando.Parameters.AddWithValue("contenido", contenido);
-            this.comando.Parameters.AddWithValue("attachment", attachment);
-            this.comando.Parameters.AddWithValue("cp_mensajeFechaHora", cp_mensajeFechaHora);
-            this.comando.Parameters.AddWithValue("cp_mensajeStatus", cp_mensajeStatus);
             this.comando.Prepare();
             EjecutarQuery(this.comando);
         }
@@ -68,23 +51,7 @@ namespace CapaDeDatos
             }
             return consultas;
         }
-
-        public int getIdConsultas(int ciDocente, int ciAlumno)
-        {
-            List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno);
-            int lastId=0;
-            try
-            {
-                lastId = consultas.Last().idConsultaPrivada;
-            }
-            catch (InvalidOperationException e)
-            {
-                Console.WriteLine("ERROR: " + e);
-                return 0;
-                 }
-            return lastId;
-        }
-
+        
         public List<ConsultaPrivadaModelo> getConsultas(int ciDocente)
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
@@ -149,6 +116,23 @@ namespace CapaDeDatos
                 lector.Close();
                 return consultas;
         }
+
+        public int getIdConsultas(int ciDocente, int ciAlumno)
+        {
+            List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno);
+            int lastId = 0;
+            try
+            {
+                lastId = consultas.Last().idConsultaPrivada;
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("ERROR: " + e);
+                return 0;
+            }
+            return lastId;
+        }
+
 
         public override string ToString()
         {

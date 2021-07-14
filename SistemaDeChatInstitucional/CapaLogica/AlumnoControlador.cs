@@ -36,18 +36,21 @@ namespace CapaLogica
 
         public static bool isAlumno(string user, string pass)
         {
+            Session.type = 0;
             PersonaModelo p = new PersonaModelo();
             return lista(user, pass, p.validarAlumno);
         }
 
         public static bool isDocente(string user, string pass)
         {
+            Session.type = 1;
             PersonaModelo p = new PersonaModelo();
             return lista(user, pass, p.validarDocente);
         }
 
         public static bool isAdmin(string user, string pass)
         {
+            Session.type = 2;
             PersonaModelo p = new PersonaModelo();
             return lista(user, pass, p.validarAdmin);
         }
@@ -170,17 +173,17 @@ namespace CapaLogica
             string titulo, string cpStatus, DateTime cpFechaHora)
         {
             ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
-            cp.prepararMensaje(idConsultaPrivada,docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora);
+            cp.crearConsultaPrivada(idConsultaPrivada,docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora);
         }
 
-        public static void enviarMensaje(int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
+        public static void enviarMensaje(int idCp_Mensaje, int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
                                    DateTime cp_mensajeFechaHora, string cp_mensajeStatus)
         {
-            ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
-            cp.enviarMensaje(idConsultaPrivada, ciDocente, ciAlumno, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus);
+            MensajePrivadoModelo cpm = new MensajePrivadoModelo();
+            cpm.enviarMensaje(idCp_Mensaje,idConsultaPrivada, ciDocente, ciAlumno, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus);
         }
 
-        public static int idConsultaPrivada(int ciDocente, int ciAlumno)
+        public static int GetidConsultaPrivada(int ciDocente, int ciAlumno)
         {
             ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
             int idConsultaPrivada= cp.getIdConsultas(ciDocente, ciAlumno);
@@ -188,6 +191,32 @@ namespace CapaLogica
             idConsultaPrivada++;
             Console.WriteLine($"EL ID DE LA CONSULTA NUEVA ES: {idConsultaPrivada}");
             return idConsultaPrivada;
-        } 
+        }
+
+        //cosas nuevas*************//falta hacer agregar las columnas a la tabla y hacer el incrementor para los mensajes
+        public static DataTable ConsultasPrivada() {
+            ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
+            List<ConsultaPrivadaModelo> listaConsulta=null;
+            if (Session.type == 0)
+                listaConsulta = consulta.getConsultas(Session.cedula);
+            else if (Session.type == 1)
+                listaConsulta = consulta.getConsultas(Int32.Parse(Session.cedula));
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("Nombre");
+            tabla.Columns.Add("Apellido");
+            foreach (ConsultaPrivadaModelo docente in listaConsulta)
+            {
+                tabla.Rows.Add(docente.Nombre, docente.Apellido);
+            }
+            return tabla;
+            
+        }
+
+        public static int GetidCp_Mensaje(int idConsultaPrivada,string ci)
+        {
+
+
+            return 1;
+        }
     }
 }

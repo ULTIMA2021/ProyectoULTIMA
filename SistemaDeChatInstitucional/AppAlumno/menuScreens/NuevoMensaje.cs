@@ -36,7 +36,7 @@ namespace AppAlumno.menuScreens
 
             string titulo = txtAsunto.Text;
             DateTime fecha = DateTime.Today;
-            int idConsultaPrivada = AlumnoControlador.idConsultaPrivada(Int32.Parse(ciDocente), Int32.Parse(Session.cedula));
+            int idConsultaPrivada = AlumnoControlador.GetidConsultaPrivada(Int32.Parse(ciDocente), Int32.Parse(Session.cedula));
 
             if (txtAsunto.Text == "")
             {
@@ -45,8 +45,10 @@ namespace AppAlumno.menuScreens
             else
             {
                 AlumnoControlador.prepararMensaje(idConsultaPrivada, ciDocente, Session.cedula, titulo, "pendiente", fecha);
-                AlumnoControlador.enviarMensaje(idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(Session.cedula),
-                    txtMensaje.Text, "archivo", fecha, "recibido");
+                
+                //since this is creating a new thread it wont have msgs in it so pass 1 as the idCP_mensaje
+                AlumnoControlador.enviarMensaje(1 ,idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(Session.cedula),
+                    txtMensaje.Text, null, fecha, "recibido");
                 MessageBox.Show("Mensaje enviado.", "Mensaje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtAsunto.Text = "";
                 txtMensaje.Text = "";
@@ -57,9 +59,7 @@ namespace AppAlumno.menuScreens
 
         private void NuevoMensaje_Load(object sender, EventArgs e)
         {
-
             dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes(6);
-
         }
     }
 }

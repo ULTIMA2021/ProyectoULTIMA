@@ -21,5 +21,10 @@ namespace AppAlumno.menuScreens
         {
             this.Close();
         }
+
+        private void misMensajes_Load(object sender, EventArgs e)
+        {
+            dgvMisMensajes.DataSource= 
+        }
     }
 }

@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(misMensajes));
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarConsulta = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvMisMensajes = new System.Windows.Forms.DataGridView();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnVer = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMisMensajes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -56,13 +56,13 @@
             this.txtBuscarConsulta.Size = new System.Drawing.Size(314, 20);
             this.txtBuscarConsulta.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvMisMensajes
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(57, 128);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(481, 241);
-            this.dataGridView1.TabIndex = 2;
+            this.dgvMisMensajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMisMensajes.Location = new System.Drawing.Point(57, 128);
+            this.dgvMisMensajes.Name = "dgvMisMensajes";
+            this.dgvMisMensajes.Size = new System.Drawing.Size(481, 241);
+            this.dgvMisMensajes.TabIndex = 2;
             // 
             // btnExit
             // 
@@ -118,13 +118,14 @@
             this.Controls.Add(this.btnVer);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvMisMensajes);
             this.Controls.Add(this.txtBuscarConsulta);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "misMensajes";
             this.Text = "misMensajes";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.misMensajes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMisMensajes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,7 +135,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBuscarConsulta;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvMisMensajes;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnVer;
         private System.Windows.Forms.Button btnEliminar;

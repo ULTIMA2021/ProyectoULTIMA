@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsultaPrivadaModelo.cs" />
+    <Compile Include="MensajePrivadoModelo.cs" />
     <Compile Include="Modelo.cs" />
     <Compile Include="PersonaModelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
