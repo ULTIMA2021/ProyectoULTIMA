@@ -39,15 +39,17 @@ namespace AppDocente.menuScreens
                 pbFoto.Image = Image.FromFile(abrirFoto.FileName);
             }
         }
-
+        
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
             // guardarFoto();
-            if (AlumnoControlador.obtenerAlum(Session.cedula))
+            if (AlumnoControlador.obtenerAlumno(Session.cedula))
             {
+                /*
                    txtNombre.Text = Session.nombre;
                    txtApellido.Text = Session.apellido;
                    txtUsuario.Text = Session.cedula;
+                   */
             }
         }
 

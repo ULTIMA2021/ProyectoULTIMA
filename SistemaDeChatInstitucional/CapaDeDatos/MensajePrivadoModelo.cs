@@ -16,13 +16,13 @@ namespace CapaDeDatos
         //public attachment
         public DateTime cp_mensajeFechaHora;
         public string cp_mensajeStatus; //'recibido','leido'
-
+        public int ciDestinatario;
         public void enviarMensaje(int idCp_Mensaje, int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
-                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus)
+                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus,int ciDestinatario)
         {
             this.comando.CommandText = "INSERT INTO CP_mensaje (idCp_Mensaje,idConsultaPrivada,ciDocente,ciAlumno, contenido, attachment, " +
-                                        "cp_mensajeFechaHora, cp_mensajeStatus) VALUES(@idCp_Mensaje ,@idConsultaPrivada, " +
-                                        "@ciDocente, @ciAlumno, @contenido, @attachment, @cp_mensajeFechaHora, @cp_mensajeStatus);";
+                                        "cp_mensajeFechaHora, cp_mensajeStatus,ciDestinatario) VALUES(@idCp_Mensaje ,@idConsultaPrivada, " +
+                                        "@ciDocente, @ciAlumno, @contenido, @attachment, @cp_mensajeFechaHora, @cp_mensajeStatus, @ciDestinatario);";
             this.comando.Parameters.AddWithValue("idCp_Mensaje", idCp_Mensaje);
             this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
@@ -31,6 +31,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("attachment", attachment);
             this.comando.Parameters.AddWithValue("cp_mensajeFechaHora", cp_mensajeFechaHora);
             this.comando.Parameters.AddWithValue("cp_mensajeStatus", cp_mensajeStatus);
+            this.comando.Parameters.AddWithValue("ciDestinatario", ciDestinatario);
             this.comando.Prepare();
             EjecutarQuery(this.comando);
         }
@@ -49,7 +50,8 @@ namespace CapaDeDatos
                 cpm.contenido = lector[4].ToString();
                 //cpm.attachment = null;
                 cpm.cp_mensajeFechaHora = DateTime.Parse(lector[6].ToString());
-                cpm.cp_mensajeStatus = lector[6].ToString();
+                cpm.cp_mensajeStatus = lector[7].ToString();
+                cpm.ciDestinatario = Int32.Parse(lector[8].ToString());
                 Console.WriteLine("mensajesDeConsulta:");
                 Console.WriteLine(cpm.ToString());
                 listaCpm.Add(cpm);
@@ -59,13 +61,13 @@ namespace CapaDeDatos
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta() {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_Mensaje cpm; ";
+                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_Mensaje cpm; ";
             return cargarMensajePrivadoALista(this.comando);
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta(int ciAlumno)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_Mensaje cpm" +
+                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus,cpm.ciDestinatario FROM CP_Mensaje cpm" +
                 "WHERE cpm.ciAlumno=@ciAlumno; ";
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
             return cargarMensajePrivadoALista(this.comando);
@@ -78,12 +80,10 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
             return cargarMensajePrivadoALista(this.comando);
         }
-
-
         public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_Mensaje cpm " +
+               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_Mensaje cpm " +
                "WHERE cpm.idConsultaPrivada=@idConsultaPrivada AND cpm.ciAlumno=@ciAlumno AND cpm.ciDocente=@ciDocente ; ";
             this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
@@ -95,7 +95,7 @@ namespace CapaDeDatos
             return $"Consulta {this.idConsultaPrivada}\tAlumno {this.ciAlumno}\tDocente {this.ciDocente}\n" +
                 $"mensaje Index {this.idCp_mensaje}\t contenido {this.contenido}\n" +
                 $"mensajeFechaHora{this.cp_mensajeFechaHora}\n" +
-                $"statusMensaje {this.cp_mensajeStatus} ";
+                $"statusMensaje {this.cp_mensajeStatus}\t ciDestinatario {this.ciDestinatario}";
         }
     }
 }

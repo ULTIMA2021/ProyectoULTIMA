@@ -36,7 +36,6 @@ namespace CapaDeDatos
             EjecutarQuery(comando);
         }
 
-        //metodo usado para cargar datos del resultado SQL a una lista
         public List<PersonaModelo> obtenerUsuario(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
@@ -55,7 +54,6 @@ namespace CapaDeDatos
             return personas;
         }
         
-        //retorna UNA persona-alumno si la ci y la clave estan bien 
         public List<PersonaModelo> validarAlumno(string user, string pass)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p WHERE  " +
@@ -71,13 +69,6 @@ namespace CapaDeDatos
                                          "d.ci=@user AND p.clave=@pass;";
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
-            return obtenerUsuario(this.comando);
-        }
-
-        public List<PersonaModelo> obtenerAdmin()
-        {
-            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Administrador a INNER JOIN Persona p ON " +
-                                         "(a.ci=p.ci);";
             return obtenerUsuario(this.comando);
         }
 

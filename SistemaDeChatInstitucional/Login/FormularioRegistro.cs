@@ -31,14 +31,10 @@ namespace Login
             if (txtClave.Text == txtClaveVerificacion.Text)
             {
                 // codigo para mandar el formulariooo.....
-             //   verificarAlumno(txtCedula.Text);
-             //   verificarDocente(txtCedula.Text);
-                
+                //verificar si persona esta en el sistema
                MessageBox.Show(" Ingresado ");
-
             }
             else MessageBox.Show("Las contraseñas no coinciden");
-            
             //metodos de capalogica
             //verificar que no exista ya la persona
             //verificaar campos, o de una intentar guardarlos en la base para ver que pasa, ver el sql script por si se decide verificar en la app

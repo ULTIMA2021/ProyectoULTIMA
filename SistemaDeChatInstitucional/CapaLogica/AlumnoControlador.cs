@@ -126,12 +126,18 @@ namespace CapaLogica
 
 
            } */
-
-        public static bool obtenerAlum(string ci)
+           
+            //retorna true si no existe el alumno en el sistema
+            //Andres esto lo arregle para que funcione, 
+            //pero creo que para verificar que una persona no este en el sistema se deberia hacer un metodo nuevo
+            //que busque en la tabla persona de una
+            //note que los metodos arriba no se pueden reusar para esto
+        public static bool obtenerAlumno(string ci)
         {
             UsuarioModelo u = new UsuarioModelo();
-            u.obtenerAlumno(ci);
-            return true;
+           if( u.obtenerAlumno(ci).Count==0)
+                return true;
+            return false;
         }
 
         public static DataTable obtenerDocentes()
@@ -150,7 +156,6 @@ namespace CapaLogica
             return tabla;
         }
 
-        //add columns for cedulas, and make columns not visible, to make inserting shit easier
         public static DataTable obtenerDocentes(int dummy) {
             UsuarioModelo u = new UsuarioModelo();
             List<PersonaModelo> MisDocentes = u.obtenerDocente();
@@ -173,10 +178,10 @@ namespace CapaLogica
         }
 
         public static void enviarMensaje(int idCp_Mensaje, int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
-                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus)
+                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus, int ciDestinatario)
         {
             MensajePrivadoModelo cpm = new MensajePrivadoModelo();
-            cpm.enviarMensaje(idCp_Mensaje,idConsultaPrivada, ciDocente, ciAlumno, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus);
+            cpm.enviarMensaje(idCp_Mensaje,idConsultaPrivada, ciDocente, ciAlumno, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus, ciDestinatario);
         }
 
         public static int GetidConsultaPrivada(int ciDocente, int ciAlumno)
@@ -189,7 +194,6 @@ namespace CapaLogica
             return idConsultaPrivada;
         }
 
-        //SELECT idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora FROM ConsultaPrivada
         public static DataTable ConsultasPrivada() {
             ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
             List<ConsultaPrivadaModelo> listaConsulta=null;
@@ -227,18 +231,15 @@ namespace CapaLogica
         */
 
         public static void getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente) {
-            //string msgs;
             MensajePrivadoModelo mpm = new MensajePrivadoModelo();
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
                Console.WriteLine($"\n{m.ToString()}\n");
             }
-            // return msgs;
         }
 
         public static int getidCp_Mensaje(int idConsultaPrivada,string ci)
         {
-
 
             return 1;
         }
