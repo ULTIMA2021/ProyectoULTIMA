@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaLogica;
 
 namespace AppAlumno.menuScreens
 {
@@ -24,7 +25,26 @@ namespace AppAlumno.menuScreens
 
         private void misMensajes_Load(object sender, EventArgs e)
         {
-            dgvMisMensajes.DataSource= 
+            dgvMisMensajes.DataSource = AlumnoControlador.ConsultasPrivada();
+        }
+
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+            int consultaInDgv = dgvMisMensajes.CurrentRow.Index;
+
+            if (Session.type == 0)
+            {
+                //AlumnoControlador.
+            }
+                else if (Session.type == 1)
+            {
+
+            }
+                    else if (Session.type == 2)
+            {
+
+            }
+
         }
     }
 }

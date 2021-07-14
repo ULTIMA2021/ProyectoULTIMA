@@ -150,6 +150,7 @@ namespace CapaLogica
             return tabla;
         }
 
+        //add columns for cedulas, and make columns not visible, to make inserting shit easier
         public static DataTable obtenerDocentes(int dummy) {
             UsuarioModelo u = new UsuarioModelo();
             List<PersonaModelo> MisDocentes = u.obtenerDocente();
@@ -192,8 +193,7 @@ namespace CapaLogica
             Console.WriteLine($"EL ID DE LA CONSULTA NUEVA ES: {idConsultaPrivada}");
             return idConsultaPrivada;
         }
-
-        //cosas nuevas*************//falta hacer agregar las columnas a la tabla y hacer el incrementor para los mensajes
+        //SELECT idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora FROM ConsultaPrivada
         public static DataTable ConsultasPrivada() {
             ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
             List<ConsultaPrivadaModelo> listaConsulta=null;
@@ -202,17 +202,44 @@ namespace CapaLogica
             else if (Session.type == 1)
                 listaConsulta = consulta.getConsultas(Int32.Parse(Session.cedula));
             DataTable tabla = new DataTable();
-            tabla.Columns.Add("Nombre");
-            tabla.Columns.Add("Apellido");
-            foreach (ConsultaPrivadaModelo docente in listaConsulta)
-            {
-                tabla.Rows.Add(docente.Nombre, docente.Apellido);
+            tabla.Columns.Add("idConsultaPrivada");
+            tabla.Columns.Add("ciDocente");
+            tabla.Columns.Add("ciAlumno");
+            tabla.Columns.Add("titulo de consulta");
+            tabla.Columns.Add("Status de consulta");
+            tabla.Columns.Add("Fecha Creada");
+            foreach (ConsultaPrivadaModelo c in listaConsulta)
+            { 
+                tabla.Rows.Add(c.titulo, c.cpStatus, c.cpFechaHora);
             }
             return tabla;
-            
+        }
+        /*
+         method used to get the needed fields from the table the user is seeing
+         to run mensajesDeConsulta(int idConsultaPrivada, string ciAlumno,string ciDocente)
+
+          
+        public static List<string> getMessageThread(int selectedRowIndex){
+            List<string> dataToFindThread =new List<string>();
+            if (Session.type == 0)
+                listaConsulta = consulta.getConsultas(Session.cedula);
+            else if (Session.type == 1)
+                listaConsulta = consulta.getConsultas(Int32.Parse(Session.cedula));
+            DataTable tabla = new DataTable();
+            return g;
+        }
+        */
+    public static void getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente) {
+            //string msgs;
+            MensajePrivadoModelo mpm = new MensajePrivadoModelo();
+            foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
+            {
+               Console.WriteLine($"\n{m.ToString()}\n");
+            }
+           // return msgs;
         }
 
-        public static int GetidCp_Mensaje(int idConsultaPrivada,string ci)
+        public static int getidCp_Mensaje(int idConsultaPrivada,string ci)
         {
 
 

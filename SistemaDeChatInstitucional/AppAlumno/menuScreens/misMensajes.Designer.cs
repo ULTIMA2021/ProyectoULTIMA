@@ -94,6 +94,7 @@
             this.btnVer.TabIndex = 21;
             this.btnVer.Text = "Ver";
             this.btnVer.UseVisualStyleBackColor = false;
+            this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
             // 
             // btnEliminar
             // 

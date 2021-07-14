@@ -133,7 +133,6 @@ namespace CapaDeDatos
             return lastId;
         }
 
-
         public override string ToString()
         {
             return $"idConsultaPrivada: {idConsultaPrivada} ciDocente: {ciDocente} ciAlumno: {ciAlumno}";
