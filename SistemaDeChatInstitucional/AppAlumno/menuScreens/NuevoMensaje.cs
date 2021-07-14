@@ -61,7 +61,7 @@ namespace AppAlumno.menuScreens
         {
             //fix this so i dont have to put a dummy int as parameter
             dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes(6);
-           dgvListaDocentes.Columns["Nombre"].Visible = false;
+          // dgvListaDocentes.Columns["Nombre"].Visible = false;
         }
     }
 }
