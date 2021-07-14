@@ -29,12 +29,12 @@ namespace CapaDeDatos
         public List<PersonaModelo> lista(string ci, Func<List<PersonaModelo>> metodo)
         {
            List<PersonaModelo> personas = new List<PersonaModelo>();
-            
+          //  lector = this.comando.ExecuteReader();
             foreach (PersonaModelo usuario in metodo())
             {
                 if (ci == usuario.Cedula)
                 {
-                    lector = this.comando.ExecuteReader();
+                    
                       PersonaModelo u = new PersonaModelo();
                     PersonaModelo p = new PersonaModelo();
                     u.Cedula = p.Cedula;
@@ -45,7 +45,7 @@ namespace CapaDeDatos
                 }
 
             }
-            lector.Close();
+           // lector.Close();
             return personas;
         }
 
@@ -54,6 +54,13 @@ namespace CapaDeDatos
         {
 
             return lista(ci, obtenerAlumno);
+        }
+
+       
+
+        public List<PersonaModelo> obtenerDocente(string ci)
+        {
+            return lista(ci, obtenerDocente);
         }
 
         /*   public List<PersonaModelo> obtenerAlumno(string ci)

@@ -22,7 +22,7 @@ namespace CapaLogica
             return true;
         }
 
-        public static bool lista (string user, string pass, Func<string, string, List<PersonaModelo>> metodoObtener)
+        public static bool lista(string user, string pass, Func<string, string, List<PersonaModelo>> metodoObtener)
         {
             PersonaModelo p = new PersonaModelo();
             List<PersonaModelo> personas = metodoObtener(user, pass);
@@ -128,11 +128,13 @@ namespace CapaLogica
 
            } */
 
-        public static bool obtenerAlum(string ci)
+        public static bool obtenerAlumno(string ci)
         {
             UsuarioModelo u = new UsuarioModelo();
             u.obtenerAlumno(ci);
             return true;
         }
+
+        
     }
 }
