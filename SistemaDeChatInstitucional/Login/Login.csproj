@@ -53,6 +53,12 @@
     <Compile Include="bienvenido.Designer.cs">
       <DependentUpon>bienvenido.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormularioRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioRegistro.Designer.cs">
+      <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="bienvenido.resx">
       <DependentUpon>bienvenido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioRegistro.resx">
+      <DependentUpon>FormularioRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
