@@ -20,7 +20,13 @@ namespace CapaDeDatos
 
         public Modelo()
         {
-            connection();
+            try
+            {
+                connection();
+            }catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void connection()

@@ -86,7 +86,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvMisMensajes.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvMisMensajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMisMensajes.Size = new System.Drawing.Size(481, 241);
+            this.dgvMisMensajes.Size = new System.Drawing.Size(481, 221);
             this.dgvMisMensajes.TabIndex = 2;
             // 
             // btnExit
@@ -128,7 +128,7 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEliminar.Location = new System.Drawing.Point(561, 196);
+            this.btnEliminar.Location = new System.Drawing.Point(561, 275);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(94, 29);
             this.btnEliminar.TabIndex = 22;
