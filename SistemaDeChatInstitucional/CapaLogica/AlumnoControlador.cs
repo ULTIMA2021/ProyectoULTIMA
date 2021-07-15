@@ -11,6 +11,11 @@ namespace CapaLogica
 {
     public static class AlumnoControlador
     {
+        public static string nombreRemitente;
+        public static string nombreDestinatario;
+        public static string mensajeEnviado;
+        public static string ciDestinatario;
+
         public static bool AltaDeAlumno(string cedula, string nombre, string apellido, string clave)
         {
             PersonaModelo Alumno = new PersonaModelo();
@@ -140,6 +145,32 @@ namespace CapaLogica
             return false;
         }
 
+
+        public static string obtenerDestinatario(string ci)
+        {
+            PersonaModelo p = new PersonaModelo();
+            List<PersonaModelo> personas = p.obtenerPersona();
+            foreach(PersonaModelo persona in personas)
+            {
+                if(persona.Cedula == ci)
+                    nombreDestinatario = persona.Nombre + " " + persona.Apellido;
+            }
+              return nombreDestinatario;
+        }
+
+
+        public static string obtenerRemitente(string ci)
+        {
+            PersonaModelo p = new PersonaModelo();
+            List<PersonaModelo> personas = p.obtenerPersona();
+            foreach (PersonaModelo persona in personas)
+            {
+                if (persona.Cedula == ci)
+                    nombreRemitente = persona.Nombre + " " + persona.Apellido;
+            }
+            return nombreRemitente;
+        }
+
         public static DataTable obtenerDocentes()
         {
             UsuarioModelo u = new UsuarioModelo();
@@ -194,6 +225,7 @@ namespace CapaLogica
             return idConsultaPrivada;
         }
 
+        // metodo original
         public static DataTable ConsultasPrivada() {
             ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
             List<ConsultaPrivadaModelo> listaConsulta=null;
@@ -203,17 +235,69 @@ namespace CapaLogica
                 listaConsulta = consulta.getConsultas(Int32.Parse(Session.cedula));
             DataTable tabla = new DataTable();
             tabla.Columns.Add("idConsultaPrivada");
+            tabla.Columns.Add("idMensaje");
             tabla.Columns.Add("ciDocente");
             tabla.Columns.Add("ciAlumno");
             tabla.Columns.Add("titulo de consulta");
             tabla.Columns.Add("Status de consulta");
             tabla.Columns.Add("Fecha Creada");
+            tabla.Columns.Add("Destinatario");
             foreach (ConsultaPrivadaModelo c in listaConsulta)
             { 
-                tabla.Rows.Add(c.idConsultaPrivada,c.ciDocente,c.ciAlumno,c.titulo, c.cpStatus, c.cpFechaHora);
+                tabla.Rows.Add(c.idConsultaPrivada, c.idMensaje, c.ciDocente,c.ciAlumno,c.titulo, c.cpStatus, c.cpFechaHora, c.ciDestinatario);
             }
             return tabla;
         }
+
+        /*
+        public static DataTable ConsultasPrivadaEnviada()
+        {
+            ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
+            List<ConsultaPrivadaModelo> listaConsulta = null;
+            if (Session.type == 0)
+                listaConsulta = consulta.getConsultas(Session.cedula);
+            else if (Session.type == 1)
+                listaConsulta = consulta.getConsultas(Int32.Parse(Session.cedula));
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("idConsultaPrivada");
+            tabla.Columns.Add("idMensaje");
+            tabla.Columns.Add("ciDocente");
+            tabla.Columns.Add("ciAlumno");
+            tabla.Columns.Add("titulo de consulta");
+            tabla.Columns.Add("Status de consulta");
+            tabla.Columns.Add("Fecha Creada");
+            tabla.Columns.Add("Destinatario");
+            foreach (ConsultaPrivadaModelo c in listaConsulta)
+            {
+                tabla.Rows.Add(c.idConsultaPrivada, c.idMensaje, c.ciDocente, c.ciAlumno, c.titulo, c.cpStatus, c.cpFechaHora, c.ciDestinatario);
+            }
+            return tabla;
+        }
+        
+
+        public static DataTable ConsultasPrivada()
+        {
+            ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
+            List<ConsultaPrivadaModelo> listaConsulta = null;
+            if (Session.type == 0)
+                listaConsulta = consulta.getConsultasEnviadas(Session.cedula);
+            else if (Session.type == 1)
+                listaConsulta = consulta.getConsultasContestadas(Int32.Parse(Session.cedula));
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("idConsultaPrivada");
+            tabla.Columns.Add("idMensaje");
+            tabla.Columns.Add("ciDocente");
+            tabla.Columns.Add("ciAlumno");
+            tabla.Columns.Add("titulo de consulta");
+            tabla.Columns.Add("Status de consulta");
+            tabla.Columns.Add("Fecha Creada");
+            tabla.Columns.Add("Destinatario");
+            foreach (ConsultaPrivadaModelo c in listaConsulta)
+            {
+                tabla.Rows.Add(c.idConsultaPrivada, c.idMensaje, c.ciDocente, c.ciAlumno, c.titulo, c.cpStatus, c.cpFechaHora, c.ciDestinatario);
+            }
+            return tabla;
+        }   */
         /*
          method used to get the needed fields from the table the user is seeing
          to run mensajesDeConsulta(int idConsultaPrivada, string ciAlumno,string ciDocente)
@@ -236,6 +320,18 @@ namespace CapaLogica
             {
                Console.WriteLine($"\n{m.ToString()}\n");
             }
+        }
+
+        public static string obtenerMensaje(int idConsultaPrivada, string ciAlumno, string ciDocente)
+        {
+            MensajePrivadoModelo mpm = new MensajePrivadoModelo();
+            foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
+            {
+                mensajeEnviado = m.contenido;
+                Console.WriteLine($"\n{m.ToString()}\n");
+            }
+
+            return mensajeEnviado;
         }
 
         public static int getidCp_Mensaje(int idConsultaPrivada,string ci)

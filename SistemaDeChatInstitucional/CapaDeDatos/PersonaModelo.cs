@@ -42,6 +42,7 @@ namespace CapaDeDatos
             List<PersonaModelo> personas = new List<PersonaModelo>();
             while (lector.Read())
             {
+                
                 PersonaModelo p = new PersonaModelo();
                 Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
                 p.Cedula = lector[0].ToString();
@@ -79,6 +80,24 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando);
+        }
+
+        public List<PersonaModelo> obtenerPersona()
+        {
+            this.comando.CommandText = "SELECT ci, nombre, apellido FROM Persona;";
+            List<PersonaModelo> personas = new List<PersonaModelo>();
+            lector = this.comando.ExecuteReader();
+            while (lector.Read())
+            {
+                PersonaModelo p = new PersonaModelo();
+                p.Cedula = lector[0].ToString();
+                p.Nombre = lector[1].ToString();
+                p.Apellido = lector[2].ToString();
+                personas.Add(p);
+            }
+
+            lector.Close();
+            return personas;
         }
 
       /*  public List<PersonaModelo> obtenerMaterias()

@@ -85,6 +85,12 @@
     <Compile Include="menuScreens\NuevoMensaje.Designer.cs">
       <DependentUpon>NuevoMensaje.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\replyScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\replyScreen.Designer.cs">
+      <DependentUpon>replyScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="alumnoMainScreen.resx">
@@ -104,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\NuevoMensaje.resx">
       <DependentUpon>NuevoMensaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\replyScreen.resx">
+      <DependentUpon>replyScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

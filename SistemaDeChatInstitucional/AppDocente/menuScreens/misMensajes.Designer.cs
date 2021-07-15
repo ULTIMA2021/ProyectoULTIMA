@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(misMensajes));
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarConsulta = new System.Windows.Forms.TextBox();
-            this.dgvListaMensajes = new System.Windows.Forms.DataGridView();
+            this.dgvMisMensajes = new System.Windows.Forms.DataGridView();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnVer = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaMensajes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMisMensajes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -56,13 +58,36 @@
             this.txtBuscarConsulta.Size = new System.Drawing.Size(314, 20);
             this.txtBuscarConsulta.TabIndex = 1;
             // 
-            // dgvListaMensajes
+            // dgvMisMensajes
             // 
-            this.dgvListaMensajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaMensajes.Location = new System.Drawing.Point(36, 112);
-            this.dgvListaMensajes.Name = "dgvListaMensajes";
-            this.dgvListaMensajes.Size = new System.Drawing.Size(481, 241);
-            this.dgvListaMensajes.TabIndex = 2;
+            this.dgvMisMensajes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMisMensajes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvMisMensajes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgvMisMensajes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvMisMensajes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.MenuBar;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMisMensajes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvMisMensajes.ColumnHeadersHeight = 25;
+            this.dgvMisMensajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvMisMensajes.EnableHeadersVisualStyles = false;
+            this.dgvMisMensajes.Location = new System.Drawing.Point(36, 112);
+            this.dgvMisMensajes.MultiSelect = false;
+            this.dgvMisMensajes.Name = "dgvMisMensajes";
+            this.dgvMisMensajes.ReadOnly = true;
+            this.dgvMisMensajes.RowHeadersVisible = false;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvMisMensajes.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvMisMensajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMisMensajes.Size = new System.Drawing.Size(481, 241);
+            this.dgvMisMensajes.TabIndex = 2;
             // 
             // btnExit
             // 
@@ -94,6 +119,7 @@
             this.btnVer.TabIndex = 21;
             this.btnVer.Text = "Ver";
             this.btnVer.UseVisualStyleBackColor = false;
+            this.btnVer.Click += new System.EventHandler(this.btnVer_Click);
             // 
             // btnEliminar
             // 
@@ -118,14 +144,14 @@
             this.Controls.Add(this.btnVer);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.dgvListaMensajes);
+            this.Controls.Add(this.dgvMisMensajes);
             this.Controls.Add(this.txtBuscarConsulta);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "misMensajes";
             this.Text = "misMensajes";
             this.Load += new System.EventHandler(this.misMensajes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListaMensajes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMisMensajes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +161,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBuscarConsulta;
-        private System.Windows.Forms.DataGridView dgvListaMensajes;
+        private System.Windows.Forms.DataGridView dgvMisMensajes;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnVer;
         private System.Windows.Forms.Button btnEliminar;

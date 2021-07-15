@@ -13,11 +13,13 @@ namespace CapaDeDatos
     {
 
         public int idConsultaPrivada;
+        public int idMensaje;
         public int ciDocente;
         public int ciAlumno;
         public string titulo;
         public string cpStatus;
         public DateTime cpFechaHora;
+        public string ciDestinatario;
 
         public void crearConsultaPrivada(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)
@@ -61,11 +63,13 @@ namespace CapaDeDatos
                 {
                     ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
+                    cp.idMensaje = consulta.idMensaje;
                     cp.ciDocente = consulta.ciDocente;
                     cp.ciAlumno = consulta.ciAlumno;
                     cp.cpFechaHora = consulta.cpFechaHora ;
                     cp.cpStatus = consulta.cpStatus;
                     cp.titulo = consulta.titulo;
+                    
                     consultas.Add(cp);
                     Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
                     Console.WriteLine(cp.ToString());
@@ -74,6 +78,7 @@ namespace CapaDeDatos
             return consultas;
         }
 
+        //esta es la original
         public List<ConsultaPrivadaModelo> getConsultas(string ciAlumno) {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
             foreach (ConsultaPrivadaModelo consulta in getConsultas())
@@ -82,11 +87,13 @@ namespace CapaDeDatos
                 {
                     ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
+                    cp.idMensaje = consulta.idMensaje;
                     cp.ciDocente = consulta.ciDocente;
                     cp.ciAlumno = consulta.ciAlumno;
                     cp.cpFechaHora = consulta.cpFechaHora;
                     cp.cpStatus = consulta.cpStatus;
                     cp.titulo = consulta.titulo;
+                    cp.ciDestinatario = consulta.ciDestinatario;
                     consultas.Add(cp);
                     Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
                     Console.WriteLine(cp.ToString());
@@ -95,20 +102,24 @@ namespace CapaDeDatos
             return consultas;
         }
 
+        // ORIGINAL
         public List<ConsultaPrivadaModelo> getConsultas()
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            this.comando.CommandText = "SELECT idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora FROM ConsultaPrivada;";
+            this.comando.CommandText = "SELECT DISTINCT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp " +
+                                "inner join CP_Mensaje m on cp.idConsultaPrivada=m.idConsultaPrivada AND cp.docenteCi=m.ciDestinatario;";
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {
                 ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
                 cp.idConsultaPrivada = Int32.Parse(lector[0].ToString());
-                cp.ciDocente = Int32.Parse(lector[1].ToString());
-                cp.ciAlumno = Int32.Parse(lector[2].ToString());
-                cp.titulo = lector[3].ToString();
-                cp.cpStatus = lector[4].ToString();
-                cp.cpFechaHora = DateTime.Parse(lector[5].ToString());
+                cp.idMensaje = Int32.Parse(lector[1].ToString());
+                cp.ciDocente = Int32.Parse(lector[2].ToString());
+                cp.ciAlumno = Int32.Parse(lector[3].ToString());
+                cp.titulo = lector[4].ToString();
+                cp.cpStatus = lector[5].ToString();
+                cp.cpFechaHora = DateTime.Parse(lector[6].ToString());
+                cp.ciDestinatario = lector[7].ToString();
                 Console.WriteLine("getConsultas()");
                 Console.WriteLine(cp.ToString());
                 consultas.Add(cp);
@@ -116,6 +127,8 @@ namespace CapaDeDatos
                 lector.Close();
                 return consultas;
         }
+
+       
 
         public int getIdConsultas(int ciDocente, int ciAlumno)
         {
