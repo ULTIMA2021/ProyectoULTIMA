@@ -46,14 +46,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="adminMainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="adminMainScreen.Designer.cs">
+      <DependentUpon>adminMainScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\FormularioRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\FormularioRegistro.Designer.cs">
+      <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\listarDocentes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\listarDocentes.Designer.cs">
+      <DependentUpon>listarDocentes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\listarAlumnos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\listarAlumnos.Designer.cs">
+      <DependentUpon>listarAlumnos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="adminMainScreen.resx">
+      <DependentUpon>adminMainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\FormularioRegistro.resx">
+      <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\listarDocentes.resx">
+      <DependentUpon>listarDocentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\listarAlumnos.resx">
+      <DependentUpon>listarAlumnos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaLogica\CapaLogica.csproj">
+      <Project>{66855f56-cf4a-4155-9ae2-9cb50f63982c}</Project>
+      <Name>CapaLogica</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
