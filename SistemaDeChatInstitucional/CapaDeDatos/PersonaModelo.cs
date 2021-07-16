@@ -21,7 +21,7 @@ namespace CapaDeDatos
         public string avatar;
         public bool isDeleted;
         public bool enLinea;
-        Modelo modelo = new Modelo();
+       // Modelo modelo = new Modelo();
 
         //implementar en segunda entrega
         public void GuardarTemp(string tipoUsuario)
@@ -34,7 +34,9 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@clave", this.Clave);
             this.comando.Parameters.AddWithValue("@foto", this.foto);
             this.comando.Parameters.AddWithValue("@avatar", this.avatar);
-            this.comando.Parameters.AddWithValue("@avatar", tipoUsuario); 
+            this.comando.Parameters.AddWithValue("@avatar", tipoUsuario);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
         }
 
         public void GuardarPersona()
@@ -49,25 +51,33 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@avatar", this.avatar);
             this.comando.Parameters.AddWithValue("@isDeleted", false);
             this.comando.Parameters.AddWithValue("@enlinea",  false);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
         }
 
         public void guardarAlumno()
         {
             this.comando.CommandText = "INSERT INTO Alumno (ci,apodo) VALUES (@Cedula,@Apodo);";
-            this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
-            this.comando.Parameters.AddWithValue("@apellido", this.Apodo);
+            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("Apodo", this.Apodo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
         }
 
         public void guardarDocente()
         {
             this.comando.CommandText = "INSERT INTO Docente (ci) VALUES (@cedula);";
             this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
         }
 
         public void guardarAdmin()
         {
             this.comando.CommandText = "INSERT INTO Administrador (ci) VALUES(@Cedula);";
             this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
         }
 
         public List<PersonaModelo> obtenerUsuario(MySqlCommand commando)
@@ -134,23 +144,22 @@ namespace CapaDeDatos
             return personas;
         }
 
-        public List<PersonaModelo> obtenerPersona(string ci)
+        public PersonaModelo obtenerPersona(string cedula)
         {
-            comando.CommandText = "SELECT p.ci, p.nombre, p.apellido FROM Persona p WHERE p.ci=@ci;";
-            comando.Parameters.AddWithValue("ci", ci);
-            List<PersonaModelo> personas = new List<PersonaModelo>();
+            this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido FROM Persona p WHERE p.ci=@cedula;";
+            this.comando.Parameters.AddWithValue("cedula", cedula);
+            PersonaModelo persona = new PersonaModelo();
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {
-                PersonaModelo p = new PersonaModelo();
-                p.Cedula = lector[0].ToString();
-                p.Nombre = lector[1].ToString();
-                p.Apellido = lector[2].ToString();
-                personas.Add(p);
+
+                persona.Cedula = lector[0].ToString();
+                persona.Nombre = lector[1].ToString();
+                persona.Apellido = lector[2].ToString();
             }
 
             lector.Close();
-            return personas;
+            return persona;
         }
 
         /*  public List<PersonaModelo> obtenerMaterias()

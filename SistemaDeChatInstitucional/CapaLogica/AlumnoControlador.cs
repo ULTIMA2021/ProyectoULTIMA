@@ -41,8 +41,16 @@ namespace CapaLogica
             Persona.GuardarPersona();
         }
 
-        public static void AltaAlumno(string cedula, string apodo, List<GrupoModelo> GruposDeAlumno) {
-
+        //usado en formulario registro para ingresar alumno nuevo a tabla alumno y alumno_tiene_grupo
+        public static void AltaAlumno(string cedula, string apodo, List<int> GruposDeAlumno) {
+            PersonaModelo p = new PersonaModelo();
+            GrupoModelo g = new GrupoModelo();
+            p.Cedula = cedula;
+            p.Apodo = apodo;
+            p.guardarAlumno();
+            foreach (int grupo in GruposDeAlumno) {
+                g.nuevoIngresoAlumnoTieneGrupo(cedula,grupo);
+            }
         }
         public static void AltaDocente(string cedula,List<GrupoModelo> GruposMateriasDeDocente ) {
 
@@ -53,9 +61,12 @@ namespace CapaLogica
 
         public static bool existePersona(string ci) {
             PersonaModelo p = new PersonaModelo();
-            Console.WriteLine(p.obtenerPersona(ci).Count);
-            if (p.obtenerPersona(ci).Count == 0)
+            //
+            if (p.obtenerPersona(ci).Cedula == ci) {
+                Console.WriteLine($"PERSON {ci} EXISTS IN SYSTEM");
                 return false;
+            }
+            Console.WriteLine($"PERSON {ci} DOES NOT EXIST IN SYSTEM");
             return true;
         }
 

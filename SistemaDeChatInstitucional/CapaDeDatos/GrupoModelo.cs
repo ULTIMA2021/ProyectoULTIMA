@@ -16,13 +16,24 @@ namespace CapaDeDatos
         public string nombreMateria;
         public string nombreGrupo;
         public string nombreOrientacion;
-
+        public string alumnoCi;
         public void crearGrupoNuevo(string nombreGrupo)
         {
-            this.comando.CommandText = "INSERT INTO Grupo (nombreMateria) VALUES(@nombreGrupo);";
+            this.comando.CommandText = "INSERT INTO Grupo (nombreGrupo) VALUES(@nombreGrupo);";
             this.comando.Parameters.AddWithValue("nombreGrupo",nombreGrupo);
+            this.comando.Prepare();
             EjecutarQuery(this.comando);
         }
+        public void nuevoIngresoAlumnoTieneGrupo(string alumnoCi, int idGrupo) {
+            command = "INSERT INTO Alumno_Tiene_Grupo (alumnoCi,idGrupo) VALUES (@alumnoCi,@idGrupo);";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("alumnoCi", alumnoCi);
+            this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+            this.comando.Parameters.Clear();
+        }
+
         private List<GrupoModelo> cargarGrupoALista(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();

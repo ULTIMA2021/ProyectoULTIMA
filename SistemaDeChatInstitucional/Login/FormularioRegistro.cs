@@ -32,27 +32,17 @@ namespace Login
             {
                 if (AlumnoControlador.existePersona(txtCedula.Text))
                 {
+                    Console.WriteLine("this person is getting registered");
                     AlumnoControlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
-
                     if (this.comboBoxUser.SelectedIndex == 0) {
-                        //    AlumnoControlador.AltaAlumno(txtCedula.Text, txtApodo.Text,List<int> indexesOfSelectedBoxes);
-                        getIndexesChecklist();
-
-                        if (checkedListBox1.CheckedItems.Count != 0)
-                        { 
-                            
-                        }
-
-                    } else if (this.comboBoxUser.SelectedIndex == 0)
+                        AlumnoControlador.AltaAlumno(txtCedula.Text, txtApodo.Text,getIndexesChecklist());
+                        
+                    } else if (this.comboBoxUser.SelectedIndex == 1)
                     {
                      //  AlumnoControlador.AltaDocente(txtCedula.Text, );
-
-                    
                     } else
                     {
                         AlumnoControlador.AltaAdmin(txtCedula.Text);
-
-                        
                     }
                     //MessageBox.Show(" Ingresado! espere que lo confirme un administrador");
 
@@ -68,20 +58,15 @@ namespace Login
             this.comboBoxUser.SelectedIndex = 0;
         }
         private List<int> getIndexesChecklist() {
-            List<int> selectedIndexes = new List<int>();
-            //selectedIndexes = (checkedListBox1.CheckedIndices);
+            List<int> checkedIndexes = new List<int>();
             int index;
-            foreach (Object item in checkedListBox1.SelectedItems)
+            foreach (Object item in checkedListBox1.CheckedItems)
             {
-                 index= checkedListBox1.Items.IndexOf(item);
-                Console.WriteLine("{0}:{1}", item, index);
+                index = checkedListBox1.Items.IndexOf(item)+1;
+                checkedIndexes.Add(index);
+                Console.WriteLine($" item: {item}   index of item in database:{ index}");
             }
-
-
-          //  for (int x = 0; x < checkedListBox1.CheckedItems.Count; x++)
-          
-
-            return selectedIndexes;
+            return checkedIndexes;
         }
         private void comboBoxUser_SelectedValueChanged(object sender, EventArgs e)
         {
