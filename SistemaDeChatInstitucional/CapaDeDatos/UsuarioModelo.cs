@@ -126,7 +126,7 @@ namespace CapaDeDatos
                    return personas;
                }  */
 
-            public List<PersonaModelo> obtenerDocente()
+        public List<PersonaModelo> obtenerDocente()
         {
             this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM Docente d INNER JOIN Persona p ON " +
                                          "(d.ci=p.ci);";

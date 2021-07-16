@@ -28,26 +28,61 @@ namespace Login
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
-            if (txtClave.Text == txtClaveVerificacion.Text)
+            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length==8)
             {
-                // codigo para mandar el formulariooo.....
-                //verificar si persona esta en el sistema
-               MessageBox.Show(" Ingresado ");
+                if (AlumnoControlador.existePersona(txtCedula.Text))
+                {
+                    AlumnoControlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
+
+                    if (this.comboBoxUser.SelectedIndex == 0) {
+                        //    AlumnoControlador.AltaAlumno(txtCedula.Text, txtApodo.Text,List<int> indexesOfSelectedBoxes);
+                        getIndexesChecklist();
+
+                        if (checkedListBox1.CheckedItems.Count != 0)
+                        { 
+                            
+                        }
+
+                    } else if (this.comboBoxUser.SelectedIndex == 0)
+                    {
+                     //  AlumnoControlador.AltaDocente(txtCedula.Text, );
+
+                    
+                    } else
+                    {
+                        AlumnoControlador.AltaAdmin(txtCedula.Text);
+
+                        
+                    }
+                    //MessageBox.Show(" Ingresado! espere que lo confirme un administrador");
+
+                }
+                else MessageBox.Show("Una persona con esa cedula ya existe");
+
             }
             else MessageBox.Show("Las contraseñas no coinciden");
-            //metodos de capalogica
-            //verificar que no exista ya la persona
-            //verificaar campos, o de una intentar guardarlos en la base para ver que pasa, ver el sql script por si se decide verificar en la app
-            // si esta todo bien, mandar datos a admin para confirmacion
-            // capaz que se tiene que agregar un atributo mas para Persona en la base de datos que sea isConfirmed. nose Hay que ver 
+            
         }
-
-       
 
         private void load() {
             this.comboBoxUser.SelectedIndex = 0;
         }
- 
+        private List<int> getIndexesChecklist() {
+            List<int> selectedIndexes = new List<int>();
+            //selectedIndexes = (checkedListBox1.CheckedIndices);
+            int index;
+            foreach (Object item in checkedListBox1.SelectedItems)
+            {
+                 index= checkedListBox1.Items.IndexOf(item);
+                Console.WriteLine("{0}:{1}", item, index);
+            }
+
+
+          //  for (int x = 0; x < checkedListBox1.CheckedItems.Count; x++)
+          
+
+            return selectedIndexes;
+        }
         private void comboBoxUser_SelectedValueChanged(object sender, EventArgs e)
         {
 
@@ -61,17 +96,16 @@ namespace Login
             if (this.comboBoxUser.SelectedIndex == 0)
             {
                 this.lblAsterix.Visible = false;
-                this.txtApodo.Enabled = false;
+                //this.txtApodo.Enabled = false;
                 this.lblGrupo.Text = "Grupo/s";
-
-               
-                //invocar algun metodo que le haga un update a la checklist con las entradas de grupoMateria que no estan en la tabla docente_dicta_G_M
-                //se podria combinar grupo y materia de la tabla a un string y pasarlo como una opcion para elegir
-            }else if (this.comboBoxUser.SelectedIndex == 1)
+                this.checkedListBox1.DataSource = AlumnoControlador.gruposToListForRegister();
+            }
+            else if (this.comboBoxUser.SelectedIndex == 1)
             {
                 this.lblAsterix.Visible = false;
                 this.txtApodo.Enabled = false;
                 this.lblGrupo.Text = "Grupo-materia";
+                this.checkedListBox1.DataSource = AlumnoControlador.grupoMateriaToListForRegister();
             }
             else if (this.comboBoxUser.SelectedIndex == 2)
             {
@@ -81,11 +115,10 @@ namespace Login
                 this.pbFoto.Enabled = false;
                 this.checkedListBox1.Enabled = false;
                 this.txtApodo.Enabled = false;
+                this.checkedListBox1.DataSource = null;
 
             }
-            
         }
-
         private void btnExaminar_Click(object sender, EventArgs e)
         {
             OpenFileDialog abrirFoto = new OpenFileDialog();

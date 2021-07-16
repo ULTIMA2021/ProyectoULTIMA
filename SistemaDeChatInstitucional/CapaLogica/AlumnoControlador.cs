@@ -15,15 +15,47 @@ namespace CapaLogica
         public static string nombreDestinatario;
         public static string mensajeEnviado;
         public static string ciDestinatario;
-
-        public static bool AltaDeAlumno(string cedula, string nombre, string apellido, string clave)
+         //implementear en segunda entrega
+         /*
+        public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
         {
-            PersonaModelo Alumno = new PersonaModelo();
-            Alumno.Cedula = cedula;
-            Alumno.Nombre = nombre;
-            Alumno.Apellido = apellido;
-            Alumno.Clave = clave;
-            Alumno.Guardar();
+            PersonaModelo Persona = new PersonaModelo();
+            Persona.Cedula = cedula;
+            Persona.Nombre = nombre;
+            Persona.Apellido = apellido;
+            Persona.Clave = clave;
+            Persona.foto = null;
+            Persona.avatar = null;
+            Persona.GuardarTemp(tipoUsuario);
+        }
+    */
+        public static void AltaPersona(string cedula, string nombre, string apellido, string clave /*, string foto, byte avatar*/)
+        {
+            PersonaModelo Persona = new PersonaModelo();
+            Persona.Cedula = cedula;
+            Persona.Nombre = nombre;
+            Persona.Apellido = apellido;
+            Persona.Clave = clave;
+            Persona.foto = null;
+            Persona.avatar = null;
+            Persona.GuardarPersona();
+        }
+
+        public static void AltaAlumno(string cedula, string apodo, List<GrupoModelo> GruposDeAlumno) {
+
+        }
+        public static void AltaDocente(string cedula,List<GrupoModelo> GruposMateriasDeDocente ) {
+
+        }
+        public static void AltaAdmin(string cedula) {
+
+        }
+
+        public static bool existePersona(string ci) {
+            PersonaModelo p = new PersonaModelo();
+            Console.WriteLine(p.obtenerPersona(ci).Count);
+            if (p.obtenerPersona(ci).Count == 0)
+                return false;
             return true;
         }
 
@@ -210,5 +242,28 @@ namespace CapaLogica
             return mensajeEnviado;
         }
 
+        public static List<string> gruposToListForRegister() {
+            GrupoModelo grupo = new GrupoModelo();
+            List<string> gString = new List<string>();
+            foreach (GrupoModelo g in grupo.getGrupo()){
+                gString.Add($"{g.idGrupo}   {g.nombreGrupo}");
+            }
+            return gString;
+           
+        }
+
+        //Lista del query me muestra todas las materias-grupo pero la base no permite que hayan
+        //mas de un docente para una materia-grupo
+        //usar regular expression para extrar datos enves de usar index para mandar checked boxes.
+        public static List<string> grupoMateriaToListForRegister() {
+            List<string> gmString = new List<string>();
+            GrupoModelo gm = new GrupoModelo();
+            string entry;
+            foreach (GrupoModelo g in gm.getGrupoTieneMateria()) {
+                entry = $"{g.nombreGrupo}   {g.nombreMateria}";
+                gmString.Add(entry);
+            }
+            return gmString;
+        }
     }
 }
