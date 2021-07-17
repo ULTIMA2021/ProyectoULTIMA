@@ -159,9 +159,9 @@
             this.comboBoxUser.ForeColor = System.Drawing.SystemColors.ControlText;
             this.comboBoxUser.FormattingEnabled = true;
             this.comboBoxUser.Items.AddRange(new object[] {
-            "Alumno",
-            "Docente",
-            "Administrador"});
+            "alumno",
+            "docente",
+            "admin"});
             this.comboBoxUser.Location = new System.Drawing.Point(156, 84);
             this.comboBoxUser.Name = "comboBoxUser";
             this.comboBoxUser.Size = new System.Drawing.Size(93, 21);

@@ -15,15 +15,74 @@ namespace CapaLogica
         public static string nombreDestinatario;
         public static string mensajeEnviado;
         public static string ciDestinatario;
-
-        public static bool AltaDeAlumno(string cedula, string nombre, string apellido, string clave)
+         //implementear en segunda entrega
+         /*
+        public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
         {
-            PersonaModelo Alumno = new PersonaModelo();
-            Alumno.Cedula = cedula;
-            Alumno.Nombre = nombre;
-            Alumno.Apellido = apellido;
-            Alumno.Clave = clave;
-            Alumno.Guardar();
+            PersonaModelo Persona = new PersonaModelo();
+            Persona.Cedula = cedula;
+            Persona.Nombre = nombre;
+            Persona.Apellido = apellido;
+            Persona.Clave = clave;
+            Persona.foto = null;
+            Persona.avatar = null;
+            Persona.GuardarTemp(tipoUsuario);
+        }
+    */
+        public static void AltaPersona(string cedula, string nombre, string apellido, string clave /*, string foto, byte avatar*/)
+        {
+            PersonaModelo Persona = new PersonaModelo();
+            Persona.Cedula = cedula;
+            Persona.Nombre = nombre;
+            Persona.Apellido = apellido;
+            Persona.Clave = clave;
+            Persona.foto = null;
+            Persona.avatar = null;
+            Persona.GuardarPersona();
+        }
+
+        //usado en formulario registro para ingresar alumno nuevo a tabla alumno y alumno_tiene_grupo
+        public static void AltaAlumno(string cedula, string apodo, List<int> GruposDeAlumno) {
+            PersonaModelo p = new PersonaModelo();
+            GrupoModelo g = new GrupoModelo();
+            p.Cedula = cedula;
+            p.Apodo = apodo;
+            p.guardarAlumno();
+            foreach (int grupo in GruposDeAlumno) {
+                g.nuevoIngresoAlumnoTieneGrupo(cedula,grupo);
+            }
+        }
+
+        public static void AltaDocente(string cedula,List<int> GruposMateriasDeDocente ) {
+            PersonaModelo p = new PersonaModelo();
+            GrupoModelo g = new GrupoModelo();
+            p.Cedula = cedula;
+            p.guardarDocente();
+            List<GrupoModelo>gm=g.getDocenteDictaGM();
+            int idMateria;
+            int idGrupo;
+            foreach (int grupoMateria in GruposMateriasDeDocente)
+            {
+                idMateria = gm[grupoMateria].idMateria;
+                idGrupo = gm[grupoMateria].idGrupo;
+                g.actualizarDocenteTieneGM(cedula, idGrupo, idMateria);
+            }
+        }
+
+        public static void AltaAdmin(string cedula) {
+            PersonaModelo p = new PersonaModelo();
+            p.Cedula = cedula;
+            p.guardarAdmin();
+        }
+
+        public static bool existePersona(string ci) {
+            PersonaModelo p = new PersonaModelo();
+            //
+            if (p.obtenerPersona(ci).Cedula == ci) {
+                Console.WriteLine($"PERSON {ci} EXISTS IN SYSTEM");
+                return false;
+            }
+            Console.WriteLine($"PERSON {ci} DOES NOT EXIST IN SYSTEM");
             return true;
         }
 
@@ -61,7 +120,6 @@ namespace CapaLogica
             return lista(user, pass, p.validarAdmin);
         }
 
- 
         /*   public static DataTable listarMaterias()
            {
                PersonaModelo p = new PersonaModelo();
@@ -211,5 +269,28 @@ namespace CapaLogica
             return mensajeEnviado;
         }
 
+        public static List<string> gruposToListForRegister() {
+            GrupoModelo grupo = new GrupoModelo();
+            List<string> gString = new List<string>();
+            foreach (GrupoModelo g in grupo.getGrupo()){
+                gString.Add($"{g.idGrupo}   {g.nombreGrupo}");
+            }
+            return gString;
+           
+        }
+
+        //Lista del query me muestra todas las materias-grupo pero la base no permite que hayan
+        //mas de un docente para una materia-grupo
+        //usar regular expression para extrar datos enves de usar index para mandar checked boxes.
+        public static List<string> grupoMateriaToListForRegister() {
+            List<string> gmString = new List<string>();
+            GrupoModelo gm = new GrupoModelo();
+            string entry;
+            foreach (GrupoModelo g in gm.getDocenteDictaGM()) {
+                entry = $"{g.nombreGrupo}   {g.nombreMateria}";
+                gmString.Add(entry);
+            }
+            return gmString;
+        }
     }
 }

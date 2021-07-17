@@ -10,6 +10,7 @@ namespace CapaDeDatos
 {
     public class Modelo
     {
+        protected string command;
         protected string IpDb;
         protected string NombreDb;
         protected string UsuarioDb;
@@ -47,6 +48,8 @@ namespace CapaDeDatos
         public void EjecutarQuery(MySqlCommand comando)
         {
             comando.ExecuteNonQuery();
+        //    conexion.Close();
+
         }
 
         protected void InicializarConexion()
@@ -54,7 +57,7 @@ namespace CapaDeDatos
             this.IpDb = "localhost";
             this.NombreDb = "ultimaDB";
             this.UsuarioDb = "root";
-            this.PasswordDb = "andylu30";
+            this.PasswordDb = "9682031";
         }
     }
 }
