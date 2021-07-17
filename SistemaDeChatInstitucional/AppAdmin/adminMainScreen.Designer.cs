@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(adminMainScreen));
             this.panelTitulo = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnAdministradores = new System.Windows.Forms.Button();
@@ -54,13 +55,14 @@
             this.btnEliminarAlumnos = new System.Windows.Forms.Button();
             this.btnModificarAlumnos = new System.Windows.Forms.Button();
             this.btnIngresarAlumno = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pbImagenInicio = new System.Windows.Forms.PictureBox();
             this.panelTitulo.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelContenedor.SuspendLayout();
             this.subMenuAdmin.SuspendLayout();
             this.subMenuDocentes.SuspendLayout();
             this.subMenuAlumnos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagenInicio)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitulo
@@ -73,6 +75,18 @@
             this.panelTitulo.Name = "panelTitulo";
             this.panelTitulo.Size = new System.Drawing.Size(855, 31);
             this.panelTitulo.TabIndex = 0;
+            this.panelTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitulo_MouseDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label1.Location = new System.Drawing.Point(29, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 14);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "App Administrador";
             // 
             // btnExit
             // 
@@ -154,6 +168,7 @@
             this.panelContenedor.Controls.Add(this.subMenuAdmin);
             this.panelContenedor.Controls.Add(this.subMenuDocentes);
             this.panelContenedor.Controls.Add(this.subMenuAlumnos);
+            this.panelContenedor.Controls.Add(this.pbImagenInicio);
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(0, 66);
             this.panelContenedor.Name = "panelContenedor";
@@ -171,7 +186,7 @@
             this.subMenuAdmin.Location = new System.Drawing.Point(576, 0);
             this.subMenuAdmin.Name = "subMenuAdmin";
             this.subMenuAdmin.Size = new System.Drawing.Size(279, 178);
-            this.subMenuAdmin.TabIndex = 7;
+            this.subMenuAdmin.TabIndex = 11;
             this.subMenuAdmin.Visible = false;
             // 
             // btnRequerimientoAdmin
@@ -260,7 +275,7 @@
             this.subMenuDocentes.Location = new System.Drawing.Point(289, 0);
             this.subMenuDocentes.Name = "subMenuDocentes";
             this.subMenuDocentes.Size = new System.Drawing.Size(287, 178);
-            this.subMenuDocentes.TabIndex = 6;
+            this.subMenuDocentes.TabIndex = 10;
             this.subMenuDocentes.Visible = false;
             // 
             // btnRequerimientoDocentes
@@ -350,7 +365,7 @@
             this.subMenuAlumnos.Location = new System.Drawing.Point(0, 0);
             this.subMenuAlumnos.Name = "subMenuAlumnos";
             this.subMenuAlumnos.Size = new System.Drawing.Size(289, 178);
-            this.subMenuAlumnos.TabIndex = 5;
+            this.subMenuAlumnos.TabIndex = 9;
             this.subMenuAlumnos.Visible = false;
             // 
             // btnRequerimientoAlumnos
@@ -383,7 +398,6 @@
             this.btnListarAlumnos.TabIndex = 3;
             this.btnListarAlumnos.Text = "Listar todos";
             this.btnListarAlumnos.UseVisualStyleBackColor = true;
-            this.btnListarAlumnos.Click += new System.EventHandler(this.btnListarAlumnos_Click);
             // 
             // btnEliminarAlumnos
             // 
@@ -430,16 +444,14 @@
             this.btnIngresarAlumno.Text = "Ingresar";
             this.btnIngresarAlumno.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // pbImagenInicio
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.label1.Location = new System.Drawing.Point(29, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 14);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "App Administrador";
+            this.pbImagenInicio.Image = ((System.Drawing.Image)(resources.GetObject("pbImagenInicio.Image")));
+            this.pbImagenInicio.Location = new System.Drawing.Point(303, 60);
+            this.pbImagenInicio.Name = "pbImagenInicio";
+            this.pbImagenInicio.Size = new System.Drawing.Size(267, 274);
+            this.pbImagenInicio.TabIndex = 8;
+            this.pbImagenInicio.TabStop = false;
             // 
             // adminMainScreen
             // 
@@ -460,6 +472,7 @@
             this.subMenuAdmin.ResumeLayout(false);
             this.subMenuDocentes.ResumeLayout(false);
             this.subMenuAlumnos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagenInicio)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -473,6 +486,7 @@
         private System.Windows.Forms.Button btnDocentes;
         private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel subMenuAdmin;
         private System.Windows.Forms.Button btnRequerimientoAdmin;
         private System.Windows.Forms.Button btnListarAdmin;
@@ -491,6 +505,6 @@
         private System.Windows.Forms.Button btnEliminarAlumnos;
         private System.Windows.Forms.Button btnModificarAlumnos;
         private System.Windows.Forms.Button btnIngresarAlumno;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pbImagenInicio;
     }
 }

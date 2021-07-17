@@ -27,6 +27,7 @@ namespace CapaLogica
             return true;
         }
 
+
         public static bool lista (string user, string pass, Func<string, string, List<PersonaModelo>> metodoObtener)
         {
             PersonaModelo p = new PersonaModelo();

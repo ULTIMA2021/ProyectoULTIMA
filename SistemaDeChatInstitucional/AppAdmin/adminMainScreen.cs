@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,10 +13,18 @@ namespace AppAdmin
 {
     public partial class adminMainScreen : Form
     {
+
         public adminMainScreen()
         {
             InitializeComponent();
+
         }
+
+
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
 
         public void esconderSubMenu()
@@ -101,16 +110,23 @@ namespace AppAdmin
             openScreen(new menuScreens.listarAlumnos());
         }
 
-        private void btnRequerimientoAlumnos_Click(object sender, EventArgs e)
+       
+        private void panelTitulo_MouseDown(object sender, MouseEventArgs e)
         {
-            menuScreens.FormularioRegistro form = new menuScreens.FormularioRegistro();
-            form.Show();
-            openScreen(new menuScreens.FormularioRegistro());
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
         private void btnListarDocentes_Click(object sender, EventArgs e)
         {
             openScreen(new menuScreens.listarDocentes());
+        }
+
+        private void btnRequerimientoAlumnos_Click(object sender, EventArgs e)
+        {
+            menuScreens.FormularioRegistro form = new menuScreens.FormularioRegistro();
+            form.Show();
+           
         }
     }
 }
