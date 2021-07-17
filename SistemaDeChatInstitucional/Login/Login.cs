@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using CapaLogica;
 using AppAlumno;
 using AppDocente;
-
+using AppAdmin;
 namespace Login
 
 {
@@ -55,9 +55,6 @@ namespace Login
                 ams.Show();
                // ams.FormClosed += logout;
                 this.Hide();
-                 
-
-
             }
             else if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
             {
@@ -70,7 +67,10 @@ namespace Login
             else if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
-                MessageBox.Show("Es administrador");
+                bienvenido bv = new bienvenido();
+                bv.ShowDialog();
+                adminMainScreen ams = new adminMainScreen();
+                ams.Show();
             } else{
 
                 errorMessage("* Usuario y/o contraseña incorrectos.");
@@ -79,8 +79,6 @@ namespace Login
                 txtContra.Text = "Contraseña";
             }
         }
-
-        
 
         public void errorMessage(string msg)
         {
