@@ -40,7 +40,6 @@ namespace CapaDeDatos
                     personas.Add(u);
                 }
             }
-          //  lector.Close();
             return personas;
         }
 

@@ -52,11 +52,27 @@ namespace CapaLogica
                 g.nuevoIngresoAlumnoTieneGrupo(cedula,grupo);
             }
         }
-        public static void AltaDocente(string cedula,List<GrupoModelo> GruposMateriasDeDocente ) {
 
+        public static void AltaDocente(string cedula,List<int> GruposMateriasDeDocente ) {
+            PersonaModelo p = new PersonaModelo();
+            GrupoModelo g = new GrupoModelo();
+            p.Cedula = cedula;
+            p.guardarDocente();
+            List<GrupoModelo>gm=g.getDocenteDictaGM();
+            int idMateria;
+            int idGrupo;
+            foreach (int grupoMateria in GruposMateriasDeDocente)
+            {
+                idMateria = gm[grupoMateria].idMateria;
+                idGrupo = gm[grupoMateria].idGrupo;
+                g.actualizarDocenteTieneGM(cedula, idGrupo, idMateria);
+            }
         }
-        public static void AltaAdmin(string cedula) {
 
+        public static void AltaAdmin(string cedula) {
+            PersonaModelo p = new PersonaModelo();
+            p.Cedula = cedula;
+            p.guardarAdmin();
         }
 
         public static bool existePersona(string ci) {
@@ -103,7 +119,6 @@ namespace CapaLogica
             return lista(user, pass, p.validarAdmin);
         }
 
- 
         /*   public static DataTable listarMaterias()
            {
                PersonaModelo p = new PersonaModelo();
@@ -270,7 +285,7 @@ namespace CapaLogica
             List<string> gmString = new List<string>();
             GrupoModelo gm = new GrupoModelo();
             string entry;
-            foreach (GrupoModelo g in gm.getGrupoTieneMateria()) {
+            foreach (GrupoModelo g in gm.getDocenteDictaGM()) {
                 entry = $"{g.nombreGrupo}   {g.nombreMateria}";
                 gmString.Add(entry);
             }

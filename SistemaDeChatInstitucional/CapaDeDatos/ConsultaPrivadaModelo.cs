@@ -125,10 +125,9 @@ namespace CapaDeDatos
                 consultas.Add(cp);
             }
                 lector.Close();
-                return consultas;
+            conexion.Close();
+            return consultas;
         }
-
-       
 
         public int getIdConsultas(int ciDocente, int ciAlumno)
         {

@@ -36,11 +36,15 @@ namespace Login
                     AlumnoControlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
                     if (this.comboBoxUser.SelectedIndex == 0) {
                         AlumnoControlador.AltaAlumno(txtCedula.Text, txtApodo.Text,getIndexesChecklist());
-                        
-                    } else if (this.comboBoxUser.SelectedIndex == 1)
+                        this.checkedListBox1.DataSource = AlumnoControlador.gruposToListForRegister();
+
+                    }
+                    else if (this.comboBoxUser.SelectedIndex == 1)
                     {
-                     //  AlumnoControlador.AltaDocente(txtCedula.Text, );
-                    } else
+                       AlumnoControlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
+                        this.checkedListBox1.DataSource = AlumnoControlador.grupoMateriaToListForRegister();
+                    }
+                    else
                     {
                         AlumnoControlador.AltaAdmin(txtCedula.Text);
                     }
@@ -51,7 +55,9 @@ namespace Login
 
             }
             else MessageBox.Show("Las contraseñas no coinciden");
-            
+
+            MessageBox.Show($"Ingresado! Bienvenido {txtNombre.Text} {txtApellido.Text}");
+            resetFields();
         }
 
         private void load() {
@@ -60,12 +66,25 @@ namespace Login
         private List<int> getIndexesChecklist() {
             List<int> checkedIndexes = new List<int>();
             int index;
-            foreach (Object item in checkedListBox1.CheckedItems)
+            if (comboBoxUser.SelectedIndex == 0)
             {
-                index = checkedListBox1.Items.IndexOf(item)+1;
-                checkedIndexes.Add(index);
-                Console.WriteLine($" item: {item}   index of item in database:{ index}");
+                foreach (Object item in checkedListBox1.CheckedItems)
+                {
+                    index = checkedListBox1.Items.IndexOf(item) + 1;
+                    checkedIndexes.Add(index);
+                    Console.WriteLine($" item: {item}   index of item in database:{ index}");
+                }
             }
+            else if (comboBoxUser.SelectedIndex == 1)
+            {
+                foreach (Object item in checkedListBox1.CheckedItems)
+                {
+                    index = checkedListBox1.Items.IndexOf(item);
+                    checkedIndexes.Add(index);
+                    Console.WriteLine($" item: {item}   index of item in database:{ index+1}");
+                }
+            }
+
             return checkedIndexes;
         }
         private void comboBoxUser_SelectedValueChanged(object sender, EventArgs e)
@@ -81,16 +100,20 @@ namespace Login
             if (this.comboBoxUser.SelectedIndex == 0)
             {
                 this.lblAsterix.Visible = false;
-                //this.txtApodo.Enabled = false;
                 this.lblGrupo.Text = "Grupo/s";
+                this.checkedListBox1.DataSource = null;
                 this.checkedListBox1.DataSource = AlumnoControlador.gruposToListForRegister();
+                this.checkedListBox1.ClearSelected();
             }
             else if (this.comboBoxUser.SelectedIndex == 1)
             {
                 this.lblAsterix.Visible = false;
                 this.txtApodo.Enabled = false;
                 this.lblGrupo.Text = "Grupo-materia";
+                this.checkedListBox1.DataSource = null;
                 this.checkedListBox1.DataSource = AlumnoControlador.grupoMateriaToListForRegister();
+                this.checkedListBox1.ClearSelected();
+
             }
             else if (this.comboBoxUser.SelectedIndex == 2)
             {
@@ -116,5 +139,16 @@ namespace Login
                 pbFoto.Image = Image.FromFile(abrirFoto.FileName);
             }
         }
+
+        private void resetFields() {
+            this.txtApellido.Clear();
+            this.txtNombre.Clear();
+            this.txtCedula.Clear();
+            this.txtApodo.Clear();
+            this.txtClave.Clear();
+            this.txtClaveVerificacion.Clear();
+            this.checkedListBox1.DataSource = null; 
+        }
+
     }
 }

@@ -16,7 +16,7 @@ namespace CapaDeDatos
         public string nombreMateria;
         public string nombreGrupo;
         public string nombreOrientacion;
-        public string alumnoCi;
+     
         public void crearGrupoNuevo(string nombreGrupo)
         {
             this.comando.CommandText = "INSERT INTO Grupo (nombreGrupo) VALUES(@nombreGrupo);";
@@ -29,6 +29,26 @@ namespace CapaDeDatos
             this.comando.CommandText = command;
             this.comando.Parameters.AddWithValue("alumnoCi", alumnoCi);
             this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+            this.comando.Parameters.Clear();
+        }
+        public void nuevoIngresoDocenteTieneGM(string docenteCi, int idGrupo,int idMateria) {
+            command = "INSERT INTO Docente_Dicta_G_M (docenteCi,idGrupo,idMateria) VALUES (@docenteCi,@idGrupo,@idMateria);";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("docenteCi", docenteCi);
+            this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+            this.comando.Parameters.Clear();
+        }
+        public void actualizarDocenteTieneGM(string docenteCi, int idGrupo, int idMateria){
+            command = "UPDATE Docente_Dicta_G_M SET docenteCi=@docenteCi WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("docenteCi", docenteCi);
+            this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("idMateria", idMateria);
             this.comando.Prepare();
             EjecutarQuery(this.comando);
             this.comando.Parameters.Clear();
@@ -58,14 +78,17 @@ namespace CapaDeDatos
                 gm.idGrupo = Int32.Parse(lector[0].ToString());
                 gm.idMateria = Int32.Parse(lector[1].ToString());
                 gm.nombreGrupo = lector[2].ToString();
-                gm.nombreMateria = lector[3].ToString();
+                try { gm.nombreMateria = lector[3].ToString();
+                }
+                catch (Exception e){
+                    Console.WriteLine("NO TE CAIGAS PUTA");
+                }
                 listaGM.Add(gm);
             }
             lector.Close();
             return listaGM;
         }
-
-        //Me trae todo los grupos
+        
         public List<GrupoModelo> getGrupo() {
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo;";
             return cargarGrupoALista(this.comando);
@@ -77,32 +100,26 @@ namespace CapaDeDatos
             return cargarGrupoALista(this.comando);
         }
 
-
-        //trea todos los id's y nombres de los grupos/materias en tabla Grupo_Tiene_Materia
+        //sin implementacion
         public List<GrupoModelo> getGrupoTieneMateria() {
             this.comando.CommandText = "SELECT gm.idGrupo, gm.idMateria,g.nombreGrupo,m.nombreMateria " +
                 "FROM Grupo_Tiene_Materia gm, grupo g, materia m " +
                 "WHERE gm.idGrupo = g.idGrupo AND gm.idMateria = m.idMateria; ";
             return(cargarGrupoMateriaALista(this.comando));
         }
-        /*
-        public List<GrupoModelo> getGrupoTieneMateria(string d)
-        {
-            this.comando.CommandText
-            return;
-        }
-        */
-        //sin implementacion
-        /*
-        public List<GrupoModelo> getOrientacionTieneGrupo()
-        {
-            this.comando.CommandText =
-            return;
-        }
-       */
+
         public override string ToString()
         {
             return $"{idGrupo}    {nombreGrupo}";
+        }
+
+        public List<GrupoModelo> getDocenteDictaGM(){
+            this.comando.CommandText = " SELECT  dgm.idGrupo, dgm.idMateria, g.nombregrupo, m.NombreMateria " +
+                "FROM docente_dicta_G_M dgm, Grupo g, Materia m " +
+                "WHERE dgm.docenteCi is null " +
+                "AND dgm.idMateria = m.idMateria " +
+                "AND g.idGrupo = dgm.idGrupo;";
+            return cargarGrupoMateriaALista(this.comando);
         }
     }
 }
