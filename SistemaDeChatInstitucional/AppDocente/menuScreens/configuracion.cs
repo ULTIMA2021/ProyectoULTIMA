@@ -59,14 +59,7 @@ namespace AppDocente.menuScreens
             MemoryStream ms = new MemoryStream();
             pbFoto.Image.Save(ms, ImageFormat.Jpeg);
             byte[] aByte = ms.ToArray();
-
             // aca se pone el metodo para la conexion con la BD
-
-
-
-
-
-
         }
 
         private void configuracion_Load(object sender, EventArgs e)
@@ -74,6 +67,15 @@ namespace AppDocente.menuScreens
             txtNombre.Text = Session.nombre;
             txtApellido.Text = Session.apellido;
             txtUsuario.Text = Session.cedula;
+        }
+
+        private void btnGuardarContraseña_Click(object sender, EventArgs e)
+        {
+            //verificar que clave nueva no sea white spaces
+            if (AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
+                MessageBox.Show("Nueva contraseña guardada!");
+            else
+                MessageBox.Show("La contraseña antigua fue ingresada mal");
         }
     }
 }

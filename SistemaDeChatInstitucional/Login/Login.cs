@@ -46,38 +46,39 @@ namespace Login
 
         private void validarUsuario()
         {
-            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
-            {
-                
+            //FormClosedEventArgs e;//make the main screen spit a formclosed event, pass it to a method that return true if cerrar session button was clicked
+            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text)){
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
                // ams.FormClosed += logout;
                 this.Hide();
+                AlumnoControlador.actualizarEstadoPersona(true);
+                return ;
             }
-            else if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
-            {
+           if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text)){
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 docenteMainScreen dms = new docenteMainScreen();
                 dms.Show();
+                AlumnoControlador.actualizarEstadoPersona(true);
+                return;
             }
-            else if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
-            {
+            if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text)){
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 adminMainScreen ams = new adminMainScreen();
                 ams.Show();
-            } else{
-
+                AlumnoControlador.actualizarEstadoPersona(true);
+                return;
+            } 
                 errorMessage("* Usuario y/o contraseña incorrectos.");
                 txtUsuario.Text = "Usuario";
                 txtContra.PasswordChar = '\0';
                 txtContra.Text = "Contraseña";
-            }
         }
 
         public void errorMessage(string msg)
@@ -85,7 +86,6 @@ namespace Login
             lblErrorMessage.Text = msg;
             lblErrorMessage.Visible = true;
         }
-
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -173,5 +173,6 @@ namespace Login
             this.Show();
             txtUsuario.Focus();
         }
+
     }
 }

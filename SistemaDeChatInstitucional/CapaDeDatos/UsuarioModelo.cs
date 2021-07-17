@@ -48,7 +48,6 @@ namespace CapaDeDatos
             return lista(ci, obtenerAlumno);
         }
 
-
         public List<UsuarioModelo> destinatario()
         {
             this.comando.CommandText = "SELECT ci, nombre, apellido FROM Persona;";
@@ -103,7 +102,7 @@ namespace CapaDeDatos
             return lista(ci, obtenerPersona);
         }
 
-            /*   public List<PersonaModelo> obtenerAlumno(string ci)
+        /*   public List<PersonaModelo> obtenerAlumno(string ci)
                {
                    List<PersonaModelo> personas = new List<PersonaModelo>();
 

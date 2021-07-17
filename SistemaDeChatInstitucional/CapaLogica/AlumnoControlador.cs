@@ -75,6 +75,24 @@ namespace CapaLogica
             p.guardarAdmin();
         }
 
+        public static void actualizarEstadoPersona(bool state) {
+            PersonaModelo p = new PersonaModelo();
+            p.Cedula = Session.cedula;
+            p.enLinea = state;
+            p.actualizarPersona();
+        }
+
+        public static bool actualizarClavePersona(string claveVieja,string claveNueva)
+        {
+            if (Session.clave == claveVieja) {
+                PersonaModelo p = new PersonaModelo();
+                p.Cedula = Session.cedula;
+                p.actualizarPersona(claveNueva);
+                return true;
+            }
+            return false;
+        }
+
         public static bool existePersona(string ci) {
             PersonaModelo p = new PersonaModelo();
             //
@@ -85,7 +103,6 @@ namespace CapaLogica
             Console.WriteLine($"PERSON {ci} DOES NOT EXIST IN SYSTEM");
             return true;
         }
-
 
         public static bool lista (string user, string pass, Func<string, string, List<PersonaModelo>> metodoObtener)
         {
@@ -147,6 +164,7 @@ namespace CapaLogica
             return false;
         }
 
+        //original
         public static string obtenerDestinatario(string ci)
         {
             PersonaModelo p = new PersonaModelo();
@@ -158,7 +176,7 @@ namespace CapaLogica
             }
               return nombreDestinatario;
         }
-
+        //original
         public static string obtenerRemitente(string ci)
         {
             PersonaModelo p = new PersonaModelo();
@@ -169,6 +187,21 @@ namespace CapaLogica
                     nombreRemitente = persona.Nombre + " " + persona.Apellido;
             }
             return nombreRemitente;
+        }
+
+        //cambiar esto para que cargue todo en ua lista, para mostrar fotos tambien
+        //o cambiarlo para reutilizar en otro lugar
+        public static string traemeEstaPersona(string ci) {
+            PersonaModelo p = new PersonaModelo();
+            p = p.obtenerPersona(ci);
+            List<string> personaString = new List<string>();
+            personaString.Add(p.Nombre);
+            personaString.Add(" ");
+            personaString.Add(p.Apellido);
+            personaString.Add(" ");
+            if (p.enLinea == true)
+                personaString.Add($"     en Linea");
+            return string.Join("",personaString);
         }
 
         public static DataTable obtenerDocentes()
@@ -249,17 +282,23 @@ namespace CapaLogica
             return tabla;
         }
 
-        public static void getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente) {
+        public static List<List<string>> getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente) {
             MensajePrivadoModelo mpm = new MensajePrivadoModelo();
+            List<List<string>> mensajesDeConsulta = new List<List<string>>();
+            int x = 0;
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
-               Console.WriteLine($"\n{m.ToString()}\n");
+                mensajesDeConsulta.Add(m.toStringList());
+                Console.WriteLine(mensajesDeConsulta[x].ToString());
+                x++;
             }
+            return mensajesDeConsulta;
         }
 
         public static string obtenerMensaje(int idConsultaPrivada, string ciAlumno, string ciDocente)
         {
             MensajePrivadoModelo mpm = new MensajePrivadoModelo();
+            
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
                 mensajeEnviado = m.contenido;

@@ -16,12 +16,11 @@ namespace AppAlumno.menuScreens
 {
     public partial class configuracion : Form
     {
-
         public configuracion()
         {
             InitializeComponent();
-
         }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -51,20 +50,12 @@ namespace AppAlumno.menuScreens
             }
         }
 
-
         private void guardarFoto()
         {
             MemoryStream ms = new MemoryStream();
             pbFoto.Image.Save(ms, ImageFormat.Jpeg);
             byte[] aByte = ms.ToArray();
-
             // aca se pone el metodo para la conexion con la BD
-
-
-
-
-
-
         }
 
         private void configuracion_Load(object sender, EventArgs e)
@@ -72,6 +63,16 @@ namespace AppAlumno.menuScreens
             txtNombre.Text = Session.nombre;
             txtApellido.Text = Session.apellido;
             txtUsuario.Text = Session.cedula;
+        }
+
+        private void btnGuardarContraseña_Click(object sender, EventArgs e)
+        {
+            //AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text);
+            //verificar que clave nueva no sea white spaces
+            if (AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
+                MessageBox.Show("Nueva contraseña guardada!");
+            else
+                MessageBox.Show("La contraseña antigua fue ingresada mal");
         }
     }
 }

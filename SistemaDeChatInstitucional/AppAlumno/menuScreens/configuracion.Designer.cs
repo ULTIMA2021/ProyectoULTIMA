@@ -224,6 +224,7 @@
             this.txtContraseñaAnterior.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContraseñaAnterior.Location = new System.Drawing.Point(357, 311);
+            this.txtContraseñaAnterior.MaxLength = 15;
             this.txtContraseñaAnterior.Name = "txtContraseñaAnterior";
             this.txtContraseñaAnterior.Size = new System.Drawing.Size(145, 20);
             this.txtContraseñaAnterior.TabIndex = 15;
@@ -233,6 +234,7 @@
             this.txtNuevaContraseña.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNuevaContraseña.Location = new System.Drawing.Point(357, 349);
+            this.txtNuevaContraseña.MaxLength = 15;
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
             this.txtNuevaContraseña.Size = new System.Drawing.Size(145, 20);
             this.txtNuevaContraseña.TabIndex = 16;
@@ -269,6 +271,7 @@
             this.btnGuardarContraseña.TabIndex = 18;
             this.btnGuardarContraseña.Text = "Guardar";
             this.btnGuardarContraseña.UseVisualStyleBackColor = false;
+            this.btnGuardarContraseña.Click += new System.EventHandler(this.btnGuardarContraseña_Click);
             // 
             // btnExit
             // 

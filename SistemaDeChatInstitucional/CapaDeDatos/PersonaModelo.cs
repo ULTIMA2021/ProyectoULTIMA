@@ -80,6 +80,31 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando);
         }
 
+        public void actualizarPersona() {
+            this.comando.CommandText = "UPDATE Persona SET enLinea=@enLinea WHERE ci=@Cedula;";
+            this.comando.Parameters.AddWithValue("Cedula",this.Cedula);
+            this.comando.Parameters.AddWithValue("enLinea",this.enLinea);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+        }
+        public void actualizarPersona(string clave)
+        {
+            this.comando.CommandText = "UPDATE Persona SET clave=@clave WHERE ci=@Cedula;";
+            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("clave", clave);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+        }
+        public void actualizarPersona(bool isDeleted)
+        {
+            this.comando.CommandText = "UPDATE Persona SET isDeleted=@isDeleted,foto=@foto, avatar=@avatar, enLinea=@enLinea WHERE ci=@Cedula;";
+            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("isDeleted", isDeleted);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+        }
+
+        //esto deberia ser private, no deberia poder llamarlo de la capa logica
         public List<PersonaModelo> obtenerUsuario(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
@@ -101,8 +126,8 @@ namespace CapaDeDatos
         
         public List<PersonaModelo> validarAlumno(string user, string pass)
         {
-            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p WHERE  " +
-                                         "a.ci=@user AND p.clave=@pass;";
+            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p " +
+                "WHERE p.ci=a.ci AND a.ci=@user AND p.clave=@pass AND P.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando);
@@ -110,8 +135,8 @@ namespace CapaDeDatos
 
         public List<PersonaModelo> validarDocente(string user, string pass)
         {
-            this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM Docente d,Persona p WHERE  " +
-                                         "d.ci=@user AND p.clave=@pass;";
+            this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM Docente d,Persona p " +
+                "WHERE p.ci=d.ci AND d.ci=@user AND p.clave=@pass AND P.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando);
@@ -119,8 +144,8 @@ namespace CapaDeDatos
 
         public List<PersonaModelo> validarAdmin(string user, string pass)
         {
-            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Administrador a,Persona p WHERE  " +
-                                         "a.ci=@user AND p.clave=@pass;";
+            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Administrador a, Persona p " +
+                "WHERE p.ci = a.ci AND a.ci = @user AND p.clave = @pass AND P.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando);
@@ -146,16 +171,18 @@ namespace CapaDeDatos
 
         public PersonaModelo obtenerPersona(string cedula)
         {
-            this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido FROM Persona p WHERE p.ci=@cedula;";
+            this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido, p.foto, p.avatar, p.enLinea FROM Persona p " +
+                "WHERE p.ci=@cedula";
             this.comando.Parameters.AddWithValue("cedula", cedula);
             PersonaModelo persona = new PersonaModelo();
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {
-
                 persona.Cedula = lector[0].ToString();
                 persona.Nombre = lector[1].ToString();
                 persona.Apellido = lector[2].ToString();
+                persona.foto = null;    //lector[3];
+                persona.avatar = null;  //lector[4];
             }
 
             lector.Close();

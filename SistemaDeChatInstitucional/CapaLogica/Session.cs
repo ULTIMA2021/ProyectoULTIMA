@@ -19,10 +19,10 @@ namespace CapaLogica
 
     public static void saveToCache(PersonaModelo per)
         {
-            Session.cedula = per.Cedula;
-            Session.nombre = per.Nombre;
-            Session.apellido = per.Apellido;
-            Session.clave = per.Clave;
+            cedula = per.Cedula;
+            nombre = per.Nombre;
+            apellido = per.Apellido;
+            clave = per.Clave;
         }
         public static string toString()
         {

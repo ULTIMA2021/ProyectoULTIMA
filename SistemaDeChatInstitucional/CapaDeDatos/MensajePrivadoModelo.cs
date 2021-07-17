@@ -17,6 +17,7 @@ namespace CapaDeDatos
         public DateTime cp_mensajeFechaHora;
         public string cp_mensajeStatus; //'recibido','leido'
         public int ciDestinatario;
+            
         public void enviarMensaje(int idCp_Mensaje, int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
                                    DateTime cp_mensajeFechaHora, string cp_mensajeStatus,int ciDestinatario)
         {
@@ -35,7 +36,6 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando);
         }
-       
         private List<MensajePrivadoModelo> cargarMensajePrivadoALista(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
@@ -97,5 +97,20 @@ namespace CapaDeDatos
                 $"mensajeFechaHora{this.cp_mensajeFechaHora}\n" +
                 $"statusMensaje {this.cp_mensajeStatus}\t ciDestinatario {this.ciDestinatario}";
         }
+        public List<string> toStringList()
+        {
+            List<string> mensaje = new List<string>();
+            mensaje.Add(this.idConsultaPrivada.ToString());
+            mensaje.Add(this.ciAlumno.ToString());
+            mensaje.Add(this.ciDocente.ToString());
+            mensaje.Add(this.idCp_mensaje.ToString());
+            mensaje.Add(this.contenido);
+            mensaje.Add(this.cp_mensajeFechaHora.ToString());
+            mensaje.Add(this.cp_mensajeStatus);
+            mensaje.Add(this.ciDestinatario.ToString());
+
+            return mensaje;
+        }
+
     }
 }

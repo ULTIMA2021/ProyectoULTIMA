@@ -269,6 +269,7 @@
             this.btnGuardarContraseña.TabIndex = 18;
             this.btnGuardarContraseña.Text = "Guardar";
             this.btnGuardarContraseña.UseVisualStyleBackColor = false;
+            this.btnGuardarContraseña.Click += new System.EventHandler(this.btnGuardarContraseña_Click);
             // 
             // btnExit
             // 

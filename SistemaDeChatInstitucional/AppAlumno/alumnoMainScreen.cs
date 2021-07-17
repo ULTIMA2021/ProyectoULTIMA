@@ -211,14 +211,11 @@ namespace AppAlumno
             lblNombre.Text = $"{Session.nombre} {Session.apellido}";
         }
 
-        private void btnLogout_Click(object sender, EventArgs e)
-        {
+        private void btnLogout_Click(object sender, EventArgs e){
             this.Close();
+                }
 
-            
-        }
-
-        public void disable(Button boton)
+    public void disable(Button boton)
         {
             boton.Enabled = false;
         }

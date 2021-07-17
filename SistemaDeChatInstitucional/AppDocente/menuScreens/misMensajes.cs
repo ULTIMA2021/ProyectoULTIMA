@@ -14,7 +14,6 @@ namespace AppDocente.menuScreens
     public partial class misMensajes : Form
     {
 
-       // public int idConsultaPrivada;
         public misMensajes()
         {
             InitializeComponent();
@@ -35,44 +34,27 @@ namespace AppDocente.menuScreens
             dgvMisMensajes.Columns["idMensaje"].Visible = false;
         }
 
-
-
         private void btnVer_Click(object sender, EventArgs e)
         {
             replyScreen reply = new replyScreen();
 
-            int idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
-            int idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
-            string destinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
+            int idconsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
+            string indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
             string ciDocente;
             string ciAlumno;
-            
-                ciDocente = Session.cedula;
                 ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
-              //  AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-
-                AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-
-              /*  if (destinatario == ciAlumno)
+                ciDocente = Session.cedula; 
+                List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idconsultaPrivada, ciAlumno, ciDocente);
+                reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
+                reply.txtMensajeAlumno.Text = mensajes[0][4];
+                if (mensajes.Count > 2)
                 {
                     reply.txtMensajeDocente.Visible = true;
                     reply.lblNombreDocente.Visible = true;
-                    reply.lblNombreDocente.Text = ciDocente;
-                    reply.txtMensajeDocente.Text = AlumnoControlador.obtenerMensaje(idConsultaPrivada, ciDocente, destinatario);
-                    reply.ShowDialog();
-                }*/
-                
-
-                    //Cargo varlores de los campos en replyScreen y muestro la ventana
-                    reply.lblNombreAlumno.Text = AlumnoControlador.obtenerRemitente(ciAlumno);
-                    reply.txtMensajeAlumno.Text = AlumnoControlador.obtenerMensaje(idConsultaPrivada, ciAlumno, ciDocente);
-                    reply.ShowDialog();
-
-                
-                
-                MessageBox.Show("El destinatario es: " + AlumnoControlador.obtenerDestinatario(ciDocente));
-            
-        
-    }
+                    reply.lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente);
+                    reply.txtMensajeDocente.Text = mensajes[1][4];
+                }
+                reply.ShowDialog();
+        }
     }
 }
