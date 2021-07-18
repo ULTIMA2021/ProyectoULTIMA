@@ -24,7 +24,7 @@ namespace Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+
             if (txtUsuario.Text != "Usuario")
             {
                 if (txtContra.Text != "Contraseña")
@@ -43,7 +43,8 @@ namespace Login
             }
             else errorMessage("* Ingrese un usuario.");
         }
-
+        //old
+        /*
         private void validarUsuario()
         {
             //FormClosedEventArgs e;//make the main screen spit a formclosed event, pass it to a method that return true if cerrar session button was clicked
@@ -79,6 +80,40 @@ namespace Login
                 txtUsuario.Text = "Usuario";
                 txtContra.PasswordChar = '\0';
                 txtContra.Text = "Contraseña";
+        }
+        */
+
+        //new
+        private void validarUsuario()
+        {
+            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
+            {
+                System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(newAlu));
+                this.Hide();
+                bienvenido bv = new bienvenido();
+                newSession(t, bv);
+                return;
+            }
+            if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
+            {
+                System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(newDoc));
+                this.Hide();
+                bienvenido bv = new bienvenido();
+                newSession(t,bv);
+                return;
+            }
+            if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
+            {
+                System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(newAdmin));
+                this.Hide();
+                bienvenido bv = new bienvenido();
+                newSession(t,bv);
+                return;
+            }
+            errorMessage("* Usuario y/o contraseña incorrectos.");
+            txtUsuario.Text = "Usuario";
+            txtContra.PasswordChar = '\0';
+            txtContra.Text = "Contraseña";
         }
 
         public void errorMessage(string msg)
@@ -156,7 +191,7 @@ namespace Login
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            showRegisterForm(sender,e);
+            showRegisterForm(sender, e);
         }
         private void showRegisterForm(object sender, EventArgs e)
         {
@@ -166,7 +201,7 @@ namespace Login
 
         private void logout(string sender, FormClosedEventArgs e)
         {
-           // alumnoMainScreen ams = new alumnoMainScreen();
+            // alumnoMainScreen ams = new alumnoMainScreen();
             txtUsuario.Text = "Usuario";
             txtUsuario.Text = "Contraseña";
             lblErrorMessage.Visible = false;
@@ -174,5 +209,32 @@ namespace Login
             txtUsuario.Focus();
         }
 
+        //nuevos metodos
+
+        private void clearfields(){
+            this.txtContra.Clear();
+            this.txtUsuario.Clear();
+        }
+
+        private void newSession(System.Threading.Thread t, bienvenido bv) {
+            bv.ShowDialog();
+            t.Start();
+            bv.Dispose();
+            this.txtContra.Clear();
+            this.txtUsuario.Clear();
+            AlumnoControlador.actualizarEstadoPersona(true);
+            while (t.IsAlive)
+            {
+                //donothing
+            }
+            this.Show();
+        }
+
+        //esto tiene que estar asi, no puedo llamar los constructores cuando le asigno valor al thread nuevo
+        private void newAdmin() => Application.Run(new adminMainScreen());
+
+        private void newDoc() => Application.Run(new docenteMainScreen());
+
+        private void newAlu()=> Application.Run(new alumnoMainScreen());
     }
 }

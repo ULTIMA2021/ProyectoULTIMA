@@ -16,7 +16,7 @@ namespace AppAlumno
         public alumnoMainScreen()
         {
             InitializeComponent();
-            
+            this.Show();   
         }
 
         public void esconderSubMenu()
@@ -212,10 +212,11 @@ namespace AppAlumno
         }
 
         private void btnLogout_Click(object sender, EventArgs e){
+            this.Dispose();
             this.Close();
                 }
 
-    public void disable(Button boton)
+        public void disable(Button boton)
         {
             boton.Enabled = false;
         }
