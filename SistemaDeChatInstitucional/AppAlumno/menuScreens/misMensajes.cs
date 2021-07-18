@@ -59,7 +59,7 @@ namespace AppAlumno.menuScreens
                 List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idconsultaPrivada, ciAlumno, ciDocente);
                 reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
                 reply.txtMensajeAlumno.Text = mensajes[0][4];
-                if (mensajes.Count>2){
+                if (mensajes.Count >= 2){
                     reply.txtMensajeDocente.Visible = true;
                     reply.lblNombreDocente.Visible = true;
                     reply.lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente);

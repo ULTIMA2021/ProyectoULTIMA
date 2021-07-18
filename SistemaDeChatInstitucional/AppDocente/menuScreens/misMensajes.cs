@@ -13,6 +13,8 @@ namespace AppDocente.menuScreens
 {
     public partial class misMensajes : Form
     {
+        public int idConsultaPrivada;
+        public string ciAlumno;
 
         public misMensajes()
         {
@@ -36,18 +38,19 @@ namespace AppDocente.menuScreens
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            replyScreen reply = new replyScreen();
 
-            int idconsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
+            idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             string indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
             string ciDocente;
-            string ciAlumno;
-                ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
-                ciDocente = Session.cedula; 
-                List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idconsultaPrivada, ciAlumno, ciDocente);
+            
+            ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
+            ciDocente = Session.cedula;
+            replyScreen reply = new replyScreen(idConsultaPrivada, Int32.Parse(Session.cedula), Int32.Parse(ciAlumno));
+            
+                List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
                 reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
                 reply.txtMensajeAlumno.Text = mensajes[0][4];
-                if (mensajes.Count > 2)
+                if (mensajes.Count >= 2)
                 {
                     reply.txtMensajeDocente.Visible = true;
                     reply.lblNombreDocente.Visible = true;

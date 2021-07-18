@@ -13,9 +13,31 @@ namespace AppDocente.menuScreens
 {
     public partial class replyScreen : Form
     {
+        DateTime fecha = DateTime.Today;
+        int idConsultaPrivada;
+        int ciAlumno;
+        int ciDocente;
+        
         public replyScreen()
         {
             InitializeComponent();
+        }
+
+        public replyScreen(int idConsultaPrivada, int ciDocente, int ciAlumno)
+        {
+            this.idConsultaPrivada = idConsultaPrivada;
+            this.ciAlumno = ciAlumno;
+            this.ciDocente = ciDocente;
+
+            InitializeComponent();
+        }
+
+        private void enviarMensaje()
+        {
+            misMensajes m = new misMensajes();
+
+            AlumnoControlador.enviarMensaje(2, idConsultaPrivada, Int32.Parse(Session.cedula), ciAlumno,
+                   txtRespuesta.Text, null, fecha, "recibido", ciAlumno);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,6 +53,7 @@ namespace AppDocente.menuScreens
             }
             else
             {
+                enviarMensaje();
                 /*
                 int idConsultaPrivada = id;
                 AlumnoControlador.prepararMensaje(idConsultaPrivada, ciDocente, Session.cedula, titulo, "pendiente", fecha);
@@ -47,6 +70,8 @@ namespace AppDocente.menuScreens
             //     txtBuscarDocente.Text = "";
 
             }
+
+             
         }
     }
 }

@@ -161,9 +161,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBuscarConsulta;
-        private System.Windows.Forms.DataGridView dgvMisMensajes;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnVer;
         private System.Windows.Forms.Button btnEliminar;
+        public System.Windows.Forms.DataGridView dgvMisMensajes;
     }
 }
