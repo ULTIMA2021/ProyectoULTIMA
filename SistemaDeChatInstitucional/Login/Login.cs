@@ -20,6 +20,8 @@ namespace Login
         {
             InitializeComponent();
             this.CenterToScreen();
+            
+            
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -43,45 +45,7 @@ namespace Login
             }
             else errorMessage("* Ingrese un usuario.");
         }
-        //old
-        /*
-        private void validarUsuario()
-        {
-            //FormClosedEventArgs e;//make the main screen spit a formclosed event, pass it to a method that return true if cerrar session button was clicked
-            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text)){
-                bienvenido bv = new bienvenido();
-                bv.ShowDialog();
-                alumnoMainScreen ams = new alumnoMainScreen();
-                ams.Show();
-               // ams.FormClosed += logout;
-                this.Hide();
-                AlumnoControlador.actualizarEstadoPersona(true);
-                return ;
-            }
-           if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text)){
-                this.Hide();
-                bienvenido bv = new bienvenido();
-                bv.ShowDialog();
-                docenteMainScreen dms = new docenteMainScreen();
-                dms.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
-                return;
-            }
-            if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text)){
-                this.Hide();
-                bienvenido bv = new bienvenido();
-                bv.ShowDialog();
-                adminMainScreen ams = new adminMainScreen();
-                ams.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
-                return;
-            } 
-                errorMessage("* Usuario y/o contraseña incorrectos.");
-                txtUsuario.Text = "Usuario";
-                txtContra.PasswordChar = '\0';
-                txtContra.Text = "Contraseña";
-        }
-        */
+        
 
         //new
         private void validarUsuario()
@@ -92,6 +56,9 @@ namespace Login
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 newSession(t, bv);
+                txtUsuario.Text = "Usuario";
+                txtContra.Text = "Contraseña";
+                txtContra.PasswordChar = '\0';
                 return;
             }
             if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
@@ -100,6 +67,9 @@ namespace Login
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 newSession(t,bv);
+                txtUsuario.Text = "Usuario";
+                txtContra.Text = "Contraseña";
+                txtContra.PasswordChar = '\0';
                 return;
             }
             if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
@@ -108,12 +78,16 @@ namespace Login
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 newSession(t,bv);
+                txtUsuario.Text = "Usuario";
+                txtContra.Text = "Contraseña";
+                txtContra.PasswordChar = '\0';
                 return;
             }
             errorMessage("* Usuario y/o contraseña incorrectos.");
             txtUsuario.Text = "Usuario";
-            txtContra.PasswordChar = '\0';
             txtContra.Text = "Contraseña";
+            txtContra.PasswordChar = '\0';
+           
         }
 
         public void errorMessage(string msg)
@@ -168,8 +142,8 @@ namespace Login
 
             if (txtContra.Text == String.Empty)
             {
-                txtContra.PasswordChar = '\0';
                 txtContra.Text = "Contraseña";
+                txtContra.PasswordChar = '\0';
 
             }
         }
@@ -236,5 +210,25 @@ namespace Login
         private void newDoc() => Application.Run(new docenteMainScreen());
 
         private void newAlu()=> Application.Run(new alumnoMainScreen());
+
+       
+
+        private void txtContra_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                validarUsuario();
+                txtUsuario.Focus();
+            }
+        }
+
+        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                validarUsuario();
+                txtUsuario.Focus();
+            }
+        }
     }
 }

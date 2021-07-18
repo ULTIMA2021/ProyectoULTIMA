@@ -214,7 +214,7 @@ namespace AppAlumno
         private void btnLogout_Click(object sender, EventArgs e){
             this.Dispose();
             this.Close();
-                }
+        }
 
         public void disable(Button boton)
         {

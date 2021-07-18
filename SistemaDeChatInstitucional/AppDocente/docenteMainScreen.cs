@@ -160,5 +160,12 @@ namespace AppDocente
         {
             lblNombre.Text = $"{Session.nombre} {Session.apellido}";
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+            
+        }
     }
 }

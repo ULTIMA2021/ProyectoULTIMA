@@ -40,22 +40,18 @@
             this.subMenuAdmin = new System.Windows.Forms.Panel();
             this.btnRequerimientoAdmin = new System.Windows.Forms.Button();
             this.btnListarAdmin = new System.Windows.Forms.Button();
-            this.btnEliminarAdmin = new System.Windows.Forms.Button();
-            this.btnModificarAdmin = new System.Windows.Forms.Button();
-            this.btnIngresarAdmin = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
             this.btnRequerimientoDocentes = new System.Windows.Forms.Button();
             this.btnListarDocentes = new System.Windows.Forms.Button();
-            this.btnEliminarDocente = new System.Windows.Forms.Button();
-            this.btnModificarDocente = new System.Windows.Forms.Button();
-            this.btnIngresarDocente = new System.Windows.Forms.Button();
             this.subMenuAlumnos = new System.Windows.Forms.Panel();
             this.btnRequerimientoAlumnos = new System.Windows.Forms.Button();
             this.btnListarAlumnos = new System.Windows.Forms.Button();
-            this.btnEliminarAlumnos = new System.Windows.Forms.Button();
-            this.btnModificarAlumnos = new System.Windows.Forms.Button();
-            this.btnIngresarAlumno = new System.Windows.Forms.Button();
             this.pbImagenInicio = new System.Windows.Forms.PictureBox();
+            this.btnCursos = new System.Windows.Forms.Button();
+            this.subMenuCursos = new System.Windows.Forms.Panel();
+            this.btnGrupos = new System.Windows.Forms.Button();
+            this.btnMaterias = new System.Windows.Forms.Button();
+            this.btnOrientaciones = new System.Windows.Forms.Button();
             this.panelTitulo.SuspendLayout();
             this.panelMenu.SuspendLayout();
             this.panelContenedor.SuspendLayout();
@@ -63,6 +59,7 @@
             this.subMenuDocentes.SuspendLayout();
             this.subMenuAlumnos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenInicio)).BeginInit();
+            this.subMenuCursos.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitulo
@@ -73,7 +70,7 @@
             this.panelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitulo.Location = new System.Drawing.Point(0, 0);
             this.panelTitulo.Name = "panelTitulo";
-            this.panelTitulo.Size = new System.Drawing.Size(855, 31);
+            this.panelTitulo.Size = new System.Drawing.Size(920, 31);
             this.panelTitulo.TabIndex = 0;
             this.panelTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitulo_MouseDown);
             // 
@@ -93,7 +90,7 @@
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(821, 1);
+            this.btnExit.Location = new System.Drawing.Point(886, 1);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(34, 27);
             this.btnExit.TabIndex = 0;
@@ -102,13 +99,14 @@
             // 
             // panelMenu
             // 
+            this.panelMenu.Controls.Add(this.btnCursos);
             this.panelMenu.Controls.Add(this.btnAdministradores);
             this.panelMenu.Controls.Add(this.btnDocentes);
             this.panelMenu.Controls.Add(this.btnAlumno);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMenu.Location = new System.Drawing.Point(0, 31);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(855, 35);
+            this.panelMenu.Size = new System.Drawing.Size(920, 35);
             this.panelMenu.TabIndex = 1;
             // 
             // btnAdministradores
@@ -120,9 +118,9 @@
             this.btnAdministradores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdministradores.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdministradores.ForeColor = System.Drawing.Color.Gray;
-            this.btnAdministradores.Location = new System.Drawing.Point(576, 0);
+            this.btnAdministradores.Location = new System.Drawing.Point(460, 0);
             this.btnAdministradores.Name = "btnAdministradores";
-            this.btnAdministradores.Size = new System.Drawing.Size(279, 35);
+            this.btnAdministradores.Size = new System.Drawing.Size(230, 35);
             this.btnAdministradores.TabIndex = 2;
             this.btnAdministradores.Text = "ADMINISTRADORES";
             this.btnAdministradores.UseVisualStyleBackColor = false;
@@ -137,9 +135,9 @@
             this.btnDocentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDocentes.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDocentes.ForeColor = System.Drawing.Color.Gray;
-            this.btnDocentes.Location = new System.Drawing.Point(289, 0);
+            this.btnDocentes.Location = new System.Drawing.Point(230, 0);
             this.btnDocentes.Name = "btnDocentes";
-            this.btnDocentes.Size = new System.Drawing.Size(287, 35);
+            this.btnDocentes.Size = new System.Drawing.Size(230, 35);
             this.btnDocentes.TabIndex = 1;
             this.btnDocentes.Text = "DOCENTES";
             this.btnDocentes.UseVisualStyleBackColor = false;
@@ -156,7 +154,7 @@
             this.btnAlumno.ForeColor = System.Drawing.Color.Gray;
             this.btnAlumno.Location = new System.Drawing.Point(0, 0);
             this.btnAlumno.Name = "btnAlumno";
-            this.btnAlumno.Size = new System.Drawing.Size(289, 35);
+            this.btnAlumno.Size = new System.Drawing.Size(230, 35);
             this.btnAlumno.TabIndex = 0;
             this.btnAlumno.Text = "ALUMNOS";
             this.btnAlumno.UseVisualStyleBackColor = false;
@@ -165,6 +163,7 @@
             // panelContenedor
             // 
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelContenedor.Controls.Add(this.subMenuCursos);
             this.panelContenedor.Controls.Add(this.subMenuAdmin);
             this.panelContenedor.Controls.Add(this.subMenuDocentes);
             this.panelContenedor.Controls.Add(this.subMenuAlumnos);
@@ -172,7 +171,7 @@
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(0, 66);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(855, 384);
+            this.panelContenedor.Size = new System.Drawing.Size(920, 384);
             this.panelContenedor.TabIndex = 5;
             // 
             // subMenuAdmin
@@ -180,12 +179,9 @@
             this.subMenuAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
             this.subMenuAdmin.Controls.Add(this.btnRequerimientoAdmin);
             this.subMenuAdmin.Controls.Add(this.btnListarAdmin);
-            this.subMenuAdmin.Controls.Add(this.btnEliminarAdmin);
-            this.subMenuAdmin.Controls.Add(this.btnModificarAdmin);
-            this.subMenuAdmin.Controls.Add(this.btnIngresarAdmin);
-            this.subMenuAdmin.Location = new System.Drawing.Point(576, 0);
+            this.subMenuAdmin.Location = new System.Drawing.Point(460, 0);
             this.subMenuAdmin.Name = "subMenuAdmin";
-            this.subMenuAdmin.Size = new System.Drawing.Size(279, 178);
+            this.subMenuAdmin.Size = new System.Drawing.Size(230, 80);
             this.subMenuAdmin.TabIndex = 11;
             this.subMenuAdmin.Visible = false;
             // 
@@ -197,9 +193,9 @@
             this.btnRequerimientoAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequerimientoAdmin.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequerimientoAdmin.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnRequerimientoAdmin.Location = new System.Drawing.Point(0, 140);
+            this.btnRequerimientoAdmin.Location = new System.Drawing.Point(0, 35);
             this.btnRequerimientoAdmin.Name = "btnRequerimientoAdmin";
-            this.btnRequerimientoAdmin.Size = new System.Drawing.Size(279, 35);
+            this.btnRequerimientoAdmin.Size = new System.Drawing.Size(230, 35);
             this.btnRequerimientoAdmin.TabIndex = 9;
             this.btnRequerimientoAdmin.Text = "Requerimientos de registro";
             this.btnRequerimientoAdmin.UseVisualStyleBackColor = true;
@@ -212,69 +208,21 @@
             this.btnListarAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListarAdmin.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListarAdmin.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnListarAdmin.Location = new System.Drawing.Point(0, 105);
+            this.btnListarAdmin.Location = new System.Drawing.Point(0, 0);
             this.btnListarAdmin.Name = "btnListarAdmin";
-            this.btnListarAdmin.Size = new System.Drawing.Size(279, 35);
+            this.btnListarAdmin.Size = new System.Drawing.Size(230, 35);
             this.btnListarAdmin.TabIndex = 8;
             this.btnListarAdmin.Text = "Listar todos";
             this.btnListarAdmin.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminarAdmin
-            // 
-            this.btnEliminarAdmin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarAdmin.FlatAppearance.BorderSize = 0;
-            this.btnEliminarAdmin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnEliminarAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarAdmin.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarAdmin.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnEliminarAdmin.Location = new System.Drawing.Point(0, 70);
-            this.btnEliminarAdmin.Name = "btnEliminarAdmin";
-            this.btnEliminarAdmin.Size = new System.Drawing.Size(279, 35);
-            this.btnEliminarAdmin.TabIndex = 7;
-            this.btnEliminarAdmin.Text = "Eliminar";
-            this.btnEliminarAdmin.UseVisualStyleBackColor = true;
-            // 
-            // btnModificarAdmin
-            // 
-            this.btnModificarAdmin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnModificarAdmin.FlatAppearance.BorderSize = 0;
-            this.btnModificarAdmin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnModificarAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificarAdmin.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarAdmin.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnModificarAdmin.Location = new System.Drawing.Point(0, 35);
-            this.btnModificarAdmin.Name = "btnModificarAdmin";
-            this.btnModificarAdmin.Size = new System.Drawing.Size(279, 35);
-            this.btnModificarAdmin.TabIndex = 6;
-            this.btnModificarAdmin.Text = "Modificar";
-            this.btnModificarAdmin.UseVisualStyleBackColor = true;
-            // 
-            // btnIngresarAdmin
-            // 
-            this.btnIngresarAdmin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnIngresarAdmin.FlatAppearance.BorderSize = 0;
-            this.btnIngresarAdmin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnIngresarAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngresarAdmin.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresarAdmin.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnIngresarAdmin.Location = new System.Drawing.Point(0, 0);
-            this.btnIngresarAdmin.Name = "btnIngresarAdmin";
-            this.btnIngresarAdmin.Size = new System.Drawing.Size(279, 35);
-            this.btnIngresarAdmin.TabIndex = 5;
-            this.btnIngresarAdmin.Text = "Ingresar";
-            this.btnIngresarAdmin.UseVisualStyleBackColor = true;
             // 
             // subMenuDocentes
             // 
             this.subMenuDocentes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
             this.subMenuDocentes.Controls.Add(this.btnRequerimientoDocentes);
             this.subMenuDocentes.Controls.Add(this.btnListarDocentes);
-            this.subMenuDocentes.Controls.Add(this.btnEliminarDocente);
-            this.subMenuDocentes.Controls.Add(this.btnModificarDocente);
-            this.subMenuDocentes.Controls.Add(this.btnIngresarDocente);
-            this.subMenuDocentes.Location = new System.Drawing.Point(289, 0);
+            this.subMenuDocentes.Location = new System.Drawing.Point(230, 0);
             this.subMenuDocentes.Name = "subMenuDocentes";
-            this.subMenuDocentes.Size = new System.Drawing.Size(287, 178);
+            this.subMenuDocentes.Size = new System.Drawing.Size(230, 80);
             this.subMenuDocentes.TabIndex = 10;
             this.subMenuDocentes.Visible = false;
             // 
@@ -286,9 +234,9 @@
             this.btnRequerimientoDocentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequerimientoDocentes.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequerimientoDocentes.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnRequerimientoDocentes.Location = new System.Drawing.Point(0, 140);
+            this.btnRequerimientoDocentes.Location = new System.Drawing.Point(0, 35);
             this.btnRequerimientoDocentes.Name = "btnRequerimientoDocentes";
-            this.btnRequerimientoDocentes.Size = new System.Drawing.Size(287, 35);
+            this.btnRequerimientoDocentes.Size = new System.Drawing.Size(230, 35);
             this.btnRequerimientoDocentes.TabIndex = 9;
             this.btnRequerimientoDocentes.Text = "Requerimientos de registro";
             this.btnRequerimientoDocentes.UseVisualStyleBackColor = true;
@@ -301,70 +249,22 @@
             this.btnListarDocentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListarDocentes.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListarDocentes.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnListarDocentes.Location = new System.Drawing.Point(0, 105);
+            this.btnListarDocentes.Location = new System.Drawing.Point(0, 0);
             this.btnListarDocentes.Name = "btnListarDocentes";
-            this.btnListarDocentes.Size = new System.Drawing.Size(287, 35);
+            this.btnListarDocentes.Size = new System.Drawing.Size(230, 35);
             this.btnListarDocentes.TabIndex = 8;
             this.btnListarDocentes.Text = "Listar todos";
             this.btnListarDocentes.UseVisualStyleBackColor = true;
             this.btnListarDocentes.Click += new System.EventHandler(this.btnListarDocentes_Click);
-            // 
-            // btnEliminarDocente
-            // 
-            this.btnEliminarDocente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarDocente.FlatAppearance.BorderSize = 0;
-            this.btnEliminarDocente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnEliminarDocente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarDocente.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarDocente.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnEliminarDocente.Location = new System.Drawing.Point(0, 70);
-            this.btnEliminarDocente.Name = "btnEliminarDocente";
-            this.btnEliminarDocente.Size = new System.Drawing.Size(287, 35);
-            this.btnEliminarDocente.TabIndex = 7;
-            this.btnEliminarDocente.Text = "Eliminar";
-            this.btnEliminarDocente.UseVisualStyleBackColor = true;
-            // 
-            // btnModificarDocente
-            // 
-            this.btnModificarDocente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnModificarDocente.FlatAppearance.BorderSize = 0;
-            this.btnModificarDocente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnModificarDocente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificarDocente.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarDocente.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnModificarDocente.Location = new System.Drawing.Point(0, 35);
-            this.btnModificarDocente.Name = "btnModificarDocente";
-            this.btnModificarDocente.Size = new System.Drawing.Size(287, 35);
-            this.btnModificarDocente.TabIndex = 6;
-            this.btnModificarDocente.Text = "Modificar";
-            this.btnModificarDocente.UseVisualStyleBackColor = true;
-            // 
-            // btnIngresarDocente
-            // 
-            this.btnIngresarDocente.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnIngresarDocente.FlatAppearance.BorderSize = 0;
-            this.btnIngresarDocente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnIngresarDocente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngresarDocente.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresarDocente.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnIngresarDocente.Location = new System.Drawing.Point(0, 0);
-            this.btnIngresarDocente.Name = "btnIngresarDocente";
-            this.btnIngresarDocente.Size = new System.Drawing.Size(287, 35);
-            this.btnIngresarDocente.TabIndex = 5;
-            this.btnIngresarDocente.Text = "Ingresar";
-            this.btnIngresarDocente.UseVisualStyleBackColor = true;
             // 
             // subMenuAlumnos
             // 
             this.subMenuAlumnos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
             this.subMenuAlumnos.Controls.Add(this.btnRequerimientoAlumnos);
             this.subMenuAlumnos.Controls.Add(this.btnListarAlumnos);
-            this.subMenuAlumnos.Controls.Add(this.btnEliminarAlumnos);
-            this.subMenuAlumnos.Controls.Add(this.btnModificarAlumnos);
-            this.subMenuAlumnos.Controls.Add(this.btnIngresarAlumno);
             this.subMenuAlumnos.Location = new System.Drawing.Point(0, 0);
             this.subMenuAlumnos.Name = "subMenuAlumnos";
-            this.subMenuAlumnos.Size = new System.Drawing.Size(289, 178);
+            this.subMenuAlumnos.Size = new System.Drawing.Size(230, 80);
             this.subMenuAlumnos.TabIndex = 9;
             this.subMenuAlumnos.Visible = false;
             // 
@@ -376,9 +276,9 @@
             this.btnRequerimientoAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequerimientoAlumnos.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequerimientoAlumnos.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnRequerimientoAlumnos.Location = new System.Drawing.Point(0, 140);
+            this.btnRequerimientoAlumnos.Location = new System.Drawing.Point(0, 35);
             this.btnRequerimientoAlumnos.Name = "btnRequerimientoAlumnos";
-            this.btnRequerimientoAlumnos.Size = new System.Drawing.Size(289, 35);
+            this.btnRequerimientoAlumnos.Size = new System.Drawing.Size(230, 35);
             this.btnRequerimientoAlumnos.TabIndex = 4;
             this.btnRequerimientoAlumnos.Text = "Requerimientos de registro";
             this.btnRequerimientoAlumnos.UseVisualStyleBackColor = true;
@@ -392,57 +292,12 @@
             this.btnListarAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListarAlumnos.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListarAlumnos.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnListarAlumnos.Location = new System.Drawing.Point(0, 105);
+            this.btnListarAlumnos.Location = new System.Drawing.Point(0, 0);
             this.btnListarAlumnos.Name = "btnListarAlumnos";
-            this.btnListarAlumnos.Size = new System.Drawing.Size(289, 35);
+            this.btnListarAlumnos.Size = new System.Drawing.Size(230, 35);
             this.btnListarAlumnos.TabIndex = 3;
             this.btnListarAlumnos.Text = "Listar todos";
             this.btnListarAlumnos.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminarAlumnos
-            // 
-            this.btnEliminarAlumnos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEliminarAlumnos.FlatAppearance.BorderSize = 0;
-            this.btnEliminarAlumnos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnEliminarAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminarAlumnos.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarAlumnos.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnEliminarAlumnos.Location = new System.Drawing.Point(0, 70);
-            this.btnEliminarAlumnos.Name = "btnEliminarAlumnos";
-            this.btnEliminarAlumnos.Size = new System.Drawing.Size(289, 35);
-            this.btnEliminarAlumnos.TabIndex = 2;
-            this.btnEliminarAlumnos.Text = "Eliminar";
-            this.btnEliminarAlumnos.UseVisualStyleBackColor = true;
-            // 
-            // btnModificarAlumnos
-            // 
-            this.btnModificarAlumnos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnModificarAlumnos.FlatAppearance.BorderSize = 0;
-            this.btnModificarAlumnos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnModificarAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificarAlumnos.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModificarAlumnos.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnModificarAlumnos.Location = new System.Drawing.Point(0, 35);
-            this.btnModificarAlumnos.Name = "btnModificarAlumnos";
-            this.btnModificarAlumnos.Size = new System.Drawing.Size(289, 35);
-            this.btnModificarAlumnos.TabIndex = 1;
-            this.btnModificarAlumnos.Text = "Modificar";
-            this.btnModificarAlumnos.UseVisualStyleBackColor = true;
-            // 
-            // btnIngresarAlumno
-            // 
-            this.btnIngresarAlumno.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnIngresarAlumno.FlatAppearance.BorderSize = 0;
-            this.btnIngresarAlumno.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnIngresarAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIngresarAlumno.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresarAlumno.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnIngresarAlumno.Location = new System.Drawing.Point(0, 0);
-            this.btnIngresarAlumno.Name = "btnIngresarAlumno";
-            this.btnIngresarAlumno.Size = new System.Drawing.Size(289, 35);
-            this.btnIngresarAlumno.TabIndex = 0;
-            this.btnIngresarAlumno.Text = "Ingresar";
-            this.btnIngresarAlumno.UseVisualStyleBackColor = true;
             // 
             // pbImagenInicio
             // 
@@ -453,11 +308,85 @@
             this.pbImagenInicio.TabIndex = 8;
             this.pbImagenInicio.TabStop = false;
             // 
+            // btnCursos
+            // 
+            this.btnCursos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(15)))), ((int)(((byte)(54)))));
+            this.btnCursos.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnCursos.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btnCursos.FlatAppearance.BorderSize = 0;
+            this.btnCursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCursos.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCursos.ForeColor = System.Drawing.Color.Gray;
+            this.btnCursos.Location = new System.Drawing.Point(690, 0);
+            this.btnCursos.Name = "btnCursos";
+            this.btnCursos.Size = new System.Drawing.Size(230, 35);
+            this.btnCursos.TabIndex = 3;
+            this.btnCursos.Text = "CURSOS";
+            this.btnCursos.UseVisualStyleBackColor = false;
+            this.btnCursos.Click += new System.EventHandler(this.btnCursos_Click);
+            // 
+            // subMenuCursos
+            // 
+            this.subMenuCursos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
+            this.subMenuCursos.Controls.Add(this.btnOrientaciones);
+            this.subMenuCursos.Controls.Add(this.btnMaterias);
+            this.subMenuCursos.Controls.Add(this.btnGrupos);
+            this.subMenuCursos.Location = new System.Drawing.Point(690, 0);
+            this.subMenuCursos.Name = "subMenuCursos";
+            this.subMenuCursos.Size = new System.Drawing.Size(230, 113);
+            this.subMenuCursos.TabIndex = 12;
+            this.subMenuCursos.Visible = false;
+            // 
+            // btnGrupos
+            // 
+            this.btnGrupos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGrupos.FlatAppearance.BorderSize = 0;
+            this.btnGrupos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
+            this.btnGrupos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGrupos.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGrupos.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnGrupos.Location = new System.Drawing.Point(0, 0);
+            this.btnGrupos.Name = "btnGrupos";
+            this.btnGrupos.Size = new System.Drawing.Size(230, 35);
+            this.btnGrupos.TabIndex = 6;
+            this.btnGrupos.Text = "Grupos";
+            this.btnGrupos.UseVisualStyleBackColor = true;
+            // 
+            // btnMaterias
+            // 
+            this.btnMaterias.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMaterias.FlatAppearance.BorderSize = 0;
+            this.btnMaterias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
+            this.btnMaterias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaterias.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMaterias.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnMaterias.Location = new System.Drawing.Point(0, 35);
+            this.btnMaterias.Name = "btnMaterias";
+            this.btnMaterias.Size = new System.Drawing.Size(230, 35);
+            this.btnMaterias.TabIndex = 7;
+            this.btnMaterias.Text = "Materias";
+            this.btnMaterias.UseVisualStyleBackColor = true;
+            // 
+            // btnOrientaciones
+            // 
+            this.btnOrientaciones.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOrientaciones.FlatAppearance.BorderSize = 0;
+            this.btnOrientaciones.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
+            this.btnOrientaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOrientaciones.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrientaciones.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnOrientaciones.Location = new System.Drawing.Point(0, 70);
+            this.btnOrientaciones.Name = "btnOrientaciones";
+            this.btnOrientaciones.Size = new System.Drawing.Size(230, 35);
+            this.btnOrientaciones.TabIndex = 8;
+            this.btnOrientaciones.Text = "Orientaciones";
+            this.btnOrientaciones.UseVisualStyleBackColor = true;
+            // 
             // adminMainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 450);
+            this.ClientSize = new System.Drawing.Size(920, 450);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelTitulo);
@@ -473,6 +402,7 @@
             this.subMenuDocentes.ResumeLayout(false);
             this.subMenuAlumnos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenInicio)).EndInit();
+            this.subMenuCursos.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -490,21 +420,17 @@
         private System.Windows.Forms.Panel subMenuAdmin;
         private System.Windows.Forms.Button btnRequerimientoAdmin;
         private System.Windows.Forms.Button btnListarAdmin;
-        private System.Windows.Forms.Button btnEliminarAdmin;
-        private System.Windows.Forms.Button btnModificarAdmin;
-        private System.Windows.Forms.Button btnIngresarAdmin;
         private System.Windows.Forms.Panel subMenuDocentes;
         private System.Windows.Forms.Button btnRequerimientoDocentes;
         private System.Windows.Forms.Button btnListarDocentes;
-        private System.Windows.Forms.Button btnEliminarDocente;
-        private System.Windows.Forms.Button btnModificarDocente;
-        private System.Windows.Forms.Button btnIngresarDocente;
         private System.Windows.Forms.Panel subMenuAlumnos;
         private System.Windows.Forms.Button btnRequerimientoAlumnos;
         private System.Windows.Forms.Button btnListarAlumnos;
-        private System.Windows.Forms.Button btnEliminarAlumnos;
-        private System.Windows.Forms.Button btnModificarAlumnos;
-        private System.Windows.Forms.Button btnIngresarAlumno;
         private System.Windows.Forms.PictureBox pbImagenInicio;
+        private System.Windows.Forms.Button btnCursos;
+        private System.Windows.Forms.Panel subMenuCursos;
+        private System.Windows.Forms.Button btnOrientaciones;
+        private System.Windows.Forms.Button btnMaterias;
+        private System.Windows.Forms.Button btnGrupos;
     }
 }

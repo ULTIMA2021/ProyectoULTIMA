@@ -37,9 +37,9 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnNormal = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.subMenuMensajes = new System.Windows.Forms.Panel();
             this.btnMisMensajes = new System.Windows.Forms.Button();
-            this.btnNuevoMensaje = new System.Windows.Forms.Button();
             this.btnMensajes = new System.Windows.Forms.Button();
             this.btnAgenda = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
@@ -126,6 +126,7 @@
             // 
             resources.ApplyResources(this.panelInfo, "panelInfo");
             this.panelInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.panelInfo.Controls.Add(this.btnLogout);
             this.panelInfo.Controls.Add(this.subMenuMensajes);
             this.panelInfo.Controls.Add(this.btnMensajes);
             this.panelInfo.Controls.Add(this.btnAgenda);
@@ -136,35 +137,35 @@
             this.panelInfo.Controls.Add(this.panel2);
             this.panelInfo.Name = "panelInfo";
             // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            resources.ApplyResources(this.btnLogout, "btnLogout");
+            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // subMenuMensajes
             // 
             this.subMenuMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
             this.subMenuMensajes.Controls.Add(this.btnMisMensajes);
-            this.subMenuMensajes.Controls.Add(this.btnNuevoMensaje);
             resources.ApplyResources(this.subMenuMensajes, "subMenuMensajes");
             this.subMenuMensajes.Name = "subMenuMensajes";
             // 
             // btnMisMensajes
             // 
             this.btnMisMensajes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
+            resources.ApplyResources(this.btnMisMensajes, "btnMisMensajes");
             this.btnMisMensajes.FlatAppearance.BorderSize = 0;
             this.btnMisMensajes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            resources.ApplyResources(this.btnMisMensajes, "btnMisMensajes");
             this.btnMisMensajes.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnMisMensajes.Name = "btnMisMensajes";
             this.btnMisMensajes.UseVisualStyleBackColor = false;
             this.btnMisMensajes.Click += new System.EventHandler(this.btnMisMensajes_Click);
-            // 
-            // btnNuevoMensaje
-            // 
-            this.btnNuevoMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(100)))));
-            this.btnNuevoMensaje.FlatAppearance.BorderSize = 0;
-            this.btnNuevoMensaje.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(80)))), ((int)(((byte)(250)))));
-            resources.ApplyResources(this.btnNuevoMensaje, "btnNuevoMensaje");
-            this.btnNuevoMensaje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnNuevoMensaje.Name = "btnNuevoMensaje";
-            this.btnNuevoMensaje.UseVisualStyleBackColor = false;
-            this.btnNuevoMensaje.Click += new System.EventHandler(this.btnNuevoMensaje_Click);
             // 
             // btnMensajes
             // 
@@ -364,7 +365,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel subMenuMensajes;
         private System.Windows.Forms.Button btnMisMensajes;
-        private System.Windows.Forms.Button btnNuevoMensaje;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

@@ -13,6 +13,12 @@ namespace AppAlumno.menuScreens
 {
     public partial class misMensajes : Form
     {
+
+        int idconsultaPrivada;
+        string indexDestinatario;
+        string ciDocente;
+        string ciAlumno;
+
         public misMensajes()
         {
             InitializeComponent();
@@ -31,34 +37,23 @@ namespace AppAlumno.menuScreens
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
             dgvMisMensajes.Columns["Destinatario"].Visible = false;
             dgvMisMensajes.Columns["idMensaje"].Visible = false;
+
+        
         }
 
-        public void columnaStatus()
-        {
-            /* string status;
-             for(int i = 0; i < dgvMisMensajes.RowCount - 1; i++)
-             {
-                 string estado = dgvMisMensajes.Rows[i].Cells[4].Value.ToString();
-
-                 if (estado.Contains("pendiente"))
-                 {
-
-                 }
-             } */    
-        }
+        
 
         private void btnVer_Click(object sender, EventArgs e)
         {
             replyScreen reply = new replyScreen();
-            int idconsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
-            string indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
-            string ciDocente;
-            string ciAlumno;
-                ciAlumno = Session.cedula;
-                ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
-                List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idconsultaPrivada, ciAlumno, ciDocente);
-                reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
-                reply.txtMensajeAlumno.Text = mensajes[0][4];
+            idconsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
+            indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
+            ciAlumno = Session.cedula;
+            ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
+            List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idconsultaPrivada, ciAlumno, ciDocente);
+            reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
+            reply.txtMensajeAlumno.Text = mensajes[0][4];
+
                 if (mensajes.Count >= 2){
                     reply.txtMensajeDocente.Visible = true;
                     reply.lblNombreDocente.Visible = true;
@@ -67,5 +62,31 @@ namespace AppAlumno.menuScreens
                 }
                 reply.ShowDialog();    
         }
+
+        private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            
+                
+
+                
+            
+        }
+
+        private void dgvMisMensajes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            /* foreach (DataGridViewRow row in dgvMisMensajes.Rows)
+             {
+                 for (int i = 0; i < dgvMisMensajes.RowCount; i++)
+                 {
+                     if (Convert.ToString(row.Cells[i].Value) == "pendiente")
+                     {
+                         row.Cells[i].Style.BackColor = Color.Orange;
+                     }
+                 }
+
+             } */
+
+            
+        } 
     }
 }

@@ -338,6 +338,66 @@
   <data name="panelInfo.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="btnLogout.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="btnLogout.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnLogout.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cambria, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnLogout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAX9JREFUSEvl
+        lbFKA0EYhK9RCxsfwcJHEQxiKm30KbSyzKUTA4InKQ60Oa18CYs8QEzAzkpNYUCIWCgaid9c/gtncDmz
+        0UYHhs0/O/8/XO6WDSqVymoYhk9wMAEf4Sm9C0ERMN5ivGa9Yn2xAc+wBc/hPvpenmh18yY2xg1MA8yh
+        fkdRNFetVstqhD3twa601JwDPZE8VrqhIVlAHrmwJrwzeQT1qNdKN1wBGVyD/l4A9SJ1h3XDpCFk8gng
+        /Wyit6zUnFnYgG+fQtTsE/AVarXaPN4LevpwKxV9AqiX0JcdXGP/Er7zlDu+AR1pRaS3/6tPwO9trwAX
+        8u9AH0Eq+gbYV9S2Mj351A38r3D6r2hcp07PAcHrJg0h008EOPF/A9COoP99kIH9A3l4ebsZqQ/p+faN
+        plPZpLGsT83kEdjTtTl+SnUnJ4QU38kajLlrjbomk3yY6y+aCHEczzCkBE/ggwbCHsPPWNusN2adHgrj
+        CVYYeszwew1nLdn2hAiCDyNT+k9wJ6PiAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnLogout.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="btnLogout.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnLogout.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 577</value>
+  </data>
+  <data name="btnLogout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 0, 0</value>
+  </data>
+  <data name="btnLogout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 36</value>
+  </data>
+  <data name="btnLogout.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="btnLogout.Text" xml:space="preserve">
+    <value>            Cerrar sesion</value>
+  </data>
+  <data name="btnLogout.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;btnLogout.Name" xml:space="preserve">
+    <value>btnLogout</value>
+  </data>
+  <data name="&gt;&gt;btnLogout.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnLogout.Parent" xml:space="preserve">
+    <value>panelInfo</value>
+  </data>
+  <data name="&gt;&gt;btnLogout.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnMisMensajes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <data name="btnMisMensajes.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -348,13 +408,13 @@
     <value>NoControl</value>
   </data>
   <data name="btnMisMensajes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-4, 45</value>
+    <value>0, 0</value>
   </data>
   <data name="btnMisMensajes.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>45, 0, 0, 0</value>
   </data>
   <data name="btnMisMensajes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 36</value>
+    <value>176, 36</value>
   </data>
   <data name="btnMisMensajes.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -377,45 +437,6 @@
   <data name="&gt;&gt;btnMisMensajes.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="btnNuevoMensaje.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnNuevoMensaje.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Cambria, 9.75pt, style=Bold</value>
-  </data>
-  <data name="btnNuevoMensaje.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnNuevoMensaje.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-4, 3</value>
-  </data>
-  <data name="btnNuevoMensaje.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>45, 0, 0, 0</value>
-  </data>
-  <data name="btnNuevoMensaje.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 36</value>
-  </data>
-  <data name="btnNuevoMensaje.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="btnNuevoMensaje.Text" xml:space="preserve">
-    <value>●  Nuevo mensaje</value>
-  </data>
-  <data name="btnNuevoMensaje.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnNuevoMensaje.Name" xml:space="preserve">
-    <value>btnNuevoMensaje</value>
-  </data>
-  <data name="&gt;&gt;btnNuevoMensaje.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnNuevoMensaje.Parent" xml:space="preserve">
-    <value>subMenuMensajes</value>
-  </data>
-  <data name="&gt;&gt;btnNuevoMensaje.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="subMenuMensajes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -423,7 +444,7 @@
     <value>0, 533</value>
   </data>
   <data name="subMenuMensajes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 91</value>
+    <value>176, 44</value>
   </data>
   <data name="subMenuMensajes.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -441,7 +462,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;subMenuMensajes.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="btnMensajes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -496,7 +517,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;btnMensajes.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="btnAgenda.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -550,7 +571,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;btnAgenda.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="btnInstitucion.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -649,7 +670,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;subMenuDocentes.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="btnAlumnos.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -662,16 +683,16 @@
   </data>
   <data name="btnAlumnos.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAH7SURBVEhL5ZW9S1tRHIajQ10tuBQUhIK0ILgoXTJkDFg69w9waDdxcFGI+SLqIJLF0c2hU8EO
-        gjgUOhZacKiTtLq42Np2KFrw+rw3b0iuubkci1tfeDj3vL+vQ3JPkmurVCqtoOg+UC+37YjANLxqQ9IZ
-        60G314dzcvfK5bJOqAEbMO22/UXSEWx621c0/wqr5D4Bnb7gULb+vwGNRuMh6zyMOpQtD7iEiyxoeK0B
-        LgsXxRrw3qfK4jv804AvEPQRkdfwNlwUvqPwrbepIv4ALsmdsxUuipbhrNlsDtnqEfECA3S5Jm2Fq1qt
-        PqXwD6zbSkiDiR3CJwYN2r6buP6vaaATbtfr9UfyoigaqFQqz/A+w2+aT8TJdxGFRViDfRpcs7Z/yE7h
-        Z9f+B+yDcosu7y+aDcOOi7+BXlU9v4GtW8hTTDnK1S3eUQ+3S4rAIHwAvdcv5NVqtTEKz2E3TuqSPMWU
-        o71qXKsevd8JyYvwl893ylYsFeLrpAu2lLsgTzFbsVSrHrBoqyOST6DpbUIUbBK7osGM0LM8hxNSD/Xy
-        tiWSRyDirZm1lRAxXaiPFB4LPctzOCHiz9ULRmzFDfIyefcf2+qRYuT8EgF5GpC3FU+NbyTruK1UkfNS
-        eJsq9XCvzv9C6IAQZQ7gO1hiTftjD8Y90gfcJ60BudwNxkVCcOVpvKYAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAftJREFUSEvl
+        lb1LW1EchqNDXS24FBSEgrQguChdMmQMWDr3D3BoN3FwUYj5IuogksXRzaFTwQ6COBQ6FlpwqJO0urjY
+        2nYoWvD6vDdvSK65uRyLW194OPe8v69Dck+Sa6tUKq2g6D5QL7ftiMA0vGpD0hnrQbfXh3Ny98rlsk6o
+        ARsw7bb9RdIRbHrbVzT/CqvkPgGdvuBQtv6/AY1G4yHrPIw6lC0PuISLLGh4rQEuCxfFGvDep8riO/zT
+        gC8Q9BGR1/A2XBS+o/Ctt6ki/gAuyZ2zFS6KluGs2WwO2eoR8QIDdLkmbYWrWq0+pfAPrNtKSIOJHcIn
+        Bg3avpu4/q9poBNu1+v1R/KiKBqoVCrP8D7Db5pPxMl3EYVFWIN9Glyztn/ITuFn1/4H7INyiy7vL5oN
+        w46Lv4FeVT2/ga1byFNMOcrVLd5RD7dLisAgfAC91y/k1Wq1MQrPYTdO6pI8xZSjvWpcqx693wnJi/CX
+        z3fKViwV4uukC7aUuyBPMVuxVKsesGirI5JPoOltQhRsEruiwYzQszyHE1IP9fK2JZJHIOKtmbWVEDFd
+        qI8UHgs9y3M4IeLP1QtGbMUN8jJ59x/b6pFi5PwSAXkakLcVT41vJOu4rVSR81J4myr1cK/O/0LogBBl
+        DuA7WGJN+2MPxj3SB9wnrQG53A3GRUJw5Wm8pgAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnAlumnos.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
@@ -705,7 +726,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;btnAlumnos.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="btnAsignaturas.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -804,7 +825,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;subMenuMiPerfil.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnMiPerfil.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -862,7 +883,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;btnMiPerfil.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="lblNombre.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1003,7 +1024,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="panelInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>

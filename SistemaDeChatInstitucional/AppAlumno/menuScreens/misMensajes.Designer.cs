@@ -102,6 +102,8 @@
             this.dgvMisMensajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMisMensajes.Size = new System.Drawing.Size(481, 207);
             this.dgvMisMensajes.TabIndex = 2;
+            this.dgvMisMensajes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMisMensajes_CellEndEdit);
+            this.dgvMisMensajes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvMisMensajes_CellFormatting);
             // 
             // btnExit
             // 

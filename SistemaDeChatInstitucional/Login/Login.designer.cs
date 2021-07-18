@@ -105,6 +105,7 @@
             this.txtUsuario.TabIndex = 2;
             this.txtUsuario.Text = "Usuario";
             this.txtUsuario.Enter += new System.EventHandler(this.txtUusuario_Enter);
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsuario_KeyPress);
             this.txtUsuario.Leave += new System.EventHandler(this.txtUusuario_Leave);
             // 
             // txtContra
@@ -120,6 +121,7 @@
             this.txtContra.TabIndex = 3;
             this.txtContra.Text = "Contraseña";
             this.txtContra.Enter += new System.EventHandler(this.txtContra_Enter);
+            this.txtContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContra_KeyPress);
             this.txtContra.Leave += new System.EventHandler(this.txtContra_Leave);
             // 
             // btnLogin
@@ -235,8 +237,6 @@
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.TextBox txtContra;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
@@ -245,5 +245,7 @@
         private System.Windows.Forms.PictureBox picOcultar;
         private System.Windows.Forms.Label lblErrorMessage;
         private System.Windows.Forms.ToolTip toolTip1;
+        public System.Windows.Forms.TextBox txtUsuario;
+        public System.Windows.Forms.TextBox txtContra;
     }
 }

@@ -30,7 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(listarAlumnos));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(listarDocentes));
             this.dgvListarAlumnos = new System.Windows.Forms.DataGridView();
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -54,7 +54,7 @@
             this.dgvListarAlumnos.ColumnHeadersHeight = 25;
             this.dgvListarAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvListarAlumnos.EnableHeadersVisualStyles = false;
-            this.dgvListarAlumnos.Location = new System.Drawing.Point(24, 73);
+            this.dgvListarAlumnos.Location = new System.Drawing.Point(24, 43);
             this.dgvListarAlumnos.MultiSelect = false;
             this.dgvListarAlumnos.Name = "dgvListarAlumnos";
             this.dgvListarAlumnos.ReadOnly = true;
@@ -73,14 +73,14 @@
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(24, 12);
+            this.btnExit.Location = new System.Drawing.Point(24, 3);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(57, 34);
             this.btnExit.TabIndex = 1;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // listarAlumnos
+            // listarDocentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -89,7 +89,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dgvListarAlumnos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "listarAlumnos";
+            this.Name = "listarDocentes";
             this.Text = "listarAlumnos";
             this.Load += new System.EventHandler(this.listarAlumnos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarAlumnos)).EndInit();

@@ -44,6 +44,11 @@ namespace AppAdmin
                 subMenuAdmin.Visible = false;
             }
 
+            if(subMenuCursos.Visible == true)
+            {
+                subMenuCursos.Visible = false;
+            }
+
         }
 
 
@@ -81,6 +86,7 @@ namespace AppAdmin
             subMenuAlumnos.BringToFront();
             subMenuDocentes.BringToFront();
             subMenuAdmin.BringToFront();
+            subMenuCursos.BringToFront();
             esconderSubMenu();
         }
 
@@ -127,6 +133,11 @@ namespace AppAdmin
             menuScreens.FormularioRegistro form = new menuScreens.FormularioRegistro();
             form.Show();
            
+        }
+
+        private void btnCursos_Click(object sender, EventArgs e)
+        {
+            mostrarSubMenu(subMenuCursos);
         }
     }
 }
