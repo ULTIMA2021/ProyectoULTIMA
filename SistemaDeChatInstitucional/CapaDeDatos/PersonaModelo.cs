@@ -90,20 +90,20 @@ namespace CapaDeDatos
         public void actualizarPersona(string clave)
         {
             this.comando.CommandText = "UPDATE Persona SET clave=@clave WHERE ci=@Cedula;";
-            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("Cedula", Cedula);
             this.comando.Parameters.AddWithValue("clave", clave);
             this.comando.Prepare();
             EjecutarQuery(this.comando);
         }
         public void actualizarPersona(bool isDeleted)
         {
-            this.comando.CommandText = "UPDATE Persona SET isDeleted=@isDeleted,foto=@foto, avatar=@avatar, enLinea=@enLinea WHERE ci=@Cedula;";
-            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
+            this.comando.CommandText = "UPDATE Persona SET isDeleted=@isDeleted WHERE ci=@Cedula;";
+            this.comando.Parameters.AddWithValue("Cedula", Cedula);
             this.comando.Parameters.AddWithValue("isDeleted", isDeleted);
             this.comando.Prepare();
             EjecutarQuery(this.comando);
         }
-
+       
         //esto deberia ser private, no deberia poder llamarlo de la capa logica
         public List<PersonaModelo> obtenerUsuario(MySqlCommand commando)
         {

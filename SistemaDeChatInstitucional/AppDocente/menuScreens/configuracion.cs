@@ -71,11 +71,21 @@ namespace AppDocente.menuScreens
 
         private void btnGuardarContraseña_Click(object sender, EventArgs e)
         {
-            //verificar que clave nueva no sea white spaces
+            //verificar que clave nueva no sea white spaces y que no sea la misma que la vieja
             if (AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
                 MessageBox.Show("Nueva contraseña guardada!");
             else
                 MessageBox.Show("La contraseña antigua fue ingresada mal");
+        }
+
+        private void btnEliminarCuenta_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmDelete = MessageBox.Show("Realmente desea borrar su cuenta?", "", MessageBoxButtons.YesNo);
+            if (DialogResult.Yes == confirmDelete)
+            {
+                AlumnoControlador.bajaPersona();
+                Application.Restart();
+            }
         }
     }
 }

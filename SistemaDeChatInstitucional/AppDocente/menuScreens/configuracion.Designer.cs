@@ -49,6 +49,7 @@
             this.btnGuardarContraseña = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnEliminarCuenta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -292,12 +293,30 @@
             // 
             this.openFileDialog1.FileName = "ofdBuscar";
             // 
+            // btnEliminarCuenta
+            // 
+            this.btnEliminarCuenta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEliminarCuenta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnEliminarCuenta.FlatAppearance.BorderSize = 0;
+            this.btnEliminarCuenta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminarCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarCuenta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminarCuenta.Location = new System.Drawing.Point(541, 389);
+            this.btnEliminarCuenta.Name = "btnEliminarCuenta";
+            this.btnEliminarCuenta.Size = new System.Drawing.Size(117, 23);
+            this.btnEliminarCuenta.TabIndex = 20;
+            this.btnEliminarCuenta.Text = "Eliminar cuenta";
+            this.btnEliminarCuenta.UseVisualStyleBackColor = false;
+            this.btnEliminarCuenta.Click += new System.EventHandler(this.btnEliminarCuenta_Click);
+            // 
             // configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(705, 452);
+            this.Controls.Add(this.btnEliminarCuenta);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnGuardarContraseña);
             this.Controls.Add(this.btnGuardarDatos);
@@ -348,5 +367,6 @@
         private System.Windows.Forms.Button btnGuardarContraseña;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnEliminarCuenta;
     }
 }

@@ -70,9 +70,22 @@ namespace AppAlumno.menuScreens
             //AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text);
             //verificar que clave nueva no sea white spaces
             if (AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
+            {
+                txtContraseñaAnterior.Clear();
+                txtNuevaContraseña.Clear();
                 MessageBox.Show("Nueva contraseña guardada!");
+            }
             else
                 MessageBox.Show("La contraseña antigua fue ingresada mal");
+        }
+
+        private void btnEliminarCuenta_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmDelete = MessageBox.Show("Realmente desea borrar su cuenta?", "", MessageBoxButtons.YesNo);
+            if (DialogResult.Yes == confirmDelete){
+                AlumnoControlador.bajaPersona();
+                Application.Restart();
+            }
         }
     }
 }

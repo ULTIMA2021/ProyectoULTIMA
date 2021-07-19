@@ -177,8 +177,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnEnviar;
-        private System.Windows.Forms.TextBox txtRespuesta;
         private System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.Label lblNombreDocente;
         public System.Windows.Forms.Label lblNombreAlumno;
@@ -186,5 +184,7 @@
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
         public System.Windows.Forms.TextBox txtMensajeDocente;
         public System.Windows.Forms.TextBox txtMensajeAlumno;
+        public System.Windows.Forms.Button btnEnviar;
+        public System.Windows.Forms.TextBox txtRespuesta;
     }
 }

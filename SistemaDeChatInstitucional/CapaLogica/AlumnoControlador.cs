@@ -75,6 +75,12 @@ namespace CapaLogica
             p.guardarAdmin();
         }
 
+        public static void bajaPersona() {
+            PersonaModelo p = new PersonaModelo();
+            p.Cedula = Session.cedula;
+            p.actualizarPersona(true);
+        }
+
         public static void actualizarEstadoPersona(bool state) {
             PersonaModelo p = new PersonaModelo();
             p.Cedula = Session.cedula;

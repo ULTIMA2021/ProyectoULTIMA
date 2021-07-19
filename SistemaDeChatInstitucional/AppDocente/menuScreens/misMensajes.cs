@@ -15,7 +15,7 @@ namespace AppDocente.menuScreens
     {
         public int idConsultaPrivada;
         public string ciAlumno;
-
+        List<List<string>> mensajes;
         public misMensajes()
         {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace AppDocente.menuScreens
             ciDocente = Session.cedula;
             replyScreen reply = new replyScreen(idConsultaPrivada, Int32.Parse(Session.cedula), Int32.Parse(ciAlumno));
             
-                List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+                mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
                 reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
                 reply.txtMensajeAlumno.Text = mensajes[0][4];
                 if (mensajes.Count >= 2)
@@ -56,8 +56,11 @@ namespace AppDocente.menuScreens
                     reply.lblNombreDocente.Visible = true;
                     reply.lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente);
                     reply.txtMensajeDocente.Text = mensajes[1][4];
+                    reply.btnEnviar.Enabled = false;
+                    reply.txtRespuesta.Enabled = false;
                 }
                 reply.ShowDialog();
         }
+
     }
 }

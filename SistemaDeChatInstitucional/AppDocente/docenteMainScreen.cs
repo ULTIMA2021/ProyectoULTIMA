@@ -163,9 +163,8 @@ namespace AppDocente
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-            this.Close();
-            
+            Application.Restart();
+            Dispose();
         }
     }
 }

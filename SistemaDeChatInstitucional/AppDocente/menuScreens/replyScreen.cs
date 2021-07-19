@@ -28,21 +28,27 @@ namespace AppDocente.menuScreens
             this.idConsultaPrivada = idConsultaPrivada;
             this.ciAlumno = ciAlumno;
             this.ciDocente = ciDocente;
-
             InitializeComponent();
         }
 
         private void enviarMensaje()
         {
             misMensajes m = new misMensajes();
-
             AlumnoControlador.enviarMensaje(2, idConsultaPrivada, Int32.Parse(Session.cedula), ciAlumno,
                    txtRespuesta.Text, null, fecha, "recibido", ciAlumno);
+
+            txtMensajeDocente.Text = txtRespuesta.Text;
+            lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente.ToString());
+            txtMensajeDocente.Visible = true;
+            lblNombreDocente.Visible = true;
+            txtRespuesta.Enabled = false;
+            txtRespuesta.Text = string.Empty;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Dispose();
+            Close();
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
@@ -55,12 +61,7 @@ namespace AppDocente.menuScreens
             {
                 enviarMensaje();
                 MessageBox.Show("Mensaje enviado.", "Mensaje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtRespuesta.Text = string.Empty;
-                
-
             }
-
-             
         }
     }
 }
