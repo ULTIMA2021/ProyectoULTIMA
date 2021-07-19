@@ -36,6 +36,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnNormal = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.subMenuMensajes = new System.Windows.Forms.Panel();
             this.btnMisMensajes = new System.Windows.Forms.Button();
             this.btnNuevoMensaje = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
-            this.btnLogout = new System.Windows.Forms.Button();
             this.panelOpciones.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.subMenuMensajes.SuspendLayout();
@@ -76,6 +76,7 @@
             this.panelOpciones.Controls.Add(this.btnNormal);
             resources.ApplyResources(this.panelOpciones, "panelOpciones");
             this.panelOpciones.Name = "panelOpciones";
+            this.panelOpciones.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelOpciones_MouseDown);
             // 
             // btnMinimizar
             // 
@@ -129,6 +130,18 @@
             this.panelInfo.Controls.Add(this.btnMiPerfil);
             this.panelInfo.Controls.Add(this.panel2);
             this.panelInfo.Name = "panelInfo";
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            resources.ApplyResources(this.btnLogout, "btnLogout");
+            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.UseVisualStyleBackColor = false;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // subMenuMensajes
             // 
@@ -305,18 +318,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Name = "label1";
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            resources.ApplyResources(this.btnLogout, "btnLogout");
-            this.btnLogout.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.btnLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.UseVisualStyleBackColor = false;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // alumnoMainScreen
             // 

@@ -11,6 +11,8 @@ using CapaLogica;
 using AppAlumno;
 using AppDocente;
 using AppAdmin;
+using System.Runtime.InteropServices;
+
 namespace Login
 
 {
@@ -21,6 +23,12 @@ namespace Login
             InitializeComponent();
             this.CenterToScreen();
         }
+        // Metodos para desplazar ventana
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         private void btnLogin_Click(object sender, EventArgs e)
         {

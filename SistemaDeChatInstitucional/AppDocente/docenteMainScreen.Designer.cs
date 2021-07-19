@@ -77,6 +77,7 @@
             this.panelOpciones.Controls.Add(this.btnNormal);
             resources.ApplyResources(this.panelOpciones, "panelOpciones");
             this.panelOpciones.Name = "panelOpciones";
+            this.panelOpciones.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelOpciones_MouseDown);
             // 
             // label3
             // 
