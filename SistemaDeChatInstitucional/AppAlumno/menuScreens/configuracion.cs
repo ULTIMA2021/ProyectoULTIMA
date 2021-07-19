@@ -81,7 +81,7 @@ namespace AppAlumno.menuScreens
 
         private void btnEliminarCuenta_Click(object sender, EventArgs e)
         {
-            DialogResult confirmDelete = MessageBox.Show("Realmente desea borrar su cuenta?", "", MessageBoxButtons.YesNo);
+            DialogResult confirmDelete = MessageBox.Show("Realmente desea borrar su cuenta?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == confirmDelete){
                 AlumnoControlador.bajaPersona();
                 Application.Restart();

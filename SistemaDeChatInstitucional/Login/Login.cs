@@ -48,11 +48,11 @@ namespace Login
         {
             if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
             {
+                this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
-                this.Hide();
                 AlumnoControlador.actualizarEstadoPersona(true);
                 return;
             }
@@ -165,23 +165,7 @@ namespace Login
             FormularioRegistro formularioRegistro = new FormularioRegistro();
             formularioRegistro.ShowDialog();
         }
-        //nose si se usan
-        private void txtContra_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-            {
-                validarUsuario();
-                txtUsuario.Focus();
-            }
-        }
+        
 
-        private void txtUsuario_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if ((int)e.KeyChar == (int)Keys.Enter)
-            {
-                validarUsuario();
-                txtUsuario.Focus();
-            }
-        }
     }
 }

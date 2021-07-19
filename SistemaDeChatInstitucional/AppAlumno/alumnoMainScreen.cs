@@ -212,8 +212,13 @@ namespace AppAlumno
         }
 
         private void btnLogout_Click(object sender, EventArgs e){
-            Application.Restart();
-            Dispose();
+            DialogResult confirmLogout = MessageBox.Show("Realmente desea cerrar sesion?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == confirmLogout)
+            {
+                Application.Restart();
+                Dispose();
+            }
+            
         }
 
         public void disable(Button boton)
