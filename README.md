@@ -2,13 +2,15 @@
 
 Primero se debe correr el [sql script](https://github.com/FedericoCosta2021/MysqlScript-ultima2021.git)
 
-Luego se necesitan unos packets del NuGet Package Manager:
+---
+
+Tambien en vs se necesitan unos packets del NuGet Package Manager:
 
 ` MySql.Data by oracle`
 
 ` Microsoft.VisualBasic.PowerPacks.Vs`
 
-
+---
 - abri el proyecto
 
 - tools `->` NuGet package manager `->` Manage NuGet Packages for solution 
@@ -21,7 +23,6 @@ Luego se necesitan unos packets del NuGet Package Manager:
 
 - Vaya devuelta a browse y ahora busque:
 ` Microsoft.VisualBasic.PowerPacks.Vs`
-
-- en donde le pide indicar las referencias ponga AppAlumno,AppDocente,AppAdmin y Login. Dale instalar
+  - en donde le pide indicar las referencias ponga AppAlumno,AppDocente,AppAdmin y Login. Dale instalar
 
 Ahora en el solution explorer dele refresh, si no funciona, abra las referencias de los proyectos y dele refresh Si nada funciona, reinicie vs
