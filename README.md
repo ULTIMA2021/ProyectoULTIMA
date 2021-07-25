@@ -2,6 +2,13 @@
 
 Primero se debe correr el [sql script](https://github.com/FedericoCosta2021/MysqlScript-ultima2021.git)
 
+Luego se necesitan unos packets del NuGet Package Manager:
+
+` MySql.Data by oracle`
+
+` Microsoft.VisualBasic.PowerPacks.Vs`
+
+
 - abri el proyecto
 
 - tools `->` NuGet package manager `->` Manage NuGet Packages for solution 
