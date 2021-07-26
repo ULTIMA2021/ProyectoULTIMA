@@ -26,3 +26,10 @@ Tambien en vs se necesitan unos packets del NuGet Package Manager:
   - en donde le pide indicar las referencias ponga AppAlumno,AppDocente,AppAdmin y Login. Dale instalar
 
 Ahora en el solution explorer dele refresh, si no funciona, abra las referencias de los proyectos y dele refresh Si nada funciona, reinicie vs
+
+## Otras links:
+[trello](https://github.com/FedericoCosta2021/MysqlScript-ultima2021.git)
+
+[miro](https://github.com/FedericoCosta2021/MysqlScript-ultima2021.git)
+
+[github config de servidores](https://github.com/ULTIMA2021/Sistemas-Operativos)
