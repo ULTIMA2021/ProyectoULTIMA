@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\VisualBasic.PowerPacks.Vs.1.0.0\lib\Microsoft.VisualBasic.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\VisualBasic.PowerPacks.Vs.1.0.0\lib\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +60,12 @@
     <Compile Include="adminMainScreen.Designer.cs">
       <DependentUpon>adminMainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\bienvenido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\bienvenido.designer.cs">
+      <DependentUpon>bienvenido.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\FormularioRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,10 +84,19 @@
     <Compile Include="menuScreens\listarAlumnos.Designer.cs">
       <DependentUpon>listarAlumnos.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="adminMainScreen.resx">
       <DependentUpon>adminMainScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\bienvenido.resx">
+      <DependentUpon>bienvenido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\FormularioRegistro.resx">
       <DependentUpon>FormularioRegistro.cs</DependentUpon>
@@ -84,6 +107,9 @@
     <EmbeddedResource Include="menuScreens\listarAlumnos.resx">
       <DependentUpon>listarAlumnos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -93,6 +119,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

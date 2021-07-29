@@ -108,28 +108,26 @@ namespace AppDocente
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-            
+            Application.Exit(); 
         }
 
 
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            
-            this.WindowState = FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;
             btnNormal.BringToFront();
         }
 
         
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
 
         private void btnNormal_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
             btnMaximizar.BringToFront();
         }
 

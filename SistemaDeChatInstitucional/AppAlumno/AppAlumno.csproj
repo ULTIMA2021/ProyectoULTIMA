@@ -55,11 +55,29 @@
     <Compile Include="alumnoMainScreen.Designer.cs">
       <DependentUpon>alumnoMainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\bienvenido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\bienvenido.designer.cs">
+      <DependentUpon>bienvenido.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="menuScreens\configuracion.Designer.cs">
       <DependentUpon>configuracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\FormularioRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\FormularioRegistro.designer.cs">
+      <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\Login.designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="menuScreens\misAsignaturas.cs">
       <SubType>Form</SubType>
@@ -96,8 +114,17 @@
     <EmbeddedResource Include="alumnoMainScreen.resx">
       <DependentUpon>alumnoMainScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\bienvenido.resx">
+      <DependentUpon>bienvenido.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\configuracion.resx">
       <DependentUpon>configuracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\FormularioRegistro.resx">
+      <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\misAsignaturas.resx">
       <DependentUpon>misAsignaturas.cs</DependentUpon>

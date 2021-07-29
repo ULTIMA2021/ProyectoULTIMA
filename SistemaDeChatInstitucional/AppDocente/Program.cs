@@ -16,7 +16,7 @@ namespace AppDocente
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new docenteMainScreen());
+            Application.Run(new Login.Login());
         }
     }
 }

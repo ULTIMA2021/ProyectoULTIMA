@@ -16,7 +16,7 @@ namespace AppAlumno
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new alumnoMainScreen());
+            Application.Run(new Login.Login());
         }
     }
 }
