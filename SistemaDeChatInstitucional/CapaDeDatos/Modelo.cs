@@ -57,7 +57,7 @@ namespace CapaDeDatos
             this.IpDb = "localhost";
             this.NombreDb = "ultimaDB";
             this.UsuarioDb = "root";
-            this.PasswordDb = "9682031";
+            this.PasswordDb = "";
         }
     }
 }
