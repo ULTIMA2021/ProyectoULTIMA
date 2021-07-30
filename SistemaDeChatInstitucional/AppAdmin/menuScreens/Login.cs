@@ -53,12 +53,14 @@ namespace Login
         {
             if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
             {
+                Session.type = 2;
                 Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 adminMainScreen ams = new adminMainScreen();
                 ams.Show();
                 AlumnoControlador.actualizarEstadoPersona(true);
+                
                 return;
             }
             errorMessage("* Usuario y/o contraseña incorrectos.");

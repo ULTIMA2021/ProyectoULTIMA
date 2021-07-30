@@ -51,6 +51,7 @@ namespace Login
         {
             if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
             {
+                Session.type = 0;
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();

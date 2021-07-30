@@ -9,139 +9,26 @@ using CapaDeDatos;
 
 namespace CapaLogica
 {
-    public static class AlumnoControlador
+    public static partial class AlumnoControlador
     {
         public static string nombreRemitente;
         public static string nombreDestinatario;
         public static string mensajeEnviado;
         public static string ciDestinatario;
-         //implementear en segunda entrega
-         /*
-        public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
-        {
-            PersonaModelo Persona = new PersonaModelo();
-            Persona.Cedula = cedula;
-            Persona.Nombre = nombre;
-            Persona.Apellido = apellido;
-            Persona.Clave = clave;
-            Persona.foto = null;
-            Persona.avatar = null;
-            Persona.GuardarTemp(tipoUsuario);
-        }
-    */
-        public static void AltaPersona(string cedula, string nombre, string apellido, string clave /*, string foto, byte avatar*/)
-        {
-            PersonaModelo Persona = new PersonaModelo();
-            Persona.Cedula = cedula;
-            Persona.Nombre = nombre;
-            Persona.Apellido = apellido;
-            Persona.Clave = clave;
-            Persona.foto = null;
-            Persona.avatar = null;
-            Persona.GuardarPersona();
-        }
-
-        //usado en formulario registro para ingresar alumno nuevo a tabla alumno y alumno_tiene_grupo
-        public static void AltaAlumno(string cedula, string apodo, List<int> GruposDeAlumno) {
-            PersonaModelo p = new PersonaModelo();
-            GrupoModelo g = new GrupoModelo();
-            p.Cedula = cedula;
-            p.Apodo = apodo;
-            p.guardarAlumno();
-            foreach (int grupo in GruposDeAlumno) {
-                g.nuevoIngresoAlumnoTieneGrupo(cedula,grupo);
-            }
-        }
-
-        public static void AltaDocente(string cedula,List<int> GruposMateriasDeDocente ) {
-            PersonaModelo p = new PersonaModelo();
-            GrupoModelo g = new GrupoModelo();
-            p.Cedula = cedula;
-            p.guardarDocente();
-            List<GrupoModelo>gm=g.getDocenteDictaGM();
-            int idMateria;
-            int idGrupo;
-            foreach (int grupoMateria in GruposMateriasDeDocente)
-            {
-                idMateria = gm[grupoMateria].idMateria;
-                idGrupo = gm[grupoMateria].idGrupo;
-                g.actualizarDocenteTieneGM(cedula, idGrupo, idMateria);
-            }
-        }
-
-        public static void AltaAdmin(string cedula) {
-            PersonaModelo p = new PersonaModelo();
-            p.Cedula = cedula;
-            p.guardarAdmin();
-        }
-
-        public static void bajaPersona() {
-            PersonaModelo p = new PersonaModelo();
-            p.Cedula = Session.cedula;
-            p.actualizarPersona(true);
-        }
-
-        public static void actualizarEstadoPersona(bool state) {
-            PersonaModelo p = new PersonaModelo();
-            p.Cedula = Session.cedula;
-            p.enLinea = state;
-            p.actualizarPersona();
-        }
-
-        public static bool actualizarClavePersona(string claveVieja,string claveNueva)
-        {
-            if (Session.clave == claveVieja) {
-                PersonaModelo p = new PersonaModelo();
-                p.Cedula = Session.cedula;
-                p.actualizarPersona(claveNueva);
-                return true;
-            }
-            return false;
-        }
-
-        public static bool existePersona(string ci) {
-            PersonaModelo p = new PersonaModelo();
-            //
-            if (p.obtenerPersona(ci).Cedula == ci) {
-                Console.WriteLine($"PERSON {ci} EXISTS IN SYSTEM");
-                return false;
-            }
-            Console.WriteLine($"PERSON {ci} DOES NOT EXIST IN SYSTEM");
-            return true;
-        }
-
-        public static bool lista (string user, string pass, Func<string, string, List<PersonaModelo>> metodoObtener)
-        {
-            PersonaModelo p = new PersonaModelo();
-            List<PersonaModelo> personas = metodoObtener(user, pass);
-            if (personas.Count == 1)
-            {
-                Session.saveToCache(personas[0]);
-                return true;
-            }
-            return false;
-        }
-
-        public static bool isAlumno(string user, string pass)
-        {
-            Session.type = 0;
-            PersonaModelo p = new PersonaModelo();
-            return lista(user, pass, p.validarAlumno);
-        }
-
-        public static bool isDocente(string user, string pass)
-        {
-            Session.type = 1;
-            PersonaModelo p = new PersonaModelo();
-            return lista(user, pass, p.validarDocente);
-        }
-
-        public static bool isAdmin(string user, string pass)
-        {
-            Session.type = 2;
-            PersonaModelo p = new PersonaModelo();
-            return lista(user, pass, p.validarAdmin);
-        }
+        //implementear en segunda entrega
+        /*
+       public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
+       {
+           PersonaModelo Persona = new PersonaModelo();
+           Persona.Cedula = cedula;
+           Persona.Nombre = nombre;
+           Persona.Apellido = apellido;
+           Persona.Clave = clave;
+           Persona.foto = null;
+           Persona.avatar = null;
+           Persona.GuardarTemp(tipoUsuario);
+       }
+   */
 
         /*   public static DataTable listarMaterias()
            {
@@ -164,8 +51,8 @@ namespace CapaLogica
 
         public static bool obtenerAlumno(string ci)
         {
-            UsuarioModelo u = new UsuarioModelo();
-           if( u.obtenerAlumno(ci).Count==0)
+            PersonaModelo u = new PersonaModelo(Session.type);
+           if( u.obtenerAlumno(ci, Session.type).Count==0)
                 return true;
             return false;
         }
@@ -173,8 +60,8 @@ namespace CapaLogica
         //original
         public static string obtenerDestinatario(string ci)
         {
-            PersonaModelo p = new PersonaModelo();
-            List<PersonaModelo> personas = p.obtenerPersona();
+            PersonaModelo p = new PersonaModelo(Session.type);
+            List<PersonaModelo> personas = p.obtenerPersona(Session.type);
             foreach(PersonaModelo persona in personas)
             {
                 if(persona.Cedula == ci)
@@ -185,8 +72,8 @@ namespace CapaLogica
         //original
         public static string obtenerRemitente(string ci)
         {
-            PersonaModelo p = new PersonaModelo();
-            List<PersonaModelo> personas = p.obtenerPersona();
+            PersonaModelo p = new PersonaModelo(Session.type);
+            List<PersonaModelo> personas = p.obtenerPersona(Session.type);
             foreach (PersonaModelo persona in personas)
             {
                 if (persona.Cedula == ci)
@@ -198,8 +85,8 @@ namespace CapaLogica
         //cambiar esto para que cargue todo en ua lista, para mostrar fotos tambien
         //o cambiarlo para reutilizar en otro lugar
         public static string traemeEstaPersona(string ci) {
-            PersonaModelo p = new PersonaModelo();
-            p = p.obtenerPersona(ci);
+            PersonaModelo p = new PersonaModelo(Session.type);
+            p = p.obtenerPersona(ci, Session.type);
             List<string> personaString = new List<string>();
             personaString.Add(p.Nombre);
             personaString.Add(" ");
@@ -212,9 +99,9 @@ namespace CapaLogica
 
         public static DataTable obtenerDocentes()
         {
-            UsuarioModelo u = new UsuarioModelo();
+            PersonaModelo u = new PersonaModelo(Session.type);
             //PersonaModelo p = new PersonaModelo();
-            List<PersonaModelo> docentes = u.obtenerDocente();
+            List<PersonaModelo> docentes = u.obtenerDocente(Session.type);
             DataTable tabla = new DataTable();
             tabla.Columns.Add("Cedula");
             tabla.Columns.Add("Nombre");
@@ -227,8 +114,8 @@ namespace CapaLogica
         }
 
         public static DataTable obtenerDocentes(int dummy) {
-            UsuarioModelo u = new UsuarioModelo();
-            List<PersonaModelo> MisDocentes = u.obtenerDocente();
+            PersonaModelo u = new PersonaModelo(Session.type);
+            List<PersonaModelo> MisDocentes = u.obtenerDocente(Session.type);
             DataTable tabla = new DataTable();
             tabla.Columns.Add("Cedula");
             tabla.Columns.Add("Nombre");
