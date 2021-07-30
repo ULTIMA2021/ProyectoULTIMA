@@ -11,6 +11,7 @@ namespace CapaLogica
 {
     public static partial class AlumnoControlador
     {
+
         public static string nombreRemitente;
         public static string nombreDestinatario;
         public static string mensajeEnviado;

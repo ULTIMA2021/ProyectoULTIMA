@@ -21,6 +21,8 @@ namespace CapaDeDatos
         public DateTime cpFechaHora;
         public string ciDestinatario;
 
+       
+
         public void crearConsultaPrivada(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)
         {
