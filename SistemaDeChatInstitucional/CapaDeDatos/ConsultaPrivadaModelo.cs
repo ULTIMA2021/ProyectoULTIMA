@@ -109,7 +109,7 @@ namespace CapaDeDatos
             this.comando.CommandText = "SELECT DISTINCT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, " +
                                         "cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp " +
                                         "inner join CP_Mensaje m on cp.idConsultaPrivada=m.idConsultaPrivada AND " +
-                                        "cp.alumnoCi=m.ciAlumno AND cp.docenteCi=m.ciDestinatario;";
+                                        "cp.alumnoCi=m.ciAlumno AND cp.docenteCi=m.ciDestinatario GROUP BY cp.titulo;";
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {

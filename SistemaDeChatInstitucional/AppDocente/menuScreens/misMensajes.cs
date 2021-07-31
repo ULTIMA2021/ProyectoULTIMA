@@ -14,8 +14,11 @@ namespace AppDocente.menuScreens
     public partial class misMensajes : Form
     {
         public int idConsultaPrivada;
+        string indexDestinatario;
+        public int idMensaje;
         public string ciAlumno;
-        List<List<string>> mensajes;
+        public string ciDocente;
+        
         public misMensajes()
         {
             InitializeComponent();
@@ -40,27 +43,30 @@ namespace AppDocente.menuScreens
         {
 
             idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
-            string indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
-            string ciDocente;
-            
-            ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
             ciDocente = Session.cedula;
-            replyScreen reply = new replyScreen(idConsultaPrivada, Int32.Parse(Session.cedula), Int32.Parse(ciAlumno));
-            
-                mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-                reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
-                reply.txtMensajeAlumno.Text = mensajes[0][4];
-                if (mensajes.Count >= 2)
-                {
-                    reply.txtMensajeDocente.Visible = true;
-                    reply.lblNombreDocente.Visible = true;
-                    reply.lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente);
-                    reply.txtMensajeDocente.Text = mensajes[1][4];
-                    reply.btnEnviar.Enabled = false;
-                    reply.txtRespuesta.Enabled = false;
-                }
+            indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
+            ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
+            idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
+
+            List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+           
+            replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, Int32.Parse(ciDocente), Int32.Parse(ciAlumno));
+           // replyScreen reply2 = new replyScreen();
+
+           
+
+            // parte de prueba
+            for (int i = 0; i < mensajes.Count; i++)
+            {
+                
+                 cuadroMensaje conversacion = new cuadroMensaje(mensajes[i][4]);
+                 reply.openScreen(conversacion);
+               
+            }
                 reply.ShowDialog();
         }
+
+
 
     }
 }

@@ -13,11 +13,12 @@ namespace AppAlumno.menuScreens
 {
     public partial class misMensajes : Form
     {
-
-        int idconsultaPrivada;
+        replyScreen reply;
+        int idConsultaPrivada;
         string indexDestinatario;
         string ciDocente;
         string ciAlumno;
+        int idMensaje;
 
         public misMensajes()
         {
@@ -45,22 +46,25 @@ namespace AppAlumno.menuScreens
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            replyScreen reply = new replyScreen();
-            idconsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
+            idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
-            List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idconsultaPrivada, ciAlumno, ciDocente);
-            reply.lblNombreAlumno.Text = AlumnoControlador.traemeEstaPersona(ciAlumno);
-            reply.txtMensajeAlumno.Text = mensajes[0][4];
+            idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
+            List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+           // reply = new replyScreen();
+            replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, ciDocente, ciAlumno);
 
-                if (mensajes.Count >= 2){
-                    reply.txtMensajeDocente.Visible = true;
-                    reply.lblNombreDocente.Visible = true;
-                    reply.lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente);
-                    reply.txtMensajeDocente.Text = mensajes[1][4];
-                }
-                reply.ShowDialog();    
+
+            
+            for (int i = 0; i < mensajes.Count; i++)
+            {
+              
+                   cuadroMensaje conversacion = new cuadroMensaje(mensajes[i][4]);
+                   reply.openScreen(conversacion);
+                 
+            }
+                reply.ShowDialog();
         }
 
         private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)

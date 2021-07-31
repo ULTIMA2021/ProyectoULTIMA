@@ -15,41 +15,65 @@ namespace AppDocente.menuScreens
     {
         DateTime fecha = DateTime.Today;
         int idConsultaPrivada;
+        int idMensaje;
         int ciAlumno;
         int ciDocente;
         
         public replyScreen()
         {
             InitializeComponent();
-        }
+            
+        }  
 
-        public replyScreen(int idConsultaPrivada, int ciDocente, int ciAlumno)
+        public replyScreen(int idConsultaPrivada, int idMensaje, int ciDocente, int ciAlumno)
         {
             this.idConsultaPrivada = idConsultaPrivada;
+            this.idMensaje = idMensaje;
             this.ciAlumno = ciAlumno;
             this.ciDocente = ciDocente;
             InitializeComponent();
+            
         }
+
+        public void openScreen(Form ventana)
+        {
+
+
+            ventana.TopLevel = false;
+            ventana.Dock = DockStyle.Top;
+            panelContenedor.Controls.Add(ventana);
+            panelContenedor.Tag = ventana;
+            ventana.BringToFront();
+            ventana.Show();
+
+        }
+
 
         private void enviarMensaje()
         {
-            misMensajes m = new misMensajes();
-            AlumnoControlador.enviarMensaje(2, idConsultaPrivada, Int32.Parse(Session.cedula), ciAlumno,
-                   txtRespuesta.Text, null, fecha, "recibido", ciAlumno);
+            //  int idMensajeIncrement=idMensaje++;
+            // idMensaje++;
+            // misMensajes m = new misMensajes();
+            idMensaje++;
+            AlumnoControlador.enviarMensaje(idMensaje, idConsultaPrivada, ciDocente, ciAlumno,
+                                            txtRespuesta.Text, null, fecha, "recibido", ciAlumno);
 
-            txtMensajeDocente.Text = txtRespuesta.Text;
-            lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente.ToString());
-            txtMensajeDocente.Visible = true;
-            lblNombreDocente.Visible = true;
-            txtRespuesta.Enabled = false;
+         //   txtMensajeDocente.Text = txtRespuesta.Text;
+         //   lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente.ToString());
+         //   txtMensajeDocente.Visible = true;
+         //   lblNombreDocente.Visible = true;
+          //  txtRespuesta.Enabled = false;
             txtRespuesta.Text = string.Empty;
+            Console.Write("ENVIADO!");
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
             Dispose();
             Close();
         }
+
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
@@ -59,8 +83,10 @@ namespace AppDocente.menuScreens
             }
             else
             {
+                
                 enviarMensaje();
                 MessageBox.Show("Mensaje enviado.", "Mensaje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
         }
     }

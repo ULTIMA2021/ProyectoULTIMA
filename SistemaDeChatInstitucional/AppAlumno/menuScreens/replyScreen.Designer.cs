@@ -31,16 +31,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtMensajeDocente = new System.Windows.Forms.TextBox();
-            this.txtMensajeAlumno = new System.Windows.Forms.TextBox();
-            this.lblNombreDocente = new System.Windows.Forms.Label();
-            this.lblNombreAlumno = new System.Windows.Forms.Label();
+            this.panelContenedor = new System.Windows.Forms.Panel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panelContenedor.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -57,7 +53,6 @@
             // btnEnviar
             // 
             this.btnEnviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.btnEnviar.Enabled = false;
             this.btnEnviar.FlatAppearance.BorderSize = 0;
             this.btnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -68,10 +63,10 @@
             this.btnEnviar.TabIndex = 1;
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = false;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // txtRespuesta
             // 
-            this.txtRespuesta.Enabled = false;
             this.txtRespuesta.Location = new System.Drawing.Point(26, 20);
             this.txtRespuesta.Multiline = true;
             this.txtRespuesta.Name = "txtRespuesta";
@@ -79,63 +74,15 @@
             this.txtRespuesta.Size = new System.Drawing.Size(480, 108);
             this.txtRespuesta.TabIndex = 0;
             // 
-            // panel2
+            // panelContenedor
             // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Controls.Add(this.txtMensajeDocente);
-            this.panel2.Controls.Add(this.txtMensajeAlumno);
-            this.panel2.Controls.Add(this.lblNombreDocente);
-            this.panel2.Controls.Add(this.lblNombreAlumno);
-            this.panel2.Controls.Add(this.shapeContainer1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(656, 329);
-            this.panel2.TabIndex = 1;
-            // 
-            // txtMensajeDocente
-            // 
-            this.txtMensajeDocente.BackColor = System.Drawing.Color.PowderBlue;
-            this.txtMensajeDocente.Enabled = false;
-            this.txtMensajeDocente.Location = new System.Drawing.Point(36, 202);
-            this.txtMensajeDocente.Multiline = true;
-            this.txtMensajeDocente.Name = "txtMensajeDocente";
-            this.txtMensajeDocente.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMensajeDocente.Size = new System.Drawing.Size(587, 105);
-            this.txtMensajeDocente.TabIndex = 6;
-            this.txtMensajeDocente.Visible = false;
-            // 
-            // txtMensajeAlumno
-            // 
-            this.txtMensajeAlumno.BackColor = System.Drawing.Color.PowderBlue;
-            this.txtMensajeAlumno.Enabled = false;
-            this.txtMensajeAlumno.Location = new System.Drawing.Point(36, 35);
-            this.txtMensajeAlumno.Multiline = true;
-            this.txtMensajeAlumno.Name = "txtMensajeAlumno";
-            this.txtMensajeAlumno.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMensajeAlumno.Size = new System.Drawing.Size(587, 105);
-            this.txtMensajeAlumno.TabIndex = 5;
-            // 
-            // lblNombreDocente
-            // 
-            this.lblNombreDocente.AutoSize = true;
-            this.lblNombreDocente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreDocente.Location = new System.Drawing.Point(35, 184);
-            this.lblNombreDocente.Name = "lblNombreDocente";
-            this.lblNombreDocente.Size = new System.Drawing.Size(111, 15);
-            this.lblNombreDocente.TabIndex = 3;
-            this.lblNombreDocente.Text = "nombre docente";
-            this.lblNombreDocente.Visible = false;
-            // 
-            // lblNombreAlumno
-            // 
-            this.lblNombreAlumno.AutoSize = true;
-            this.lblNombreAlumno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreAlumno.Location = new System.Drawing.Point(33, 17);
-            this.lblNombreAlumno.Name = "lblNombreAlumno";
-            this.lblNombreAlumno.Size = new System.Drawing.Size(108, 15);
-            this.lblNombreAlumno.TabIndex = 1;
-            this.lblNombreAlumno.Text = "nombre alumno";
+            this.panelContenedor.AutoScroll = true;
+            this.panelContenedor.Controls.Add(this.shapeContainer1);
+            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContenedor.Location = new System.Drawing.Point(0, 0);
+            this.panelContenedor.Name = "panelContenedor";
+            this.panelContenedor.Size = new System.Drawing.Size(656, 329);
+            this.panelContenedor.TabIndex = 1;
             // 
             // shapeContainer1
             // 
@@ -171,7 +118,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(656, 469);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "replyScreen";
@@ -179,8 +126,7 @@
             this.Text = "Mensajes";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelContenedor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -190,13 +136,9 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.TextBox txtRespuesta;
-        private System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.Label lblNombreDocente;
-        public System.Windows.Forms.Label lblNombreAlumno;
+        private System.Windows.Forms.Panel panelContenedor;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
-        public System.Windows.Forms.TextBox txtMensajeDocente;
-        public System.Windows.Forms.TextBox txtMensajeAlumno;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
     }
 }
