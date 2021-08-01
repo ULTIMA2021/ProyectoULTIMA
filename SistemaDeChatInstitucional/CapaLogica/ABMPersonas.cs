@@ -109,9 +109,8 @@ namespace CapaLogica
         public static bool isDocente(string user, string pass)
         {
             Session.type = 3;
-
             PersonaModelo p = new PersonaModelo(Session.type);
-            return lista(user, pass, Session.type, p.validarAlumno);
+            return lista(user, pass, Session.type, p.validarDocente);
         }
 
         public static bool isAdmin(string user, string pass)
