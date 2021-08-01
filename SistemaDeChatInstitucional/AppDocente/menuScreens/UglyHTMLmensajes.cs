@@ -12,8 +12,9 @@ namespace AppDocente.menuScreens
 {
     public partial class UglyHTMLmensajes : Form
     {
-        public UglyHTMLmensajes()
+        public UglyHTMLmensajes(List<List<string>>mensajes)
         {
+
             InitializeComponent();
         }
     }
