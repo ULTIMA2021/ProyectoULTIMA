@@ -15,8 +15,8 @@ namespace CapaLogica
         public static string clave { get; set; }
         //foto
         //avatar
-        public static byte type{ get; set; }//0-alumno   1-docente    2-admin
-
+        public static byte type{ get; set; }//0-alumno   1-docente    2-admin   3=
+        
     public static void saveToCache(PersonaModelo per)
         {
             cedula = per.Cedula;

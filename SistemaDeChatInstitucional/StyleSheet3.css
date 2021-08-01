@@ -1,0 +1,13 @@
+﻿.Mymsg {
+    background-color: cornflowerblue;
+    border: 2px solid blue;
+}
+.TheirMsg {
+    background-color: lightblue;
+    border: 2px solid red;
+}
+.Mymsg, .TheirMsg {
+    border-radius: 20px;
+    margin: auto;
+    width: 50%;
+}
