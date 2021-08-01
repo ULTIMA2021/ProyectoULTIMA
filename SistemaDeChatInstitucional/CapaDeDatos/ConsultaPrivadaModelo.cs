@@ -108,10 +108,9 @@ namespace CapaDeDatos
         public List<ConsultaPrivadaModelo> getConsultas()
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            this.comando.CommandText = "SELECT DISTINCT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, " +
-                                        "cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp " +
-                                        "inner join CP_Mensaje m on cp.idConsultaPrivada=m.idConsultaPrivada AND " +
-                                        "cp.alumnoCi=m.ciAlumno AND cp.docenteCi=m.ciDestinatario GROUP BY cp.titulo;";
+            this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp, CP_Mensaje m " +
+                "WHERE cp.idConsultaPrivada = m.idConsultaPrivada " +
+                "AND cp.alumnoCi = m.ciAlumno AND cp.docenteCi = m.ciDestinatario AND m.idCp_mensaje = 1;";
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {
@@ -129,7 +128,6 @@ namespace CapaDeDatos
                 consultas.Add(cp);
             }
                 lector.Close();
-          //  conexion.Close();
             return consultas;
         }
 

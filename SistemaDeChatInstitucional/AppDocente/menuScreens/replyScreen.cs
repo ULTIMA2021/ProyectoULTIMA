@@ -37,33 +37,20 @@ namespace AppDocente.menuScreens
 
         public void openScreen(Form ventana)
         {
-
-
             ventana.TopLevel = false;
             ventana.Dock = DockStyle.Top;
             panelContenedor.Controls.Add(ventana);
             panelContenedor.Tag = ventana;
             ventana.BringToFront();
             ventana.Show();
-
         }
 
 
         private void enviarMensaje()
         {
-            //  int idMensajeIncrement=idMensaje++;
-            // idMensaje++;
-            // misMensajes m = new misMensajes();
             idMensaje++;
             AlumnoControlador.enviarMensaje(idMensaje, idConsultaPrivada, ciDocente, ciAlumno,
                                             txtRespuesta.Text, null, fecha, "recibido", ciAlumno);
-
-         //   txtMensajeDocente.Text = txtRespuesta.Text;
-         //   lblNombreDocente.Text = AlumnoControlador.traemeEstaPersona(ciDocente.ToString());
-         //   txtMensajeDocente.Visible = true;
-         //   lblNombreDocente.Visible = true;
-          //  txtRespuesta.Enabled = false;
-            txtRespuesta.Text = string.Empty;
             Console.Write("ENVIADO!");
         }
 
@@ -85,8 +72,9 @@ namespace AppDocente.menuScreens
             {
                 
                 enviarMensaje();
-                MessageBox.Show("Mensaje enviado.", "Mensaje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                this.Refresh();
+               // MessageBox.Show("Mensaje enviado.", "Mensaje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //this.Close();
             }
         }
     }

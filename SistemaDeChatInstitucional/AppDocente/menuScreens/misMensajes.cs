@@ -48,16 +48,21 @@ namespace AppDocente.menuScreens
             ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
             idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
 
-            List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+            mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
            
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, Int32.Parse(ciDocente), Int32.Parse(ciAlumno));
-           // replyScreen reply2 = new replyScreen();
+            // replyScreen reply2 = new replyScreen();
 
             // parte de prueba
+            string alumnoNombre = AlumnoControlador.traemeEstaPersona(mensajes[0][1]);
             for (int i = 0; i < mensajes.Count; i++)
             {
-                 cuadroMensaje conversacion = new cuadroMensaje(mensajes[i][4]);
-                 reply.openScreen(conversacion);
+                cuadroMensaje conversacion;
+                if (mensajes[i][7]!=Session.cedula)
+                    conversacion = new cuadroMensaje(mensajes[i][4],Session.nombre);
+                else
+                    conversacion = new cuadroMensaje(mensajes[i][4],alumnoNombre);
+                reply.openScreen(conversacion);
             }
                 reply.ShowDialog();
         }
@@ -72,6 +77,7 @@ namespace AppDocente.menuScreens
             ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
             ciDocente = Session.cedula;
             mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+
             new UglyHTMLmensajes(mensajes);
         }
     }
