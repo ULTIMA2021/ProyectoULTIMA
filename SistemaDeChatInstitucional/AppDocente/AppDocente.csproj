@@ -53,12 +53,6 @@
     <Compile Include="docenteMainScreen.Designer.cs">
       <DependentUpon>docenteMainScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="menuScreens\agenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +95,12 @@
     <Compile Include="menuScreens\replyScreen.Designer.cs">
       <DependentUpon>replyScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\UglyHTMLmensajes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\UglyHTMLmensajes.Designer.cs">
+      <DependentUpon>UglyHTMLmensajes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="docenteMainScreen.resx">
@@ -126,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\replyScreen.resx">
       <DependentUpon>replyScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\UglyHTMLmensajes.resx">
+      <DependentUpon>UglyHTMLmensajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

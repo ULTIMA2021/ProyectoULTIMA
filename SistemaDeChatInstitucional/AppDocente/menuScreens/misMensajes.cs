@@ -53,20 +53,13 @@ namespace AppDocente.menuScreens
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, Int32.Parse(ciDocente), Int32.Parse(ciAlumno));
            // replyScreen reply2 = new replyScreen();
 
-           
-
             // parte de prueba
             for (int i = 0; i < mensajes.Count; i++)
             {
-                
                  cuadroMensaje conversacion = new cuadroMensaje(mensajes[i][4]);
                  reply.openScreen(conversacion);
-               
             }
                 reply.ShowDialog();
         }
-
-
-
     }
 }
