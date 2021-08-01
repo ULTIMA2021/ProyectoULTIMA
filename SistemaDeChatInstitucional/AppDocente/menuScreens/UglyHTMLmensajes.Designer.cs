@@ -41,6 +41,7 @@
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("C:\\Users\\Feder\\Source\\Repos\\ULTIMA2021\\ProyectoULTIMA\\SistemaDeChatInstitucional\\" +
         "HTMLTest.html", System.UriKind.Absolute);
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // UglyHTMLmensajes
             // 
@@ -50,6 +51,7 @@
             this.Controls.Add(this.webBrowser1);
             this.Name = "UglyHTMLmensajes";
             this.Text = "UglyHTMLmensajes";
+            this.Load += new System.EventHandler(this.UglyHTMLmensajes_Load);
             this.ResumeLayout(false);
 
         }
