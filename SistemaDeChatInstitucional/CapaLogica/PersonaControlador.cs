@@ -10,6 +10,21 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
+        //implementear en segunda entrega
+        /*
+       public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
+       {
+           PersonaModelo Persona = new PersonaModelo();
+           Persona.Cedula = cedula;
+           Persona.Nombre = nombre;
+           Persona.Apellido = apellido;
+           Persona.Clave = clave;
+           Persona.foto = null;
+           Persona.avatar = null;
+           Persona.GuardarTemp(tipoUsuario);
+       }
+   */
+
         //agregar foto y avatar.
         public static void AltaPersona(string cedula, string nombre, string apellido, string clave /*, string foto, byte avatar*/)
         {
