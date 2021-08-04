@@ -11,11 +11,6 @@ namespace CapaLogica
 {
     public static partial class AlumnoControlador
     {
-
-        public static string nombreRemitente;
-        public static string nombreDestinatario;
-        public static string mensajeEnviado;
-        public static string ciDestinatario;
         //implementear en segunda entrega
         /*
        public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
@@ -58,31 +53,6 @@ namespace CapaLogica
             return false;
         }
 
-        //original
-        public static string obtenerDestinatario(string ci)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            List<PersonaModelo> personas = p.obtenerPersona(Session.type);
-            foreach(PersonaModelo persona in personas)
-            {
-                if(persona.Cedula == ci)
-                    nombreDestinatario = persona.Nombre + " " + persona.Apellido;
-            }
-              return nombreDestinatario;
-        }
-        //original
-        public static string obtenerRemitente(string ci)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            List<PersonaModelo> personas = p.obtenerPersona(Session.type);
-            foreach (PersonaModelo persona in personas)
-            {
-                if (persona.Cedula == ci)
-                    nombreRemitente = persona.Nombre + " " + persona.Apellido;
-            }
-            return nombreRemitente;
-        }
-
         //cambiar esto para que cargue todo en ua lista, para mostrar fotos tambien
         //o cambiarlo para reutilizar en otro lugar
         public static string traemeEstaPersona(string ci) {
@@ -101,7 +71,6 @@ namespace CapaLogica
         public static DataTable obtenerDocentes()
         {
             PersonaModelo u = new PersonaModelo(Session.type);
-            //PersonaModelo p = new PersonaModelo();
             List<PersonaModelo> docentes = u.obtenerDocente(Session.type);
             DataTable tabla = new DataTable();
             tabla.Columns.Add("Cedula");
@@ -110,20 +79,6 @@ namespace CapaLogica
             foreach (PersonaModelo docente in docentes)
             {
                 tabla.Rows.Add( docente.Cedula,docente.Nombre, docente.Apellido);
-            }
-            return tabla;
-        }
-
-        public static DataTable obtenerDocentes(int dummy) {
-            PersonaModelo u = new PersonaModelo(Session.type);
-            List<PersonaModelo> MisDocentes = u.obtenerDocente(Session.type);
-            DataTable tabla = new DataTable();
-            tabla.Columns.Add("Cedula");
-            tabla.Columns.Add("Nombre");
-            tabla.Columns.Add("Apellido");
-            foreach (PersonaModelo docente in MisDocentes)
-            {
-                tabla.Rows.Add(docente.Cedula,docente.Nombre, docente.Apellido);
             }
             return tabla;
         }
@@ -192,14 +147,14 @@ namespace CapaLogica
         public static string obtenerMensaje(int idConsultaPrivada, string ciAlumno, string ciDocente)
         {
             MensajePrivadoModelo mpm = new MensajePrivadoModelo();
-            
+            string contenidoMensaje="";
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
-                mensajeEnviado = m.contenido;
+                contenidoMensaje = m.contenido;
                 Console.WriteLine($"\n{m.ToString()}\n");
             }
 
-            return mensajeEnviado;
+            return contenidoMensaje;
         }
 
         public static List<string> gruposToListForRegister() {

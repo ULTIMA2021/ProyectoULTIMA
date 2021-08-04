@@ -48,14 +48,12 @@ namespace AppAlumno.menuScreens
                 txtAsunto.Text = "";
                 txtMensaje.Text = "";
                 txtBuscarDocente.Text = "";
-
             }
         }
 
         private void NuevoMensaje_Load(object sender, EventArgs e)
         {
-            //fix this so i dont have to put a dummy int as parameter
-           dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes(6);
+           dgvListaDocentes.DataSource = AlumnoControlador.obtenerDocentes();
            dgvListaDocentes.Columns["Cedula"].Visible = false;
         }
     }
