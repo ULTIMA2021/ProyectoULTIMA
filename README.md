@@ -4,7 +4,7 @@ Primero se debe correr el [sql script](https://github.com/FedericoCosta2021/Mysq
 
 Tambien en vs se necesitan unos packets del NuGet Package Manager:
 
-` MySql.Data by oracle`
+` MySqlClient by Alan Savage`
 
 ` Microsoft.VisualBasic.PowerPacks.Vs`
 
@@ -12,15 +12,15 @@ Tambien en vs se necesitan unos packets del NuGet Package Manager:
 
 - tools `->` NuGet package manager `->` Manage NuGet Packages for solution 
 
-- capaz que le aparece un msg para descargar los paquetes
+- capaz que le aparece un msg para restaurar los paquetes, si le salta este, aceptelo
 
 - si no en la nueva ventana cambiese a browse y busque
-` MySql.Data by oracle`
+` MySqlClient by Alan Savage`
   - en donde le pide indicar las referencias ponga CapaDeDatos y CapaLogica. Dale instalar
 
 - Vaya devuelta a browse y ahora busque:
 ` Microsoft.VisualBasic.PowerPacks.Vs`
-  - en donde le pide indicar las referencias ponga AppAlumno,AppDocente,AppAdmin y Login. Dale instalar
+  - en donde le pide indicar las referencias ponga AppAlumno,AppDocente,AppAdmin. Dale instalar
 
 Ahora en el solution explorer dele refresh, si no funciona, abra las referencias de los proyectos y dele refresh Si nada funciona, reinicie vs.
 
@@ -35,15 +35,24 @@ Alumno: Penelope Cruz
 ci: 11111111
 clave: clave1
 
-Alumno: Pepe rock
+Alumno: Pepe red
 ci: 22222222
 clave: clave2
+
+docente: Abel Sings
+ci: 77777777
+clave: clave7
+
+admin: Adam Sandler
+ci: 99999999
+clave: adminclave
 ```
 
-este patron se repite para docentes tambien. Por lo tanto: 
-- alumnos son las cedulas 1-6 
-- docentes 7-8 
-- admins 9, clave: adminclave
+por ahora el demo que estamos cargando a la bd tiene este patron para facilitarnos hacerle el testing, se repite para cada usuario, no solo el alumno. 
+Por lo tanto, los usuarios que hemos cargados son: 
+- alumnos con las cedulas 1-6, claves(1-6) 
+- docentes con las cedulas 7-8, claves(7-8) 
+- admin con las cedula 9, clave: adminclave
 
 ---
 
