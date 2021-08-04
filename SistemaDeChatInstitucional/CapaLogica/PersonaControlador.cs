@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CapaDeDatos;
+using System.Data;
 
 namespace CapaLogica
 {
-    public static partial class AlumnoControlador
+    public static partial class Controlador
     {
+        //agregar foto y avatar.
         public static void AltaPersona(string cedula, string nombre, string apellido, string clave /*, string foto, byte avatar*/)
         {
             PersonaModelo Persona = new PersonaModelo(Session.type);
@@ -25,7 +27,7 @@ namespace CapaLogica
         public static void AltaAlumno(string cedula, string apodo, List<int> GruposDeAlumno)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
-            GrupoModelo g = new GrupoModelo();
+            GrupoModelo g = new GrupoModelo(Session.type);
             p.Cedula = cedula;
             p.Apodo = apodo;
             p.guardarAlumno();
@@ -38,10 +40,10 @@ namespace CapaLogica
         public static void AltaDocente(string cedula, List<int> GruposMateriasDeDocente)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
-            GrupoModelo g = new GrupoModelo();
+            GrupoModelo g = new GrupoModelo(Session.type);
             p.Cedula = cedula;
             p.guardarDocente();
-            List<GrupoModelo> gm = g.getDocenteDictaGM();
+            List<GrupoModelo> gm = g.getDocenteDictaGM(Session.type);
             int idMateria;
             int idGrupo;
             foreach (int grupoMateria in GruposMateriasDeDocente)
@@ -89,7 +91,6 @@ namespace CapaLogica
         public static bool existePersona(string ci)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
-            //
             if (p.obtenerPersona(ci, Session.type).Cedula == ci)
             {
                 Console.WriteLine($"PERSON {ci} EXISTS IN SYSTEM");
@@ -130,6 +131,45 @@ namespace CapaLogica
                 return true;
             }
             return false;
+        }
+
+        public static bool obtenerAlumno(string ci)
+        {
+            PersonaModelo u = new PersonaModelo(Session.type);
+            if (u.obtenerAlumno(ci, Session.type).Count == 0)
+                return true;
+            return false;
+        }
+
+        //cambiar esto para que cargue todo en ua lista, para mostrar fotos tambien
+        //o cambiarlo para reutilizar en otro lugar
+        public static string traemeEstaPersona(string ci)
+        {
+            PersonaModelo p = new PersonaModelo(Session.type);
+            p = p.obtenerPersona(ci, Session.type);
+            List<string> personaString = new List<string>();
+            personaString.Add(p.Nombre);
+            personaString.Add(" ");
+            personaString.Add(p.Apellido);
+            personaString.Add(" ");
+            if (p.enLinea == true)
+                personaString.Add($"     en Linea");
+            return string.Join("", personaString);
+        }
+
+        public static DataTable obtenerDocentes()
+        {
+            PersonaModelo u = new PersonaModelo(Session.type);
+            List<PersonaModelo> docentes = u.obtenerDocente(Session.type);
+            DataTable tabla = new DataTable();
+            tabla.Columns.Add("Cedula");
+            tabla.Columns.Add("Nombre");
+            tabla.Columns.Add("Apellido");
+            foreach (PersonaModelo docente in docentes)
+            {
+                tabla.Rows.Add(docente.Cedula, docente.Nombre, docente.Apellido);
+            }
+            return tabla;
         }
 
     }

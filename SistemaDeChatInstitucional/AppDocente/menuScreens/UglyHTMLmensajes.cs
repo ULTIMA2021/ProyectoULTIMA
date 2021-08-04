@@ -28,7 +28,7 @@ namespace AppDocente.menuScreens
             string HTMLtextboxLabel = "<label for=\"txtBox\">Responder: </label>";
             string HTMLtextbox = "<textarea id=\"txtBox\" name=\"txtBox\" rows = \"5\" cols = \"33\" placeholder= \"Responder...\" ></textarea > ";
             string HTMLbutton = "<button type =\"button\" > Click Me!</button>";
-            string alumnoNombre = AlumnoControlador.traemeEstaPersona(mensajes[0][1]);
+            string alumnoNombre = Controlador.traemeEstaPersona(mensajes[0][1]);
             string content;
             for (int x = 0; x < mensajes.Count; x++)
             {

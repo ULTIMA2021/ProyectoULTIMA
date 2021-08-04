@@ -31,7 +31,7 @@ namespace AppDocente.menuScreens
 
         private void misMensajes_Load(object sender, EventArgs e)
         {
-            dgvMisMensajes.DataSource = AlumnoControlador.ConsultasPrivada();
+            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
             dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;
             dgvMisMensajes.Columns["ciAlumno"].Visible = false;
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
@@ -41,20 +41,19 @@ namespace AppDocente.menuScreens
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-
             idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             ciDocente = Session.cedula;
             indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
             ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
             idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
 
-            mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+            mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
            
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, Int32.Parse(ciDocente), Int32.Parse(ciAlumno));
             // replyScreen reply2 = new replyScreen();
 
             // parte de prueba
-            string alumnoNombre = AlumnoControlador.traemeEstaPersona(mensajes[0][1]);
+            string alumnoNombre = Controlador.traemeEstaPersona(mensajes[0][1]);
             for (int i = 0; i < mensajes.Count; i++)
             {
                 cuadroMensaje conversacion;
@@ -76,7 +75,7 @@ namespace AppDocente.menuScreens
 
             ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
             ciDocente = Session.cedula;
-            mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+            mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
 
             new UglyHTMLmensajes(mensajes);
         }

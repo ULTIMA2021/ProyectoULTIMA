@@ -32,7 +32,7 @@ namespace AppAlumno.menuScreens
 
         private void misMensajes_Load(object sender, EventArgs e)
         {
-            dgvMisMensajes.DataSource = AlumnoControlador.ConsultasPrivada();
+            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
             dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;
             dgvMisMensajes.Columns["ciAlumno"].Visible = false;
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
@@ -51,7 +51,7 @@ namespace AppAlumno.menuScreens
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
             idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
-            List<List<string>> mensajes = AlumnoControlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+            List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
            // reply = new replyScreen();
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, ciDocente, ciAlumno);
 

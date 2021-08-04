@@ -51,7 +51,7 @@ namespace Login
 
         private void validarUsuario()
         {
-            if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
+            if (Controlador.isAdmin(txtUsuario.Text, txtContra.Text))
             {
                 Session.type = 2;
                 Hide();
@@ -59,7 +59,7 @@ namespace Login
                 bv.ShowDialog();
                 adminMainScreen ams = new adminMainScreen();
                 ams.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
+                Controlador.actualizarEstadoPersona(true);
                 
                 return;
             }

@@ -18,18 +18,8 @@ namespace CapaDeDatos
         protected MySqlCommand comando;
         protected MySqlDataReader lector;
 
-
-        public Modelo()
-        {
-            try
-            {
-                connection(2);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
+        //esto se tiene que sacar
+       
 
         public Modelo(byte sessionType)
         {

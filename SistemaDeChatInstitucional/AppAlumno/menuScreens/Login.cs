@@ -49,7 +49,7 @@ namespace Login
 
         private void validarUsuario()
         {
-            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
+            if (Controlador.isAlumno(txtUsuario.Text, txtContra.Text))
             {
                 Session.type = 0;
                 this.Hide();
@@ -57,7 +57,7 @@ namespace Login
                 bv.ShowDialog();
                 alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
+                Controlador.actualizarEstadoPersona(true);
                 return;
             }
             errorMessage("* Usuario y/o contraseña incorrectos.");

@@ -30,23 +30,23 @@ namespace Login
         {
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length==8)
             {
-                if (AlumnoControlador.existePersona(txtCedula.Text))
+                if (Controlador.existePersona(txtCedula.Text))
                 {
                     Console.WriteLine("this person is getting registered");
-                    AlumnoControlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
+                    Controlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
                     if (this.comboBoxUser.SelectedIndex == 0) {
-                        AlumnoControlador.AltaAlumno(txtCedula.Text, txtApodo.Text,getIndexesChecklist());
-                        this.checkedListBox1.DataSource = AlumnoControlador.gruposToListForRegister();
+                        Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text,getIndexesChecklist());
+                        this.checkedListBox1.DataSource = Controlador.gruposToListForRegister();
 
                     }
                     else if (this.comboBoxUser.SelectedIndex == 1)
                     {
-                       AlumnoControlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
-                        this.checkedListBox1.DataSource = AlumnoControlador.grupoMateriaToListForRegister();
+                       Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
+                        this.checkedListBox1.DataSource = Controlador.grupoMateriaToListForRegister();
                     }
                     else
                     {
-                        AlumnoControlador.AltaAdmin(txtCedula.Text);
+                        Controlador.AltaAdmin(txtCedula.Text);
                     }
                     //MessageBox.Show(" Ingresado! espere que lo confirme un administrador");
 
@@ -102,7 +102,7 @@ namespace Login
                 this.lblAsterix.Visible = false;
                 this.lblGrupo.Text = "Grupo/s";
                 this.checkedListBox1.DataSource = null;
-                this.checkedListBox1.DataSource = AlumnoControlador.gruposToListForRegister();
+                this.checkedListBox1.DataSource = Controlador.gruposToListForRegister();
                 this.checkedListBox1.ClearSelected();
             }
             else if (this.comboBoxUser.SelectedIndex == 1)
@@ -111,7 +111,7 @@ namespace Login
                 this.txtApodo.Enabled = false;
                 this.lblGrupo.Text = "Grupo-materia";
                 this.checkedListBox1.DataSource = null;
-                this.checkedListBox1.DataSource = AlumnoControlador.grupoMateriaToListForRegister();
+                this.checkedListBox1.DataSource = Controlador.grupoMateriaToListForRegister();
                 this.checkedListBox1.ClearSelected();
 
             }

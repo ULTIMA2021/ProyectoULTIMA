@@ -30,12 +30,12 @@ namespace Login
         {
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length==8)
             {
-                if (AlumnoControlador.existePersona(txtCedula.Text))
+                if (Controlador.existePersona(txtCedula.Text))
                 {
                     Console.WriteLine("this person is getting registered");
-                    AlumnoControlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
-                    AlumnoControlador.AltaAlumno(txtCedula.Text, txtApodo.Text,getIndexesChecklist());
-                    checkedListBox1.DataSource = AlumnoControlador.gruposToListForRegister();
+                    Controlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
+                    Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text,getIndexesChecklist());
+                    checkedListBox1.DataSource = Controlador.gruposToListForRegister();
                     //MessageBox.Show(" Ingresado! espere que lo confirme un administrador");
 
                 }
@@ -56,7 +56,7 @@ namespace Login
             lblAsterix.Visible = false;
             lblGrupo.Text = "Grupo/s";
             checkedListBox1.DataSource = null;
-            checkedListBox1.DataSource = AlumnoControlador.gruposToListForRegister();
+            checkedListBox1.DataSource = Controlador.gruposToListForRegister();
         }
 
         private List<int> getIndexesChecklist() {

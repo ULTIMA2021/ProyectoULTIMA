@@ -11,7 +11,6 @@ namespace CapaDeDatos
 {
     public class ConsultaPrivadaModelo : Modelo
     {
-
         public int idConsultaPrivada;
         public int idMensaje;
         public int ciDocente;
@@ -21,7 +20,9 @@ namespace CapaDeDatos
         public DateTime cpFechaHora;
         public string ciDestinatario;
 
-       
+        public ConsultaPrivadaModelo(byte sessionType) : base(sessionType)
+        {
+        }
 
         public void crearConsultaPrivada(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)
@@ -38,13 +39,13 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando);
         }
 
-        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente, int ciAlumno)
+        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente, int ciAlumno, byte sessionType)
         {                                              
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            foreach (ConsultaPrivadaModelo consulta in getConsultas(sessionType))
             {
                 if (ciAlumno == consulta.ciAlumno && ciDocente == consulta.ciDocente) {
-                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
                     cp.ciDocente = consulta.ciDocente;
                     cp.ciAlumno = consulta.ciAlumno;
@@ -56,14 +57,14 @@ namespace CapaDeDatos
             return consultas;
         }
         
-        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente)
+        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente, byte sessionType)
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            foreach (ConsultaPrivadaModelo consulta in getConsultas(sessionType))
             {
                 if (ciDocente == consulta.ciDocente)
                 {
-                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
                     cp.idMensaje = consulta.idMensaje;
                     cp.ciDocente = consulta.ciDocente;
@@ -81,13 +82,13 @@ namespace CapaDeDatos
         }
 
         //esta es la original
-        public List<ConsultaPrivadaModelo> getConsultas(string ciAlumno) {
+        public List<ConsultaPrivadaModelo> getConsultas(string ciAlumno, byte sessionType) {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            foreach (ConsultaPrivadaModelo consulta in getConsultas(sessionType))
             {
                 if (ciAlumno == consulta.ciAlumno.ToString())
                 {
-                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
                     cp.idMensaje = consulta.idMensaje;
                     cp.ciDocente = consulta.ciDocente;
@@ -105,7 +106,7 @@ namespace CapaDeDatos
         }
 
         // ORIGINAL
-        public List<ConsultaPrivadaModelo> getConsultas()
+        public List<ConsultaPrivadaModelo> getConsultas(byte sessionType)
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
             this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp, CP_Mensaje m " +
@@ -114,7 +115,7 @@ namespace CapaDeDatos
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {
-                ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                 cp.idConsultaPrivada = Int32.Parse(lector[0].ToString());
                 cp.idMensaje = Int32.Parse(lector[1].ToString());
                 cp.ciDocente = Int32.Parse(lector[2].ToString());
@@ -131,9 +132,9 @@ namespace CapaDeDatos
             return consultas;
         }
 
-        public int getIdConsultas(int ciDocente, int ciAlumno)
+        public int getIdConsultas(int ciDocente, int ciAlumno, byte sessionType)
         {
-            List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno);
+            List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno, sessionType);
             int lastId = 0;
             try
             {

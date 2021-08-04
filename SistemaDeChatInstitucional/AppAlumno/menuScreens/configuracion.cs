@@ -42,7 +42,7 @@ namespace AppAlumno.menuScreens
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
             // guardarFoto();
-            if (AlumnoControlador.obtenerAlumno(Session.cedula))
+            if (Controlador.obtenerAlumno(Session.cedula))
             {
                    txtNombre.Text = Session.nombre;
                    txtApellido.Text = Session.apellido;
@@ -69,7 +69,7 @@ namespace AppAlumno.menuScreens
         {
             //AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text);
             //verificar que clave nueva no sea white spaces
-            if (AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
+            if (Controlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
             {
                 txtContraseñaAnterior.Clear();
                 txtNuevaContraseña.Clear();
@@ -83,7 +83,7 @@ namespace AppAlumno.menuScreens
         {
             DialogResult confirmDelete = MessageBox.Show("Realmente desea borrar su cuenta?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == confirmDelete){
-                AlumnoControlador.bajaPersona();
+                Controlador.bajaPersona();
                 Application.Restart();
             }
         }

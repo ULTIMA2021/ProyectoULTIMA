@@ -9,14 +9,17 @@ namespace CapaDeDatos
 {
     public class GrupoModelo : Modelo
     {
-        //esto se tiene que cambiar, solo deberia estar aca lo que esta en la tabla de grupo en MySql
         public int idMateria;
         public int idGrupo;
         public int idOrientacion;
         public string nombreMateria;
         public string nombreGrupo;
         public string nombreOrientacion;
-     
+
+        public GrupoModelo(byte sessionType) : base(sessionType)
+        {
+        }
+
         public void crearGrupoNuevo(string nombreGrupo)
         {
             this.comando.CommandText = "INSERT INTO Grupo (nombreGrupo) VALUES(@nombreGrupo);";
@@ -54,13 +57,13 @@ namespace CapaDeDatos
             this.comando.Parameters.Clear();
         }
 
-        private List<GrupoModelo> cargarGrupoALista(MySqlCommand commando)
+        private List<GrupoModelo> cargarGrupoALista(MySqlCommand commando, byte sessionType)
         {
             lector = commando.ExecuteReader();
             List<GrupoModelo> listaG = new List<GrupoModelo>();
             while (lector.Read())
             {
-                GrupoModelo g = new GrupoModelo();
+                GrupoModelo g = new GrupoModelo(sessionType);
                 g.idGrupo = Int32.Parse(lector[0].ToString());
                 g.nombreGrupo = lector[1].ToString();
                 listaG.Add(g);
@@ -68,13 +71,13 @@ namespace CapaDeDatos
             lector.Close();
             return listaG;
         }
-        private List<GrupoModelo> cargarGrupoMateriaALista(MySqlCommand commando)
+        private List<GrupoModelo> cargarGrupoMateriaALista(MySqlCommand commando, byte sessionType)
         {
             lector = commando.ExecuteReader();
             List<GrupoModelo> listaGM = new List<GrupoModelo>();
             while (lector.Read())
             {
-                GrupoModelo gm = new GrupoModelo();
+                GrupoModelo gm = new GrupoModelo( sessionType);
                 gm.idGrupo = Int32.Parse(lector[0].ToString());
                 gm.idMateria = Int32.Parse(lector[1].ToString());
                 gm.nombreGrupo = lector[2].ToString();
@@ -89,23 +92,23 @@ namespace CapaDeDatos
             return listaGM;
         }
         
-        public List<GrupoModelo> getGrupo() {
+        public List<GrupoModelo> getGrupo(byte sessionType) {
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo;";
-            return cargarGrupoALista(this.comando);
+            return cargarGrupoALista(this.comando, sessionType);
         }
-        public List<GrupoModelo> getGrupo(string idGrupo)
+        public List<GrupoModelo> getGrupo(string idGrupo,byte sessionType)
         {
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE idGrupo=@idGrupo;";
             this.comando.Parameters.AddWithValue("idGrupo",idGrupo);
-            return cargarGrupoALista(this.comando);
+            return cargarGrupoALista(this.comando, sessionType);
         }
 
         //sin implementacion
-        public List<GrupoModelo> getGrupoTieneMateria() {
+        public List<GrupoModelo> getGrupoTieneMateria(byte sessionType) {
             this.comando.CommandText = "SELECT gm.idGrupo, gm.idMateria,g.nombreGrupo,m.nombreMateria " +
                 "FROM Grupo_Tiene_Materia gm, grupo g, materia m " +
                 "WHERE gm.idGrupo = g.idGrupo AND gm.idMateria = m.idMateria; ";
-            return(cargarGrupoMateriaALista(this.comando));
+            return(cargarGrupoMateriaALista(this.comando, sessionType));
         }
 
         public override string ToString()
@@ -113,13 +116,14 @@ namespace CapaDeDatos
             return $"{idGrupo}    {nombreGrupo}";
         }
 
-        public List<GrupoModelo> getDocenteDictaGM(){
+        public List<GrupoModelo> getDocenteDictaGM(byte sessionType)
+        {
             this.comando.CommandText = " SELECT  dgm.idGrupo, dgm.idMateria, g.nombregrupo, m.NombreMateria " +
                 "FROM docente_dicta_G_M dgm, Grupo g, Materia m " +
                 "WHERE dgm.docenteCi is null " +
                 "AND dgm.idMateria = m.idMateria " +
                 "AND g.idGrupo = dgm.idGrupo;";
-            return cargarGrupoMateriaALista(this.comando);
+            return cargarGrupoMateriaALista(this.comando, sessionType);
         }
     }
 }

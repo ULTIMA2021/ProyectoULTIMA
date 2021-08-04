@@ -56,7 +56,7 @@ namespace AppAlumno.menuScreens
             // idMensaje ++;
             // misMensajes m = new misMensajes();
             idMensaje++;
-            AlumnoControlador.enviarMensaje(idMensaje, idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(ciAlumno),
+            Controlador.enviarMensaje(idMensaje, idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(ciAlumno),
                                             txtRespuesta.Text, null, fecha, "recibido", Int32.Parse(ciDocente));
 
          //   txtMensajeDocente.Text = txtRespuesta.Text;

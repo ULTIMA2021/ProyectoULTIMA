@@ -54,34 +54,34 @@ namespace Login
 
         private void validarUsuario()
         {
-            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
+            if (Controlador.isAlumno(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 alumnoMainScreen ams = new alumnoMainScreen();
                 ams.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
+                Controlador.actualizarEstadoPersona(true);
                 return;
             }
-            if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
+            if (Controlador.isDocente(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 docenteMainScreen dms = new docenteMainScreen();
                 dms.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
+                Controlador.actualizarEstadoPersona(true);
                 return;
             }
-            if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
+            if (Controlador.isAdmin(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 adminMainScreen ams = new adminMainScreen();
                 ams.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
+                Controlador.actualizarEstadoPersona(true);
                 return;
             }
             errorMessage("* Usuario y/o contraseña incorrectos.");

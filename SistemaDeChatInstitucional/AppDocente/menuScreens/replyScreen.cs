@@ -49,7 +49,7 @@ namespace AppDocente.menuScreens
         private void enviarMensaje()
         {
             idMensaje++;
-            AlumnoControlador.enviarMensaje(idMensaje, idConsultaPrivada, ciDocente, ciAlumno,
+            Controlador.enviarMensaje(idMensaje, idConsultaPrivada, ciDocente, ciAlumno,
                                             txtRespuesta.Text, null, fecha, "recibido", ciAlumno);
             Console.Write("ENVIADO!");
         }
