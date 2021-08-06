@@ -27,9 +27,9 @@ namespace Login
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
             if (txtUsuario.Text != "Usuario")
             {
                 if (txtContra.Text != "Contraseña")
@@ -40,13 +40,13 @@ namespace Login
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(Controlador.showLoginErrorMessage(ex));
                     }
 
                 }
-                else errorMessage("* Ingrese contraseña.");
+                else updateErrorLabel("* Ingrese contraseña.");
             }
-            else errorMessage("* Ingrese un usuario.");
+            else updateErrorLabel("* Ingrese un usuario.");
         }
 
         private void validarUsuario()
@@ -62,13 +62,13 @@ namespace Login
                 Controlador.actualizarEstadoPersona(true);
                 return;
             }
-            errorMessage("* Usuario y/o contraseña incorrectos.");
+            updateErrorLabel("* Usuario y/o contraseña incorrectos.");
             txtUsuario.Text = "Usuario";
             txtContra.PasswordChar = '\0';
             txtContra.Text = "Contraseña";
         }
 
-        public void errorMessage(string msg)
+        private void updateErrorLabel(string msg)
         {
             lblErrorMessage.Text = msg;
             lblErrorMessage.Visible = true;

@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsultaMensajeControlador.cs" />
+    <Compile Include="Encrypter.cs" />
     <Compile Include="GrupoMateriaOrientacionControlador.cs" />
     <Compile Include="PersonaControlador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

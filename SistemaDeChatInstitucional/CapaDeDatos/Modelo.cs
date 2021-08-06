@@ -17,21 +17,18 @@ namespace CapaDeDatos
         protected MySqlConnection conexion;
         protected MySqlCommand comando;
         protected MySqlDataReader lector;
-
-        //esto se tiene que sacar
-       
-
+      
         public Modelo(byte sessionType)
         {
             try
             {
                 connection(sessionType);
-            }catch(Exception e)
+            }catch(MySqlException e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("MODELO.CS SQL ERROR CODE "+e.Number);
+                throw new Exception(e.Number.ToString());
             }
         }
-
 
         public void connection(byte sessionType)
         {
@@ -65,6 +62,7 @@ namespace CapaDeDatos
                     break;
             }
         }
+
         private void usuarioEsAlumno()
         {
             this.UsuarioDb = "alumnoDB";

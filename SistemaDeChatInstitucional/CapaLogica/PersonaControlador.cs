@@ -117,26 +117,40 @@ namespace CapaLogica
 
         public static bool isAlumno(string user, string pass)
         {
-            Session.type = 3;
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAlumno);
         }
 
         public static bool isDocente(string user, string pass)
         {
-            Session.type = 3;
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarDocente);
         }
 
         public static bool isAdmin(string user, string pass)
         {
-            Session.type = 3;
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAdmin);
         }
-
+        /*
+         el decrypter no esta funcionando, comenta el otro metodo que se lama igual para ver que pasa
         public static bool lista(string user, string pass, byte sessionType, Func<string, string, byte ,List<PersonaModelo>> metodoObtener)
+        {
+            PersonaModelo p = new PersonaModelo(Session.type);
+            List<PersonaModelo> personas = metodoObtener(user, pass, Session.type);
+            if (personas.Count == 1)
+            {
+                personas[0].Clave = Cryptography.encryptThis(personas[0].Clave);
+                Session.saveToCache(personas[0]);
+                Console.WriteLine($"SESSION CLAVE:{Session.clave}");
+                Cryptography.decryptThis(Session.clave);
+                return true;
+            }
+            return false;
+        }
+*/
+
+        public static bool lista(string user, string pass, byte sessionType, Func<string, string, byte, List<PersonaModelo>> metodoObtener)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
             List<PersonaModelo> personas = metodoObtener(user, pass, Session.type);
@@ -147,7 +161,6 @@ namespace CapaLogica
             }
             return false;
         }
-
         public static bool obtenerAlumno(string ci)
         {
             PersonaModelo u = new PersonaModelo(Session.type);
@@ -156,8 +169,7 @@ namespace CapaLogica
             return false;
         }
 
-        //cambiar esto para que cargue todo en ua lista, para mostrar fotos tambien
-        //o cambiarlo para reutilizar en otro lugar
+        //cambiar esto para que cargue todo en una lista, para mostrar fotos tambien
         public static string traemeEstaPersona(string ci)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -187,5 +199,23 @@ namespace CapaLogica
             return tabla;
         }
 
+
+        public static string showLoginErrorMessage(Exception ex)
+        {
+            string msg;
+            switch (ex.Message)
+            {
+                case "0":
+                    msg = "No se pudo conectar a la base de datos";
+                    break;
+                case "1042":
+                    msg = "La conexion a esa direccion no existe";
+                    break;
+                default:
+                    msg = "Hubo un error con la conexion";
+                    break;
+            }
+            return $"ERROR CODE: {ex.Message}\n{msg}";
+        }
     }
 }
