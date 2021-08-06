@@ -58,7 +58,7 @@ namespace AppDocente.menuScreens
             {
                 cuadroMensaje conversacion;
                 if (mensajes[i][7]!=Session.cedula)
-                    conversacion = new cuadroMensaje(mensajes[i][4],Session.nombre);
+                    conversacion = new cuadroMensaje(mensajes[i][4],Session.nombre + " " + Session.apellido);
                 else
                     conversacion = new cuadroMensaje(mensajes[i][4],alumnoNombre);
                 reply.openScreen(conversacion);

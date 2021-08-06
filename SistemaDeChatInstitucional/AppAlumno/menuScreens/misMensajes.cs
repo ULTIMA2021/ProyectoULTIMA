@@ -56,13 +56,16 @@ namespace AppAlumno.menuScreens
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, ciDocente, ciAlumno);
 
 
-            
+            string docenteNombre = Controlador.traemeEstaPersona(mensajes[0][2]);
             for (int i = 0; i < mensajes.Count; i++)
             {
-              
-                   cuadroMensaje conversacion = new cuadroMensaje(mensajes[i][4]);
-                   reply.openScreen(conversacion);
-                 
+                cuadroMensaje conversacion;
+                if (mensajes[i][7] != Session.cedula)
+                    conversacion = new cuadroMensaje(mensajes[i][4], Session.nombre+" "+Session.apellido);
+                else
+                    conversacion = new cuadroMensaje(mensajes[i][4], docenteNombre);
+                reply.openScreen(conversacion);
+
             }
                 reply.ShowDialog();
         }

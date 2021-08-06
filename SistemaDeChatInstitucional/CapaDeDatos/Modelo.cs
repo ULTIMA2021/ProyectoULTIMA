@@ -75,7 +75,7 @@ namespace CapaDeDatos
         }
         private void usuarioEsAdmin() {
             this.UsuarioDb = "root";
-            this.PasswordDb = "9682031";
+            this.PasswordDb = "andylu30";
         }
         private void usuarioEsLogin()//usuario que solo puede hacer el select a las tablas de login(Alumno,docente,admin,persona)
         {

@@ -17,10 +17,11 @@ namespace AppAlumno.menuScreens
             InitializeComponent();
         }
 
-        public cuadroMensaje(string mensaje)
+        public cuadroMensaje(string mensaje, string nombre)
         {
             InitializeComponent();
             txtMensajeAlumno.Text = mensaje;
+            lblNombrePersona.Text = nombre;
             
         }
 

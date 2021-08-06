@@ -80,6 +80,7 @@ namespace AppAlumno.menuScreens
                 enviarMensaje();
 
                 MessageBox.Show("Mensaje enviado!");
+                txtRespuesta.Text = "";
                 this.Close();
             }
 

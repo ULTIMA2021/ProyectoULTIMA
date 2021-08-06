@@ -36,6 +36,7 @@
             // 
             // panelContenedor
             // 
+            this.panelContenedor.BackColor = System.Drawing.SystemColors.HighlightText;
             this.panelContenedor.Controls.Add(this.txtMensajeAlumno);
             this.panelContenedor.Controls.Add(this.lblNombrePersona);
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -48,18 +49,18 @@
             // 
             this.txtMensajeAlumno.BackColor = System.Drawing.Color.PowderBlue;
             this.txtMensajeAlumno.Enabled = false;
-            this.txtMensajeAlumno.Location = new System.Drawing.Point(42, 33);
+            this.txtMensajeAlumno.Location = new System.Drawing.Point(66, 46);
             this.txtMensajeAlumno.Multiline = true;
             this.txtMensajeAlumno.Name = "txtMensajeAlumno";
             this.txtMensajeAlumno.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMensajeAlumno.Size = new System.Drawing.Size(587, 105);
+            this.txtMensajeAlumno.Size = new System.Drawing.Size(546, 92);
             this.txtMensajeAlumno.TabIndex = 9;
             // 
             // lblNombrePersona
             // 
             this.lblNombrePersona.AutoSize = true;
             this.lblNombrePersona.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombrePersona.Location = new System.Drawing.Point(39, 15);
+            this.lblNombrePersona.Location = new System.Drawing.Point(12, 18);
             this.lblNombrePersona.Name = "lblNombrePersona";
             this.lblNombrePersona.Size = new System.Drawing.Size(112, 15);
             this.lblNombrePersona.TabIndex = 8;

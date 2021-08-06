@@ -51,6 +51,7 @@ namespace AppDocente.menuScreens
             idMensaje++;
             Controlador.enviarMensaje(idMensaje, idConsultaPrivada, ciDocente, ciAlumno,
                                             txtRespuesta.Text, null, fecha, "recibido", ciAlumno);
+            
             Console.Write("ENVIADO!");
         }
 
@@ -72,9 +73,14 @@ namespace AppDocente.menuScreens
             {
                 
                 enviarMensaje();
-                this.Refresh();
-               // MessageBox.Show("Mensaje enviado.", "Mensaje!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //this.Close();
+                
+                
+
+               // this.Refresh();
+                MessageBox.Show("Mensaje enviado.");
+                txtRespuesta.Text = "";
+                this.Close();
+                
             }
         }
     }
