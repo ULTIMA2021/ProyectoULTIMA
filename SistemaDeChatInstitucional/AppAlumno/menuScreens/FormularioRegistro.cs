@@ -28,13 +28,27 @@ namespace Login
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
+            //tirarlo contr la base, sacar ifs
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length==8)
             {
                 if (Controlador.existePersona(txtCedula.Text))
                 {
-                    Console.WriteLine("this person is getting registered");
-                    Controlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
-                    Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text,getIndexesChecklist());
+                    try
+                    {//agregar throw en capa dde datos
+                        Controlador.AltaAlumno(
+                                               txtCedula.Text,
+                                               txtNombre.Text,
+                                               txtApellido.Text,
+                                               txtClave.Text,
+                                               txtApodo.Text,
+                                               getIndexesChecklist());
+                    }
+                    catch (Exception ex)
+                    {
+                        Controlador.errorHandler(ex);
+                    }
+                   
+
                     checkedListBox1.DataSource = Controlador.gruposToListForRegister();
                     //MessageBox.Show(" Ingresado! espere que lo confirme un administrador");
 

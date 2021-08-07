@@ -20,6 +20,7 @@ namespace Login
         {
             InitializeComponent();
             this.CenterToScreen();
+            Session.type = 4;
         }
         // Metodos para desplazar ventana
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -40,7 +41,7 @@ namespace Login
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(Controlador.showLoginErrorMessage(ex));
+                        MessageBox.Show(Controlador.errorHandler(ex));
                     }
 
                 }

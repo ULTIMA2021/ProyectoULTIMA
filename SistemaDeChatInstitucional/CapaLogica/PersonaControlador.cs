@@ -10,6 +10,7 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
+        
         //implementear en segunda entrega
         /*
        public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
@@ -51,6 +52,26 @@ namespace CapaLogica
                 g.nuevoIngresoAlumnoTieneGrupo(cedula, grupo);
             }
         }
+
+        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave,string apodo,/*, string foto, byte avatar,*/List<int> GruposDeAlumno)
+        {
+            string gruposString = "";
+            PersonaModelo p = new PersonaModelo(Session.type);
+            p.Cedula = cedula;
+            p.Apodo = apodo;
+            p.Apellido = apellido;
+            p.Nombre = nombre;
+            p.Clave = clave;
+            p.foto = null;
+            p.avatar = null;
+            for (int x=0;x<GruposDeAlumno.Count;x++)
+                if (x == GruposDeAlumno.Count-1)
+                    gruposString += $"{GruposDeAlumno[x].ToString()}";
+                else
+                    gruposString += $"{GruposDeAlumno[x].ToString()}-";
+            p.guardarAlumno(gruposString);
+        }
+
 
         public static void AltaDocente(string cedula, List<int> GruposMateriasDeDocente)
         {
@@ -132,24 +153,10 @@ namespace CapaLogica
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAdmin);
         }
-        /*
-         el decrypter no esta funcionando, comenta el otro metodo que se lama igual para ver que pasa
-        public static bool lista(string user, string pass, byte sessionType, Func<string, string, byte ,List<PersonaModelo>> metodoObtener)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            List<PersonaModelo> personas = metodoObtener(user, pass, Session.type);
-            if (personas.Count == 1)
-            {
-                personas[0].Clave = Cryptography.encryptThis(personas[0].Clave);
-                Session.saveToCache(personas[0]);
-                Console.WriteLine($"SESSION CLAVE:{Session.clave}");
-                Cryptography.decryptThis(Session.clave);
-                return true;
-            }
-            return false;
-        }
-*/
-
+        
+        //aca encriptar la session.clave para que no quede pelada
+        //le pregunte al profe donde guardar la key que se uso para encriptar, no se puede guardar en la bd y no conviene ponerlo en la app como un string pelado
+        //las keys Se necesitan para desencriptar
         public static bool lista(string user, string pass, byte sessionType, Func<string, string, byte, List<PersonaModelo>> metodoObtener)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -199,23 +206,6 @@ namespace CapaLogica
             return tabla;
         }
 
-
-        public static string showLoginErrorMessage(Exception ex)
-        {
-            string msg;
-            switch (ex.Message)
-            {
-                case "0":
-                    msg = "No se pudo conectar a la base de datos";
-                    break;
-                case "1042":
-                    msg = "La conexion a esa direccion no existe";
-                    break;
-                default:
-                    msg = "Hubo un error con la conexion";
-                    break;
-            }
-            return $"ERROR CODE: {ex.Message}\n{msg}";
-        }
+       
     }
 }

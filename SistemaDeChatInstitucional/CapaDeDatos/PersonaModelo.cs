@@ -11,6 +11,7 @@ namespace CapaDeDatos
 {
     public class PersonaModelo : Modelo
     {
+        private string errorType = "Persona";
         public string Cedula;
         public string Nombre;
         public string Apellido;
@@ -25,22 +26,6 @@ namespace CapaDeDatos
         {
         }
 
-
-        //implementar en segunda entrega
-        public void GuardarTemp(string tipoUsuario)
-        {
-            this.comando.CommandText = "INSERT INTO PersonaTemp (ci,nombre,apellido,clave,enLinea,foto,avatar) VALUES(" +
-                                    "@cedula,@nombre,@apellido,@clave,@foto,@avatar,@tipoUsuario);";
-            this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
-            this.comando.Parameters.AddWithValue("@nombre", this.Nombre);
-            this.comando.Parameters.AddWithValue("@apellido", this.Apellido);
-            this.comando.Parameters.AddWithValue("@clave", this.Clave);
-            this.comando.Parameters.AddWithValue("@foto", this.foto);
-            this.comando.Parameters.AddWithValue("@avatar", this.avatar);
-            this.comando.Parameters.AddWithValue("@avatar", tipoUsuario);
-            this.comando.Prepare();
-            EjecutarQuery(this.comando);
-        }
         public void GuardarPersona()
         {
             this.comando.CommandText = "INSERT INTO Persona (ci,nombre,apellido,clave,isDeleted,enLinea,foto,avatar) VALUES(" +
@@ -54,7 +39,8 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@isDeleted", false);
             this.comando.Parameters.AddWithValue("@enlinea", false);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando,errorType);
+
         }
         public void guardarAlumno()
         {
@@ -62,21 +48,36 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
             this.comando.Parameters.AddWithValue("Apodo", this.Apodo);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
+        }
+        public void guardarAlumno(string grupos)
+        {
+            this.comando.CommandText = "INSERT INTO AlumnoTemp (ci, nombre, apellido, clave, foto, avatar, apodo, grupos) " +
+                "VALUES (@Cedula,@Apodo);";
+            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("Cedula", this.Nombre);
+            this.comando.Parameters.AddWithValue("Cedula", this.Apellido);
+            this.comando.Parameters.AddWithValue("Cedula", this.Clave);
+            this.comando.Parameters.AddWithValue("Cedula", this.foto);
+            this.comando.Parameters.AddWithValue("Cedula", this.avatar);
+            this.comando.Parameters.AddWithValue("Apodo", this.Apodo);
+            this.comando.Parameters.AddWithValue("Cedula", grupos);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
         }
         public void guardarDocente()
         {
             this.comando.CommandText = "INSERT INTO Docente (ci) VALUES (@cedula);";
             this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
         public void guardarAdmin()
         {
             this.comando.CommandText = "INSERT INTO Administrador (ci) VALUES(@Cedula);";
             this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
 
         public void actualizarPersona()
@@ -85,7 +86,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
             this.comando.Parameters.AddWithValue("enLinea", this.enLinea);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
         public void actualizarPersona(string clave)
         {
@@ -93,7 +94,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("Cedula", Cedula);
             this.comando.Parameters.AddWithValue("clave", clave);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
         public void actualizarPersona(bool isDeleted)
         {
@@ -101,10 +102,9 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("Cedula", Cedula);
             this.comando.Parameters.AddWithValue("isDeleted", isDeleted);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
 
-        //esto deberia ser private, no deberia poder llamarlo de la capa logica
         private List<PersonaModelo> obtenerUsuario(MySqlCommand commando, byte sessionType)
         {
             lector = commando.ExecuteReader();

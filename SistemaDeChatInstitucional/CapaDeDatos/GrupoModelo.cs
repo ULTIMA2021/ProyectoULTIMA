@@ -15,6 +15,7 @@ namespace CapaDeDatos
         public string nombreMateria;
         public string nombreGrupo;
         public string nombreOrientacion;
+        public string errorType = "Grupo";
 
         public GrupoModelo(byte sessionType) : base(sessionType)
         {
@@ -25,7 +26,7 @@ namespace CapaDeDatos
             this.comando.CommandText = "INSERT INTO Grupo (nombreGrupo) VALUES(@nombreGrupo);";
             this.comando.Parameters.AddWithValue("nombreGrupo",nombreGrupo);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
         public void nuevoIngresoAlumnoTieneGrupo(string alumnoCi, int idGrupo) {
             command = "INSERT INTO Alumno_Tiene_Grupo (alumnoCi,idGrupo) VALUES (@alumnoCi,@idGrupo);";
@@ -33,7 +34,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("alumnoCi", alumnoCi);
             this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
         }
         public void nuevoIngresoDocenteTieneGM(string docenteCi, int idGrupo,int idMateria) {
@@ -43,7 +44,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("idMateria", idMateria);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
         }
         public void actualizarDocenteTieneGM(string docenteCi, int idGrupo, int idMateria){
@@ -53,7 +54,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("idMateria", idMateria);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
         }
 

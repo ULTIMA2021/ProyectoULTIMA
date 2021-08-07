@@ -9,8 +9,9 @@ namespace CapaDeDatos
 {
     public class OrientacionModelo : Modelo
     {
-        int idOrientacion;
-        string nombreOrientacion;
+        public int idOrientacion;
+        public string nombreOrientacion;
+        public string errorType="Orientacion";
 
         public OrientacionModelo(byte sessionType) : base(sessionType)
         {
@@ -20,7 +21,7 @@ namespace CapaDeDatos
         {
             this.comando.CommandText = "INSERT INTO Orientacion (nombreMateria) VALUES(@nombreOrientacion);";
             this.comando.Parameters.AddWithValue("nombreOrientacion", nombreOrientacion);
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
         private List<OrientacionModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
         {

@@ -20,6 +20,7 @@ namespace Login
         {
             InitializeComponent();
             CenterToScreen();
+            Session.type = 5;
         }
         // Metodos para desplazar ventana
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]

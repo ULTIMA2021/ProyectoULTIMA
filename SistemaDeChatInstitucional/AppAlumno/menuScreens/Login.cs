@@ -20,6 +20,7 @@ namespace Login
         {
             InitializeComponent();
             this.CenterToScreen();
+            Session.type = 3;
         }
         // Metodos para desplazar ventana
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -39,12 +40,12 @@ namespace Login
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(Controlador.errorHandler(ex));
                     }
                 }
-                else errorMessage("* Ingrese contraseña.");
+                else updateErrorLabel("* Ingrese contraseña.");
             }
-            else errorMessage("* Ingrese un usuario.");
+            else updateErrorLabel("* Ingrese un usuario.");
         }
 
         private void validarUsuario()
@@ -60,13 +61,13 @@ namespace Login
                 Controlador.actualizarEstadoPersona(true);
                 return;
             }
-            errorMessage("* Usuario y/o contraseña incorrectos.");
+            updateErrorLabel("* Usuario y/o contraseña incorrectos.");
             txtUsuario.Text = "Usuario";
             txtContra.PasswordChar = '\0';
             txtContra.Text = "Contraseña";
         }
 
-        public void errorMessage(string msg)
+        public void updateErrorLabel(string msg)
         {
             lblErrorMessage.Text = msg;
             lblErrorMessage.Visible = true;

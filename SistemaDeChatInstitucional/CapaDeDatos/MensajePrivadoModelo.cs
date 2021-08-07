@@ -17,6 +17,7 @@ namespace CapaDeDatos
         public DateTime cp_mensajeFechaHora;
         public string cp_mensajeStatus; //'recibido','leido'
         public int ciDestinatario;
+        public string errorType="MensajePrivado";
 
         public MensajePrivadoModelo(byte sessionType) : base(sessionType)
         {
@@ -38,7 +39,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("cp_mensajeStatus", cp_mensajeStatus);
             this.comando.Parameters.AddWithValue("ciDestinatario", ciDestinatario);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
         private List<MensajePrivadoModelo> cargarMensajePrivadoALista(MySqlCommand commando, byte sessionType)
         {

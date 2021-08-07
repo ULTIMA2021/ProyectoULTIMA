@@ -11,6 +11,7 @@ namespace CapaDeDatos
 
         int idMateria;
         string nombreMateria;
+        public string errorType="Materia";
 
         public MateriaModelo(byte sessionType) : base(sessionType)
         {
@@ -20,7 +21,7 @@ namespace CapaDeDatos
         {
             this.comando.CommandText = "INSERT INTO Materia (nombreMateria) VALUES(@nombreMateria);";
             this.comando.Parameters.AddWithValue("nomberMateria", nombreMateria);
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
         private List<MateriaModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
         {

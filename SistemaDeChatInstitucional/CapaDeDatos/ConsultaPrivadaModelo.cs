@@ -19,6 +19,7 @@ namespace CapaDeDatos
         public string cpStatus;
         public DateTime cpFechaHora;
         public string ciDestinatario;
+        public string errorType = "ConsultaPrivada";
 
         public ConsultaPrivadaModelo(byte sessionType) : base(sessionType)
         {
@@ -36,7 +37,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("cpStatus", cpStatus);
             this.comando.Parameters.AddWithValue("cpFechaHora", cpFechaHora);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
 
         public List<ConsultaPrivadaModelo> getConsultas(int ciDocente, int ciAlumno, byte sessionType)
@@ -71,8 +72,7 @@ namespace CapaDeDatos
                     cp.ciAlumno = consulta.ciAlumno;
                     cp.cpFechaHora = consulta.cpFechaHora ;
                     cp.cpStatus = consulta.cpStatus;
-                    cp.titulo = consulta.titulo;
-                    
+                    cp.titulo = consulta.titulo; 
                     consultas.Add(cp);
                     Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
                     Console.WriteLine(cp.ToString());
