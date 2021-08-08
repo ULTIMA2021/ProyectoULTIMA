@@ -22,6 +22,7 @@ namespace CapaLogica
 
         public static string encryptThis(string target)
         {
+            newSafeKey();
             var buffer = Encoding.UTF8.GetBytes(target);
             var tripleDES = new TripleDESCryptoServiceProvider()
             {

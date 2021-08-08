@@ -28,38 +28,31 @@ namespace Login
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
-            //tirarlo contr la base, sacar ifs
-            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length==8)
-            {
-                if (Controlador.existePersona(txtCedula.Text))
+            string clave = txtClave.Text;
+            if (txtClave.Text == txtClaveVerificacion.Text)
+                try
                 {
-                    try
-                    {//agregar throw en capa dde datos
-                        Controlador.AltaAlumno(
-                                               txtCedula.Text,
-                                               txtNombre.Text,
-                                               txtApellido.Text,
-                                               txtClave.Text,
-                                               txtApodo.Text,
-                                               getIndexesChecklist());
-                    }
-                    catch (Exception ex)
+                    if (Controlador.existePersona(txtCedula.Text))
                     {
-                        Controlador.errorHandler(ex);
+                        //se necesita ver como desencryptar esto
+                        //se necesita poner mejor constraints en la bd para no tener que verificar los valores aca. Porque me esta tomando valores incorrectos
+                        //que verificarlos en la app
+                       clave= CryptographyUtils.encryptThis(clave);
+                        Controlador.AltaAlumno(
+                                                  txtCedula.Text,
+                                                  txtNombre.Text,
+                                                  txtApellido.Text,
+                                                  clave,
+                                                  txtApodo.Text,
+                                                  getIndexesChecklist());
+                        MessageBox.Show($"Ingresado! {txtNombre.Text} {txtApellido.Text}, espere que lo confirme un administrador");
+                        resetFields();
                     }
-                   
+                }catch (Exception ex) { MessageBox.Show(Controlador.errorHandler(ex)); }
+            else
+                MessageBox.Show("Las claves no son iguales");
 
-                    checkedListBox1.DataSource = Controlador.gruposToListForRegister();
-                    //MessageBox.Show(" Ingresado! espere que lo confirme un administrador");
-
-                }
-                else MessageBox.Show("Una persona con esa cedula ya existe");
-
-            }
-            else MessageBox.Show("Las contraseñas no coinciden");
-
-            MessageBox.Show($"Ingresado! Bienvenido {txtNombre.Text} {txtApellido.Text}");
-            resetFields();
+            checkedListBox1.DataSource = Controlador.gruposToListForRegister();
         }
 
         private void load() {

@@ -25,7 +25,7 @@ namespace CapaDeDatos
                 connection(sessionType);
             }catch(MySqlException e)
             {
-                Console.WriteLine("MODELO.CS SQL ERROR CODE CONNECTION: "+e.Number);
+                Console.WriteLine($"MODELO.CS SQL ERROR CODE CONNECTION: {e.Number}\n {e.Message}");
                 throw new Exception($"Conection-{e.Number.ToString()}");
             }
         }
@@ -53,8 +53,8 @@ namespace CapaDeDatos
             }
             catch (MySqlException e)
             {
-                Console.WriteLine("MODELO.CS SQL ERROR CODE EjecutarQuery: " + e.Number);
-                throw new Exception($"{errorType}-{e.Number.ToString()}");
+                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery:  { e.Number}\n {e.Message}");
+                throw new Exception($"{errorType}-{e.Number}");
             }
         }
 
@@ -82,7 +82,6 @@ namespace CapaDeDatos
                 default: throw new Exception("el tipo de session no se pudo cargar correctamente");
             }
         }
-
         private void usuarioEsAlumno()
         {
             this.UsuarioDb = "alumnoDB";

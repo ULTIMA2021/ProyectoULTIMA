@@ -9,7 +9,7 @@ namespace CapaLogica
     public static partial class Controlador
     {
 
-        //cambiar esto para que no le tire el exception msg. Esta ahora para ver que sql error es que pasa
+        //cambiar esto para que no le tire el exception msg. Esta ahora para ver que error es que pasa
         public static string errorHandler(Exception ex)
         {
             string msg; 
@@ -29,6 +29,9 @@ namespace CapaLogica
                     msg = "esa persona ya existe";
                     break;
                 case "Persona-1048":
+                    msg = "Todos los campos indicados deben estar llenos";
+                    break;
+                case "Persona-1366":
                     msg = "Todos los campos indicados deben estar llenos";
                     break;
 
@@ -71,7 +74,7 @@ namespace CapaLogica
                     msg = "Error desconocido";
                     break;
             }
-            return $"ERROR CODE: {ex.Message}\n{msg}";
+            return $"ERROR CODE: {ex.Message}\n\n{msg}";
         }
     }
 }

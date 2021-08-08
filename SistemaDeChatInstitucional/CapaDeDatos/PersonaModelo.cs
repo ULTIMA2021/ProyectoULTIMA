@@ -53,15 +53,15 @@ namespace CapaDeDatos
         public void guardarAlumno(string grupos)
         {
             this.comando.CommandText = "INSERT INTO AlumnoTemp (ci, nombre, apellido, clave, foto, avatar, apodo, grupos) " +
-                "VALUES (@Cedula,@Apodo);";
-            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
-            this.comando.Parameters.AddWithValue("Cedula", this.Nombre);
-            this.comando.Parameters.AddWithValue("Cedula", this.Apellido);
-            this.comando.Parameters.AddWithValue("Cedula", this.Clave);
-            this.comando.Parameters.AddWithValue("Cedula", this.foto);
-            this.comando.Parameters.AddWithValue("Cedula", this.avatar);
-            this.comando.Parameters.AddWithValue("Apodo", this.Apodo);
-            this.comando.Parameters.AddWithValue("Cedula", grupos);
+                "VALUES (@Cedula,@nombre,@apellido,@clave,@foto,@avatar,@Apodo,@grupos);";
+            this.comando.Parameters.AddWithValue("@Cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("@nombre", this.Nombre);
+            this.comando.Parameters.AddWithValue("@apellido", this.Apellido);
+            this.comando.Parameters.AddWithValue("@clave", this.Clave);
+            this.comando.Parameters.AddWithValue("@foto", this.foto);
+            this.comando.Parameters.AddWithValue("@avatar", this.avatar);
+            this.comando.Parameters.AddWithValue("@Apodo", this.Apodo);
+            this.comando.Parameters.AddWithValue("@grupos", grupos);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }

@@ -64,14 +64,16 @@ namespace CapaLogica
             p.Clave = clave;
             p.foto = null;
             p.avatar = null;
-            for (int x=0;x<GruposDeAlumno.Count;x++)
-                if (x == GruposDeAlumno.Count-1)
-                    gruposString += $"{GruposDeAlumno[x].ToString()}";
-                else
-                    gruposString += $"{GruposDeAlumno[x].ToString()}-";
+            if (GruposDeAlumno.Count > 0)
+                for (int x = 0; x < GruposDeAlumno.Count; x++)
+                    if (x == GruposDeAlumno.Count - 1)
+                        gruposString += $"{GruposDeAlumno[x].ToString()}";
+                    else
+                        gruposString += $"{GruposDeAlumno[x].ToString()}-";
+            else
+                gruposString = null;
             p.guardarAlumno(gruposString);
         }
-
 
         public static void AltaDocente(string cedula, List<int> GruposMateriasDeDocente)
         {
@@ -130,7 +132,7 @@ namespace CapaLogica
             if (p.obtenerPersona(ci, Session.type).Cedula == ci)
             {
                 Console.WriteLine($"PERSON {ci} EXISTS IN SYSTEM");
-                return false;
+                throw new Exception($"Persona-1062");
             }
             Console.WriteLine($"PERSON {ci} DOES NOT EXIST IN SYSTEM");
             return true;
@@ -168,6 +170,7 @@ namespace CapaLogica
             }
             return false;
         }
+
         public static bool obtenerAlumno(string ci)
         {
             PersonaModelo u = new PersonaModelo(Session.type);
