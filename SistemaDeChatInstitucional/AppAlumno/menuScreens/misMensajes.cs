@@ -42,10 +42,6 @@ namespace AppAlumno.menuScreens
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            
-            
-            
-            
             idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
             ciAlumno = Session.cedula;
@@ -53,23 +49,6 @@ namespace AppAlumno.menuScreens
             idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
             replyScreen r = new replyScreen(mensajes);
-            
-            /*
-            replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, ciDocente, ciAlumno);
-
-            string docenteNombre = Controlador.traemeEstaPersona(mensajes[0][2]);
-            for (int i = 0; i < mensajes.Count; i++)
-            {
-                cuadroMensaje conversacion;
-                if (mensajes[i][7] != Session.cedula)
-                    conversacion = new cuadroMensaje(mensajes[i][4], Session.nombre+" "+Session.apellido);
-                else
-                    conversacion = new cuadroMensaje(mensajes[i][4], docenteNombre);
-                reply.openScreen(conversacion);
-
-            }
-                reply.ShowDialog();
-                */
         }
 
         private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -88,10 +67,7 @@ namespace AppAlumno.menuScreens
                          row.Cells[i].Style.BackColor = Color.Orange;
                      }
                  }
-
-             } */
-
-            
+             } */    
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

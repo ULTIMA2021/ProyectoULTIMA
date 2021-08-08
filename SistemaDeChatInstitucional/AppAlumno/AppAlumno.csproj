@@ -66,12 +66,6 @@
     <Compile Include="menuScreens\configuracion.Designer.cs">
       <DependentUpon>configuracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\cuadroMensaje.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menuScreens\cuadroMensaje.Designer.cs">
-      <DependentUpon>cuadroMensaje.cs</DependentUpon>
-    </Compile>
     <Compile Include="menuScreens\FormularioRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,9 +118,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\configuracion.resx">
       <DependentUpon>configuracion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\cuadroMensaje.resx">
-      <DependentUpon>cuadroMensaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\FormularioRegistro.resx">
       <DependentUpon>FormularioRegistro.cs</DependentUpon>
