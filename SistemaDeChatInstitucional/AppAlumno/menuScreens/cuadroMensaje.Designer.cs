@@ -47,7 +47,7 @@
             // 
             // txtMensajeAlumno
             // 
-            this.txtMensajeAlumno.BackColor = System.Drawing.Color.PowderBlue;
+            this.txtMensajeAlumno.BackColor = System.Drawing.Color.PeachPuff;
             this.txtMensajeAlumno.Enabled = false;
             this.txtMensajeAlumno.Location = new System.Drawing.Point(66, 46);
             this.txtMensajeAlumno.Multiline = true;

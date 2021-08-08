@@ -42,12 +42,19 @@ namespace AppAlumno.menuScreens
 
         private void btnVer_Click(object sender, EventArgs e)
         {
+            
+            
+            
+            
             idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
             idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+            replyScreen r = new replyScreen(mensajes);
+            
+            /*
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, ciDocente, ciAlumno);
 
             string docenteNombre = Controlador.traemeEstaPersona(mensajes[0][2]);
@@ -62,6 +69,7 @@ namespace AppAlumno.menuScreens
 
             }
                 reply.ShowDialog();
+                */
         }
 
         private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)

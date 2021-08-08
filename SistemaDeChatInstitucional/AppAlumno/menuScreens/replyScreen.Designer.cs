@@ -31,23 +31,20 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
-            this.panelContenedor = new System.Windows.Forms.Panel();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
-            this.panelContenedor.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.btnEnviar);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.txtRespuesta);
+            this.panel1.Controls.Add(this.btnEnviar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 329);
+            this.panel1.Location = new System.Drawing.Point(0, 344);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(656, 140);
+            this.panel1.Size = new System.Drawing.Size(671, 143);
             this.panel1.TabIndex = 0;
             // 
             // btnEnviar
@@ -57,9 +54,9 @@
             this.btnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnviar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEnviar.Location = new System.Drawing.Point(519, 20);
+            this.btnEnviar.Location = new System.Drawing.Point(522, 12);
             this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(125, 102);
+            this.btnEnviar.Size = new System.Drawing.Size(136, 69);
             this.btnEnviar.TabIndex = 1;
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = false;
@@ -67,58 +64,31 @@
             // 
             // txtRespuesta
             // 
-            this.txtRespuesta.Location = new System.Drawing.Point(26, 20);
+            this.txtRespuesta.Location = new System.Drawing.Point(11, 12);
             this.txtRespuesta.Multiline = true;
             this.txtRespuesta.Name = "txtRespuesta";
             this.txtRespuesta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRespuesta.Size = new System.Drawing.Size(480, 108);
+            this.txtRespuesta.Size = new System.Drawing.Size(505, 118);
             this.txtRespuesta.TabIndex = 0;
             // 
-            // panelContenedor
+            // flowLayoutPanel1
             // 
-            this.panelContenedor.AutoScroll = true;
-            this.panelContenedor.Controls.Add(this.shapeContainer1);
-            this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContenedor.Location = new System.Drawing.Point(0, 0);
-            this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(656, 329);
-            this.panelContenedor.TabIndex = 1;
-            // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.lineShape2,
-            this.lineShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(656, 329);
-            this.shapeContainer1.TabIndex = 7;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // lineShape2
-            // 
-            this.lineShape2.Name = "lineShape2";
-            this.lineShape2.X1 = -1;
-            this.lineShape2.X2 = 654;
-            this.lineShape2.Y1 = 324;
-            this.lineShape2.Y2 = 324;
-            // 
-            // lineShape1
-            // 
-            this.lineShape1.Name = "lineShape1";
-            this.lineShape1.X1 = 22;
-            this.lineShape1.X2 = 636;
-            this.lineShape1.Y1 = 166;
-            this.lineShape1.Y2 = 166;
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 338);
+            this.flowLayoutPanel1.TabIndex = 1;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // replyScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(656, 469);
-            this.Controls.Add(this.panelContenedor);
+            this.ClientSize = new System.Drawing.Size(671, 487);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "replyScreen";
@@ -126,7 +96,6 @@
             this.Text = "Mensajes";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelContenedor.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -136,9 +105,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.TextBox txtRespuesta;
-        private System.Windows.Forms.Panel panelContenedor;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
-        private Microsoft.VisualBasic.PowerPacks.LineShape lineShape2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
