@@ -50,9 +50,6 @@ namespace AppDocente.menuScreens
             mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
            
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, Int32.Parse(ciDocente), Int32.Parse(ciAlumno));
-            // replyScreen reply2 = new replyScreen();
-
-            // parte de prueba
             string alumnoNombre = Controlador.traemeEstaPersona(mensajes[0][1]);
             for (int i = 0; i < mensajes.Count; i++)
             {

@@ -217,7 +217,7 @@
             this.txtClave.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtClave.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtClave.Location = new System.Drawing.Point(146, 402);
-            this.txtClave.MaxLength = 15;
+            this.txtClave.MaxLength = 16;
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(103, 20);
             this.txtClave.TabIndex = 16;
@@ -238,7 +238,7 @@
             this.txtClaveVerificacion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtClaveVerificacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtClaveVerificacion.Location = new System.Drawing.Point(146, 428);
-            this.txtClaveVerificacion.MaxLength = 15;
+            this.txtClaveVerificacion.MaxLength = 16;
             this.txtClaveVerificacion.Name = "txtClaveVerificacion";
             this.txtClaveVerificacion.Size = new System.Drawing.Size(103, 20);
             this.txtClaveVerificacion.TabIndex = 18;

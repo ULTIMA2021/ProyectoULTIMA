@@ -38,11 +38,7 @@ namespace AppAlumno.menuScreens
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
             dgvMisMensajes.Columns["Destinatario"].Visible = false;
             dgvMisMensajes.Columns["idMensaje"].Visible = false;
-
-        
         }
-
-        
 
         private void btnVer_Click(object sender, EventArgs e)
         {
@@ -52,9 +48,7 @@ namespace AppAlumno.menuScreens
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
             idMensaje = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[1].Value.ToString());
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-           // reply = new replyScreen();
             replyScreen reply = new replyScreen(idConsultaPrivada, mensajes.Count, ciDocente, ciAlumno);
-
 
             string docenteNombre = Controlador.traemeEstaPersona(mensajes[0][2]);
             for (int i = 0; i < mensajes.Count; i++)
@@ -72,11 +66,7 @@ namespace AppAlumno.menuScreens
 
         private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            
-                
 
-                
-            
         }
 
         private void dgvMisMensajes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

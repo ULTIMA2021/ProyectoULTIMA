@@ -28,7 +28,7 @@ namespace Login
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
-            string clave = txtClave.Text;
+            string clave = @txtClave.Text;
             if (txtClave.Text == txtClaveVerificacion.Text)
                 try
                 {

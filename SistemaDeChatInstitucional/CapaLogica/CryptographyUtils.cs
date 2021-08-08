@@ -31,12 +31,13 @@ namespace CapaLogica
             };
             ICryptoTransform transform = tripleDES.CreateEncryptor();
             var cipherText = transform.TransformFinalBlock(buffer, 0, buffer.Length);
-            return Convert.ToBase64String(cipherText);
+            Console.WriteLine(@Convert.ToBase64String(cipherText));
+            return @Convert.ToBase64String(cipherText);
         }
 
         public static string decryptThis(string encryptedText)
         {
-            var buffer = Convert.FromBase64String(encryptedText);
+            var buffer = @Convert.FromBase64String(encryptedText);
             var tripleDES = new TripleDESCryptoServiceProvider()
             {
                 IV = IV,
@@ -56,7 +57,5 @@ namespace CapaLogica
             KEY = tripleDES.Key;
             IV = tripleDES.IV;
         }
-
-        
     }
 }
