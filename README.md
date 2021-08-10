@@ -1,6 +1,6 @@
 # Cosas que se necesitan instalar en vs para que funcione 
 
-Primero se debe correr el [sql script](https://github.com/FedericoCosta2021/MysqlScript-ultima2021.git)
+Primero se debe correr el [sql script](https://github.com/ULTIMA2021/MysqlScript-ultima2021)
 
 Tambien en vs se necesitan unos packets del NuGet Package Manager:
 
@@ -57,8 +57,8 @@ Por lo tanto, los usuarios que hemos cargados son:
 ---
 
 ## Otras links:
-[trello](https://github.com/FedericoCosta2021/MysqlScript-ultima2021.git)
+[trello](https://trello.com/b/qcD4KHrV/primer-entrega-ultima)
 
-[miro](https://github.com/FedericoCosta2021/MysqlScript-ultima2021.git)
+[miro](https://miro.com/app/board/o9J_lAxZIOM=/)
 
 [github config de servidores](https://github.com/ULTIMA2021/Sistemas-Operativos)
