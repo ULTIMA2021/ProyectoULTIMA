@@ -50,6 +50,14 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+        public void guardarAlumno(byte dummy)
+        {
+            this.comando.CommandText = "INSERT INTO Alumno (ci,apodo) VALUES (@Cedula,@Apodo);";
+            this.comando.Parameters.AddWithValue("Cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("Apodo", this.Apodo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+        }
         public void guardarAlumno(string grupos)
         {
             this.comando.CommandText = "INSERT INTO AlumnoTemp (ci, nombre, apellido, clave, foto, avatar, apodo, grupos) " +
@@ -72,12 +80,28 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+        public void guardarDocente(byte dummy)
+        {
+            this.comando.CommandText = "INSERT INTO Docente (ci, idDocente) VALUES (@cedula,@clave);";
+            this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("@clave", this.Clave);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
+        }
         public void guardarAdmin()
         {
             this.comando.CommandText = "INSERT INTO Administrador (ci) VALUES(@Cedula);";
             this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
+        }
+        public void guardarAdmin(byte dummy)
+        {
+            this.comando.CommandText = "INSERT INTO Administrador (ci,idAdmin) VALUES(@Cedula,@clave);";
+            this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
+            this.comando.Parameters.AddWithValue("@clave", this.Clave);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando);
         }
 
         public void actualizarPersona()

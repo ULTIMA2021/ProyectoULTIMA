@@ -53,8 +53,26 @@ namespace CapaDeDatos
             }
             catch (MySqlException e)
             {
-                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery:  { e.Number}\n {e.Message}");
-                throw new Exception($"{errorType}-{e.Number}");
+                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery: {e.Number}\n{e.Message}");
+                throw new Exception($"{errorType}---{e.Number}");
+            }
+        }
+
+        //para los login
+        public void EjecutarQuery(MySqlCommand comando)
+        {
+            try
+            {
+                comando.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine($"MODELO.CS SQL ERROR CODE $EjecutarQuery: {e.Number}\n{e.Message}");
+                if (e.Number != 1366) {
+                    throw new Exception($"{e.Message}---{e.Number}");
+                }
+                else
+                    throw new Exception($"Persona---{e.Number}");
             }
         }
 

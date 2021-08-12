@@ -36,35 +36,42 @@ namespace Login
                 {
                     try
                     {
-                        validarUsuario();
+                        Controlador.alumnoIsLogging(txtUsuario.Text, txtContra.Text);
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(Controlador.errorHandler(ex));
+                        string errorToDisplay= Controlador.errorHandler(ex);
+                        if (errorToDisplay == null)
+                            loadAlumno();
+                        else
+                        {
+                            if (errorToDisplay.StartsWith("*")){
+                                updateErrorLabel(errorToDisplay);
+                                txtUsuario.Text = "Usuario";
+                                txtContra.PasswordChar = '\0';
+                                txtContra.Text = "Contraseña";
+                            }
+                            else
+                                MessageBox.Show(errorToDisplay);
+                           
+                        }
                     }
                 }
                 else updateErrorLabel("* Ingrese contraseña.");
             }
             else updateErrorLabel("* Ingrese un usuario.");
         }
-
-        private void validarUsuario()
-        {
-            if (Controlador.isAlumno(txtUsuario.Text, txtContra.Text))
-            {
-                Session.type = 0;
-                this.Hide();
-                bienvenido bv = new bienvenido();
-                bv.ShowDialog();
-                alumnoMainScreen ams = new alumnoMainScreen();
-                ams.Show();
-                Controlador.actualizarEstadoPersona(true);
-                return;
-            }
-            updateErrorLabel("* Usuario y/o contraseña incorrectos.");
-            txtUsuario.Text = "Usuario";
-            txtContra.PasswordChar = '\0';
-            txtContra.Text = "Contraseña";
+       
+        private void loadAlumno() {
+            Controlador.loadPersonToCache(txtUsuario.Text);
+            Session.type = 0;
+            this.Hide();
+            bienvenido bv = new bienvenido();
+            bv.ShowDialog();
+            alumnoMainScreen ams = new alumnoMainScreen();
+            ams.Show();
+            Controlador.actualizarEstadoPersona(true);
+            return;
         }
 
         public void updateErrorLabel(string msg)
