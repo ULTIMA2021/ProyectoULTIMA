@@ -209,36 +209,6 @@ namespace CapaLogica
             return tabla;
         }
 
-        //testing new shit***************************************************************
-
-        public static void alumnoIsLogging(string ci, string clave) {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            p.Cedula = ci;
-            p.Apodo = clave;
-            p.guardarAlumno(Session.type);
-        }
-        public static void docenteIsLogging(string ci, string clave)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            p.Cedula = ci;
-            p.Clave = clave;
-            p.guardarDocente(Session.type);
-        }
-        public static void adminIsLogging(string ci, string clave)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            p.Cedula = ci;
-            p.Clave = clave;
-            p.guardarAdmin(Session.type);
-        }
-
-
-        //metodo que carga la persona a la session
-        public static void loadPersonToCache(string ci)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            p.Cedula = ci;
-            Session.saveToCache(p.obtenerPersona(ci,Session.type));
-        }
+       
     }
 }

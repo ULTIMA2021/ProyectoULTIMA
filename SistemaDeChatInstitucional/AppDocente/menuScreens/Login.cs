@@ -30,49 +30,43 @@ namespace Login
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
             if (txtUsuario.Text != "Usuario")
             {
                 if (txtContra.Text != "Contraseña")
                 {
                     try
                     {
-                        Controlador.docenteIsLogging(txtUsuario.Text, txtContra.Text);
+                        validarUsuario();
                     }
                     catch (Exception ex)
                     {
-                        string errorToDisplay = Controlador.errorHandler(ex);
-                        if (errorToDisplay == null)
-                            loadDocente();
-                        else
-                        {
-                            if (errorToDisplay.StartsWith("*"))
-                            {
-                                updateErrorLabel(errorToDisplay);
-                                txtUsuario.Text = "Usuario";
-                                txtContra.PasswordChar = '\0';
-                                txtContra.Text = "Contraseña";
-                            }
-                            else
-                                MessageBox.Show(errorToDisplay);
-                        }
+                        MessageBox.Show(Controlador.errorHandler(ex));
                     }
+
                 }
                 else updateErrorLabel("* Ingrese contraseña.");
             }
             else updateErrorLabel("* Ingrese un usuario.");
         }
 
-        private void loadDocente()
+        private void validarUsuario()
         {
-            Controlador.loadPersonToCache(txtUsuario.Text);
-            Session.type = 0;
-            this.Hide();
-            bienvenido bv = new bienvenido();
-            bv.ShowDialog();
-            docenteMainScreen ams = new docenteMainScreen();
-            ams.Show();
-            Controlador.actualizarEstadoPersona(true);
-            return;
+            if (Controlador.isDocente(txtUsuario.Text, txtContra.Text))
+            {
+                Session.type = 1;
+                this.Hide();
+                bienvenido bv = new bienvenido();
+                bv.ShowDialog();
+                docenteMainScreen dms = new docenteMainScreen();
+                dms.Show();
+                Controlador.actualizarEstadoPersona(true);
+                return;
+            }
+            updateErrorLabel("* Usuario y/o contraseña incorrectos.");
+            txtUsuario.Text = "Usuario";
+            txtContra.PasswordChar = '\0';
+            txtContra.Text = "Contraseña";
         }
 
         private void updateErrorLabel(string msg)
