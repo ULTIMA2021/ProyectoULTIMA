@@ -23,6 +23,7 @@ namespace AppAlumno.menuScreens
         public misMensajes()
         {
             InitializeComponent();
+            Loadd();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -30,15 +31,7 @@ namespace AppAlumno.menuScreens
             this.Close();
         }
 
-        private void misMensajes_Load(object sender, EventArgs e)
-        {
-            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
-            dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;
-            dgvMisMensajes.Columns["ciAlumno"].Visible = false;
-            dgvMisMensajes.Columns["ciDocente"].Visible = false;
-            dgvMisMensajes.Columns["Destinatario"].Visible = false;
-            dgvMisMensajes.Columns["idMensaje"].Visible = false;
-        }
+      
 
         private void btnVer_Click(object sender, EventArgs e)
         {
@@ -58,21 +51,21 @@ namespace AppAlumno.menuScreens
 
         private void dgvMisMensajes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            /* foreach (DataGridViewRow row in dgvMisMensajes.Rows)
-             {
-                 for (int i = 0; i < dgvMisMensajes.RowCount; i++)
-                 {
-                     if (Convert.ToString(row.Cells[i].Value) == "pendiente")
-                     {
-                         row.Cells[i].Style.BackColor = Color.Orange;
-                     }
-                 }
-             } */    
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
+        }
+        private async Task Loadd()
+        {
+            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
+            dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;
+            dgvMisMensajes.Columns["ciAlumno"].Visible = false;
+            dgvMisMensajes.Columns["ciDocente"].Visible = false;
+            dgvMisMensajes.Columns["Destinatario"].Visible = false;
+            dgvMisMensajes.Columns["idMensaje"].Visible = false;
+            await Task.Delay(1000);
         }
     }
 }

@@ -167,7 +167,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "misMensajes";
             this.Text = "misMensajes";
-            this.Load += new System.EventHandler(this.misMensajes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMisMensajes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

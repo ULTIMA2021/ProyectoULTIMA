@@ -24,14 +24,6 @@ namespace AppAlumno.menuScreens
             InitializeComponent();
         }
 
-        public replyScreen(int idConsultaPrivada, int idMensaje, string ciDocente, string ciAlumno)
-        {
-            this.idConsultaPrivada = idConsultaPrivada;
-            this.idMensaje = idMensaje;
-            this.ciAlumno = ciAlumno;
-            this.ciDocente = ciDocente;
-            InitializeComponent();
-        }
         public replyScreen(List<List<string>> mensajes)
         {
             this.mensajes = mensajes;
@@ -105,12 +97,11 @@ namespace AppAlumno.menuScreens
 
                 nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
                 nombrePersona.Dock = DockStyle.Right;
+                nombrePersona.AutoSize = true;
                 nombrePersona.Name = "label_" + i;
 
-                br.Name = "labelBR_" + i;
-
                 if (mensajes[i][7] != Session.cedula)
-                    nombrePersona.Text = $"{Session.nombre}";
+                    nombrePersona.Text = $"{Session.nombre} {Session.apellido}";
                 else{
                     t.BackColor = Color.PeachPuff;
                     t.Dock = DockStyle.Right;
@@ -120,17 +111,20 @@ namespace AppAlumno.menuScreens
                 t.Text = mensajes[i][4];
 
                 int padding = 3;
-                // get number of lines (first line is 0, so add 1)
                 int numLines = t.GetLineFromCharIndex(t.TextLength) + 1;
-                // get border thickness
                 int border = t.Height - t.ClientSize.Height;
-                // set height (height of one line * number of lines + spacing)
                 t.Height = t.Font.Height * numLines + padding + border;
 
+                this.flowLayoutPanel1.Dock = DockStyle.Fill;
                 this.flowLayoutPanel1.Controls.Add(nombrePersona);
                 this.flowLayoutPanel1.Controls.Add(t);
             }
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
+        }
+
+        private void replyScreen_SizeChanged(object sender, EventArgs e)
+        {
+            Load();
         }
     }
 }

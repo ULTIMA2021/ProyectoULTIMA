@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
+            this.btnEnviar = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +47,15 @@
             this.panel1.Size = new System.Drawing.Size(671, 143);
             this.panel1.TabIndex = 0;
             // 
+            // txtRespuesta
+            // 
+            this.txtRespuesta.Location = new System.Drawing.Point(11, 12);
+            this.txtRespuesta.Multiline = true;
+            this.txtRespuesta.Name = "txtRespuesta";
+            this.txtRespuesta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtRespuesta.Size = new System.Drawing.Size(505, 118);
+            this.txtRespuesta.TabIndex = 0;
+            // 
             // btnEnviar
             // 
             this.btnEnviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
@@ -61,15 +70,6 @@
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = false;
             this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
-            // 
-            // txtRespuesta
-            // 
-            this.txtRespuesta.Location = new System.Drawing.Point(11, 12);
-            this.txtRespuesta.Multiline = true;
-            this.txtRespuesta.Name = "txtRespuesta";
-            this.txtRespuesta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRespuesta.Size = new System.Drawing.Size(505, 118);
-            this.txtRespuesta.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -94,6 +94,7 @@
             this.Name = "replyScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Mensajes";
+            this.SizeChanged += new System.EventHandler(this.replyScreen_SizeChanged);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
