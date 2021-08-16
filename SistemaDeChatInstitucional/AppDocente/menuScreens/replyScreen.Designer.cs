@@ -53,9 +53,9 @@
             this.btnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnviar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnviar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEnviar.Location = new System.Drawing.Point(519, 20);
+            this.btnEnviar.Location = new System.Drawing.Point(534, 15);
             this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(125, 102);
+            this.btnEnviar.Size = new System.Drawing.Size(125, 67);
             this.btnEnviar.TabIndex = 1;
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = false;
@@ -63,11 +63,11 @@
             // 
             // txtRespuesta
             // 
-            this.txtRespuesta.Location = new System.Drawing.Point(26, 20);
+            this.txtRespuesta.Location = new System.Drawing.Point(24, 15);
             this.txtRespuesta.Multiline = true;
             this.txtRespuesta.Name = "txtRespuesta";
             this.txtRespuesta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtRespuesta.Size = new System.Drawing.Size(480, 108);
+            this.txtRespuesta.Size = new System.Drawing.Size(491, 108);
             this.txtRespuesta.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -92,7 +92,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "replyScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "replyScreen";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

@@ -18,24 +18,31 @@ namespace AppDocente.menuScreens
         string ciAlumno;
         string ciDocente;
         List<List<string>> mensajes;
+        string alumnoNombre;
 
         public replyScreen()
         {
             InitializeComponent();       
         }
 
-        public replyScreen(List<List<string>> mensajes)
+        public replyScreen(List<List<string>> mensajes, string asunto)
         {
-            this.mensajes = mensajes;
-            idConsultaPrivada = Int32.Parse(mensajes[0][0]);
-            idMensaje = mensajes.Count;
-            ciAlumno = mensajes[0][1];
-            ciDocente = Session.cedula;
-
+            cargarVariables(mensajes,asunto);
             InitializeComponent();
             Load();
             ShowDialog();
         }
+        private void cargarVariables(List<List<string>> mensajes, string asunto)
+        {
+            this.mensajes = mensajes;
+            idConsultaPrivada = Int32.Parse(mensajes[0][0]);
+            idMensaje = mensajes.Count;
+            ciDocente = Session.cedula;
+            ciAlumno = mensajes[0][1];
+            alumnoNombre = Controlador.traemeEstaPersona(ciAlumno);
+            this.Text = $"{asunto} - @{alumnoNombre}";
+        }
+
 
         private void enviarMensaje()
         {
@@ -80,14 +87,13 @@ namespace AppDocente.menuScreens
         private void Load()
         {
             flowLayoutPanel1.Controls.Clear();
-            string alumnoNombre = Controlador.traemeEstaPersona(ciAlumno);
             for (int i = 0; i < mensajes.Count; i++)
             {
                 Label br = new Label();
                 Label nombrePersona = new Label();
                 TextBox t = new TextBox();
 
-                t.Enabled = false;
+                t.Enabled = true;
                 t.Multiline = true;
                 t.WordWrap = true;
                 t.ReadOnly = true;
@@ -97,6 +103,8 @@ namespace AppDocente.menuScreens
                 t.Width = this.flowLayoutPanel1.Width - 40;
                 t.Name = "t_" + i;
                 t.BorderStyle = BorderStyle.None;
+                t.Font = new Font("Arial", 8.25f);
+
 
                 nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
                 nombrePersona.Dock = DockStyle.Right;
@@ -114,7 +122,7 @@ namespace AppDocente.menuScreens
                 }
                 t.Text = mensajes[i][4];
 
-                int padding = 3;
+                int padding = 10;
                 int numLines = t.GetLineFromCharIndex(t.TextLength) + 1;
                 int border = t.Height - t.ClientSize.Height;
                 t.Height = t.Font.Height * numLines + padding + border;

@@ -14,10 +14,9 @@ namespace AppAlumno.menuScreens
     public partial class misMensajes : Form
     {
         int idConsultaPrivada;
-        string indexDestinatario;
         string ciDocente;
         string ciAlumno;
-        int idMensaje;
+        string asunto;
 
         public misMensajes()
         {
@@ -36,8 +35,9 @@ namespace AppAlumno.menuScreens
             idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
+            asunto = dgvMisMensajes.CurrentRow.Cells[4].Value.ToString();
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-            replyScreen r = new replyScreen(mensajes);
+            replyScreen r = new replyScreen(mensajes,asunto);
         }
 
         private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)

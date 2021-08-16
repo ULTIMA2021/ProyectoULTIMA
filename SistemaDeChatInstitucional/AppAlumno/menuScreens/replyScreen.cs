@@ -18,23 +18,30 @@ namespace AppAlumno.menuScreens
         string ciAlumno;
         string ciDocente;
         List<List<string>> mensajes;
+        string docenteNombre; 
+
 
         public replyScreen()
         {
             InitializeComponent();
         }
 
-        public replyScreen(List<List<string>> mensajes)
+        public replyScreen(List<List<string>> mensajes, string asunto)
         {
+            cargarVariables(mensajes,asunto);
+            InitializeComponent();
+            Load();
+            ShowDialog();
+        }
+
+        private void cargarVariables(List<List<string>> mensajes, string asunto) {
             this.mensajes = mensajes;
             idConsultaPrivada = Int32.Parse(mensajes[0][0]);
             idMensaje = mensajes.Count;
             ciAlumno = Session.cedula;
             ciDocente = mensajes[0][2];
-
-            InitializeComponent();
-            Load();
-            ShowDialog();
+            docenteNombre = Controlador.traemeEstaPersona(ciDocente);
+            this.Text = $"{asunto} - @{docenteNombre}";
         }
 
         private void enviarMensaje()
@@ -77,14 +84,13 @@ namespace AppAlumno.menuScreens
         private void Load()
         {
             flowLayoutPanel1.Controls.Clear();
-            string docenteNombre = Controlador.traemeEstaPersona(ciDocente);
             for (int i = 0; i < mensajes.Count; i++)
             {
                 Label br = new Label();
                 Label nombrePersona = new Label();
                 TextBox t = new TextBox();
 
-                t.Enabled = false;
+                t.Enabled = true;
                 t.Multiline = true;
                 t.WordWrap = true;
                 t.ReadOnly = true;
@@ -94,6 +100,8 @@ namespace AppAlumno.menuScreens
                 t.Width= this.flowLayoutPanel1.Width-40;
                 t.Name = "t_" +i;
                 t.BorderStyle = BorderStyle.None;
+                t.Font = new Font("Arial", 8.25f);
+
 
                 nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
                 nombrePersona.Dock = DockStyle.Right;
