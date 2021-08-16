@@ -54,7 +54,6 @@ namespace Login
         {
             if (Controlador.isAdmin(txtUsuario.Text, txtContra.Text))
             {
-                Session.type = 2;
                 Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();

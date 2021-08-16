@@ -8,16 +8,16 @@ namespace CapaDeDatos
 {
     public class MensajePrivadoModelo : Modelo
     {
-        public int idCp_mensaje;
-        public int idConsultaPrivada;
-        public int ciDocente;
-        public int ciAlumno;
-        public string contenido;
+        int idCp_mensaje;
+         int idConsultaPrivada;
+         int ciDocente;
+         int ciAlumno;
+         public string contenido;
         //public attachment
-        public DateTime cp_mensajeFechaHora;
-        public string cp_mensajeStatus; //'recibido','leido'
-        public int ciDestinatario;
-        public string errorType="MensajePrivado";
+         DateTime cp_mensajeFechaHora;
+         string cp_mensajeStatus; //'recibido','leido'
+         int ciDestinatario;
+         string errorType="MensajePrivado";
 
         public MensajePrivadoModelo(byte sessionType) : base(sessionType)
         {

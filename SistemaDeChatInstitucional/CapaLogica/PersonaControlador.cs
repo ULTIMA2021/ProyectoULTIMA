@@ -10,7 +10,7 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
-        
+        private static byte method;
         //implementear en segunda entrega
         /*
        public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
@@ -53,7 +53,7 @@ namespace CapaLogica
             }
         }
 
-        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave,string apodo,/*, string foto, byte avatar,*/List<int> GruposDeAlumno)
+        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo,/*, string foto, byte avatar,*/List<int> GruposDeAlumno)
         {
             string gruposString = "";
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -155,20 +155,38 @@ namespace CapaLogica
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAdmin);
         }
-        
+
         //aca encriptar la session.clave para que no quede pelada
         //le pregunte al profe donde guardar la key que se uso para encriptar, no se puede guardar en la bd y no conviene ponerlo en la app como un string pelado
         //las keys Se necesitan para desencriptar
         public static bool lista(string user, string pass, byte sessionType, Func<string, string, byte, List<PersonaModelo>> metodoObtener)
         {
-            PersonaModelo p = new PersonaModelo(Session.type);
             List<PersonaModelo> personas = metodoObtener(user, pass, Session.type);
             if (personas.Count == 1)
             {
-                Session.saveToCache(personas[0]);
+                setSession(personas[0]);
                 return true;
             }
             return false;
+        }
+
+        private static void setSession(PersonaModelo per){
+            switch (Session.type) {
+                case 3:
+                    Session.type = 0;
+                    GrupoModelo g = new GrupoModelo(Session.type);
+                    Session.saveToCache(per, g.getAlumnoGrupoyYmaterias(per.Cedula, Session.type));
+                    return;
+                case 4:
+                    Session.type = 1;
+                    GrupoModelo gm = new GrupoModelo(Session.type);
+                    Session.saveToCache(per, gm.getDocenteDictaGM(per.Cedula, Session.type));
+                    return;
+                case 5:
+                    Session.type = 2;
+                    Session.saveToCache(per,null);
+                    return;
+            }
         }
 
         public static bool obtenerAlumno(string ci)
@@ -208,7 +226,5 @@ namespace CapaLogica
             }
             return tabla;
         }
-
-       
     }
 }

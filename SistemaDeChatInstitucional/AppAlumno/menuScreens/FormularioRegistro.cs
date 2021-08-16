@@ -34,9 +34,7 @@ namespace Login
                 {
                     if (Controlador.existePersona(txtCedula.Text))
                     {
-                        //se necesita ver como desencryptar esto
-                        //se necesita poner mejor constraints en la bd para no tener que verificar los valores aca. Porque me esta tomando valores incorrectos
-                        //que verificarlos en la app
+
                        clave= CryptographyUtils.encryptThis(clave);
                         Controlador.AltaAlumno(
                                                   txtCedula.Text,

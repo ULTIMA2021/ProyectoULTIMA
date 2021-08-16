@@ -115,7 +115,6 @@ namespace AppAlumno.menuScreens
                 int border = t.Height - t.ClientSize.Height;
                 t.Height = t.Font.Height * numLines + padding + border;
 
-                this.flowLayoutPanel1.Dock = DockStyle.Fill;
                 this.flowLayoutPanel1.Controls.Add(nombrePersona);
                 this.flowLayoutPanel1.Controls.Add(t);
             }
