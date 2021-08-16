@@ -75,7 +75,6 @@ namespace AppAlumno.menuScreens
         {
             if (txtRespuesta.Text != "")
             {
-                
                 enviarMensaje();
                 Load();
             }
@@ -118,7 +117,7 @@ namespace AppAlumno.menuScreens
                 }
                 t.Text = mensajes[i][4];
 
-                int padding = 3;
+                int padding = 10;
                 int numLines = t.GetLineFromCharIndex(t.TextLength) + 1;
                 int border = t.Height - t.ClientSize.Height;
                 t.Height = t.Font.Height * numLines + padding + border;

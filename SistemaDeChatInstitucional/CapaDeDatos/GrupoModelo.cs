@@ -120,7 +120,7 @@ namespace CapaDeDatos
 
         public List<GrupoModelo> getDocenteDictaGM(byte sessionType)
         {
-            this.comando.CommandText = " SELECT  dgm.idGrupo, dgm.idMateria, g.nombregrupo, m.NombreMateria " +
+            this.comando.CommandText = " SELECT dgm.idGrupo, dgm.idMateria, g.nombregrupo, m.NombreMateria " +
                 "FROM docente_dicta_G_M dgm, Grupo g, Materia m " +
                 "WHERE dgm.docenteCi is null " +
                 "AND dgm.idMateria = m.idMateria " +

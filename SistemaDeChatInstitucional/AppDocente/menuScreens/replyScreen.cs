@@ -20,19 +20,21 @@ namespace AppDocente.menuScreens
         List<List<string>> mensajes;
         string alumnoNombre;
 
-        public replyScreen()
+        public replyScreen(List<List<string>> mensajesDeSala, string asunto,byte dummy)
         {
-            InitializeComponent();       
+            InitializeComponent();
+            this.fuckthisButton.Visible = true;
+            ShowDialog();
         }
 
         public replyScreen(List<List<string>> mensajes, string asunto)
         {
-            cargarVariables(mensajes,asunto);
+            cargarMensajesPrivados(mensajes,asunto);
             InitializeComponent();
             Load();
             ShowDialog();
         }
-        private void cargarVariables(List<List<string>> mensajes, string asunto)
+        private void cargarMensajesPrivados(List<List<string>> mensajes, string asunto)
         {
             this.mensajes = mensajes;
             idConsultaPrivada = Int32.Parse(mensajes[0][0]);
@@ -42,48 +44,6 @@ namespace AppDocente.menuScreens
             alumnoNombre = Controlador.traemeEstaPersona(ciAlumno);
             this.Text = $"{asunto} - @{alumnoNombre}";
         }
-
-
-        private void enviarMensaje()
-        {
-            DateTime fecha = DateTime.Today;
-            List<string> newMsg = new List<string>();
-            idMensaje++;
-            Controlador.enviarMensaje(idMensaje, idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(ciAlumno),
-                                            txtRespuesta.Text, null, fecha, "recibido", Int32.Parse(ciDocente));
-            newMsg.Add(idMensaje.ToString());
-            newMsg.Add(idConsultaPrivada.ToString());
-            newMsg.Add(ciDocente);
-            newMsg.Add(ciAlumno);
-            newMsg.Add(txtRespuesta.Text);
-            newMsg.Add(null);
-            newMsg.Add(fecha.ToString());
-            newMsg.Add("recibido");
-            newMsg.Add(ciAlumno);
-
-            this.mensajes.Add(newMsg);
-
-            txtRespuesta.Text = string.Empty;
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Dispose();
-            Close();
-        }
-
-
-        private void btnEnviar_Click(object sender, EventArgs e)
-        {
-            if (txtRespuesta.Text != "")
-            {
-
-                enviarMensaje();
-                Load();
-            }
-        }
-
         private void Load()
         {
             flowLayoutPanel1.Controls.Clear();
@@ -100,7 +60,7 @@ namespace AppDocente.menuScreens
                 t.BackColor = Color.PowderBlue;
                 t.Visible = true;
                 t.Dock = DockStyle.Right;
-                t.Width = this.flowLayoutPanel1.Width - 40;
+                t.Width = this.flowLayoutPanel1.Width -25;
                 t.Name = "t_" + i;
                 t.BorderStyle = BorderStyle.None;
                 t.Font = new Font("Arial", 8.25f);
@@ -131,6 +91,49 @@ namespace AppDocente.menuScreens
                 this.flowLayoutPanel1.Controls.Add(t);
             }
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
+        }
+
+        private void enviarMensaje()
+        {
+            DateTime fecha = DateTime.Today;
+            List<string> newMsg = new List<string>();
+            idMensaje++;
+            Controlador.enviarMensaje(idMensaje, idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(ciAlumno),
+                                            txtRespuesta.Text, null, fecha, "recibido", Int32.Parse(ciAlumno));
+            newMsg.Add(idMensaje.ToString());
+            newMsg.Add(idConsultaPrivada.ToString());
+            newMsg.Add(ciDocente);
+            newMsg.Add(ciAlumno);
+            newMsg.Add(txtRespuesta.Text);
+            newMsg.Add(null);
+            newMsg.Add(fecha.ToString());
+            newMsg.Add("recibido");
+            newMsg.Add(ciAlumno);
+
+            this.mensajes.Add(newMsg);
+
+            txtRespuesta.Text = string.Empty;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Dispose();
+            Close();
+        }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+            if (txtRespuesta.Text != "")
+            {
+                enviarMensaje();
+                Load();
+            }
+        }
+
+
+        private void replyScreen_Resize(object sender, EventArgs e)
+        {
+            Load();
         }
     }
 }

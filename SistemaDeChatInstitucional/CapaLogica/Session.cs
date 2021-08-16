@@ -35,6 +35,7 @@ namespace CapaLogica
                 fila.Add(g.nombreGrupo);
                 fila.Add(g.idMateria.ToString());
                 fila.Add(g.nombreMateria);
+                Console.WriteLine($"idGrupo: {fila[0]}   nombreGrupo: {fila[1]}   idmateria: {fila[2]}   nombreMateria: {fila[3]}");
                 grupoMaterias.Add(fila);
             }
         }

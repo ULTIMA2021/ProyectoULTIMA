@@ -57,6 +57,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
+            this.btnSala = new System.Windows.Forms.Button();
             this.panelOpciones.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.subMenuMensajes.SuspendLayout();
@@ -127,6 +128,7 @@
             // 
             resources.ApplyResources(this.panelInfo, "panelInfo");
             this.panelInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.panelInfo.Controls.Add(this.btnSala);
             this.panelInfo.Controls.Add(this.btnLogout);
             this.panelInfo.Controls.Add(this.subMenuMensajes);
             this.panelInfo.Controls.Add(this.btnMensajes);
@@ -314,6 +316,18 @@
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Name = "label1";
             // 
+            // btnSala
+            // 
+            this.btnSala.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            resources.ApplyResources(this.btnSala, "btnSala");
+            this.btnSala.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnSala.FlatAppearance.BorderSize = 0;
+            this.btnSala.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnSala.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSala.Name = "btnSala";
+            this.btnSala.UseVisualStyleBackColor = false;
+            this.btnSala.Click += new System.EventHandler(this.btnSala_Click);
+            // 
             // docenteMainScreen
             // 
             resources.ApplyResources(this, "$this");
@@ -368,5 +382,6 @@
         private System.Windows.Forms.Button btnMisMensajes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnSala;
     }
 }
