@@ -32,6 +32,7 @@
             this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.fuckthisButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -39,6 +40,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.fuckthisButton);
             this.panel1.Controls.Add(this.txtRespuesta);
             this.panel1.Controls.Add(this.btnEnviar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -49,6 +51,8 @@
             // 
             // txtRespuesta
             // 
+            this.txtRespuesta.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRespuesta.Location = new System.Drawing.Point(11, 12);
             this.txtRespuesta.Multiline = true;
             this.txtRespuesta.Name = "txtRespuesta";
@@ -58,6 +62,7 @@
             // 
             // btnEnviar
             // 
+            this.btnEnviar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEnviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
             this.btnEnviar.FlatAppearance.BorderSize = 0;
             this.btnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -81,6 +86,21 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 344);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // fuckthisButton
+            // 
+            this.fuckthisButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.fuckthisButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.fuckthisButton.FlatAppearance.BorderSize = 0;
+            this.fuckthisButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.fuckthisButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fuckthisButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.fuckthisButton.Location = new System.Drawing.Point(522, 87);
+            this.fuckthisButton.Name = "fuckthisButton";
+            this.fuckthisButton.Size = new System.Drawing.Size(136, 35);
+            this.fuckthisButton.TabIndex = 3;
+            this.fuckthisButton.UseVisualStyleBackColor = false;
+            this.fuckthisButton.Visible = false;
             // 
             // replyScreen
             // 
@@ -106,5 +126,6 @@
         private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.TextBox txtRespuesta;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        public System.Windows.Forms.Button fuckthisButton;
     }
 }
