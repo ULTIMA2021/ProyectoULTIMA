@@ -179,12 +179,6 @@ namespace AppDocente
 
         private void btnSala_Click(object sender, EventArgs e)
         {
-            //crear salas form
-            /*
-            List<List<string>> mensajesDeSala=new List<List<string>>();
-            Controlador.loadSalasDePersona();
-            new menuScreens.replyScreen(mensajesDeSala, "myString",0);
-            */
             esconderSubMenu();
             openScreen(new menuScreens.Salas());
 

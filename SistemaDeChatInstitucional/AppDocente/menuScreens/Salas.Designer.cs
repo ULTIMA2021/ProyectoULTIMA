@@ -67,6 +67,7 @@
             this.dgvSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalas.Size = new System.Drawing.Size(596, 205);
             this.dgvSalas.TabIndex = 0;
+            this.dgvSalas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSalas_CellFormatting);
             // 
             // label1
             // 
