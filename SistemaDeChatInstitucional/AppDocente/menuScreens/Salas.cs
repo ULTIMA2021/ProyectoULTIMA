@@ -69,7 +69,7 @@ namespace AppDocente.menuScreens
             dgvSalas.Columns["Docente"].Visible = true;
             dgvSalas.Columns["Anfitrion de chat"].Visible = true;
             dgvSalas.Columns["resumen"].Visible = true;
-            dgvSalas.Columns["isDone"].Visible = true;
+            dgvSalas.Columns["isDone"].Visible = false;
             dgvSalas.Columns["creacion"].Visible = true;
         }
 
