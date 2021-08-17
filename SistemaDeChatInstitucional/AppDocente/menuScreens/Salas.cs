@@ -78,9 +78,9 @@ namespace AppDocente.menuScreens
             foreach (DataGridViewRow Myrow in dgvSalas.Rows)
             {
                 if (Convert.ToBoolean(Myrow.Cells["isDone"].Value) == false)
-                    Myrow.DefaultCellStyle.BackColor = Color.LawnGreen;
+                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(113, 230, 72);
                 else
-                    Myrow.DefaultCellStyle.BackColor = Color.Red;// cambiar a otro color para las salas ya terminadas
+                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);// cambiar a otro color para las salas ya terminadas
             }
         }
     }
