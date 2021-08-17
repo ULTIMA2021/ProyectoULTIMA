@@ -186,7 +186,7 @@ namespace AppDocente
             new menuScreens.replyScreen(mensajesDeSala, "myString",0);
             */
             esconderSubMenu();
-           // openScreen(new menuScreens.Salas());
+            openScreen(new menuScreens.Salas());
 
         }
     }
