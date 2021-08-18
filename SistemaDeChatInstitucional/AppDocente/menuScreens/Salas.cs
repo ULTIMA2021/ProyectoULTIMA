@@ -39,24 +39,6 @@ namespace AppDocente.menuScreens
 
         private void load()
         {
-            /* 
-            hidden
-            table.Columns.Add("idSala");
-            table.Columns.Add("idGrupo");
-            table.Columns.Add("idMateria");
-            table.Columns.Add("docenteCi");
-            table.Columns.Add("anfitrion");
-            visible
-            table.Columns.Add("Grupo");
-            table.Columns.Add("Materia");
-            table.Columns.Add("Docente");
-            table.Columns.Add("Anfitrion de chat");
-            table.Columns.Add("resumen");
-            table.Columns.Add("isDone");
-            table.Columns.Add("creacion");
-            */
-
-
             dgvSalas.DataSource = Controlador.loadSalasDePersona();
             dgvSalas.Columns["idSala"].Visible = false;
             dgvSalas.Columns["idGrupo"].Visible = false;
@@ -87,7 +69,13 @@ namespace AppDocente.menuScreens
         private void btnUnirse_Click(object sender, EventArgs e)
         {
             int idSala = Convert.ToInt32(dgvSalas.CurrentRow.Cells["idSala"].Value);
-            Controlador.getMensajesDeSala(idSala);
+            string asunto = Convert.ToString(dgvSalas.CurrentRow.Cells["resumen"].Value);
+            string nombreGrupo = Convert.ToString(dgvSalas.CurrentRow.Cells["Grupo"].Value);
+            string nombreMateria = Convert.ToString(dgvSalas.CurrentRow.Cells["Materia"].Value);
+            string nombreAnfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["Anfitrion de chat"].Value);
+
+
+            new chatScreen(idSala,asunto,nombreAnfitrion);
         }
     }
 }

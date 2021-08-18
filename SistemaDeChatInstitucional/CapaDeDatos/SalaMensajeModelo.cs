@@ -39,7 +39,7 @@ namespace CapaDeDatos
 
         public void enviarMensaje() {
             this.comando.CommandText = "INSERT INTO Sala_Mensaje (idSala,autorCi, contenido, fechaHora) " +
-                "VALUES (@idSala,@autorCi,@contenido, @fechaHora;)";
+                "VALUES (@idSala,@autorCi,@contenido, @fechaHora);";
             this.comando.Parameters.AddWithValue("@idSala",idSala);
             this.comando.Parameters.AddWithValue("@autorCi", autorCi);
             this.comando.Parameters.AddWithValue("@contenido", contenido);
@@ -52,7 +52,8 @@ namespace CapaDeDatos
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT sm.idSala, sm.idMensaje, sm.autorCi, sm.contenido, sm.fechaHora " +
                 "FROM Sala_mensaje sm " +
-                "WHERE sm.idSala = @idSala; ";
+                "WHERE sm.idSala = @idSala " +
+                "ORDER BY sm.fechaHora;";
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             return cargarMensajesALista(this.comando, sessionType);
         }

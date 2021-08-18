@@ -82,13 +82,17 @@ namespace CapaLogica
             List<string> msgString = new List<string>();
             List<SalaMensajeModelo> listaDeMsg = new SalaMensajeModelo(Session.type).getMensajesDeSala(idSala,Session.type);
 
+            //listaDeMsg.Sort((x, y) => DateTime.Compare(x.fechaHora, y.fechaHora));
+
             /*
-        public int idSala;
-        public int idMensaje;
-        public  int autorCi;
-        public string contenido;
-        public DateTime fechaHora;
-             
+            los datos cargados a la lista son los siguientes:  
+
+         int idSala;
+         int idMensaje;
+         int autorCi;
+         string contenido;
+         DateTime fechaHora;
+         string nombre apellido;
              */
             string nombreApellido;
             foreach (SalaMensajeModelo mensaje in listaDeMsg) {
@@ -98,7 +102,17 @@ namespace CapaLogica
                 listaDeMsgString.Add(msgString);
                 Console.WriteLine($"\nidSala:{mensaje.idSala}\tidMensaje:{mensaje.idMensaje}\tautorCi:{mensaje.autorCi}\ncontenido: {mensaje.contenido}");
             }
+            
             return listaDeMsgString;
+        }
+
+        public static void enviarMensajeChat(int idSala, int autorCi, string contenido, DateTime fecha) {
+            SalaMensajeModelo msg = new SalaMensajeModelo(Session.type);
+            msg.idSala = idSala;
+            msg.autorCi = autorCi;
+            msg.contenido = contenido;
+            msg.fechaHora = fecha;
+            msg.enviarMensaje();
         }
     }
 }
