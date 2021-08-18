@@ -131,6 +131,7 @@
             this.btnUnirse.TabIndex = 5;
             this.btnUnirse.Text = "Unirse ";
             this.btnUnirse.UseVisualStyleBackColor = false;
+            this.btnUnirse.Click += new System.EventHandler(this.btnUnirse_Click);
             // 
             // btnExit
             // 

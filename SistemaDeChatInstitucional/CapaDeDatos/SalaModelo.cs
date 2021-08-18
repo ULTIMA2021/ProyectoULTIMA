@@ -50,6 +50,7 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+
         public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria,byte sessionType)
         {
             this.comando.Parameters.Clear();

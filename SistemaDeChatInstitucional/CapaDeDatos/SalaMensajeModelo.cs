@@ -9,12 +9,12 @@ namespace CapaDeDatos
 {
     public class SalaMensajeModelo : Modelo
     {
-        int idSala;
-        int idMensaje;
-        int autorCi;
-        string contenido;
-        DateTime fechaHora;
-        string errorType = "SalaMensaje";
+        public int idSala;
+        public int idMensaje;
+        public  int autorCi;
+        public string contenido;
+        public DateTime fechaHora;
+        public string errorType = "SalaMensaje";
 
         public SalaMensajeModelo(byte sessionType) : base(sessionType) { }
 
@@ -48,11 +48,13 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando,errorType);
         }
 
-        public List<SalaMensajeModelo> getMensajes(byte sessionType)
-        {
-            this.comando.CommandText = "SELECT (idSala,ci,isConnected) FROM Sala_members sm, Alumno_Tiene_Grupo ag, Docenete_dicta_G_M dgm WHERE " +
-                "sm.idSala=@idSala AND (ag.alumnoCi=sm.ci OR dgm.docenteCi=sm.ci);";
-            return (cargarMensajesALista(this.comando, sessionType));
+        public List<SalaMensajeModelo> getMensajesDeSala(int idSala,byte sessionType) {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT sm.idSala, sm.idMensaje, sm.autorCi, sm.contenido, sm.fechaHora " +
+                "FROM Sala_mensaje sm " +
+                "WHERE sm.idSala = @idSala; ";
+            this.comando.Parameters.AddWithValue("@idSala", idSala);
+            return cargarMensajesALista(this.comando, sessionType);
         }
 
         public List<string> toStringList()

@@ -206,9 +206,6 @@ namespace CapaLogica
             personaString.Add(p.Nombre);
             personaString.Add(" ");
             personaString.Add(p.Apellido);
-            personaString.Add(" ");
-            if (p.enLinea == true)
-                personaString.Add($"     en Linea");
             return string.Join("", personaString);
         }
 

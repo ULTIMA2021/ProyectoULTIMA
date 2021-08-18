@@ -35,7 +35,7 @@ namespace CapaLogica
 
             return salasDataTable;
         }
-        // se van cargando por grupo materia
+
         private static void loadSalasToDataTable(DataTable table, List<SalaModelo>salas, string nombreGrupo, string nombreMateria) {
             string nombreAnfitron;
             string nombreDocente = traemeEstaPersona(salas[0].docenteCi.ToString());
@@ -75,6 +75,30 @@ namespace CapaLogica
             table.Columns.Add("isDone");
             table.Columns.Add("creacion");
 
+        }
+
+        public static List<List<string>> getMensajesDeSala(int idSala) {
+            List<List<string>> listaDeMsgString = new List<List<string>>();
+            List<string> msgString = new List<string>();
+            List<SalaMensajeModelo> listaDeMsg = new SalaMensajeModelo(Session.type).getMensajesDeSala(idSala,Session.type);
+
+            /*
+        public int idSala;
+        public int idMensaje;
+        public  int autorCi;
+        public string contenido;
+        public DateTime fechaHora;
+             
+             */
+            string nombreApellido;
+            foreach (SalaMensajeModelo mensaje in listaDeMsg) {
+                msgString = mensaje.toStringList();
+                nombreApellido = traemeEstaPersona(mensaje.autorCi.ToString());
+                msgString.Add(nombreApellido);
+                listaDeMsgString.Add(msgString);
+                Console.WriteLine($"\nidSala:{mensaje.idSala}\tidMensaje:{mensaje.idMensaje}\tautorCi:{mensaje.autorCi}\ncontenido: {mensaje.contenido}");
+            }
+            return listaDeMsgString;
         }
     }
 }

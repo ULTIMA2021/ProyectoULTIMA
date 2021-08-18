@@ -78,10 +78,16 @@ namespace AppDocente.menuScreens
             foreach (DataGridViewRow Myrow in dgvSalas.Rows)
             {
                 if (Convert.ToBoolean(Myrow.Cells["isDone"].Value) == false)
-                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(113, 230, 72);
+                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(113, 230, 72);    //chat abierto
                 else
-                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);// cambiar a otro color para las salas ya terminadas
+                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
             }
+        }
+
+        private void btnUnirse_Click(object sender, EventArgs e)
+        {
+            int idSala = Convert.ToInt32(dgvSalas.CurrentRow.Cells["idSala"].Value);
+            Controlador.getMensajesDeSala(idSala);
         }
     }
 }
