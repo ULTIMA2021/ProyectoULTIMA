@@ -46,6 +46,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@fechaHora", fechaHora);
             this.comando.Prepare();
             EjecutarQuery(this.comando,errorType);
+            comando.Connection.Close();
         }
 
         public List<SalaMensajeModelo> getMensajesDeSala(int idSala,byte sessionType) {
@@ -57,6 +58,21 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             return cargarMensajesALista(this.comando, sessionType);
         }
+
+        public int getMensajesDeSalaCount(int idSala, byte sessionType)
+        {
+            int count;
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = " SELECT count(*) FROM Sala_mensaje sm where sm.idSala = @idSala;";
+            this.comando.Parameters.AddWithValue("@idSala", idSala);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            count  = int.Parse(lector[0].ToString());
+            lector.Close();
+            Console.WriteLine("FUCKING COUNT= "+count);
+            return count;
+        }
+
 
         public List<string> toStringList()
         {

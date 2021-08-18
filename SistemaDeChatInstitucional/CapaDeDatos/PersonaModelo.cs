@@ -112,7 +112,7 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 PersonaModelo p = new PersonaModelo(sessionType);
-                Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
+               // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
                 p.Cedula = lector[0].ToString();
                 p.Clave = lector[1].ToString();
                 p.Nombre = lector[2].ToString();

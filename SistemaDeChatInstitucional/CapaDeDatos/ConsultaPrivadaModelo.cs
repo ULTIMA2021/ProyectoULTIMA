@@ -51,8 +51,8 @@ namespace CapaDeDatos
                     cp.ciDocente = consulta.ciDocente;
                     cp.ciAlumno = consulta.ciAlumno;
                     consultas.Add(cp);
-                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
-                    Console.WriteLine(cp.ToString());
+                    //Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                   // Console.WriteLine(cp.ToString());
                 }
             }
             return consultas;
@@ -74,8 +74,8 @@ namespace CapaDeDatos
                     cp.cpStatus = consulta.cpStatus;
                     cp.titulo = consulta.titulo; 
                     consultas.Add(cp);
-                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
-                    Console.WriteLine(cp.ToString());
+                   // Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                   // Console.WriteLine(cp.ToString());
                 }
             }
             return consultas;
@@ -98,8 +98,8 @@ namespace CapaDeDatos
                     cp.titulo = consulta.titulo;
                     cp.ciDestinatario = consulta.ciDestinatario;
                     consultas.Add(cp);
-                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
-                    Console.WriteLine(cp.ToString());
+                   // Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                   // Console.WriteLine(cp.ToString());
                 }
             }
             return consultas;
@@ -124,8 +124,8 @@ namespace CapaDeDatos
                 cp.cpStatus = lector[5].ToString();
                 cp.cpFechaHora = DateTime.Parse(lector[6].ToString());
                 cp.ciDestinatario = lector[7].ToString();
-                Console.WriteLine("getConsultas()");
-                Console.WriteLine(cp.ToString());
+               // Console.WriteLine("getConsultas()");
+               // Console.WriteLine(cp.ToString());
                 consultas.Add(cp);
             }
                 lector.Close();

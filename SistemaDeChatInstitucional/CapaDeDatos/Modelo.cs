@@ -29,7 +29,7 @@ namespace CapaDeDatos
                 throw new Exception($"Conection-{e.Number.ToString()}");
             }
         }
-
+        
         public void connection(byte sessionType)
         {
             this.InicializarConexion(sessionType);

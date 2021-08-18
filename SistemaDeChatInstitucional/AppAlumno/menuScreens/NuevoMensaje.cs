@@ -33,7 +33,7 @@ namespace AppAlumno.menuScreens
         {
             string ciDocente = dgvListaDocentes.CurrentRow.Cells[0].Value.ToString();
             string titulo = txtAsunto.Text;
-            DateTime fecha = DateTime.Today;
+            DateTime fecha = DateTime.Now;
             int idConsultaPrivada = Controlador.GetidConsultaPrivada(Int32.Parse(ciDocente), Int32.Parse(Session.cedula));
             if (txtAsunto.Text == "")
             {

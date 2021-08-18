@@ -15,31 +15,55 @@ namespace AppDocente.menuScreens
     {
         int idSala;
         string autorCi;
-        bool newMsgs=true;
 
         List<List<string>> mensajes;
+        Timer timer;
+
 
         public chatScreen(int idSala, string asunto, string nombreAnfitrion)
         {
             InitializeComponent();
             this.Text = $"{asunto} - @{nombreAnfitrion}";
             this.idSala = idSala;
-            mensajes = Controlador.getMensajesDeSala(idSala);
-            Load();
             ShowDialog();
         }
-
-        private void Load()
-        {
-
-            if (newMsgs)
+        private void timer_Tick(Object sender, EventArgs e) {
+            try
             {
+                Console.WriteLine("TIMER IS CHECKING " + DateTime.Now);
+                if (Controlador.getMensajesDeSalaCount(idSala) > mensajes.Count)
+                {
+                    timer.Stop();
+                    myLoad();
+                }
+            }
+            catch (Exception ex )
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+           
+        }
+        private Timer setTimer()
+        {
+            timer = new Timer();
+            timer.Interval = (1000 * 10);
+            timer.Tick += new EventHandler(timer_Tick);
+            return timer;
+        }
+
+        private void myLoad()
+        {
+            try{
                 mensajes = Controlador.getMensajesDeSala(idSala);
+            }
+            catch (Exception ex){
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+
                 flowLayoutPanel1.Controls.Clear();
                 for (int i = 0; i < mensajes.Count; i++)
                 {
                     autorCi = mensajes[i][2];
-
 
                     Label br = new Label();
                     Label nombrePersona = new Label();
@@ -56,7 +80,6 @@ namespace AppDocente.menuScreens
                     t.Name = "t_" + i;
                     t.BorderStyle = BorderStyle.None;
                     t.Font = new Font("Arial", 8.25f);
-
 
                     nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
                     nombrePersona.Dock = DockStyle.Right;
@@ -82,18 +105,21 @@ namespace AppDocente.menuScreens
                     this.flowLayoutPanel1.Controls.Add(nombrePersona);
                     this.flowLayoutPanel1.Controls.Add(t);
                 }
-                flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
-            }
+            timer.Start();
         }
 
         private void enviarMensaje()
         {
             autorCi = Session.cedula;
 
-            DateTime fecha = DateTime.Today;
+            DateTime fecha = DateTime.Now;
             List<string> newMsg = new List<string>();
-
-            Controlador.enviarMensajeChat(idSala, int.Parse(autorCi), txtRespuesta.Text, fecha);
+            try{
+                Controlador.enviarMensajeChat(idSala, int.Parse(autorCi), txtRespuesta.Text, fecha);
+            }
+            catch (Exception ex){
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
 
             newMsg.Add(idSala.ToString());
             newMsg.Add(null);
@@ -116,15 +142,24 @@ namespace AppDocente.menuScreens
         {
             if (txtRespuesta.Text != "")
             {
+                timer.Stop();
                 enviarMensaje();
-                Load();
+                myLoad();
+                flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
             }
         }
 
-
         private void replyScreen_Resize(object sender, EventArgs e)
         {
-            Load();
+            timer.Stop();
+            myLoad();
+        }
+
+        private void chatScreen_Load(object sender, EventArgs e)
+        {
+            Timer timer = setTimer();
+            myLoad();
+            flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
         }
     }
 }

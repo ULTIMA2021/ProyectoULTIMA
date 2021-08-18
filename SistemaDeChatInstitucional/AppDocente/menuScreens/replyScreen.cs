@@ -95,7 +95,7 @@ namespace AppDocente.menuScreens
 
         private void enviarMensaje()
         {
-            DateTime fecha = DateTime.Today;
+            DateTime fecha = DateTime.Now;
             List<string> newMsg = new List<string>();
             idMensaje++;
             Controlador.enviarMensaje(idMensaje, idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(ciAlumno),

@@ -28,7 +28,7 @@ namespace CapaLogica
                 nombreMateria = Session.grupoMaterias[x][3];
 
 
-                Console.WriteLine($"idgrupo: {idGrupo} idMateria: {idMateria}");
+                //Console.WriteLine($"idgrupo: {idGrupo} idMateria: {idMateria}");
                 salas = sala.salaPorGrupoMateria(idGrupo,idMateria, Session.type);
                 loadSalasToDataTable(salasDataTable, salas,nombregrupo,nombreMateria);
             }
@@ -100,7 +100,7 @@ namespace CapaLogica
                 nombreApellido = traemeEstaPersona(mensaje.autorCi.ToString());
                 msgString.Add(nombreApellido);
                 listaDeMsgString.Add(msgString);
-                Console.WriteLine($"\nidSala:{mensaje.idSala}\tidMensaje:{mensaje.idMensaje}\tautorCi:{mensaje.autorCi}\ncontenido: {mensaje.contenido}");
+                //Console.WriteLine($"\nidSala:{mensaje.idSala}\tidMensaje:{mensaje.idMensaje}\tautorCi:{mensaje.autorCi}\ncontenido: {mensaje.contenido}");
             }
             
             return listaDeMsgString;
@@ -114,5 +114,7 @@ namespace CapaLogica
             msg.fechaHora = fecha;
             msg.enviarMensaje();
         }
+        public static int getMensajesDeSalaCount(int idSala) =>  new SalaMensajeModelo(Session.type).getMensajesDeSalaCount(idSala,Session.type);
+        
     }
 }

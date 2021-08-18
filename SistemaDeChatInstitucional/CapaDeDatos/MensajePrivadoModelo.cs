@@ -57,8 +57,8 @@ namespace CapaDeDatos
                 cpm.cp_mensajeFechaHora = DateTime.Parse(lector[6].ToString());
                 cpm.cp_mensajeStatus = lector[7].ToString();
                 cpm.ciDestinatario = Int32.Parse(lector[8].ToString());
-                Console.WriteLine("mensajesDeConsulta:");
-                Console.WriteLine(cpm.ToString());
+               // Console.WriteLine("mensajesDeConsulta:");
+               // Console.WriteLine(cpm.ToString());
                 listaCpm.Add(cpm);
             }
             lector.Close();

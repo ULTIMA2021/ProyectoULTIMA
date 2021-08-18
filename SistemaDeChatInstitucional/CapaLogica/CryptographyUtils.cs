@@ -31,7 +31,7 @@ namespace CapaLogica
             };
             ICryptoTransform transform = tripleDES.CreateEncryptor();
             var cipherText = transform.TransformFinalBlock(buffer, 0, buffer.Length);
-            Console.WriteLine(@Convert.ToBase64String(cipherText));
+            //Console.WriteLine(@Convert.ToBase64String(cipherText));
             return @Convert.ToBase64String(cipherText);
         }
 

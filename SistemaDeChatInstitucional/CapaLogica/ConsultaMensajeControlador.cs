@@ -28,9 +28,9 @@ namespace CapaLogica
         {
             ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(Session.type);
             int idConsultaPrivada = cp.getIdConsultas(ciDocente, ciAlumno, Session.type);
-            Console.WriteLine($"EL ID DE LA CONSULTA PREVIA ES: {idConsultaPrivada}");
+            //Console.WriteLine($"EL ID DE LA CONSULTA PREVIA ES: {idConsultaPrivada}");
             idConsultaPrivada++;
-            Console.WriteLine($"EL ID DE LA CONSULTA NUEVA ES: {idConsultaPrivada}");
+           // Console.WriteLine($"EL ID DE LA CONSULTA NUEVA ES: {idConsultaPrivada}");
             return idConsultaPrivada;
         }
 
@@ -67,7 +67,7 @@ namespace CapaLogica
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente, Session.type))
             {
                 mensajesDeConsulta.Add(m.toStringList());
-                Console.WriteLine(mensajesDeConsulta[x].ToString());
+               // Console.WriteLine(mensajesDeConsulta[x].ToString());
                 x++;
             }
             return mensajesDeConsulta;
@@ -80,7 +80,7 @@ namespace CapaLogica
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente, Session.type))
             {
                 contenidoMensaje = m.contenido;
-                Console.WriteLine($"\n{m.ToString()}\n");
+               // Console.WriteLine($"\n{m.ToString()}\n");
             }
 
             return contenidoMensaje;

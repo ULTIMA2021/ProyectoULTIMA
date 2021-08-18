@@ -73,7 +73,7 @@ namespace Login
                 {
                     index = checkedListBox1.Items.IndexOf(item) + 1;
                     checkedIndexes.Add(index);
-                    Console.WriteLine($" item: {item}   index of item in database:{ index}");
+                    //Console.WriteLine($" item: {item}   index of item in database:{ index}");
                 }
             }
             return checkedIndexes;
