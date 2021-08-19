@@ -54,7 +54,9 @@ namespace CapaDeDatos
         public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria,byte sessionType)
         {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion FROM Sala WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
+                "FROM Sala " +
+                "WHERE idGrupo=@idGrupo AND idMateria=@idMateria AND docenteCi is not null;";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
@@ -80,6 +82,24 @@ namespace CapaDeDatos
             lector.Close();
             return salas;
         }
+
+
+        public int salaPorMateriaCount(int idMateria, byte sessionType)
+        {
+            int count;
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT count(*) " +
+                "FROM Sala " +
+                "WHERE idMateria=@idMateria;";
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+
+            lector = comando.ExecuteReader();
+            lector.Read();
+            count = int.Parse(lector[0].ToString());
+            return count;
+        }
+
 
         public List<SalaModelo> getSala(byte sessionType)
         {

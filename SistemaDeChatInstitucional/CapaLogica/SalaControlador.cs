@@ -29,10 +29,16 @@ namespace CapaLogica
 
 
                 //Console.WriteLine($"idgrupo: {idGrupo} idMateria: {idMateria}");
-                salas = sala.salaPorGrupoMateria(idGrupo,idMateria, Session.type);
-                loadSalasToDataTable(salasDataTable, salas,nombregrupo,nombreMateria);
+                try
+                {
+                    salas = sala.salaPorGrupoMateria(idGrupo, idMateria, Session.type);
+                    loadSalasToDataTable(salasDataTable, salas, nombregrupo, nombreMateria);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine($"idgrupo: {idGrupo} idMateria: {idMateria} doesnt have a teacher assigned"); ;
+                }
             }
-
             return salasDataTable;
         }
 
@@ -81,9 +87,6 @@ namespace CapaLogica
             List<List<string>> listaDeMsgString = new List<List<string>>();
             List<string> msgString = new List<string>();
             List<SalaMensajeModelo> listaDeMsg = new SalaMensajeModelo(Session.type).getMensajesDeSala(idSala,Session.type);
-
-            //listaDeMsg.Sort((x, y) => DateTime.Compare(x.fechaHora, y.fechaHora));
-
             /*
             los datos cargados a la lista son los siguientes:  
 
@@ -114,6 +117,15 @@ namespace CapaLogica
             msg.fechaHora = fecha;
             msg.enviarMensaje();
         }
+
+
+        public static int getSalaCount() {
+            int salasDePersona = 0;
+            for (int i = 0; i < Session.grupoMaterias.Count; i++)
+                salasDePersona = salasDePersona + new SalaModelo(Session.type).salaPorMateriaCount(int.Parse(Session.grupoMaterias[i][2]),Session.type);
+            return salasDePersona;
+        }
+
         public static int getMensajesDeSalaCount(int idSala) =>  new SalaMensajeModelo(Session.type).getMensajesDeSalaCount(idSala,Session.type);
         
     }

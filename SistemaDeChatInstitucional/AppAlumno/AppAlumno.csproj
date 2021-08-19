@@ -60,6 +60,12 @@
     <Compile Include="menuScreens\bienvenido.designer.cs">
       <DependentUpon>bienvenido.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\chatScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\chatScreen.Designer.cs">
+      <DependentUpon>chatScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,12 @@
     <Compile Include="menuScreens\replyScreen.Designer.cs">
       <DependentUpon>replyScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\Salas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\Salas.Designer.cs">
+      <DependentUpon>Salas.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\UglyHTMLmensajes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\bienvenido.resx">
       <DependentUpon>bienvenido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\chatScreen.resx">
+      <DependentUpon>chatScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\configuracion.resx">
       <DependentUpon>configuracion.cs</DependentUpon>
@@ -145,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\replyScreen.resx">
       <DependentUpon>replyScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\Salas.resx">
+      <DependentUpon>Salas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\UglyHTMLmensajes.resx">
       <DependentUpon>UglyHTMLmensajes.cs</DependentUpon>
