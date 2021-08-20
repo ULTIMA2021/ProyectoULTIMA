@@ -37,9 +37,9 @@ namespace CapaDeDatos
                  "server=" + this.IpDb + ";" +
                 "userid=" + this.UsuarioDb + ";" +
                 "password=" + this.PasswordDb + ";" +
-                "database=" + this.NombreDb + ";"
+                "database=" + this.NombreDb + ";" +
+                "pooling=false;"
                 );
-
             conexion.Open();
             this.comando = new MySqlCommand();
             this.comando.Connection = this.conexion;

@@ -114,6 +114,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "chatScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.chatScreen_FormClosing);
             this.Load += new System.EventHandler(this.chatScreen_Load);
             this.Resize += new System.EventHandler(this.replyScreen_Resize);
             this.panel1.ResumeLayout(false);

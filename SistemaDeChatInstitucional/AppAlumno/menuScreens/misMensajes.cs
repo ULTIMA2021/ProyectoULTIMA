@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,8 +22,10 @@ namespace AppAlumno.menuScreens
         public misMensajes()
         {
             InitializeComponent();
-            //esto no esta funcionando
-            Loadd();
+            string processName = Process.GetCurrentProcess().ProcessName;
+            Process[] instances = Process.GetProcessesByName(processName);
+            if (instances.Length <= 1)
+                Loadd();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -61,7 +64,7 @@ namespace AppAlumno.menuScreens
 
             new UglyHTMLmensajes(mensajes);
         }
-        private async Task Loadd()
+        private void Loadd()
         {
             dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
             dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;
@@ -69,7 +72,6 @@ namespace AppAlumno.menuScreens
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
             dgvMisMensajes.Columns["Destinatario"].Visible = false;
             dgvMisMensajes.Columns["idMensaje"].Visible = false;
-            await Task.Delay(1000);
         }
     }
 }

@@ -83,11 +83,7 @@ namespace CapaDeDatos
                 gm.idGrupo = Int32.Parse(lector[0].ToString());
                 gm.idMateria = Int32.Parse(lector[1].ToString());
                 gm.nombreGrupo = lector[2].ToString();
-                try { gm.nombreMateria = lector[3].ToString();
-                }
-                catch (Exception e) {
-                    Console.WriteLine("NO TE CAIGAS PUTA");
-                }
+                gm.nombreMateria = lector[3].ToString();
                 listaGM.Add(gm);
             }
             lector.Close();

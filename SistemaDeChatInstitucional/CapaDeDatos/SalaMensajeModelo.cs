@@ -46,7 +46,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@fechaHora", fechaHora);
             this.comando.Prepare();
             EjecutarQuery(this.comando,errorType);
-            comando.Connection.Close();
+
         }
 
         public List<SalaMensajeModelo> getMensajesDeSala(int idSala,byte sessionType) {
@@ -69,7 +69,6 @@ namespace CapaDeDatos
             lector.Read();
             count  = int.Parse(lector[0].ToString());
             lector.Close();
-            Console.WriteLine("FUCKING COUNT= "+count);
             return count;
         }
 

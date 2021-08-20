@@ -61,6 +61,8 @@
             // 
             // dgvMisMensajes
             // 
+            this.dgvMisMensajes.AllowUserToAddRows = false;
+            this.dgvMisMensajes.AllowUserToDeleteRows = false;
             this.dgvMisMensajes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMisMensajes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMisMensajes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;

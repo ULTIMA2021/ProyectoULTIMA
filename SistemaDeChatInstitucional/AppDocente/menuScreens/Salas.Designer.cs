@@ -43,7 +43,12 @@
             // 
             // dgvSalas
             // 
+            this.dgvSalas.AllowUserToAddRows = false;
+            this.dgvSalas.AllowUserToDeleteRows = false;
+            this.dgvSalas.AllowUserToResizeColumns = false;
+            this.dgvSalas.AllowUserToResizeRows = false;
             this.dgvSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSalas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvSalas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSalas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -69,10 +74,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvSalas.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSalas.RowHeadersVisible = false;
             this.dgvSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalas.Size = new System.Drawing.Size(687, 205);
             this.dgvSalas.TabIndex = 0;
             this.dgvSalas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSalas_CellFormatting);
+            this.dgvSalas.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvSalas_ColumnAdded);
             // 
             // label1
             // 

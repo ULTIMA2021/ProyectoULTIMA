@@ -113,5 +113,17 @@ namespace AppAlumno.menuScreens
             timer = setTimer();
             timer.Start();
         }
+
+        private void Salas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timer.Stop();
+            timer.Dispose();
+            Dispose();
+        }
+
+        private void dgvSalas_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            dgvSalas.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
     }
 }

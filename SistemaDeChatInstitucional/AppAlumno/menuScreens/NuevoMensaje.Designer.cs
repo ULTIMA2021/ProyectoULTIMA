@@ -83,6 +83,8 @@
             // 
             // dgvListaDocentes
             // 
+            this.dgvListaDocentes.AllowUserToAddRows = false;
+            this.dgvListaDocentes.AllowUserToDeleteRows = false;
             this.dgvListaDocentes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListaDocentes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvListaDocentes.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -108,6 +110,7 @@
             this.dgvListaDocentes.MultiSelect = false;
             this.dgvListaDocentes.Name = "dgvListaDocentes";
             this.dgvListaDocentes.ReadOnly = true;
+            this.dgvListaDocentes.RowHeadersVisible = false;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
@@ -117,6 +120,7 @@
             this.dgvListaDocentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaDocentes.Size = new System.Drawing.Size(562, 141);
             this.dgvListaDocentes.TabIndex = 23;
+            this.dgvListaDocentes.SelectionChanged += new System.EventHandler(this.dgvListaDocentes_SelectionChanged);
             // 
             // label2
             // 

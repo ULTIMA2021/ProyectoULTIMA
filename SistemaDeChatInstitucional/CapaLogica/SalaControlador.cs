@@ -11,43 +11,48 @@ namespace CapaLogica
     public static partial class Controlador
     {
         public static DataTable loadSalasDePersona() {
-            SalaModelo sala = new SalaModelo(Session.type);
-            List<SalaModelo> salas = new List<SalaModelo>();
+            List<SalaModelo> salasPorGM = new List<SalaModelo>();
             DataTable salasDataTable = new DataTable();
-
             loadTableColumns(salasDataTable);
-
             int idGrupo;
             int idMateria;
-            string nombregrupo;
-            string nombreMateria;
             for (int x = 0; x < Session.grupoMaterias.Count; x++) {
                 idGrupo = int.Parse(Session.grupoMaterias[x][0]);
-                nombregrupo = Session.grupoMaterias[x][1];
-                idMateria = int.Parse(Session.grupoMaterias[x][2]);
-                nombreMateria = Session.grupoMaterias[x][3];
-
-
-                //Console.WriteLine($"idgrupo: {idGrupo} idMateria: {idMateria}");
+                idMateria = int.Parse(Session.grupoMaterias[x][2]);               
                 try
                 {
-                    salas = sala.salaPorGrupoMateria(idGrupo, idMateria, Session.type);
-                    loadSalasToDataTable(salasDataTable, salas, nombregrupo, nombreMateria);
+                    salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupoMateria(idGrupo, idMateria, Session.type));
                 }
                 catch (Exception)
                 {
                     Console.WriteLine($"idgrupo: {idGrupo} idMateria: {idMateria} doesnt have a teacher assigned"); ;
                 }
             }
+            salasPorGM.Sort((y, z) => DateTime.Compare(y.creacion, z.creacion));
+            loadSalasToDataTable(salasDataTable, salasPorGM);
+
             return salasDataTable;
         }
 
-        private static void loadSalasToDataTable(DataTable table, List<SalaModelo>salas, string nombreGrupo, string nombreMateria) {
+        private static void loadSalasToDataTable(DataTable table, List<SalaModelo>salas) {
             string nombreAnfitron;
+            string nombreGrupo="";
+            string nombreMateria="";
             string nombreDocente = traemeEstaPersona(salas[0].docenteCi.ToString());
+            int counter=0;
             foreach(SalaModelo s in salas) {
                 nombreAnfitron = traemeEstaPersona(s.anfitrion.ToString());
 
+                for (int i = 0; i < Session.grupoMaterias.Count; i++)
+                {
+                    if (s.idGrupo.ToString() == Session.grupoMaterias[i][0] && s.idMateria.ToString() == Session.grupoMaterias[i][2])
+                    {
+                        nombreGrupo = Session.grupoMaterias[i][1];
+                        nombreMateria = Session.grupoMaterias[i][3];
+                        break;
+                    }
+                }
+                
                 table.Rows.Add(
                     s.idSala,
                     s.idGrupo,
@@ -62,7 +67,7 @@ namespace CapaLogica
                     s.isDone,
                     s.creacion);
             }
-            
+            counter++;
         }
         private static void loadTableColumns(DataTable table)
         {
@@ -82,28 +87,26 @@ namespace CapaLogica
             table.Columns.Add("creacion");
 
         }
-
+        /*
+        los datos cargados a getMensajesDeSala siguen este orden y son los siguientes:
+        int idSala;
+        int idMensaje;
+        int autorCi
+        string contenido;
+        DateTime fechaHora;
+        string nombre apellido;
+         */
         public static List<List<string>> getMensajesDeSala(int idSala) {
             List<List<string>> listaDeMsgString = new List<List<string>>();
             List<string> msgString = new List<string>();
             List<SalaMensajeModelo> listaDeMsg = new SalaMensajeModelo(Session.type).getMensajesDeSala(idSala,Session.type);
-            /*
-            los datos cargados a la lista son los siguientes:  
-
-         int idSala;
-         int idMensaje;
-         int autorCi;
-         string contenido;
-         DateTime fechaHora;
-         string nombre apellido;
-             */
+        
             string nombreApellido;
             foreach (SalaMensajeModelo mensaje in listaDeMsg) {
                 msgString = mensaje.toStringList();
                 nombreApellido = traemeEstaPersona(mensaje.autorCi.ToString());
                 msgString.Add(nombreApellido);
                 listaDeMsgString.Add(msgString);
-                //Console.WriteLine($"\nidSala:{mensaje.idSala}\tidMensaje:{mensaje.idMensaje}\tautorCi:{mensaje.autorCi}\ncontenido: {mensaje.contenido}");
             }
             
             return listaDeMsgString;

@@ -77,5 +77,11 @@ namespace AppDocente.menuScreens
 
             new chatScreen(idSala,asunto,nombreAnfitrion);
         }
+
+        private void dgvSalas_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            dgvSalas.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+        }
     }
 }

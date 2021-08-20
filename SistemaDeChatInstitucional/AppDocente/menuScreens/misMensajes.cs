@@ -26,7 +26,7 @@ namespace AppDocente.menuScreens
                 string processName = Process.GetCurrentProcess().ProcessName;
                 Process[] instances = Process.GetProcessesByName(processName);
                 if (instances.Length<=1)
-                    Load();
+                    Loadd();
             }
             catch (Exception e)
             {
@@ -63,7 +63,7 @@ namespace AppDocente.menuScreens
             new UglyHTMLmensajes(mensajes);
         }
         
-        private void Load()
+        private void Loadd()
         {
             dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
             dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;

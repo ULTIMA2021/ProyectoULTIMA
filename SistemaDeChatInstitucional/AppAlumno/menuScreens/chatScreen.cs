@@ -162,5 +162,12 @@ namespace AppAlumno.menuScreens
             myLoad();
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
         }
+
+        private void chatScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            timer.Stop();
+            timer.Dispose();
+            Dispose();
+        }
     }
 }

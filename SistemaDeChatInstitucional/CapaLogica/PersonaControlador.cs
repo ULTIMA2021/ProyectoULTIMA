@@ -10,22 +10,6 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
-        private static byte method;
-        //implementear en segunda entrega
-        /*
-       public static void AltaTempPersona(string cedula, string nombre, string apellido, string clave,string apodo, string foto, byte avatar)
-       {
-           PersonaModelo Persona = new PersonaModelo();
-           Persona.Cedula = cedula;
-           Persona.Nombre = nombre;
-           Persona.Apellido = apellido;
-           Persona.Clave = clave;
-           Persona.foto = null;
-           Persona.avatar = null;
-           Persona.GuardarTemp(tipoUsuario);
-       }
-   */
-
         //agregar foto y avatar.
         public static void AltaPersona(string cedula, string nombre, string apellido, string clave /*, string foto, byte avatar*/)
         {
@@ -39,7 +23,6 @@ namespace CapaLogica
             Persona.GuardarPersona();
         }
 
-        //usado en formulario registro para ingresar alumno nuevo a tabla alumno y alumno_tiene_grupo
         public static void AltaAlumno(string cedula, string apodo, List<int> GruposDeAlumno)
         {
             PersonaModelo p = new PersonaModelo(Session.type);

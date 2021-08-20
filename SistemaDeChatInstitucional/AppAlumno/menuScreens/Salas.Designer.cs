@@ -43,9 +43,15 @@
             // 
             // dgvSalas
             // 
+            this.dgvSalas.AllowUserToAddRows = false;
+            this.dgvSalas.AllowUserToDeleteRows = false;
+            this.dgvSalas.AllowUserToResizeColumns = false;
+            this.dgvSalas.AllowUserToResizeRows = false;
             this.dgvSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSalas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvSalas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSalas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
+            this.dgvSalas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -69,10 +75,12 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvSalas.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSalas.RowHeadersVisible = false;
             this.dgvSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalas.Size = new System.Drawing.Size(687, 205);
             this.dgvSalas.TabIndex = 0;
             this.dgvSalas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSalas_CellFormatting);
+            this.dgvSalas.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvSalas_ColumnAdded);
             // 
             // label1
             // 
@@ -166,6 +174,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Salas";
             this.Text = "Salas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Salas_FormClosing);
             this.Load += new System.EventHandler(this.Salas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalas)).EndInit();
             this.ResumeLayout(false);
