@@ -31,7 +31,7 @@ namespace AppDocente.menuScreens
         {
             cargarMensajesPrivados(mensajes,asunto);
             InitializeComponent();
-            Load();
+            myLoad();
             ShowDialog();
         }
         private void cargarMensajesPrivados(List<List<string>> mensajes, string asunto)
@@ -44,7 +44,7 @@ namespace AppDocente.menuScreens
             alumnoNombre = Controlador.traemeEstaPersona(ciAlumno);
             this.Text = $"{asunto} - @{alumnoNombre}";
         }
-        private void Load()
+        private void myLoad()
         {
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < mensajes.Count; i++)
@@ -126,14 +126,14 @@ namespace AppDocente.menuScreens
             if (txtRespuesta.Text != "")
             {
                 enviarMensaje();
-                Load();
+                myLoad();
             }
         }
 
 
         private void replyScreen_Resize(object sender, EventArgs e)
         {
-            Load();
+            myLoad();
         }
     }
 }

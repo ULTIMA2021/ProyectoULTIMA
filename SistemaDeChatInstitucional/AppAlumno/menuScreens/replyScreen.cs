@@ -30,7 +30,7 @@ namespace AppAlumno.menuScreens
         {
             cargarVariables(mensajes,asunto);
             InitializeComponent();
-            Load();
+            myLoad();
             ShowDialog();
         }
 
@@ -76,11 +76,11 @@ namespace AppAlumno.menuScreens
             if (txtRespuesta.Text != "")
             {
                 enviarMensaje();
-                Load();
+                myLoad();
             }
         }
 
-        private void Load()
+        private void myLoad()
         {
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < mensajes.Count; i++)
@@ -130,7 +130,7 @@ namespace AppAlumno.menuScreens
 
         private void replyScreen_SizeChanged(object sender, EventArgs e)
         {
-            Load();
+            myLoad();
         }
     }
 }

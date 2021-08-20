@@ -108,6 +108,7 @@ namespace AppDocente
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            Dispose();
             Application.Exit(); 
         }
 

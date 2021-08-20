@@ -24,13 +24,15 @@ namespace CapaDeDatos
 
         public void crearSala()
         {
-            this.comando.CommandText = "INSERT INTO Sala (idGrupo, idMateria, docenteCi, anfitrion,creacion) VALUES(" +
-                                    "@idGrupo,@idMateria,@docenteCi,@anfitrion,@creacion);";
+            this.comando.CommandText = "INSERT INTO Sala (idGrupo, idMateria, docenteCi, anfitrion, resumen ,creacion,isDone) VALUES(" +
+                                    "@idGrupo,@idMateria,@docenteCi,@anfitrion,@resumen,@creacion,@isDone);";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Parameters.AddWithValue("@docenteCi", docenteCi);
             this.comando.Parameters.AddWithValue("@anfitrion", anfitrion);
+            this.comando.Parameters.AddWithValue("@resumen", resumen);
             this.comando.Parameters.AddWithValue("@creacion", creacion);
+            this.comando.Parameters.AddWithValue("@isDone", false);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
@@ -83,7 +85,6 @@ namespace CapaDeDatos
             return salas;
         }
 
-
         public int salaPorMateriaCount(int idMateria, byte sessionType)
         {
             int count;
@@ -100,7 +101,6 @@ namespace CapaDeDatos
             return count;
         }
 
-
         public List<SalaModelo> getSala(byte sessionType)
         {
             this.comando.CommandText = "SELECT s.idSala,s.idGrupo,s.idMateria,s.docenteCi,s.anfitrion,s.resumen,s.isDone,s.creacion) " +
@@ -108,5 +108,6 @@ namespace CapaDeDatos
                 "s.idMateria=";
             return (cargarSalasAlist(this.comando, sessionType));
         }
+
     }
 }

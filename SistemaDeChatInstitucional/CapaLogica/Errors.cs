@@ -70,6 +70,15 @@ namespace CapaLogica
                     msg = "No puede mandar una consulta sin contenido";
                     break;
 
+
+                case "DGM-noTeacher":
+                    msg = "no esta asignado un docente para esa materia";
+                    break;
+
+                case "NO DOCENTES FOR PERSON":
+                    msg = "no estan asignados docentes para sus materias";
+                    break;
+
                 default:
                     msg = "Error desconocido";
                     break;

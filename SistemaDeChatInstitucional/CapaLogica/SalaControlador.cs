@@ -10,6 +10,28 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
+        public static void nuevaSala(
+            string idGrupo,
+            string idMateria,
+            string docente,
+            string anfitrion,
+            string resumen,
+            DateTime fechaHora){
+            SalaModelo sala = new SalaModelo(Session.type);
+            sala.idGrupo = int.Parse(idGrupo);
+            sala.idMateria = int.Parse(idMateria);
+            if (string.IsNullOrEmpty(docente))
+                docente = new GrupoModelo(Session.type).getDocenteDictaGM(idGrupo, idMateria, Session.type).ToString();
+            sala.docenteCi = int.Parse(docente);
+            sala.anfitrion = int.Parse(anfitrion);
+            sala.resumen = resumen;
+            sala.creacion = fechaHora;
+            
+            sala.crearSala();
+        }
+
+
+
         public static DataTable loadSalasDePersona() {
             List<SalaModelo> salasPorGM = new List<SalaModelo>();
             DataTable salasDataTable = new DataTable();
@@ -29,7 +51,16 @@ namespace CapaLogica
                 }
             }
             salasPorGM.Sort((y, z) => DateTime.Compare(y.creacion, z.creacion));
+            try
+            {
             loadSalasToDataTable(salasDataTable, salasPorGM);
+
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+
+                throw new Exception("NO DOCENTES FOR PERSON");
+            }
 
             return salasDataTable;
         }
@@ -120,7 +151,6 @@ namespace CapaLogica
             msg.fechaHora = fecha;
             msg.enviarMensaje();
         }
-
 
         public static int getSalaCount() {
             int salasDePersona = 0;

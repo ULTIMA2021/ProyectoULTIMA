@@ -164,5 +164,22 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@ci",ci);
             return cargarGM(this.comando, sessionType);
         }
+        public string getDocenteDictaGM(string idGrupo,string idMateria, byte sessionType)
+        {
+            string ci;
+            this.comando.CommandText = "SELECT dgm.docenteCi " +
+                "FROM docente_dicta_G_M dgm " +
+                "WHERE dgm.idMateria = @idGrupo " +
+                "AND dgm.idGrupo= @idMateria;";
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            lector = this.comando.ExecuteReader();
+            lector.Read();
+            ci = lector[0].ToString();
+            lector.Close();
+            if (string.IsNullOrEmpty(ci))
+                throw new Exception("DGM-noTeacher");
+            return ci;
+        }
     }
 }

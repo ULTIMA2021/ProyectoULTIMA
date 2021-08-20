@@ -13,7 +13,6 @@ namespace AppAlumno.menuScreens
 {
     public partial class Salas : Form
     {
-        //hacer metodo que haga dispose cuando se cambia de mainScreen
         Timer timer;
         public Salas()
         {
@@ -24,14 +23,13 @@ namespace AppAlumno.menuScreens
         {
             try
             {
-                Console.WriteLine($"SALA TIMER IS CHECKING {DateTime.Now} COUNT OF SALAS: {Controlador.getSalaCount()}  LOADED COUNT: {dgvSalas.RowCount-1}");
+                Console.WriteLine($"SALA TIMER IS CHECKING {DateTime.Now} COUNT OF SALAS: {Controlador.getSalaCount()}  LOADED COUNT: {dgvSalas.RowCount}");
 
-                if (Controlador.getSalaCount() > dgvSalas.RowCount-1)
+                if (Controlador.getSalaCount() > dgvSalas.RowCount)
                 {
                     timer.Stop();
                     dgvSalas.DataSource = Controlador.loadSalasDePersona();
                     dgvSalas.Update();
-                   // myLoad();
                     timer.Start();
                 }
             }
@@ -84,6 +82,22 @@ namespace AppAlumno.menuScreens
             dgvSalas.Columns["creacion"].Visible = true;
         }
 
+        private void loadGM() {
+            DataTable dataGM = new DataTable();
+            dataGM.Columns.Add("idGrupo");
+            dataGM.Columns.Add("Grupo");
+            dataGM.Columns.Add("idMateria");
+            dataGM.Columns.Add("Materia");
+            foreach (List<string>materia in Session.grupoMaterias) {
+                dataGM.Rows.Add(materia[0],materia[1],materia[2],materia[3]);
+            }
+            dgvGrupoMaterias.DataSource = dataGM;
+            dgvGrupoMaterias.Columns["idGrupo"].Visible = false;
+            dgvGrupoMaterias.Columns["Grupo"].Visible = true;
+            dgvGrupoMaterias.Columns["idMateria"].Visible = false;
+            dgvGrupoMaterias.Columns["Materia"].Visible = true;
+        }
+
         private void dgvSalas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             foreach (DataGridViewRow Myrow in dgvSalas.Rows)
@@ -102,16 +116,31 @@ namespace AppAlumno.menuScreens
             string nombreGrupo = Convert.ToString(dgvSalas.CurrentRow.Cells["Grupo"].Value);
             string nombreMateria = Convert.ToString(dgvSalas.CurrentRow.Cells["Materia"].Value);
             string nombreAnfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["Anfitrion de chat"].Value);
-
-
             new chatScreen(idSala,asunto,nombreAnfitrion);
         }
 
         private void Salas_Load(object sender, EventArgs e)
         {
-            myLoad();
-            timer = setTimer();
-            timer.Start();
+            try
+            {
+                timer = setTimer();
+                timer.Start();
+                loadGM();
+                myLoad();
+               
+            }
+            catch (Exception ex)
+            {
+                timer.Stop();
+                timer.Dispose();
+                dgvGrupoMaterias.Enabled = false;
+                dgvSalas.Enabled = false;
+                txtAsuntoSala.Enabled = false;
+                btnCrear.Enabled = false;
+                btnUnirse.Enabled = false;
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+           
         }
 
         private void Salas_FormClosing(object sender, FormClosingEventArgs e)
@@ -121,9 +150,39 @@ namespace AppAlumno.menuScreens
             Dispose();
         }
 
-        private void dgvSalas_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        private void dgvSalas_ColumnAdded(object sender, DataGridViewColumnEventArgs e)=> dgvSalas.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+        private void btnCrear_Click(object sender, EventArgs e)
         {
-            dgvSalas.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
+            string idGrupo;
+            string idMateria;
+            string docente;
+            string anfitrion;
+            string resumen;
+            DateTime fechaHora;
+            try
+            {
+                idGrupo = Convert.ToString(dgvGrupoMaterias.CurrentRow.Cells["idGrupo"].Value);
+                idMateria = Convert.ToString(dgvGrupoMaterias.CurrentRow.Cells["idMateria"].Value);
+                docente = null;
+                anfitrion = docente;
+                resumen = txtAsuntoSala.Text.Trim();
+                fechaHora = DateTime.Now;
+
+                Controlador.nuevaSala(idGrupo, idMateria, docente, anfitrion, resumen, fechaHora);
+            }
+            catch (Exception ex)
+            {
+                Controlador.errorHandler(ex);
+            }
+        }
+
+        private void txtAsuntoSala_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtAsuntoSala.Text))
+                btnCrear.Enabled = true;
+            else
+                btnCrear.Enabled = false;
         }
     }
 }
