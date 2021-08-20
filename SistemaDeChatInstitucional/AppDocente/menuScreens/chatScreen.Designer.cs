@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.fuckthisButton = new System.Windows.Forms.Button();
+            this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnConectados = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +41,8 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.fuckthisButton);
+            this.panel1.Controls.Add(this.btnConectados);
+            this.panel1.Controls.Add(this.btnFinalizar);
             this.panel1.Controls.Add(this.btnEnviar);
             this.panel1.Controls.Add(this.txtRespuesta);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -49,20 +51,22 @@
             this.panel1.Size = new System.Drawing.Size(671, 117);
             this.panel1.TabIndex = 0;
             // 
-            // fuckthisButton
+            // btnFinalizar
             // 
-            this.fuckthisButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.fuckthisButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.fuckthisButton.FlatAppearance.BorderSize = 0;
-            this.fuckthisButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fuckthisButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fuckthisButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.fuckthisButton.Location = new System.Drawing.Point(518, 79);
-            this.fuckthisButton.Name = "fuckthisButton";
-            this.fuckthisButton.Size = new System.Drawing.Size(125, 35);
-            this.fuckthisButton.TabIndex = 2;
-            this.fuckthisButton.UseVisualStyleBackColor = false;
-            this.fuckthisButton.Visible = false;
+            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinalizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnFinalizar.FlatAppearance.BorderSize = 0;
+            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnFinalizar.Location = new System.Drawing.Point(606, 79);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(62, 35);
+            this.btnFinalizar.TabIndex = 2;
+            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Visible = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click);
             // 
             // btnEnviar
             // 
@@ -74,7 +78,7 @@
             this.btnEnviar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnEnviar.Location = new System.Drawing.Point(518, 6);
             this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(125, 67);
+            this.btnEnviar.Size = new System.Drawing.Size(150, 67);
             this.btnEnviar.TabIndex = 1;
             this.btnEnviar.Text = "Enviar";
             this.btnEnviar.UseVisualStyleBackColor = false;
@@ -103,6 +107,22 @@
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
             // 
+            // btnConectados
+            // 
+            this.btnConectados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConectados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnConectados.FlatAppearance.BorderSize = 0;
+            this.btnConectados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConectados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConectados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConectados.Location = new System.Drawing.Point(518, 79);
+            this.btnConectados.Name = "btnConectados";
+            this.btnConectados.Size = new System.Drawing.Size(82, 35);
+            this.btnConectados.TabIndex = 5;
+            this.btnConectados.Text = "conectados";
+            this.btnConectados.UseVisualStyleBackColor = false;
+            this.btnConectados.Click += new System.EventHandler(this.btnConectados_Click);
+            // 
             // chatScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,6 +134,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "chatScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.chatScreen_FormClosing);
             this.Load += new System.EventHandler(this.chatScreen_Load);
             this.Resize += new System.EventHandler(this.replyScreen_Resize);
             this.panel1.ResumeLayout(false);
@@ -129,6 +150,7 @@
         public System.Windows.Forms.Button btnEnviar;
         public System.Windows.Forms.TextBox txtRespuesta;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        public System.Windows.Forms.Button fuckthisButton;
+        public System.Windows.Forms.Button btnFinalizar;
+        public System.Windows.Forms.Button btnConectados;
     }
 }

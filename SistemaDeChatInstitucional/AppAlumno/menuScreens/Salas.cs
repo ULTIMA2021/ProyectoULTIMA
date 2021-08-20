@@ -116,7 +116,8 @@ namespace AppAlumno.menuScreens
             string nombreGrupo = Convert.ToString(dgvSalas.CurrentRow.Cells["Grupo"].Value);
             string nombreMateria = Convert.ToString(dgvSalas.CurrentRow.Cells["Materia"].Value);
             string nombreAnfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["Anfitrion de chat"].Value);
-            new chatScreen(idSala,asunto,nombreAnfitrion);
+            string anfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["anfitrion"].Value);
+            new chatScreen(idSala,asunto,nombreAnfitrion,anfitrion);
         }
 
         private void Salas_Load(object sender, EventArgs e)

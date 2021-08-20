@@ -20,14 +20,18 @@ namespace AppAlumno.menuScreens
         Timer timer;
 
 
-        public chatScreen(int idSala, string asunto, string nombreAnfitrion)
+        public chatScreen(int idSala, string asunto, string nombreAnfitrion, string anfitrion)
         {
             InitializeComponent();
             this.Text = $"{asunto} - @{nombreAnfitrion}";
             this.idSala = idSala;
+            if (anfitrion == Session.cedula)
+                btnFinalizar.Visible = true;
+            
             ShowDialog();
         }
-        private void timer_Tick(Object sender, EventArgs e) {
+        private void timer_Tick(Object sender, EventArgs e)
+        {
             try
             {
                 Console.WriteLine("TIMER IS CHECKING " + DateTime.Now);
@@ -37,11 +41,11 @@ namespace AppAlumno.menuScreens
                     myLoad();
                 }
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
-           
+
         }
         private Timer setTimer()
         {
@@ -53,58 +57,83 @@ namespace AppAlumno.menuScreens
 
         private void myLoad()
         {
-            try{
+            try
+            {
                 mensajes = Controlador.getMensajesDeSala(idSala);
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
+            Padding dateP = new Padding(0, -1, 0, 10);
+            Padding TextP = new Padding(0, -1, 0, -1);
+            Padding namesP = new Padding(0, 10, 0, -1);
 
-                flowLayoutPanel1.Controls.Clear();
-                for (int i = 0; i < mensajes.Count; i++)
+            flowLayoutPanel1.Controls.Clear();
+            for (int i = 0; i < mensajes.Count; i++)
+            {
+                autorCi = mensajes[i][2];
+
+                Label fecha = new Label();
+                Label nombrePersona = new Label();
+                TextBox t = new TextBox();
+
+                t.Enabled = true;
+                t.Multiline = true;
+                t.WordWrap = true;
+                t.ReadOnly = true;
+                t.BackColor = Color.PowderBlue;
+                t.Visible = true;
+                t.Dock = DockStyle.Right;
+                t.Width = this.flowLayoutPanel1.Width - 25;
+                t.Name = "t_" + i;
+                t.BorderStyle = BorderStyle.None;
+                t.Font = new Font("Arial", 8.25f);
+
+                nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
+                nombrePersona.Dock = DockStyle.Right;
+                nombrePersona.AutoSize = true;
+                nombrePersona.Name = "label_" + i;
+
+                fecha.Font = new Font("Arial", 8.25f);
+                fecha.Dock = DockStyle.Right;
+                fecha.AutoSize = true;
+                fecha.Name = "labelFecha_" + i;
+                fecha.BackColor = Color.PowderBlue;
+                fecha.Text = mensajes[i][4];
+
+                fecha.Margin = dateP;
+                nombrePersona.Margin = namesP;
+                t.Margin = TextP;
+
+                if (autorCi == Session.cedula)
                 {
-                    autorCi = mensajes[i][2];
-
-                    Label br = new Label();
-                    Label nombrePersona = new Label();
-                    TextBox t = new TextBox();
-
-                    t.Enabled = true;
-                    t.Multiline = true;
-                    t.WordWrap = true;
-                    t.ReadOnly = true;
-                    t.BackColor = Color.PowderBlue;
-                    t.Visible = true;
-                    t.Dock = DockStyle.Right;
-                    t.Width = this.flowLayoutPanel1.Width - 25;
-                    t.Name = "t_" + i;
-                    t.BorderStyle = BorderStyle.None;
-                    t.Font = new Font("Arial", 8.25f);
-
-                    nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
-                    nombrePersona.Dock = DockStyle.Right;
-                    nombrePersona.AutoSize = true;
-                    nombrePersona.Name = "label_" + i;
-
-                    if (autorCi == Session.cedula)
-                        nombrePersona.Text = $"{Session.nombre} {Session.apellido}";
-                    else
-                    {
-                        t.BackColor = Color.PeachPuff;
-                        t.Dock = DockStyle.Left;
-                        nombrePersona.Text = mensajes[i][5];
-                        nombrePersona.Dock = DockStyle.Left;
-                    }
-                    t.Text = mensajes[i][3];
-
-                    int padding = 10;
-                    int numLines = t.GetLineFromCharIndex(t.TextLength) + 1;
-                    int border = t.Height - t.ClientSize.Height;
-                    t.Height = t.Font.Height * numLines + padding + border;
-
-                    this.flowLayoutPanel1.Controls.Add(nombrePersona);
-                    this.flowLayoutPanel1.Controls.Add(t);
+                    nombrePersona.Text = $"{Session.nombre} {Session.apellido}";
+                    nombrePersona.BackColor = Color.PowderBlue;
                 }
+
+                else
+                {
+                    t.BackColor = Color.PeachPuff;
+                    t.Dock = DockStyle.Left;
+                    nombrePersona.Text = mensajes[i][5];
+                    nombrePersona.Dock = DockStyle.Left;
+                    nombrePersona.BackColor = Color.PeachPuff;
+                    fecha.BackColor = Color.PeachPuff;
+                    fecha.Dock = DockStyle.Left;
+                }
+                t.Text = mensajes[i][3];
+
+                int padding = 10;
+                int numLines = t.GetLineFromCharIndex(t.TextLength) + 1;
+                int border = t.Height - t.ClientSize.Height;
+                t.Height = t.Font.Height * numLines + padding + border;
+
+                this.flowLayoutPanel1.Controls.Add(nombrePersona);
+                this.flowLayoutPanel1.Controls.Add(t);
+                this.flowLayoutPanel1.Controls.Add(fecha);
+
+            }
             timer.Start();
         }
 
@@ -114,10 +143,12 @@ namespace AppAlumno.menuScreens
 
             DateTime fecha = DateTime.Now;
             List<string> newMsg = new List<string>();
-            try{
+            try
+            {
                 Controlador.enviarMensajeChat(idSala, int.Parse(autorCi), txtRespuesta.Text, fecha);
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
 
@@ -168,6 +199,28 @@ namespace AppAlumno.menuScreens
             timer.Stop();
             timer.Dispose();
             Dispose();
+        }
+
+        private void btnFinalizar_Click(object sender, EventArgs e)
+        {
+
+            // no funciona
+            string message = "Realmente quiere finalizar el chat grupal?";
+            string caption = "no se podra mandar mas mensajes a esta sala";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result;
+            MessageBox.Show(message,caption,buttons);
+            result = MessageBox.Show(message, caption, buttons);
+            if (result == System.Windows.Forms.DialogResult.Yes)
+            {
+                this.Dispose();
+                this.Close();
+            }
+        }
+
+        private void btnConectados_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
