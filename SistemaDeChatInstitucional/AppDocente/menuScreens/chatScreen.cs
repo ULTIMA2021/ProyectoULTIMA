@@ -15,19 +15,25 @@ namespace AppDocente.menuScreens
     {
         int idSala;
         string autorCi;
-
         List<List<string>> mensajes;
         Timer timer;
 
-
-        public chatScreen(int idSala, string asunto, string nombreAnfitrion,string anfitrion)
+        public chatScreen(int idSala, string asunto, string nombreAnfitrion,string anfitrion, bool isDone)
         {
             InitializeComponent();
             this.Text = $"{asunto} - @{nombreAnfitrion}";
             this.idSala = idSala;
-            if (anfitrion == Session.cedula)
+            bool x = true;
+            if (isDone)
+            {
+                btnFinalizar.Visible = false;
+                txtRespuesta.Enabled = false;
+                btnEnviar.Enabled = false;
+                btnConectados.Visible = false;
+                x = false;
+            }
+            if (anfitrion == Session.cedula && x)
                 btnFinalizar.Visible = true;
-            ShowDialog();
         }
         private void timer_Tick(Object sender, EventArgs e)
         {
@@ -163,6 +169,7 @@ namespace AppDocente.menuScreens
 
         private void button1_Click(object sender, EventArgs e)
         {
+            timer.Dispose();
             Dispose();
             Close();
         }
@@ -186,14 +193,23 @@ namespace AppDocente.menuScreens
 
         private void chatScreen_Load(object sender, EventArgs e)
         {
-            Timer timer = setTimer();
+            timer = setTimer();
             myLoad();
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
-
+            string message = "Realmente quiere finalizar el chat grupal?\n\n\nNadie podra mandar mas mensajes a esta sala";
+            string caption = "Porfavor confirme cerrada de sala";
+            DialogResult result;
+            result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Controlador.finalizarSala(idSala);
+                this.Dispose();
+                this.Close();
+            }
         }
 
         private void chatScreen_FormClosing(object sender, FormClosingEventArgs e)

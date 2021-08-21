@@ -166,16 +166,17 @@ namespace CapaDeDatos
         }
         public string getDocenteDictaGM(string idGrupo,string idMateria, byte sessionType)
         {
-            string ci;
+            string ci=null;
             this.comando.CommandText = "SELECT dgm.docenteCi " +
                 "FROM docente_dicta_G_M dgm " +
-                "WHERE dgm.idMateria = @idGrupo " +
-                "AND dgm.idGrupo= @idMateria;";
+                "WHERE dgm.idMateria = @idMateria " +
+                "AND dgm.idGrupo= @idGrupo;";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             lector = this.comando.ExecuteReader();
-            lector.Read();
+            while (lector.Read()) {
             ci = lector[0].ToString();
+            }
             lector.Close();
             if (string.IsNullOrEmpty(ci))
                 throw new Exception("DGM-noTeacher");

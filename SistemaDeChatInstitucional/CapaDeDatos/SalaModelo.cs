@@ -44,7 +44,7 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
-        public void salaFinalizada()
+        public void salaFinalizada(int idSala)
         {
             this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idSala=@idSala;";
             this.comando.Parameters.AddWithValue("@isDone", true);

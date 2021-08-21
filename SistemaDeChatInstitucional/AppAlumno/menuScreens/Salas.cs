@@ -37,7 +37,6 @@ namespace AppAlumno.menuScreens
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
-
         }
         private Timer setTimer()
         {
@@ -81,7 +80,6 @@ namespace AppAlumno.menuScreens
             dgvSalas.Columns["isDone"].Visible = false;
             dgvSalas.Columns["creacion"].Visible = true;
         }
-
         private void loadGM() {
             DataTable dataGM = new DataTable();
             dataGM.Columns.Add("idGrupo");
@@ -117,7 +115,12 @@ namespace AppAlumno.menuScreens
             string nombreMateria = Convert.ToString(dgvSalas.CurrentRow.Cells["Materia"].Value);
             string nombreAnfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["Anfitrion de chat"].Value);
             string anfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["anfitrion"].Value);
-            new chatScreen(idSala,asunto,nombreAnfitrion,anfitrion);
+            bool isDone = Convert.ToBoolean(dgvSalas.CurrentRow.Cells["isDone"].Value);
+            timer.Stop();
+            new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion,isDone).ShowDialog();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona();
+            dgvSalas.Update();
+            timer.Start();
         }
 
         private void Salas_Load(object sender, EventArgs e)
@@ -166,15 +169,19 @@ namespace AppAlumno.menuScreens
                 idGrupo = Convert.ToString(dgvGrupoMaterias.CurrentRow.Cells["idGrupo"].Value);
                 idMateria = Convert.ToString(dgvGrupoMaterias.CurrentRow.Cells["idMateria"].Value);
                 docente = null;
-                anfitrion = docente;
+                anfitrion = Session.cedula;
                 resumen = txtAsuntoSala.Text.Trim();
                 fechaHora = DateTime.Now;
 
                 Controlador.nuevaSala(idGrupo, idMateria, docente, anfitrion, resumen, fechaHora);
+                txtAsuntoSala.Clear();
+                dgvSalas.DataSource = Controlador.loadSalasDePersona();
+                dgvSalas.Update();
+                timer.Start();
             }
             catch (Exception ex)
             {
-                Controlador.errorHandler(ex);
+               MessageBox.Show(Controlador.errorHandler(ex));
             }
         }
 

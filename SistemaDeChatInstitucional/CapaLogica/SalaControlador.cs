@@ -30,7 +30,7 @@ namespace CapaLogica
             sala.crearSala();
         }
 
-
+        public static void finalizarSala(int idSala) => new SalaModelo(Session.type).salaFinalizada(idSala);
 
         public static DataTable loadSalasDePersona() {
             List<SalaModelo> salasPorGM = new List<SalaModelo>();
@@ -41,26 +41,11 @@ namespace CapaLogica
             for (int x = 0; x < Session.grupoMaterias.Count; x++) {
                 idGrupo = int.Parse(Session.grupoMaterias[x][0]);
                 idMateria = int.Parse(Session.grupoMaterias[x][2]);               
-                try
-                {
-                    salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupoMateria(idGrupo, idMateria, Session.type));
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine($"idgrupo: {idGrupo} idMateria: {idMateria} doesnt have a teacher assigned"); ;
-                }
+                salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupoMateria(idGrupo, idMateria, Session.type)); 
             }
-            salasPorGM.Sort((y, z) => DateTime.Compare(y.creacion, z.creacion));
-            try
-            {
+            salasPorGM.Sort((y, z) => DateTime.Compare(z.creacion, y.creacion));
             loadSalasToDataTable(salasDataTable, salasPorGM);
-
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-
-                throw new Exception("NO DOCENTES FOR PERSON");
-            }
+            
 
             return salasDataTable;
         }
@@ -69,10 +54,11 @@ namespace CapaLogica
             string nombreAnfitron;
             string nombreGrupo="";
             string nombreMateria="";
-            string nombreDocente = traemeEstaPersona(salas[0].docenteCi.ToString());
+            string nombreDocente;// = traemeEstaPersona(salas[0].docenteCi.ToString());
             int counter=0;
             foreach(SalaModelo s in salas) {
                 nombreAnfitron = traemeEstaPersona(s.anfitrion.ToString());
+                nombreDocente = traemeEstaPersona(s.docenteCi.ToString());
 
                 for (int i = 0; i < Session.grupoMaterias.Count; i++)
                 {

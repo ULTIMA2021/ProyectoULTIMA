@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConectados = new System.Windows.Forms.Button();
+            this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnFinalizar = new System.Windows.Forms.Button();
-            this.btnConectados = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,39 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(671, 117);
             this.panel1.TabIndex = 0;
+            // 
+            // btnConectados
+            // 
+            this.btnConectados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConectados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnConectados.FlatAppearance.BorderSize = 0;
+            this.btnConectados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConectados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConectados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConectados.Location = new System.Drawing.Point(518, 79);
+            this.btnConectados.Name = "btnConectados";
+            this.btnConectados.Size = new System.Drawing.Size(82, 35);
+            this.btnConectados.TabIndex = 4;
+            this.btnConectados.Text = "conectados";
+            this.btnConectados.UseVisualStyleBackColor = false;
+            this.btnConectados.Click += new System.EventHandler(this.btnConectados_Click);
+            // 
+            // btnFinalizar
+            // 
+            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinalizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnFinalizar.FlatAppearance.BorderSize = 0;
+            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnFinalizar.Location = new System.Drawing.Point(606, 79);
+            this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.Size = new System.Drawing.Size(62, 35);
+            this.btnFinalizar.TabIndex = 3;
+            this.btnFinalizar.Text = "Finalizar";
+            this.btnFinalizar.UseVisualStyleBackColor = false;
+            this.btnFinalizar.Visible = false;
+            this.btnFinalizar.Click += new System.EventHandler(this.btnFinalizar_Click_1);
             // 
             // btnEnviar
             // 
@@ -89,38 +122,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 370);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // btnFinalizar
-            // 
-            this.btnFinalizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinalizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.btnFinalizar.FlatAppearance.BorderSize = 0;
-            this.btnFinalizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinalizar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnFinalizar.Location = new System.Drawing.Point(606, 79);
-            this.btnFinalizar.Name = "btnFinalizar";
-            this.btnFinalizar.Size = new System.Drawing.Size(62, 35);
-            this.btnFinalizar.TabIndex = 3;
-            this.btnFinalizar.Text = "Finalizar";
-            this.btnFinalizar.UseVisualStyleBackColor = false;
-            this.btnFinalizar.Visible = false;
-            // 
-            // btnConectados
-            // 
-            this.btnConectados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConectados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.btnConectados.FlatAppearance.BorderSize = 0;
-            this.btnConectados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConectados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConectados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnConectados.Location = new System.Drawing.Point(518, 79);
-            this.btnConectados.Name = "btnConectados";
-            this.btnConectados.Size = new System.Drawing.Size(82, 35);
-            this.btnConectados.TabIndex = 4;
-            this.btnConectados.Text = "conectados";
-            this.btnConectados.UseVisualStyleBackColor = false;
-            this.btnConectados.Click += new System.EventHandler(this.btnConectados_Click);
             // 
             // chatScreen
             // 

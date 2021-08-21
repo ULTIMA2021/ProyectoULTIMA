@@ -14,11 +14,11 @@ namespace AppDocente.menuScreens
     public partial class Salas : Form
     {
         Timer timer;
-
         public Salas()
         {
             InitializeComponent();            
         }
+
         private void timer_Tick(Object sender, EventArgs e)
         {
             try
@@ -36,7 +36,6 @@ namespace AppDocente.menuScreens
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
-
         }
         private Timer setTimer()
         {
@@ -58,6 +57,7 @@ namespace AppDocente.menuScreens
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            timer.Dispose();
             this.Close();
         }
 
@@ -115,15 +115,35 @@ namespace AppDocente.menuScreens
             string nombreMateria = Convert.ToString(dgvSalas.CurrentRow.Cells["Materia"].Value);
             string nombreAnfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["Anfitrion de chat"].Value);
             string anfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["anfitrion"].Value);
-            new chatScreen(idSala,asunto,nombreAnfitrion,anfitrion);
+            bool isDone = Convert.ToBoolean(dgvSalas.CurrentRow.Cells["isDone"].Value);
+            timer.Stop();
+            new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion, isDone).ShowDialog();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona();
+            dgvSalas.Update();
+            timer.Start();
         }
 
         private void Salas_Load(object sender, EventArgs e)
         {
-            loadGM();
-            myLoad();
-            timer = setTimer();
-            timer.Start();
+            try
+            {
+                timer = setTimer();
+                timer.Start();
+                loadGM();
+                myLoad();
+
+            }
+            catch (Exception ex)
+            {
+                timer.Stop();
+                timer.Dispose();
+                dgvGrupoMaterias.Enabled = false;
+                dgvSalas.Enabled = false;
+                txtAsuntoSala.Enabled = false;
+                btnCrear.Enabled = false;
+                btnUnirse.Enabled = false;
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
         }
 
         private void Salas_FormClosing(object sender, FormClosingEventArgs e)
@@ -147,16 +167,20 @@ namespace AppDocente.menuScreens
             {
                 idGrupo = Convert.ToString(dgvGrupoMaterias.CurrentRow.Cells["idGrupo"].Value);
                 idMateria = Convert.ToString(dgvGrupoMaterias.CurrentRow.Cells["idMateria"].Value);
-                docente = Session.cedula;
-                anfitrion = docente;
+                docente = null;
+                anfitrion = Session.cedula;
                 resumen = txtAsuntoSala.Text.Trim();
                 fechaHora = DateTime.Now;
 
-                Controlador.nuevaSala(idGrupo,idMateria,docente,anfitrion,resumen,fechaHora);
+                Controlador.nuevaSala(idGrupo, idMateria, docente, anfitrion, resumen, fechaHora);
+                txtAsuntoSala.Clear();
+                dgvSalas.DataSource = Controlador.loadSalasDePersona();
+                dgvSalas.Update();
+                timer.Start();
             }
             catch (Exception ex)
             {
-                Controlador.errorHandler(ex);
+                MessageBox.Show(Controlador.errorHandler(ex));
             }
         }
 
