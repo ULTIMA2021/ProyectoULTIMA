@@ -9,8 +9,8 @@ namespace CapaDeDatos
 {
     public class SalaMembersModelo : Modelo
     {
-        int idSala;
-        int ci;
+        string idSala;
+        public int ci;
         bool isConnected;
         string errorType = "SalaMembers";
 
@@ -32,9 +32,9 @@ namespace CapaDeDatos
         {
             this.comando.CommandText = "UPDATE Sala_members SET isConnected=@isConnected WHERE " +
                 "idSala=@idSala AND ci=@ci;";
-            this.comando.Parameters.AddWithValue("idSala", idSala);
-            this.comando.Parameters.AddWithValue("ci", ci);
-            this.comando.Parameters.AddWithValue("isConnected", isConnected);
+            this.comando.Parameters.AddWithValue("@idSala", idSala);
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            this.comando.Parameters.AddWithValue("@isConnected", isConnected);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
@@ -45,7 +45,7 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 SalaMembersModelo sm = new SalaMembersModelo(sessionType);
-                sm.idSala = int.Parse(lector[0].ToString());
+                sm.idSala = lector[0].ToString();
                 sm.ci = int.Parse(lector[1].ToString());
                 sm.isConnected = bool.Parse(lector[2].ToString());
                 personas.Add(sm);
@@ -60,7 +60,35 @@ namespace CapaDeDatos
                 "WHERE sm.idSala=@idSala " +
                 "AND (ag.alumnoCi=sm.ci OR dgm.docenteCi=sm.ci);";
             this.comando.Parameters.AddWithValue("@idSala",idSala);
-            return (cargarMembersAlist(this.comando,sessionType));
+            return cargarMembersAlist(this.comando,sessionType);
+        }
+
+        public List<SalaMembersModelo> getSalaMembers(string idSala,bool isConnected, byte sessionType)
+        {
+            this.comando.CommandText = "SELECT idSala,ci,isConnected FROM sala_members WHERE idSala=@idSala AND isConnected=@isConnected;";
+            this.comando.Parameters.AddWithValue("@idSala", idSala);
+            this.comando.Parameters.AddWithValue("@isConnected", isConnected);
+            return cargarMembersAlist(this.comando, sessionType);
+        }
+
+        public int getSalaMembersCount(string idSala, bool isConnected)
+        {
+            int count = 0;
+            this.comando.CommandText = "SELECT COUNT(*) FROM sala_members WHERE idSala=@idSala AND isConnected=@isConnected;";
+            this.comando.Parameters.AddWithValue("@idSala", idSala);
+            this.comando.Parameters.AddWithValue("@isConnected", isConnected);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            count = int.Parse(lector[0].ToString());  
+            lector.Close();
+            return count;
+        }
+
+        public List<string> toStringList() {
+            List<string> member = new List<string>();
+            member.Add(this.ci.ToString());
+            member.Add(this.isConnected.ToString());
+            return member;
         }
     }
 }

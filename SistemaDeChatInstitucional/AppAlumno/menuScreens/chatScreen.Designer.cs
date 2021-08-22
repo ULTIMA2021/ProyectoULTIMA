@@ -28,14 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnConectados = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 370);
+            this.flowLayoutPanel1.TabIndex = 3;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // panel1
             // 
@@ -49,7 +61,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 370);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(671, 117);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 2;
             // 
             // btnConectados
             // 
@@ -62,10 +74,9 @@
             this.btnConectados.Location = new System.Drawing.Point(518, 79);
             this.btnConectados.Name = "btnConectados";
             this.btnConectados.Size = new System.Drawing.Size(82, 35);
-            this.btnConectados.TabIndex = 4;
+            this.btnConectados.TabIndex = 5;
             this.btnConectados.Text = "conectados";
             this.btnConectados.UseVisualStyleBackColor = false;
-            this.btnConectados.Click += new System.EventHandler(this.btnConectados_Click);
             // 
             // btnFinalizar
             // 
@@ -78,7 +89,7 @@
             this.btnFinalizar.Location = new System.Drawing.Point(606, 79);
             this.btnFinalizar.Name = "btnFinalizar";
             this.btnFinalizar.Size = new System.Drawing.Size(62, 35);
-            this.btnFinalizar.TabIndex = 3;
+            this.btnFinalizar.TabIndex = 2;
             this.btnFinalizar.Text = "Finalizar";
             this.btnFinalizar.UseVisualStyleBackColor = false;
             this.btnFinalizar.Visible = false;
@@ -111,18 +122,6 @@
             this.txtRespuesta.Size = new System.Drawing.Size(491, 108);
             this.txtRespuesta.TabIndex = 0;
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 370);
-            this.flowLayoutPanel1.TabIndex = 1;
-            this.flowLayoutPanel1.WrapContents = false;
-            // 
             // chatScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,11 +145,11 @@
 
         #endregion
 
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
+        public System.Windows.Forms.Button btnConectados;
+        public System.Windows.Forms.Button btnFinalizar;
         public System.Windows.Forms.Button btnEnviar;
         public System.Windows.Forms.TextBox txtRespuesta;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        public System.Windows.Forms.Button btnFinalizar;
-        public System.Windows.Forms.Button btnConectados;
     }
 }

@@ -116,8 +116,13 @@ namespace AppAlumno.menuScreens
             string nombreAnfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["Anfitrion de chat"].Value);
             string anfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["anfitrion"].Value);
             bool isDone = Convert.ToBoolean(dgvSalas.CurrentRow.Cells["isDone"].Value);
+            string docente = Convert.ToString(dgvSalas.CurrentRow.Cells["docenteCi"].Value);
+
             timer.Stop();
-            new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion,isDone).ShowDialog();
+            Controlador.updateSalaConnection(idSala.ToString(),true);
+
+            new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion,isDone,docente).ShowDialog();
+
             dgvSalas.DataSource = Controlador.loadSalasDePersona();
             dgvSalas.Update();
             timer.Start();

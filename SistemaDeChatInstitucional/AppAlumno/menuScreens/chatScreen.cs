@@ -15,13 +15,18 @@ namespace AppAlumno.menuScreens
     {
         int idSala;
         string autorCi;
+        string docente;
         List<List<string>> mensajes;
+        List<List<string>> members;
+        int membersOn;
+
         Timer timer;
 
-        public chatScreen(int idSala, string asunto, string nombreAnfitrion, string anfitrion,bool isDone)
+        public chatScreen(int idSala, string asunto, string nombreAnfitrion, string anfitrion,bool isDone,string docente)
         {
             InitializeComponent();
             this.Text = $"{asunto} - @{nombreAnfitrion}";
+            this.docente = docente;
             this.idSala = idSala;
             bool x=true;
             if (isDone) {
@@ -44,6 +49,11 @@ namespace AppAlumno.menuScreens
                     timer.Stop();
                     myLoad();
                 }
+                if (Controlador.getPersonasEnSalaCount(idSala.ToString(),true)!=membersOn)
+                {
+                    timer.Stop();
+                    setBtnText();
+                }
             }
             catch (Exception ex)
             {
@@ -63,6 +73,7 @@ namespace AppAlumno.menuScreens
         {
             try
             {
+                members = Controlador.getPersonasEnSala(idSala.ToString());
                 mensajes = Controlador.getMensajesDeSala(idSala);
             }
             catch (Exception ex)
@@ -141,6 +152,44 @@ namespace AppAlumno.menuScreens
             timer.Start();
         }
 
+        private void loadMembers() => members = Controlador.getPersonasEnSala(idSala.ToString());  
+
+        private void setBtnText() {
+            loadMembers();
+            List<List<string>> online = new List<List<string>>();
+            List<List<string>> offline = new List<List<string>>();
+            string tooltipOnline="***PRESENTES\n__________";
+            string tooltipOff = "***NO-PRESENTES\n__________";
+            foreach (List<string> member in members)
+            {
+                if (Convert.ToBoolean(member[1]))
+                {
+                    if (member[0] == docente) 
+                        tooltipOnline = $"{tooltipOnline}\n  {member[2].ToString()} => *Docente*";
+                    else 
+                    tooltipOnline = $"{tooltipOnline}\n  {member[2].ToString()}";
+                    online.Add(member);
+                }
+                else
+                {
+                    if (member[0] == docente)
+                        tooltipOff = $"{tooltipOff}\n  {member[2].ToString()}  => *Docente*";
+                    else
+                        tooltipOff = $"{tooltipOff}\n  {member[2].ToString()}";
+                    offline.Add(member);
+                }
+                Console.WriteLine($"ci: {member[0].ToString()}\tstatus: {member[1].ToString()}\tnombrePersona:{member[2].ToString()}");
+            }
+            membersOn = online.Count;
+            string btnText = $"{online.Count} / {members.Count}";
+            btnConectados.Text = btnText;
+            ToolTip tt = new ToolTip();
+            tt.UseAnimation = true;
+            
+            tt.SetToolTip(this.btnConectados,$"{tooltipOnline}\n\n{tooltipOff}");
+        }
+
+
         private void enviarMensaje()
         {
             autorCi = Session.cedula;
@@ -195,11 +244,13 @@ namespace AppAlumno.menuScreens
         {
             timer = setTimer();
             myLoad();
+            setBtnText();
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
         }
 
         private void chatScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Controlador.updateSalaConnection(idSala.ToString(), false);
             timer.Stop();
             timer.Dispose();
             Dispose();
@@ -207,7 +258,6 @@ namespace AppAlumno.menuScreens
 
         private void btnConectados_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("oiashdoihasd");
         }
 
         private void btnFinalizar_Click_1(object sender, EventArgs e)

@@ -146,6 +146,54 @@ namespace CapaLogica
         }
 
         public static int getMensajesDeSalaCount(int idSala) =>  new SalaMensajeModelo(Session.type).getMensajesDeSalaCount(idSala,Session.type);
-        
+
+        public static List<List<string>> getPersonasEnSala(string idSala) {
+            List<SalaMembersModelo> memberList = new SalaMembersModelo(Session.type).getSalaMembers(idSala,Session.type);
+            List<List<string>> memberListString = new List<List<string>>();
+            foreach (SalaMembersModelo member in memberList) {
+
+                List<string> memberString = member.toStringList();
+                memberString.Add(traemeEstaPersona(member.ci.ToString()));
+
+                memberListString.Add(memberString);
+            }
+            memberListString.Sort((a, b) => a[2].CompareTo(b[2]));
+
+            return memberListString;
+        }
+
+        public static List<List<string>> getPersonasEnSala1(string idSala)
+        {
+            List<SalaMembersModelo> onMemberList = new SalaMembersModelo(Session.type).getSalaMembers(idSala,true, Session.type);
+            List<List<string>> onMemberListString = new List<List<string>>();
+            foreach (SalaMembersModelo member in onMemberList)
+            {
+                List<string> memberString = member.toStringList();
+                memberString.Add(traemeEstaPersona(member.ci.ToString()));
+
+                onMemberListString.Add(memberString);
+            }
+
+            onMemberListString.Sort((a, b) => a[2].CompareTo(b[2]));
+            return onMemberListString;
+        }
+        public static List<List<string>> getPersonasNoEnSala(string idSala)
+        {
+            List<SalaMembersModelo> offMemberList = new SalaMembersModelo(Session.type).getSalaMembers(idSala, false, Session.type);
+            List<List<string>> offMemberListString = new List<List<string>>();
+            foreach (SalaMembersModelo member in offMemberList)
+            {
+                List<string> memberString = member.toStringList();
+                memberString.Add(traemeEstaPersona(member.ci.ToString()));
+
+                offMemberListString.Add(memberString);
+            }
+
+            offMemberListString.Sort((a, b) => a[2].CompareTo(b[2]));
+            return offMemberListString;
+        }
+        public static int getPersonasEnSalaCount(string idSala,bool isConnected) => new SalaMembersModelo(Session.type).getSalaMembersCount(idSala,isConnected);
+       
+        public static void updateSalaConnection(string idSala,bool isConnected) => new SalaMembersModelo(Session.type).updateIsConnected(Session.cedula,idSala,isConnected);
     }
 }
