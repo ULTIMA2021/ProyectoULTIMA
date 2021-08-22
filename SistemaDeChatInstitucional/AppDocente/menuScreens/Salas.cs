@@ -117,10 +117,18 @@ namespace AppDocente.menuScreens
             string anfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["anfitrion"].Value);
             bool isDone = Convert.ToBoolean(dgvSalas.CurrentRow.Cells["isDone"].Value);
             timer.Stop();
+            Controlador.updateSalaConnection(idSala.ToString(),true);
             new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion, isDone).ShowDialog();
             dgvSalas.DataSource = Controlador.loadSalasDePersona();
             dgvSalas.Update();
             timer.Start();
+            /*para que me cierrre la ventana de alumnosConectados pero no funca
+            foreach (Form frm in Application.OpenForms)
+            {
+                if (frm.Name == "alumnosConectados")
+                    frm.Close();
+            }
+            */
         }
 
         private void Salas_Load(object sender, EventArgs e)

@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConectados = new System.Windows.Forms.Button();
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnConectados = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +50,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(671, 117);
             this.panel1.TabIndex = 0;
+            // 
+            // btnConectados
+            // 
+            this.btnConectados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConectados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnConectados.FlatAppearance.BorderSize = 0;
+            this.btnConectados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConectados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConectados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnConectados.Location = new System.Drawing.Point(518, 79);
+            this.btnConectados.Name = "btnConectados";
+            this.btnConectados.Size = new System.Drawing.Size(82, 35);
+            this.btnConectados.TabIndex = 5;
+            this.btnConectados.Text = "conectados";
+            this.btnConectados.UseVisualStyleBackColor = false;
+            this.btnConectados.Click += new System.EventHandler(this.btnConectados_Click);
             // 
             // btnFinalizar
             // 
@@ -106,22 +122,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(671, 370);
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // btnConectados
-            // 
-            this.btnConectados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnConectados.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.btnConectados.FlatAppearance.BorderSize = 0;
-            this.btnConectados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConectados.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConectados.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnConectados.Location = new System.Drawing.Point(518, 79);
-            this.btnConectados.Name = "btnConectados";
-            this.btnConectados.Size = new System.Drawing.Size(82, 35);
-            this.btnConectados.TabIndex = 5;
-            this.btnConectados.Text = "conectados";
-            this.btnConectados.UseVisualStyleBackColor = false;
-            this.btnConectados.Click += new System.EventHandler(this.btnConectados_Click);
             // 
             // chatScreen
             // 

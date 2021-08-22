@@ -101,13 +101,5 @@ namespace CapaDeDatos
             return count;
         }
 
-        public List<SalaModelo> getSala(byte sessionType)
-        {
-            this.comando.CommandText = "SELECT s.idSala,s.idGrupo,s.idMateria,s.docenteCi,s.anfitrion,s.resumen,s.isDone,s.creacion) " +
-                "FROM Sala s, Alumno_tiene_Grupo ag, Docente_dicta_G_M dgm WHERE " +
-                "s.idMateria=";
-            return (cargarSalasAlist(this.comando, sessionType));
-        }
-
     }
 }

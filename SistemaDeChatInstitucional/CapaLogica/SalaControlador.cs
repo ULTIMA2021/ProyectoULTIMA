@@ -161,7 +161,7 @@ namespace CapaLogica
 
             return memberListString;
         }
-
+        /*
         public static List<List<string>> getPersonasEnSala1(string idSala)
         {
             List<SalaMembersModelo> onMemberList = new SalaMembersModelo(Session.type).getSalaMembers(idSala,true, Session.type);
@@ -192,6 +192,7 @@ namespace CapaLogica
             offMemberListString.Sort((a, b) => a[2].CompareTo(b[2]));
             return offMemberListString;
         }
+        */
         public static int getPersonasEnSalaCount(string idSala,bool isConnected) => new SalaMembersModelo(Session.type).getSalaMembersCount(idSala,isConnected);
        
         public static void updateSalaConnection(string idSala,bool isConnected) => new SalaMembersModelo(Session.type).updateIsConnected(Session.cedula,idSala,isConnected);

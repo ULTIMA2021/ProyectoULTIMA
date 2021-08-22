@@ -49,6 +49,7 @@ namespace AppAlumno.menuScreens
                     timer.Stop();
                     myLoad();
                 }
+                int newOnline = Controlador.getPersonasEnSalaCount(idSala.ToString(), true);
                 if (Controlador.getPersonasEnSalaCount(idSala.ToString(),true)!=membersOn)
                 {
                     timer.Stop();

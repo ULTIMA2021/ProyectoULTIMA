@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,9 @@ namespace AppDocente.menuScreens
         int idSala;
         string autorCi;
         List<List<string>> mensajes;
+        List<List<string>> members;
         Timer timer;
+        int membersOn;
 
         public chatScreen(int idSala, string asunto, string nombreAnfitrion,string anfitrion, bool isDone)
         {
@@ -45,6 +48,14 @@ namespace AppDocente.menuScreens
                     timer.Stop();
                     myLoad();
                 }
+
+                if (!Application.OpenForms.OfType<alumnosConectados>().Any())
+                    if (Controlador.getPersonasEnSalaCount(idSala.ToString(), true) != membersOn)
+                    {
+                        timer.Stop();
+                        setBtnText();
+                        timer.Start();
+                    }
             }
             catch (Exception ex)
             {
@@ -64,6 +75,7 @@ namespace AppDocente.menuScreens
         {
             try
             {
+                members = Controlador.getPersonasEnSala(idSala.ToString());
                 mensajes = Controlador.getMensajesDeSala(idSala);
             }
             catch (Exception ex)
@@ -141,6 +153,43 @@ namespace AppDocente.menuScreens
             timer.Start();
         }
 
+        private void loadMembers() => members = Controlador.getPersonasEnSala(idSala.ToString());
+        private void setBtnText()
+        {
+            loadMembers();
+            List<List<string>> online = new List<List<string>>();
+            List<List<string>> offline = new List<List<string>>();
+            string tooltipOnline = "***PRESENTES\n__________";
+            string tooltipOff = "***NO-PRESENTES\n__________";
+            foreach (List<string> member in members)
+            {
+                if (Convert.ToBoolean(member[1]))
+                {
+                    if (member[0] == Session.cedula)
+                        tooltipOnline = $"{tooltipOnline}\n  {member[2].ToString()} => *Docente*";
+                    else
+                        tooltipOnline = $"{tooltipOnline}\n  {member[2].ToString()}";
+                    online.Add(member);
+                }
+                else
+                {
+                    if (member[0] == Session.cedula)
+                        tooltipOff = $"{tooltipOff}\n  {member[2].ToString()}  => *Docente*";
+                    else
+                        tooltipOff = $"{tooltipOff}\n  {member[2].ToString()}";
+                    offline.Add(member);
+                }
+                Console.WriteLine($"ci: {member[0].ToString()}\tstatus: {member[1].ToString()}\tnombrePersona:{member[2].ToString()}");
+            }
+            membersOn = online.Count;
+            string btnText = $"{online.Count-1} / {members.Count-1}";
+            btnConectados.Text = btnText;
+            ToolTip tt = new ToolTip();
+            tt.UseAnimation = true;
+
+            tt.SetToolTip(this.btnConectados, $"{tooltipOnline}\n\n{tooltipOff}");
+        }
+
         private void enviarMensaje()
         {
             autorCi = Session.cedula;
@@ -195,6 +244,7 @@ namespace AppDocente.menuScreens
         {
             timer = setTimer();
             myLoad();
+            setBtnText();
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
         }
 
@@ -214,14 +264,17 @@ namespace AppDocente.menuScreens
 
         private void chatScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Controlador.updateSalaConnection(idSala.ToString(), false);
+
+            
+            if (Application.OpenForms.OfType<alumnosConectados>().Any())
+                
             timer.Stop();
             timer.Dispose();
             Dispose();
         }
 
-        private void btnConectados_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void btnConectados_Click(object sender, EventArgs e)=> new alumnosConectados(idSala.ToString(),membersOn);
+        
     }
 }
