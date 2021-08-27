@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
+
 namespace AppDocente.menuScreens
 {
     public partial class chatScreen : Form
@@ -116,7 +117,7 @@ namespace AppDocente.menuScreens
                 fecha.Dock = DockStyle.Right;
                 fecha.AutoSize = true;
                 fecha.Name = "labelFecha_" + i;
-                fecha.BackColor = Color.PowderBlue;
+               // fecha.BackColor = Color.PowderBlue;
                 fecha.Text = mensajes[i][4];
 
                 fecha.Margin = dateP;
@@ -125,7 +126,7 @@ namespace AppDocente.menuScreens
 
                 if (autorCi == Session.cedula){
                     nombrePersona.Text = $"{Session.nombre} {Session.apellido}";
-                    nombrePersona.BackColor = Color.PowderBlue;
+                   // nombrePersona.BackColor = Color.PowderBlue;
                 }
                 else
                 {
@@ -133,10 +134,10 @@ namespace AppDocente.menuScreens
                     t.Dock = DockStyle.Left;
                     nombrePersona.Text = mensajes[i][5];
                     nombrePersona.Dock = DockStyle.Left;
-                    nombrePersona.BackColor = Color.PeachPuff;
+                   // nombrePersona.BackColor = Color.PeachPuff;
 
-                    fecha.BackColor = Color.PeachPuff;
-                    fecha.Dock = DockStyle.Left;
+                   // fecha.BackColor = Color.PeachPuff;
+                  //  fecha.Dock = DockStyle.Left;
 
                 }
                 t.Text = mensajes[i][3];
@@ -251,7 +252,7 @@ namespace AppDocente.menuScreens
         private void btnFinalizar_Click(object sender, EventArgs e)
         {
             string message = "Realmente quiere finalizar el chat grupal?\n\n\nNadie podra mandar mas mensajes a esta sala";
-            string caption = "Porfavor confirme cerrada de sala";
+            string caption = "Porfavor confirme cierre de sala";
             DialogResult result;
             result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)

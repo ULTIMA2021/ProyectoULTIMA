@@ -52,7 +52,7 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(183)))), ((int)(((byte)(182)))));
             this.panel1.Controls.Add(this.btnConectados);
             this.panel1.Controls.Add(this.btnFinalizar);
             this.panel1.Controls.Add(this.btnEnviar);
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(227)))));
             this.ClientSize = new System.Drawing.Size(671, 487);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel1);
