@@ -36,8 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtBuscarDocente = new System.Windows.Forms.TextBox();
             this.dgvListaDocentes = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblNombreDocente = new System.Windows.Forms.Label();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -120,26 +118,6 @@
             this.dgvListaDocentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListaDocentes.Size = new System.Drawing.Size(562, 141);
             this.dgvListaDocentes.TabIndex = 23;
-            this.dgvListaDocentes.SelectionChanged += new System.EventHandler(this.dgvListaDocentes_SelectionChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(79, 252);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "Para: ";
-            // 
-            // lblNombreDocente
-            // 
-            this.lblNombreDocente.AutoSize = true;
-            this.lblNombreDocente.Location = new System.Drawing.Point(148, 252);
-            this.lblNombreDocente.Name = "lblNombreDocente";
-            this.lblNombreDocente.Size = new System.Drawing.Size(103, 13);
-            this.lblNombreDocente.TabIndex = 25;
-            this.lblNombreDocente.Text = "Nombre del docente";
             // 
             // btnEnviar
             // 
@@ -212,8 +190,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnEnviar);
-            this.Controls.Add(this.lblNombreDocente);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvListaDocentes);
             this.Controls.Add(this.txtBuscarDocente);
             this.Controls.Add(this.label1);
@@ -234,8 +210,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBuscarDocente;
         private System.Windows.Forms.DataGridView dgvListaDocentes;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblNombreDocente;
         private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

@@ -57,20 +57,5 @@ namespace AppAlumno.menuScreens
            dgvListaDocentes.Columns["Cedula"].Visible = false;
            dgvListaDocentes.ClearSelection();
         }
-
-        private void dgvListaDocentes_SelectionChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                lblNombreDocente.Text =
-            $"{Convert.ToString(dgvListaDocentes.CurrentRow.Cells[1].Value.ToString())} {Convert.ToString(dgvListaDocentes.CurrentRow.Cells[2].Value)}";
-            }
-            catch (Exception)
-            {
-
-                lblNombreDocente.Text = "";
-            }
-            
-        }
     }
 }
