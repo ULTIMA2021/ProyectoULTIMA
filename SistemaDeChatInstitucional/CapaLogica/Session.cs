@@ -24,6 +24,7 @@ namespace CapaLogica
             nombre = per.Nombre;
             apellido = per.Apellido;
             clave = per.Clave;
+            if(!(gList is null))
             saveGrupoMaterias(gList);
         }
 
