@@ -126,7 +126,7 @@ namespace CapaDeDatos
         public List<PersonaModelo> validarAlumno(string user, string pass, byte sessionType)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p " +
-                "WHERE p.ci=a.ci AND a.ci=@user AND p.clave=@pass AND P.isDeleted=false;";
+                "WHERE p.ci=a.ci AND a.ci=@user AND p.clave=@pass AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando, sessionType);
@@ -135,7 +135,7 @@ namespace CapaDeDatos
         public List<PersonaModelo> validarDocente(string user, string pass, byte sessionType)
         {
             this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM Docente d,Persona p " +
-                "WHERE p.ci=d.ci AND d.ci=@user AND p.clave=@pass AND P.isDeleted=false;";
+                "WHERE p.ci=d.ci AND d.ci=@user AND p.clave=@pass AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando, sessionType);
@@ -144,7 +144,7 @@ namespace CapaDeDatos
         public List<PersonaModelo> validarAdmin(string user, string pass, byte sessionType)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Administrador a, Persona p " +
-                "WHERE p.ci = a.ci AND a.ci = @user AND p.clave = @pass AND P.isDeleted=false;";
+                "WHERE p.ci = a.ci AND a.ci = @user AND p.clave = @pass AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
             this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando, sessionType);

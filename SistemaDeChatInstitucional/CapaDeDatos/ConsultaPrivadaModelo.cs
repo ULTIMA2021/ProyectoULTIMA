@@ -109,7 +109,7 @@ namespace CapaDeDatos
         public List<ConsultaPrivadaModelo> getConsultas(byte sessionType)
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp, CP_Mensaje m " +
+            this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp, CP_mensaje m " +
                 "WHERE cp.idConsultaPrivada = m.idConsultaPrivada " +
                 "AND cp.alumnoCi = m.ciAlumno AND cp.docenteCi = m.ciDestinatario AND m.idCp_mensaje = 1;";
             lector = this.comando.ExecuteReader();

@@ -66,13 +66,13 @@ namespace CapaDeDatos
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta(byte sessionType) {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_Mensaje cpm; ";
+                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_mensaje cpm; ";
             return cargarMensajePrivadoALista(this.comando, sessionType);
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta(int ciAlumno, byte sessionType)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus,cpm.ciDestinatario FROM CP_Mensaje cpm" +
+                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus,cpm.ciDestinatario FROM CP_mensaje cpm" +
                 "WHERE cpm.ciAlumno=@ciAlumno; ";
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
             return cargarMensajePrivadoALista(this.comando, sessionType);
@@ -80,7 +80,7 @@ namespace CapaDeDatos
         public List<MensajePrivadoModelo> mensajesDeConsulta(string ciDocente, byte sessionType)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_Mensaje cpm" +
+               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_mensaje cpm" +
                "WHERE cpm.ciDocente=@ciDocente; ";
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
             return cargarMensajePrivadoALista(this.comando, sessionType);
@@ -88,7 +88,7 @@ namespace CapaDeDatos
         public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente, byte sessionType)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_Mensaje cpm " +
+               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_mensaje cpm " +
                "WHERE cpm.idConsultaPrivada=@idConsultaPrivada AND cpm.ciAlumno=@ciAlumno AND cpm.ciDocente=@ciDocente ; ";
             this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);

@@ -38,7 +38,7 @@ namespace CapaDeDatos
         }
 
         public void enviarMensaje() {
-            this.comando.CommandText = "INSERT INTO Sala_Mensaje (idSala,autorCi, contenido, fechaHora) " +
+            this.comando.CommandText = "INSERT INTO Sala_mensaje (idSala,autorCi, contenido, fechaHora) " +
                 "VALUES (@idSala,@autorCi,@contenido, @fechaHora);";
             this.comando.Parameters.AddWithValue("@idSala",idSala);
             this.comando.Parameters.AddWithValue("@autorCi", autorCi);

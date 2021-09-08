@@ -20,7 +20,7 @@ namespace CapaDeDatos
         
         //se puede poner un trigger para cuando se crea una que se haga esto para cada alumno de cada grupo
         public void insertMembers(string ci, string idSala) {
-            this.comando.CommandText = "INSERT INTO Sala_Members(idSala, ci) VALUES (" +
+            this.comando.CommandText = "INSERT INTO Sala_members(idSala, ci) VALUES (" +
                 "@idSala,@ci);";
             this.comando.Parameters.AddWithValue("idSala", idSala);
             this.comando.Parameters.AddWithValue("ci", ci);
@@ -56,7 +56,7 @@ namespace CapaDeDatos
 
         public List<SalaMembersModelo> getSalaMembers(string idSala, byte sessionType) {
             this.comando.CommandText = "SELECT DISTINCT idSala,ci,isConnected FROM " +
-                "Sala_members sm, Alumno_Tiene_Grupo ag, Docente_dicta_G_M dgm " +
+                "Sala_members sm, Alumno_tiene_Grupo ag, Docente_dicta_G_M dgm " +
                 "WHERE sm.idSala=@idSala " +
                 "AND (ag.alumnoCi=sm.ci OR dgm.docenteCi=sm.ci);";
             this.comando.Parameters.AddWithValue("@idSala",idSala);
@@ -65,7 +65,7 @@ namespace CapaDeDatos
 
         public List<SalaMembersModelo> getSalaMembers(string idSala,bool isConnected, byte sessionType)
         {
-            this.comando.CommandText = "SELECT idSala,ci,isConnected FROM sala_members WHERE idSala=@idSala AND isConnected=@isConnected;";
+            this.comando.CommandText = "SELECT idSala,ci,isConnected FROM Sala_members WHERE idSala=@idSala AND isConnected=@isConnected;";
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             this.comando.Parameters.AddWithValue("@isConnected", isConnected);
             return cargarMembersAlist(this.comando, sessionType);
@@ -74,7 +74,7 @@ namespace CapaDeDatos
         public int getSalaMembersCount(string idSala, bool isConnected)
         {
             int count = 0;
-            this.comando.CommandText = "SELECT COUNT(*) FROM sala_members WHERE idSala=@idSala AND isConnected=@isConnected;";
+            this.comando.CommandText = "SELECT COUNT(*) FROM Sala_members WHERE idSala=@idSala AND isConnected=@isConnected;";
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             this.comando.Parameters.AddWithValue("@isConnected", isConnected);
             lector = comando.ExecuteReader();
