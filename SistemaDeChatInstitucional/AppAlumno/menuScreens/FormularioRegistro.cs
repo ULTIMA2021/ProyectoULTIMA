@@ -34,8 +34,8 @@ namespace Login
                 {
                     if (Controlador.existePersona(txtCedula.Text))
                     {
-
-                       clave= CryptographyUtils.encryptThis(clave);
+                        clave = CryptographyUtils.encryptThis(clave);
+                        Console.WriteLine($"original password: {txtClave.Text}\nencrypted is {clave}");
                         Controlador.AltaAlumno(
                                                   txtCedula.Text,
                                                   txtNombre.Text,

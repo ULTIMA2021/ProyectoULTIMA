@@ -60,8 +60,8 @@ namespace CapaDeDatos
 
         protected void InicializarConexion(byte sessionType)
         {
-                this.IpDb = "192.168.1.130";
-                this.NombreDb = "ultimaDB";
+                this.IpDb = "localhost"; //192.168.1.130
+            this.NombreDb = "ultimaDB";
             switch (sessionType) {
               
                 case 0: usuarioEsAlumno();
