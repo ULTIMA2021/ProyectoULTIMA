@@ -57,7 +57,9 @@ Por lo tanto, los usuarios que hemos cargados son:
 ---
 
 ## Otras links:
-[trello](https://trello.com/b/qcD4KHrV/primer-entrega-ultima)
+[trello primer entrega](https://trello.com/b/qcD4KHrV/primer-entrega-ultima)
+
+[trello segunda entrega](https://trello.com/b/04G2oigU/segunda-entrega-ultima)
 
 [miro](https://miro.com/app/board/o9J_lAxZIOM=/)
 
