@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaLogica;
 namespace AppAlumno
 {
     static class Program
@@ -16,7 +15,7 @@ namespace AppAlumno
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new alumnoMainScreen());
+            Application.Run(new Login.Login());
         }
     }
 }

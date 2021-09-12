@@ -98,7 +98,9 @@
     <Compile Include="OrientacionModelo.cs" />
     <Compile Include="PersonaModelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UsuarioModelo.cs" />
+    <Compile Include="SalaMembersModelo.cs" />
+    <Compile Include="SalaMensajeModelo.cs" />
+    <Compile Include="SalaModelo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

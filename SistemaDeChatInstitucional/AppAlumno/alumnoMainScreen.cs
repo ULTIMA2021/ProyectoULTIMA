@@ -129,8 +129,8 @@ namespace AppAlumno
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            Dispose();
             Application.Exit();
-            
         }
 
 
@@ -241,6 +241,12 @@ namespace AppAlumno
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnSala_Click(object sender, EventArgs e)
+        {
+            esconderSubMenu();
+            openScreen(new menuScreens.Salas());
         }
     }
 }

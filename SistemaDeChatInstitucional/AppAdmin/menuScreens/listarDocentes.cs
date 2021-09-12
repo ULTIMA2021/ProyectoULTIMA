@@ -20,7 +20,7 @@ namespace AppAdmin.menuScreens
 
         private void listarAlumnos_Load(object sender, EventArgs e)
         {
-            dgvListarAlumnos.DataSource = AlumnoControlador.obtenerDocentes();
+            dgvListarAlumnos.DataSource = Controlador.obtenerDocentes();
         }
 
        

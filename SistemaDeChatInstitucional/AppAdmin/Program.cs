@@ -16,7 +16,7 @@ namespace AppAdmin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new adminMainScreen());
+            Application.Run(new Login.Login());
         }
     }
 }

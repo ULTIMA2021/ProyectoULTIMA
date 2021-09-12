@@ -108,28 +108,27 @@ namespace AppDocente
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
-            
+            Dispose();
+            Application.Exit(); 
         }
 
 
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
-            
-            this.WindowState = FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;
             btnNormal.BringToFront();
         }
 
         
         private void btnMinimizar_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            WindowState = FormWindowState.Minimized;
         }
 
 
         private void btnNormal_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
             btnMaximizar.BringToFront();
         }
 
@@ -177,6 +176,13 @@ namespace AppDocente
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnSala_Click(object sender, EventArgs e)
+        {
+            esconderSubMenu();
+            openScreen(new menuScreens.Salas());
+
         }
     }
 }

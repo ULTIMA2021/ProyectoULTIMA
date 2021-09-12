@@ -11,7 +11,6 @@ namespace CapaDeDatos
 {
     public class ConsultaPrivadaModelo : Modelo
     {
-
         public int idConsultaPrivada;
         public int idMensaje;
         public int ciDocente;
@@ -20,6 +19,11 @@ namespace CapaDeDatos
         public string cpStatus;
         public DateTime cpFechaHora;
         public string ciDestinatario;
+        public string errorType = "ConsultaPrivada";
+
+        public ConsultaPrivadaModelo(byte sessionType) : base(sessionType)
+        {
+        }
 
         public void crearConsultaPrivada(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)
@@ -33,59 +37,58 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("cpStatus", cpStatus);
             this.comando.Parameters.AddWithValue("cpFechaHora", cpFechaHora);
             this.comando.Prepare();
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
 
-        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente, int ciAlumno)
+        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente, int ciAlumno, byte sessionType)
         {                                              
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            foreach (ConsultaPrivadaModelo consulta in getConsultas(sessionType))
             {
                 if (ciAlumno == consulta.ciAlumno && ciDocente == consulta.ciDocente) {
-                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
                     cp.ciDocente = consulta.ciDocente;
                     cp.ciAlumno = consulta.ciAlumno;
                     consultas.Add(cp);
-                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
-                    Console.WriteLine(cp.ToString());
+                    //Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                   // Console.WriteLine(cp.ToString());
                 }
             }
             return consultas;
         }
         
-        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente)
+        public List<ConsultaPrivadaModelo> getConsultas(int ciDocente, byte sessionType)
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            foreach (ConsultaPrivadaModelo consulta in getConsultas(sessionType))
             {
                 if (ciDocente == consulta.ciDocente)
                 {
-                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
                     cp.idMensaje = consulta.idMensaje;
                     cp.ciDocente = consulta.ciDocente;
                     cp.ciAlumno = consulta.ciAlumno;
                     cp.cpFechaHora = consulta.cpFechaHora ;
                     cp.cpStatus = consulta.cpStatus;
-                    cp.titulo = consulta.titulo;
-                    
+                    cp.titulo = consulta.titulo; 
                     consultas.Add(cp);
-                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
-                    Console.WriteLine(cp.ToString());
+                   // Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                   // Console.WriteLine(cp.ToString());
                 }
             }
             return consultas;
         }
 
         //esta es la original
-        public List<ConsultaPrivadaModelo> getConsultas(string ciAlumno) {
+        public List<ConsultaPrivadaModelo> getConsultas(string ciAlumno, byte sessionType) {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            foreach (ConsultaPrivadaModelo consulta in getConsultas())
+            foreach (ConsultaPrivadaModelo consulta in getConsultas(sessionType))
             {
                 if (ciAlumno == consulta.ciAlumno.ToString())
                 {
-                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                    ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                     cp.idConsultaPrivada = consulta.idConsultaPrivada;
                     cp.idMensaje = consulta.idMensaje;
                     cp.ciDocente = consulta.ciDocente;
@@ -95,25 +98,24 @@ namespace CapaDeDatos
                     cp.titulo = consulta.titulo;
                     cp.ciDestinatario = consulta.ciDestinatario;
                     consultas.Add(cp);
-                    Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
-                    Console.WriteLine(cp.ToString());
+                   // Console.WriteLine("getConsultas(int ciDocente, int ciAlumno)");
+                   // Console.WriteLine(cp.ToString());
                 }
             }
             return consultas;
         }
 
         // ORIGINAL
-        public List<ConsultaPrivadaModelo> getConsultas()
+        public List<ConsultaPrivadaModelo> getConsultas(byte sessionType)
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            this.comando.CommandText = "SELECT DISTINCT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, " +
-                                        "cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp " +
-                                        "inner join CP_Mensaje m on cp.idConsultaPrivada=m.idConsultaPrivada AND " +
-                                        "cp.alumnoCi=m.ciAlumno AND cp.docenteCi=m.ciDestinatario;";
+            this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp, CP_mensaje m " +
+                "WHERE cp.idConsultaPrivada = m.idConsultaPrivada " +
+                "AND cp.alumnoCi = m.ciAlumno AND cp.docenteCi = m.ciDestinatario AND m.idCp_mensaje = 1;";
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {
-                ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
+                ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(sessionType);
                 cp.idConsultaPrivada = Int32.Parse(lector[0].ToString());
                 cp.idMensaje = Int32.Parse(lector[1].ToString());
                 cp.ciDocente = Int32.Parse(lector[2].ToString());
@@ -122,18 +124,17 @@ namespace CapaDeDatos
                 cp.cpStatus = lector[5].ToString();
                 cp.cpFechaHora = DateTime.Parse(lector[6].ToString());
                 cp.ciDestinatario = lector[7].ToString();
-                Console.WriteLine("getConsultas()");
-                Console.WriteLine(cp.ToString());
+               // Console.WriteLine("getConsultas()");
+               // Console.WriteLine(cp.ToString());
                 consultas.Add(cp);
             }
                 lector.Close();
-          //  conexion.Close();
             return consultas;
         }
 
-        public int getIdConsultas(int ciDocente, int ciAlumno)
+        public int getIdConsultas(int ciDocente, int ciAlumno, byte sessionType)
         {
-            List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno);
+            List<ConsultaPrivadaModelo> consultas = getConsultas(ciDocente, ciAlumno, sessionType);
             int lastId = 0;
             try
             {

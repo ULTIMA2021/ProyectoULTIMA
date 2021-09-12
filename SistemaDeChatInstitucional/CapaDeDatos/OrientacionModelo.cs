@@ -9,21 +9,27 @@ namespace CapaDeDatos
 {
     public class OrientacionModelo : Modelo
     {
-        int idOrientacion;
-        string nombreOrientacion;
+        public int idOrientacion;
+        public string nombreOrientacion;
+        public string errorType="Orientacion";
+
+        public OrientacionModelo(byte sessionType) : base(sessionType)
+        {
+        }
+
         public void crearMateriaNueva(string nombreOrientacion)
         {
             this.comando.CommandText = "INSERT INTO Orientacion (nombreMateria) VALUES(@nombreOrientacion);";
             this.comando.Parameters.AddWithValue("nombreOrientacion", nombreOrientacion);
-            EjecutarQuery(this.comando);
+            EjecutarQuery(this.comando, errorType);
         }
-        private List<OrientacionModelo> cargarMateriaALista(MySqlCommand commando)
+        private List<OrientacionModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
         {
             lector = commando.ExecuteReader();
             List<OrientacionModelo> listaO = new List<OrientacionModelo>();
             while (lector.Read())
             {
-                OrientacionModelo o = new OrientacionModelo();
+                OrientacionModelo o = new OrientacionModelo( sessionType);
                 o.idOrientacion = Int32.Parse(lector[0].ToString());
                 o.nombreOrientacion = lector[1].ToString();
                 listaO.Add(o);
@@ -31,10 +37,10 @@ namespace CapaDeDatos
             lector.Close();
             return listaO;
         }
-        public List<OrientacionModelo> getOrientacion()
+        public List<OrientacionModelo> getOrientacion(byte sessionType)
         {
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo;";
-            return cargarMateriaALista(this.comando);
+            return cargarMateriaALista(this.comando, sessionType);
         }
     }
 }

@@ -156,12 +156,11 @@
             this.comboBoxUser.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxUser.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.comboBoxUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxUser.Enabled = false;
             this.comboBoxUser.ForeColor = System.Drawing.SystemColors.ControlText;
             this.comboBoxUser.FormattingEnabled = true;
             this.comboBoxUser.Items.AddRange(new object[] {
-            "alumno",
-            "docente",
-            "admin"});
+            "alumno"});
             this.comboBoxUser.Location = new System.Drawing.Point(156, 84);
             this.comboBoxUser.Name = "comboBoxUser";
             this.comboBoxUser.Size = new System.Drawing.Size(93, 21);
@@ -218,7 +217,7 @@
             this.txtClave.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtClave.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtClave.Location = new System.Drawing.Point(146, 402);
-            this.txtClave.MaxLength = 15;
+            this.txtClave.MaxLength = 16;
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(103, 20);
             this.txtClave.TabIndex = 16;
@@ -239,7 +238,7 @@
             this.txtClaveVerificacion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtClaveVerificacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtClaveVerificacion.Location = new System.Drawing.Point(146, 428);
-            this.txtClaveVerificacion.MaxLength = 15;
+            this.txtClaveVerificacion.MaxLength = 16;
             this.txtClaveVerificacion.Name = "txtClaveVerificacion";
             this.txtClaveVerificacion.Size = new System.Drawing.Size(103, 20);
             this.txtClaveVerificacion.TabIndex = 18;

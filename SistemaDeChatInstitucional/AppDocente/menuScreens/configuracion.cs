@@ -43,7 +43,7 @@ namespace AppDocente.menuScreens
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
             // guardarFoto();
-            if (AlumnoControlador.obtenerAlumno(Session.cedula))
+            if (Controlador.obtenerAlumno(Session.cedula))
             {
                 /*
                    txtNombre.Text = Session.nombre;
@@ -72,7 +72,7 @@ namespace AppDocente.menuScreens
         private void btnGuardarContraseña_Click(object sender, EventArgs e)
         {
             //verificar que clave nueva no sea white spaces y que no sea la misma que la vieja
-            if (AlumnoControlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
+            if (Controlador.actualizarClavePersona(txtContraseñaAnterior.Text, txtNuevaContraseña.Text))
                 MessageBox.Show("Nueva contraseña guardada!");
             else
                 MessageBox.Show("La contraseña antigua fue ingresada mal");
@@ -83,7 +83,7 @@ namespace AppDocente.menuScreens
             DialogResult confirmDelete = MessageBox.Show("Realmente desea borrar su cuenta?", "", MessageBoxButtons.YesNo);
             if (DialogResult.Yes == confirmDelete)
             {
-                AlumnoControlador.bajaPersona();
+                Controlador.bajaPersona();
                 Application.Restart();
             }
         }

@@ -134,6 +134,7 @@
             this.btnEliminar.TabIndex = 22;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // misMensajes
             // 
@@ -150,7 +151,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "misMensajes";
             this.Text = "misMensajes";
-            this.Load += new System.EventHandler(this.misMensajes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMisMensajes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

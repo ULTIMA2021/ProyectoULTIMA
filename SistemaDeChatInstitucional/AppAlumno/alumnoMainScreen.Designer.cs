@@ -36,6 +36,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnNormal = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.btnSala = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.subMenuMensajes = new System.Windows.Forms.Panel();
             this.btnMisMensajes = new System.Windows.Forms.Button();
@@ -120,6 +121,7 @@
             // 
             resources.ApplyResources(this.panelInfo, "panelInfo");
             this.panelInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.panelInfo.Controls.Add(this.btnSala);
             this.panelInfo.Controls.Add(this.btnLogout);
             this.panelInfo.Controls.Add(this.subMenuMensajes);
             this.panelInfo.Controls.Add(this.btnMensajes);
@@ -130,6 +132,18 @@
             this.panelInfo.Controls.Add(this.btnMiPerfil);
             this.panelInfo.Controls.Add(this.panel2);
             this.panelInfo.Name = "panelInfo";
+            // 
+            // btnSala
+            // 
+            this.btnSala.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            resources.ApplyResources(this.btnSala, "btnSala");
+            this.btnSala.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnSala.FlatAppearance.BorderSize = 0;
+            this.btnSala.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnSala.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSala.Name = "btnSala";
+            this.btnSala.UseVisualStyleBackColor = false;
+            this.btnSala.Click += new System.EventHandler(this.btnSala_Click);
             // 
             // btnLogout
             // 
@@ -372,5 +386,6 @@
         private System.Windows.Forms.Button btnMisMensajes;
         private System.Windows.Forms.Button btnNuevoMensaje;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnSala;
     }
 }

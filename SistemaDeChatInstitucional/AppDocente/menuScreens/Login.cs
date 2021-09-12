@@ -8,9 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
-using AppAlumno;
 using AppDocente;
-using AppAdmin;
 using System.Runtime.InteropServices;
 
 namespace Login
@@ -22,13 +20,13 @@ namespace Login
         {
             InitializeComponent();
             this.CenterToScreen();
+            Session.type = 4;
         }
         // Metodos para desplazar ventana
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
-
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -43,54 +41,34 @@ namespace Login
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(Controlador.errorHandler(ex));
                     }
 
                 }
-                else errorMessage("* Ingrese contraseña.");
+                else updateErrorLabel("* Ingrese contraseña.");
             }
-            else errorMessage("* Ingrese un usuario.");
+            else updateErrorLabel("* Ingrese un usuario.");
         }
 
         private void validarUsuario()
         {
-            if (AlumnoControlador.isAlumno(txtUsuario.Text, txtContra.Text))
-            {
-                this.Hide();
-                bienvenido bv = new bienvenido();
-                bv.ShowDialog();
-                alumnoMainScreen ams = new alumnoMainScreen();
-                ams.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
-                return;
-            }
-            if (AlumnoControlador.isDocente(txtUsuario.Text, txtContra.Text))
+            if (Controlador.isDocente(txtUsuario.Text, txtContra.Text))
             {
                 this.Hide();
                 bienvenido bv = new bienvenido();
                 bv.ShowDialog();
                 docenteMainScreen dms = new docenteMainScreen();
                 dms.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
+                Controlador.actualizarEstadoPersona(true);
                 return;
             }
-            if (AlumnoControlador.isAdmin(txtUsuario.Text, txtContra.Text))
-            {
-                this.Hide();
-                bienvenido bv = new bienvenido();
-                bv.ShowDialog();
-                adminMainScreen ams = new adminMainScreen();
-                ams.Show();
-                AlumnoControlador.actualizarEstadoPersona(true);
-                return;
-            }
-            errorMessage("* Usuario y/o contraseña incorrectos.");
+            updateErrorLabel("* Usuario y/o contraseña incorrectos.");
             txtUsuario.Text = "Usuario";
             txtContra.PasswordChar = '\0';
             txtContra.Text = "Contraseña";
         }
 
-        public void errorMessage(string msg)
+        private void updateErrorLabel(string msg)
         {
             lblErrorMessage.Text = msg;
             lblErrorMessage.Visible = true;
@@ -104,47 +82,30 @@ namespace Login
         private void txtUusuario_Enter(object sender, EventArgs e)
         {
             if (txtUsuario.Text == "Usuario")
-            {
                 txtUsuario.Text = "";
-            }
-
             lblErrorMessage.Visible = false;
-
         }
 
         private void txtContra_Enter(object sender, EventArgs e)
         {
-
             txtContra.PasswordChar = '●';
-
             if (txtContra.Text == "Contraseña")
-            {
                 txtContra.Text = "";
-
-            }
-
             lblErrorMessage.Visible = false;
-
         }
 
         private void txtUusuario_Leave(object sender, EventArgs e)
         {
             if (txtUsuario.Text == String.Empty)
-            {
-
                 txtUsuario.Text = "Usuario";
-            }
         }
 
         private void txtContra_Leave(object sender, EventArgs e)
         {
-
-
             if (txtContra.Text == String.Empty)
             {
                 txtContra.Text = "Contraseña";
                 txtContra.PasswordChar = '\0';
-
             }
         }
 
@@ -162,18 +123,5 @@ namespace Login
             txtContra.PasswordChar = '●';
             pictVer.BringToFront();
         }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            showRegisterForm(sender, e);
-        }
-
-        private void showRegisterForm(object sender, EventArgs e)
-        {
-            FormularioRegistro formularioRegistro = new FormularioRegistro();
-            formularioRegistro.ShowDialog();
-        }
-        
-
     }
 }
