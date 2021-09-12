@@ -221,8 +221,8 @@ namespace AppAlumno
             DialogResult confirmLogout = MessageBox.Show("Realmente desea cerrar sesion?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == confirmLogout)
             {
-                Application.Restart();
                 Dispose();
+                Application.Restart();
             }
             
         }
