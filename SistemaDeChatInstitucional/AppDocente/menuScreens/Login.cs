@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using CapaLogica;
 using AppDocente;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Globalization;
 
 namespace Login
 
@@ -123,5 +125,7 @@ namespace Login
             txtContra.PasswordChar = '●';
             pictVer.BringToFront();
         }
+
+       
     }
 }

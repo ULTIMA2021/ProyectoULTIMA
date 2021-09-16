@@ -37,6 +37,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnNormal = new System.Windows.Forms.Button();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.btnSala = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.subMenuMensajes = new System.Windows.Forms.Panel();
             this.btnMisMensajes = new System.Windows.Forms.Button();
@@ -54,10 +55,10 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.fotoAlumno = new System.Windows.Forms.PictureBox();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.selectIdioma = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
-            this.btnSala = new System.Windows.Forms.Button();
             this.panelOpciones.SuspendLayout();
             this.panelInfo.SuspendLayout();
             this.subMenuMensajes.SuspendLayout();
@@ -139,6 +140,18 @@
             this.panelInfo.Controls.Add(this.btnMiPerfil);
             this.panelInfo.Controls.Add(this.panel2);
             this.panelInfo.Name = "panelInfo";
+            // 
+            // btnSala
+            // 
+            this.btnSala.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            resources.ApplyResources(this.btnSala, "btnSala");
+            this.btnSala.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnSala.FlatAppearance.BorderSize = 0;
+            this.btnSala.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
+            this.btnSala.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSala.Name = "btnSala";
+            this.btnSala.UseVisualStyleBackColor = false;
+            this.btnSala.Click += new System.EventHandler(this.btnSala_Click);
             // 
             // btnLogout
             // 
@@ -299,10 +312,24 @@
             // panelContenedor
             // 
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.panelContenedor.Controls.Add(this.selectIdioma);
             this.panelContenedor.Controls.Add(this.label2);
             this.panelContenedor.Controls.Add(this.label1);
             resources.ApplyResources(this.panelContenedor, "panelContenedor");
             this.panelContenedor.Name = "panelContenedor";
+            // 
+            // selectIdioma
+            // 
+            this.selectIdioma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.selectIdioma.DropDownWidth = 125;
+            resources.ApplyResources(this.selectIdioma, "selectIdioma");
+            this.selectIdioma.ForeColor = System.Drawing.SystemColors.Window;
+            this.selectIdioma.FormattingEnabled = true;
+            this.selectIdioma.Items.AddRange(new object[] {
+            resources.GetString("selectIdioma.Items"),
+            resources.GetString("selectIdioma.Items1")});
+            this.selectIdioma.Name = "selectIdioma";
+            this.selectIdioma.SelectedIndexChanged += new System.EventHandler(this.selectIdioma_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -315,18 +342,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Name = "label1";
-            // 
-            // btnSala
-            // 
-            this.btnSala.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            resources.ApplyResources(this.btnSala, "btnSala");
-            this.btnSala.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnSala.FlatAppearance.BorderSize = 0;
-            this.btnSala.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.btnSala.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSala.Name = "btnSala";
-            this.btnSala.UseVisualStyleBackColor = false;
-            this.btnSala.Click += new System.EventHandler(this.btnSala_Click);
             // 
             // docenteMainScreen
             // 
@@ -383,5 +398,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSala;
+        private System.Windows.Forms.ComboBox selectIdioma;
     }
 }

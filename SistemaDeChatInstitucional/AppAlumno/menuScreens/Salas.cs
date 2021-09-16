@@ -149,6 +149,13 @@ namespace AppAlumno.menuScreens
                 btnUnirse.Enabled = false;
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
+
+
+            lblCrear.Text = Resources.lblCrear;
+            lblSalas.Text = Resources.lblSalas;
+            btnCrear.Text = Resources.btnCrear;
+            btnUnirse.Text = Resources.btnUnirse;
+            btnExit.Text = Resources.btnExit;
            
         }
 

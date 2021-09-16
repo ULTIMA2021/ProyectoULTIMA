@@ -21,5 +21,11 @@ namespace AppDocente.menuScreens
         {
             this.Close();
         }
+
+        private void agenda_Load(object sender, EventArgs e)
+        {
+            lblAsunto.Text = Resources.lblAsunto;
+            lblGrupos.Text = Resources.lblGrupos;
+        }
     }
 }

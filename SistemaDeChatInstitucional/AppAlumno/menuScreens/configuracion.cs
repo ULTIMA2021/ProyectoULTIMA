@@ -63,6 +63,20 @@ namespace AppAlumno.menuScreens
             txtNombre.Text = Session.nombre;
             txtApellido.Text = Session.apellido;
             txtUsuario.Text = Session.cedula;
+
+            //configuracionScreen
+            lblNombre.Text = Resources.lblNombre;
+            lblApellido.Text = Resources.lblApellido;
+            lblUsuario.Text = Resources.lblUsuario;
+            lblFoto.Text = Resources.lblFoto;
+            lblCambiarPass.Text = Resources.lblCambiarPass;
+            lblPassVieja.Text = Resources.lblPassVieja;
+            lblPassNueva.Text = Resources.lblPassNueva;
+            btnExaminar.Text = Resources.btnExaminar;
+            btnGuardarContraseña.Text = Resources.btnGuardar;
+            btnEliminarCuenta.Text = Resources.btnEliminarCuenta;
+            btnExit.Text = Resources.btnExit;
+
         }
 
         private void btnGuardarContraseña_Click(object sender, EventArgs e)
@@ -87,5 +101,6 @@ namespace AppAlumno.menuScreens
                 Application.Restart();
             }
         }
+
     }
 }

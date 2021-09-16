@@ -117,37 +117,127 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="lineShape1.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>62, 290, 573, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>62, 290</value>
-  </metadata>
-  <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>573, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Bounds" type="System.Drawing.Rectangle, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>62, 290, 573, 0</value>
-  </metadata>
-  <metadata name="lineShape1.Location" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>62, 290</value>
-  </metadata>
-  <metadata name="lineShape1.Size" type="System.Drawing.Size, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>573, 0</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        dwAAAHcBnDzE7AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAD5SURBVDhPldKx
-        TsJQFMbxE2OMYTDO4iqBwZWliWHkIVgdeQDfwBBWpoYXIEEG4ws4ukk0GlwdWFlwECj/q6f19nBp6kl+
-        TS/fOSdtqCRJkkOdY4qGzULyB5FTvMAd2n62z9+NyDEedfh/C6gDjHUwNUSEQzvk+72IDOAP+xaYoGWH
-        dVZuYIdCvtENLXiGbS4S48hf0MQXbGOR22yBbul4YRlLVLMFuqSnYeoVn9h4v/liu8D9lQ8aOj/fAVXB
-        Fe6wRpqvUMsWaPMJ3pAtMHkdM82d61yDNl1gjshmmp/hHe7Q32kog3JP4l7nPthQBjXCRzAsg7oUkact
-        l7rUwXXXhUoAAAAASUVORK5CYII=
-</value>
+  <data name="btnAbrir" xml:space="preserve">
+    <value>Abrir</value>
   </data>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="btnAgenda" xml:space="preserve">
+    <value>            Agenda</value>
+  </data>
+  <data name="btnAlumnos" xml:space="preserve">
+    <value>            Alumnos</value>
+  </data>
+  <data name="btnConfiguracion" xml:space="preserve">
+    <value>●  Configuracion</value>
+  </data>
+  <data name="btnCrear" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="btnEliminar" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="btnEliminarCuenta" xml:space="preserve">
+    <value>Eliminar cuenta</value>
+  </data>
+  <data name="btnEnviar" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="btnExaminar" xml:space="preserve">
+    <value>Examinar</value>
+  </data>
+  <data name="btnExit" xml:space="preserve">
+    <value>Atras</value>
+  </data>
+  <data name="btnFinalizar" xml:space="preserve">
+    <value>Finalizar</value>
+  </data>
+  <data name="btnGuardar" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="btnInstitucion" xml:space="preserve">
+    <value>●  Institucion</value>
+  </data>
+  <data name="btnLogout" xml:space="preserve">
+    <value>            Cerrar sesion</value>
+  </data>
+  <data name="btnMensajes" xml:space="preserve">
+    <value>            Mensajes</value>
+  </data>
+  <data name="btnMiPerfil" xml:space="preserve">
+    <value>            Mi perfil</value>
+  </data>
+  <data name="btnMisAlumnos" xml:space="preserve">
+    <value>●  Mis alumnos</value>
+  </data>
+  <data name="btnMisAsignaturas" xml:space="preserve">
+    <value>●  Mis asignaturas</value>
+  </data>
+  <data name="btnMisMensajes" xml:space="preserve">
+    <value>●  Mis mensajes</value>
+  </data>
+  <data name="btnNuevoMensaje" xml:space="preserve">
+    <value>●  Nuevo mensaje</value>
+  </data>
+  <data name="btnSala" xml:space="preserve">
+    <value>            Salas</value>
+  </data>
+  <data name="btnUnirse" xml:space="preserve">
+    <value>Unirse</value>
+  </data>
+  <data name="lblApellido" xml:space="preserve">
+    <value>Apellido:</value>
+  </data>
+  <data name="lblAsunto" xml:space="preserve">
+    <value>Asunto:</value>
+  </data>
+  <data name="lblBuscar" xml:space="preserve">
+    <value>Buscar:</value>
+  </data>
+  <data name="lblCambiarPass" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+  <data name="lblCaracteres" xml:space="preserve">
+    <value>Max. 1000 caracteres</value>
+  </data>
+  <data name="lblCrear" xml:space="preserve">
+    <value>Crear sala:</value>
+  </data>
+  <data name="lblErrorMessage" xml:space="preserve">
+    <value> </value>
+  </data>
+  <data name="lblFoto" xml:space="preserve">
+    <value>Foto:</value>
+  </data>
+  <data name="lblGrupos" xml:space="preserve">
+    <value>Grupos:</value>
+  </data>
+  <data name="lblLink" xml:space="preserve">
+    <value>Click aqui</value>
+  </data>
+  <data name="lblNombre" xml:space="preserve">
+    <value>Nombre:</value>
+  </data>
+  <data name="lblObligatorio" xml:space="preserve">
+    <value>* Obligatorio</value>
+  </data>
+  <data name="lblPassNueva" xml:space="preserve">
+    <value>Nueva contraseña:</value>
+  </data>
+  <data name="lblPassVieja" xml:space="preserve">
+    <value>Contraseña anterior:</value>
+  </data>
+  <data name="lblRegistro" xml:space="preserve">
+    <value>Si aun no te has registrado como usuario/a</value>
+  </data>
+  <data name="lblSalas" xml:space="preserve">
+    <value>Salas:</value>
+  </data>
+  <data name="lblUsuario" xml:space="preserve">
+    <value>Nombre de usuario:**</value>
+  </data>
+  <data name="txtContra" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="txtUsuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
 </root>

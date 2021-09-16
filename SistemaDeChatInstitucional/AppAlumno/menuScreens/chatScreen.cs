@@ -247,6 +247,11 @@ namespace AppAlumno.menuScreens
             myLoad();
             setBtnText();
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
+
+            //asigno valores para la traduccion
+            btnEnviar.Text = Resources.btnEnviar;
+            btnFinalizar.Text = Resources.btnFinalizar; 
+
         }
 
         private void chatScreen_FormClosing(object sender, FormClosingEventArgs e)

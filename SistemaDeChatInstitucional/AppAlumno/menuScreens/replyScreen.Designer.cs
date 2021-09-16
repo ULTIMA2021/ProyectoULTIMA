@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.fuckthisButton = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.fuckthisButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(671, 143);
             this.panel1.TabIndex = 0;
+            // 
+            // fuckthisButton
+            // 
+            this.fuckthisButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.fuckthisButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.fuckthisButton.FlatAppearance.BorderSize = 0;
+            this.fuckthisButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.fuckthisButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fuckthisButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.fuckthisButton.Location = new System.Drawing.Point(522, 87);
+            this.fuckthisButton.Name = "fuckthisButton";
+            this.fuckthisButton.Size = new System.Drawing.Size(136, 35);
+            this.fuckthisButton.TabIndex = 3;
+            this.fuckthisButton.UseVisualStyleBackColor = false;
+            this.fuckthisButton.Visible = false;
             // 
             // txtRespuesta
             // 
@@ -87,21 +102,6 @@
             this.flowLayoutPanel1.TabIndex = 1;
             this.flowLayoutPanel1.WrapContents = false;
             // 
-            // fuckthisButton
-            // 
-            this.fuckthisButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.fuckthisButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.fuckthisButton.FlatAppearance.BorderSize = 0;
-            this.fuckthisButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fuckthisButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fuckthisButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.fuckthisButton.Location = new System.Drawing.Point(522, 87);
-            this.fuckthisButton.Name = "fuckthisButton";
-            this.fuckthisButton.Size = new System.Drawing.Size(136, 35);
-            this.fuckthisButton.TabIndex = 3;
-            this.fuckthisButton.UseVisualStyleBackColor = false;
-            this.fuckthisButton.Visible = false;
-            // 
             // replyScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,6 +113,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "replyScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.replyScreen_Load);
             this.SizeChanged += new System.EventHandler(this.replyScreen_SizeChanged);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

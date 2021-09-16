@@ -55,6 +55,7 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.fotoAlumno = new System.Windows.Forms.PictureBox();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.selectIdioma = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
@@ -316,10 +317,23 @@
             // panelContenedor
             // 
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.panelContenedor.Controls.Add(this.selectIdioma);
             this.panelContenedor.Controls.Add(this.label2);
             this.panelContenedor.Controls.Add(this.label1);
             resources.ApplyResources(this.panelContenedor, "panelContenedor");
             this.panelContenedor.Name = "panelContenedor";
+            // 
+            // selectIdioma
+            // 
+            this.selectIdioma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            resources.ApplyResources(this.selectIdioma, "selectIdioma");
+            this.selectIdioma.ForeColor = System.Drawing.SystemColors.Window;
+            this.selectIdioma.FormattingEnabled = true;
+            this.selectIdioma.Items.AddRange(new object[] {
+            resources.GetString("selectIdioma.Items"),
+            resources.GetString("selectIdioma.Items1")});
+            this.selectIdioma.Name = "selectIdioma";
+            this.selectIdioma.SelectedIndexChanged += new System.EventHandler(this.selectIdioma_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -387,5 +401,6 @@
         private System.Windows.Forms.Button btnNuevoMensaje;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSala;
+        private System.Windows.Forms.ComboBox selectIdioma;
     }
 }

@@ -34,8 +34,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvSalas = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblSalas = new System.Windows.Forms.Label();
+            this.lblCrear = new System.Windows.Forms.Label();
             this.btnUnirse = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.dgvGrupoMaterias = new System.Windows.Forms.DataGridView();
@@ -85,25 +85,25 @@
             this.dgvSalas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSalas_CellFormatting);
             this.dgvSalas.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvSalas_ColumnAdded);
             // 
-            // label1
+            // lblSalas
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(47, 189);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 18);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Salas:";
+            this.lblSalas.AutoSize = true;
+            this.lblSalas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalas.Location = new System.Drawing.Point(47, 189);
+            this.lblSalas.Name = "lblSalas";
+            this.lblSalas.Size = new System.Drawing.Size(55, 18);
+            this.lblSalas.TabIndex = 1;
+            this.lblSalas.Text = "Salas:";
             // 
-            // label2
+            // lblCrear
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(47, 61);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 18);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Crear sala:";
+            this.lblCrear.AutoSize = true;
+            this.lblCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCrear.Location = new System.Drawing.Point(47, 61);
+            this.lblCrear.Name = "lblCrear";
+            this.lblCrear.Size = new System.Drawing.Size(91, 18);
+            this.lblCrear.TabIndex = 2;
+            this.lblCrear.Text = "Crear sala:";
             // 
             // btnUnirse
             // 
@@ -215,8 +215,8 @@
             this.Controls.Add(this.txtAsuntoSala);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnUnirse);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblCrear);
+            this.Controls.Add(this.lblSalas);
             this.Controls.Add(this.dgvSalas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Salas";
@@ -233,8 +233,8 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvSalas;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSalas;
+        private System.Windows.Forms.Label lblCrear;
         private System.Windows.Forms.Button btnUnirse;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridView dgvGrupoMaterias;

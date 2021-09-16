@@ -33,7 +33,7 @@ namespace AppAlumno.menuScreens
             this.Close();
         }
 
-        private void btnVer_Click(object sender, EventArgs e)
+        private void btnAbrir_Click(object sender, EventArgs e)
         {
             idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             ciAlumno = Session.cedula;
@@ -72,6 +72,14 @@ namespace AppAlumno.menuScreens
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
             dgvMisMensajes.Columns["Destinatario"].Visible = false;
             dgvMisMensajes.Columns["idMensaje"].Visible = false;
+        }
+
+        private void misMensajes_Load(object sender, EventArgs e)
+        {
+            lblBuscar.Text = Resources.lblBuscar;
+            btnAbrir.Text = Resources.btnAbrir;
+            btnEliminar.Text = Resources.btnEliminar;
+            btnExit.Text = Resources.btnExit;
         }
     }
 }

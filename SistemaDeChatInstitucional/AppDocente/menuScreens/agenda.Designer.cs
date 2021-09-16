@@ -33,8 +33,9 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblAsunto = new System.Windows.Forms.Label();
+            this.btnAceptar = new System.Windows.Forms.Button();
+            this.lblGrupos = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExit
@@ -73,7 +74,7 @@
             "2 BB",
             "3 BA",
             "3 BB"});
-            this.comboBox1.Location = new System.Drawing.Point(412, 98);
+            this.comboBox1.Location = new System.Drawing.Point(449, 81);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(206, 21);
             this.comboBox1.TabIndex = 22;
@@ -88,28 +89,37 @@
             this.richTextBox1.TabIndex = 23;
             this.richTextBox1.Text = "";
             // 
-            // label1
+            // lblAsunto
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(370, 162);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Asunto:";
+            this.lblAsunto.AutoSize = true;
+            this.lblAsunto.Location = new System.Drawing.Point(370, 162);
+            this.lblAsunto.Name = "lblAsunto";
+            this.lblAsunto.Size = new System.Drawing.Size(43, 13);
+            this.lblAsunto.TabIndex = 24;
+            this.lblAsunto.Text = "Asunto:";
             // 
-            // button1
+            // btnAceptar
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(276, 449);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 31);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Aceptar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnAceptar.FlatAppearance.BorderSize = 0;
+            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAceptar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAceptar.Location = new System.Drawing.Point(276, 449);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(125, 31);
+            this.btnAceptar.TabIndex = 25;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = false;
+            // 
+            // lblGrupos
+            // 
+            this.lblGrupos.AutoSize = true;
+            this.lblGrupos.Location = new System.Drawing.Point(369, 84);
+            this.lblGrupos.Name = "lblGrupos";
+            this.lblGrupos.Size = new System.Drawing.Size(44, 13);
+            this.lblGrupos.TabIndex = 26;
+            this.lblGrupos.Text = "Grupos:";
             // 
             // agenda
             // 
@@ -117,8 +127,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(705, 505);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblGrupos);
+            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.lblAsunto);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.monthCalendar1);
@@ -126,6 +137,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "agenda";
             this.Text = "agenda";
+            this.Load += new System.EventHandler(this.agenda_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,7 +149,8 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblAsunto;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.Label lblGrupos;
     }
 }

@@ -124,7 +124,7 @@ namespace Login
             pictVer.BringToFront();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lblLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             showRegisterForm(sender, e);
         }
@@ -133,6 +133,15 @@ namespace Login
         {
             FormularioRegistro formularioRegistro = new FormularioRegistro();
             formularioRegistro.ShowDialog();
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            txtUsuario.Text = Resources.txtUsuario;
+            txtContra.Text = Resources.txtContra;
+            lblErrorMessage.Text = Resources.lblErrorMessage;
+            lblRegistro.Text = Resources.lblRegistro;
+            lblLink.Text = Resources.lblLink;
         }
     }
 }

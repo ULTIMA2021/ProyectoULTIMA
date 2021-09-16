@@ -33,14 +33,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnExit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblBuscar = new System.Windows.Forms.Label();
             this.txtBuscarDocente = new System.Windows.Forms.TextBox();
             this.dgvListaDocentes = new System.Windows.Forms.DataGridView();
             this.btnEnviar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblCaracteres = new System.Windows.Forms.Label();
+            this.lblAsunto = new System.Windows.Forms.Label();
             this.txtAsunto = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblObligatorio = new System.Windows.Forms.Label();
             this.txtMensaje = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaDocentes)).BeginInit();
             this.SuspendLayout();
@@ -62,15 +62,15 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // label1
+            // lblBuscar
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(166, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 13);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "Buscar docente:";
+            this.lblBuscar.AutoSize = true;
+            this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBuscar.Location = new System.Drawing.Point(166, 49);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(50, 13);
+            this.lblBuscar.TabIndex = 21;
+            this.lblBuscar.Text = "Buscar:";
             // 
             // txtBuscarDocente
             // 
@@ -134,24 +134,24 @@
             this.btnEnviar.UseVisualStyleBackColor = false;
             this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
-            // label3
+            // lblCaracteres
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(534, 470);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 13);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Max. 1000 caracteres";
+            this.lblCaracteres.AutoSize = true;
+            this.lblCaracteres.Location = new System.Drawing.Point(534, 470);
+            this.lblCaracteres.Name = "lblCaracteres";
+            this.lblCaracteres.Size = new System.Drawing.Size(110, 13);
+            this.lblCaracteres.TabIndex = 28;
+            this.lblCaracteres.Text = "Max. 1000 caracteres";
             // 
-            // label4
+            // lblAsunto
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(79, 297);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "ASUNTO:";
+            this.lblAsunto.AutoSize = true;
+            this.lblAsunto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAsunto.Location = new System.Drawing.Point(79, 297);
+            this.lblAsunto.Name = "lblAsunto";
+            this.lblAsunto.Size = new System.Drawing.Size(62, 13);
+            this.lblAsunto.TabIndex = 29;
+            this.lblAsunto.Text = "ASUNTO:";
             // 
             // txtAsunto
             // 
@@ -160,14 +160,14 @@
             this.txtAsunto.Size = new System.Drawing.Size(323, 20);
             this.txtAsunto.TabIndex = 30;
             // 
-            // label5
+            // lblObligatorio
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(480, 297);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "* obligatorio";
+            this.lblObligatorio.AutoSize = true;
+            this.lblObligatorio.Location = new System.Drawing.Point(480, 297);
+            this.lblObligatorio.Name = "lblObligatorio";
+            this.lblObligatorio.Size = new System.Drawing.Size(62, 13);
+            this.lblObligatorio.TabIndex = 31;
+            this.lblObligatorio.Text = "* obligatorio";
             // 
             // txtMensaje
             // 
@@ -185,14 +185,14 @@
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(717, 541);
             this.Controls.Add(this.txtMensaje);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblObligatorio);
             this.Controls.Add(this.txtAsunto);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblAsunto);
+            this.Controls.Add(this.lblCaracteres);
             this.Controls.Add(this.btnEnviar);
             this.Controls.Add(this.dgvListaDocentes);
             this.Controls.Add(this.txtBuscarDocente);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NuevoMensaje";
@@ -207,14 +207,14 @@
         #endregion
 
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.TextBox txtBuscarDocente;
         private System.Windows.Forms.DataGridView dgvListaDocentes;
         private System.Windows.Forms.Button btnEnviar;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblCaracteres;
+        private System.Windows.Forms.Label lblAsunto;
         private System.Windows.Forms.TextBox txtAsunto;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblObligatorio;
         private System.Windows.Forms.TextBox txtMensaje;
     }
 }

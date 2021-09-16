@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
+
 namespace AppAlumno
 {
     public partial class alumnoMainScreen : Form
     {
+        
+
         public alumnoMainScreen()
         {
             InitializeComponent();
@@ -24,6 +29,8 @@ namespace AppAlumno
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        
 
         public void esconderSubMenu()
         {
@@ -60,6 +67,7 @@ namespace AppAlumno
             
         }
 
+        
 
         private Form ventanaActiva = null;
         public void openScreen(Form ventana)
@@ -69,7 +77,7 @@ namespace AppAlumno
                 ventanaActiva.Close();
 
             }
-
+            
                 ventanaActiva = ventana;
                 ventana.TopLevel = false;
                 ventana.Dock = DockStyle.Fill;
@@ -247,6 +255,55 @@ namespace AppAlumno
         {
             esconderSubMenu();
             openScreen(new menuScreens.Salas());
+        }
+
+        private void getTextFromComponents()
+        {
+            menuScreens.configuracion conf = new menuScreens.configuracion();
+
+            //botones del menu
+            btnMiPerfil.Text = Resources.btnMiPerfil;            
+            btnMensajes.Text = Resources.btnMensajes;
+            btnAgenda.Text = Resources.btnAgenda;
+            btnDocentes.Text = Resources.btnDocentes;
+            btnSala.Text = Resources.btnSala;
+            btnLogout.Text = Resources.btnLogout;
+
+            //botones de submenu
+            btnConfiguracion.Text = Resources.btnConfiguracion;
+            btnAsignaturas.Text = Resources.btnMisAsignaturas;
+            btnMisDocentes.Text = Resources.btnMisDocentes;
+            btnInstitucion.Text = Resources.btnInstitucion;
+            btnNuevoMensaje.Text = Resources.btnNuevoMensaje;
+            btnMisMensajes.Text = Resources.btnMisMensajes;
+
+            
+
+        }
+
+        private void selectIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = selectIdioma.SelectedIndex;
+            
+            if(selectIdioma.Items[index].ToString() == "Ingles/English")
+            {
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+             
+                getTextFromComponents();
+            }
+
+            if (selectIdioma.Items[index].ToString() == "Español/Spanish")
+            {
+
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
+                getTextFromComponents();
+
+               
+            }
+
+            {
+
+            }
         }
     }
 }

@@ -132,5 +132,10 @@ namespace AppAlumno.menuScreens
         {
             myLoad();
         }
+
+        private void replyScreen_Load(object sender, EventArgs e)
+        {
+            btnEnviar.Text = Resources.btnEnviar;
+        }
     }
 }

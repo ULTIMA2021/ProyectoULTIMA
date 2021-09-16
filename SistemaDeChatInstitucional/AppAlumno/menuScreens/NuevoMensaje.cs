@@ -53,9 +53,16 @@ namespace AppAlumno.menuScreens
 
         private void NuevoMensaje_Load(object sender, EventArgs e)
         {
-           dgvListaDocentes.DataSource = Controlador.obtenerDocentes();
-           dgvListaDocentes.Columns["Cedula"].Visible = false;
-           dgvListaDocentes.ClearSelection();
+            dgvListaDocentes.DataSource = Controlador.obtenerDocentes();
+            dgvListaDocentes.Columns["Cedula"].Visible = false;
+            dgvListaDocentes.ClearSelection();
+
+            lblBuscar.Text = Resources.lblBuscar;
+            lblAsunto.Text = Resources.lblAsunto;
+            lblObligatorio.Text = Resources.lblObligatorio;
+            lblCaracteres.Text = Resources.lblCaracteres;
+            btnEnviar.Text = Resources.btnEnviar;
+
         }
     }
 }

@@ -114,6 +114,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "replyScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.replyScreen_Load);
             this.Resize += new System.EventHandler(this.replyScreen_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
