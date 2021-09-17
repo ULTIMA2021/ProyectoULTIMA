@@ -74,9 +74,11 @@ namespace AppDocente.menuScreens
             dgvSalas.Columns["Materia"].Visible = true;
             dgvSalas.Columns["Docente"].Visible = false;
             dgvSalas.Columns["Anfitrion de chat"].Visible = true;
-            dgvSalas.Columns["resumen"].Visible = true;
+            dgvSalas.Columns["resumen"].Visible = false;
             dgvSalas.Columns["isDone"].Visible = false;
-            dgvSalas.Columns["creacion"].Visible = true;
+            dgvSalas.Columns["creacion"].Visible = false;
+
+            
         }
         private void loadGM()
         {
@@ -103,7 +105,8 @@ namespace AppDocente.menuScreens
                 if (Convert.ToBoolean(Myrow.Cells["isDone"].Value) == false)
                     Myrow.DefaultCellStyle.BackColor = Color.FromArgb(113, 230, 72);    //chat abierto
                 else
-                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
+                    //  Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
+                    Myrow.Visible = false;
             }
         }
 
@@ -158,6 +161,13 @@ namespace AppDocente.menuScreens
             btnCrear.Text = Resources.btnCrear;
             btnUnirse.Text = Resources.btnUnirse;
             btnExit.Text = Resources.btnExit;
+
+            dgvGrupoMaterias.Columns[1].HeaderText = Resources.colGrupo;
+            dgvGrupoMaterias.Columns[3].HeaderText = Resources.colMateria;
+            dgvSalas.Columns[5].HeaderText = Resources.colGrupo;
+            dgvSalas.Columns[6].HeaderText = Resources.colMateria;
+            dgvSalas.Columns[8].HeaderText = Resources.colAnfitrion;
+
         }
 
         private void Salas_FormClosing(object sender, FormClosingEventArgs e)
@@ -205,6 +215,11 @@ namespace AppDocente.menuScreens
             else
                 btnCrear.Enabled = false;
 
+        }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

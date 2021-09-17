@@ -170,8 +170,12 @@ namespace AppDocente
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Application.Restart();
-            Dispose();
+            DialogResult confirmLogout = MessageBox.Show("Realmente desea cerrar sesion?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == confirmLogout)
+            {
+                Dispose();
+                Application.Restart();
+            }
         }
 
         private void panelOpciones_MouseDown(object sender, MouseEventArgs e)
@@ -187,6 +191,7 @@ namespace AppDocente
 
         }
 
+       
         private void getTextFromComponents()
         {
             menuScreens.configuracion conf = new menuScreens.configuracion();
@@ -202,10 +207,12 @@ namespace AppDocente
             //botones de submenu
             btnConfiguracion.Text = Resources.btnConfiguracion;
             btnAsignaturas.Text = Resources.btnMisAsignaturas;
-           // btnMisDocentes.Text = Resources.btnMisDocentes;
             btnInstitucion.Text = Resources.btnInstitucion;
-          //  btnNuevoMensaje.Text = Resources.btnNuevoMensaje;
             btnMisMensajes.Text = Resources.btnMisMensajes;
+            btnMisAlumnos.Text = Resources.btnMisAlumnos;
+
+           
+          
 
 
 

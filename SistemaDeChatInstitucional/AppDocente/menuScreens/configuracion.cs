@@ -79,6 +79,7 @@ namespace AppDocente.menuScreens
             btnExaminar.Text = Resources.btnExaminar;
             btnGuardarContraseña.Text = Resources.btnGuardar;
             btnEliminarCuenta.Text = Resources.btnEliminarCuenta;
+            btnExit.Text = Resources.btnExit;
         }
 
         private void btnGuardarContraseña_Click(object sender, EventArgs e)

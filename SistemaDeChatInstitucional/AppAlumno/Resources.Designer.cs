@@ -259,6 +259,33 @@ namespace AppAlumno {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anfitrion del chat.
+        /// </summary>
+        internal static string colAnfitrion {
+            get {
+                return ResourceManager.GetString("colAnfitrion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grupo.
+        /// </summary>
+        internal static string colGrupo {
+            get {
+                return ResourceManager.GetString("colGrupo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Materia.
+        /// </summary>
+        internal static string colMateria {
+            get {
+                return ResourceManager.GetString("colMateria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apellido:.
         /// </summary>
         internal static string lblApellido {

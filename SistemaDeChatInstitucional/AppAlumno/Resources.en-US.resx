@@ -183,6 +183,15 @@
   <data name="btnUnirse" xml:space="preserve">
     <value>Join</value>
   </data>
+  <data name="colAnfitrion" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="colGrupo" xml:space="preserve">
+    <value>Group</value>
+  </data>
+  <data name="colMateria" xml:space="preserve">
+    <value>Subject</value>
+  </data>
   <data name="lblApellido" xml:space="preserve">
     <value>Last name:</value>
   </data>
