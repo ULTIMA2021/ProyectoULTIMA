@@ -34,8 +34,16 @@ namespace Login
                 {
                     if (Controlador.existePersona(txtCedula.Text))
                     {
-                        clave = CryptographyUtils.encryptThis(clave);
+                        clave = CryptographyUtils.doEncryption(clave, null, null);
                         Console.WriteLine($"original password: {txtClave.Text}\nencrypted is {clave}");
+                        
+                        //DELETE THIS
+                        Controlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, clave);
+
+                        Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
+
+
+                        /*
                         Controlador.AltaAlumno(
                                                   txtCedula.Text,
                                                   txtNombre.Text,
@@ -43,6 +51,9 @@ namespace Login
                                                   clave,
                                                   txtApodo.Text,
                                                   getIndexesChecklist());
+                                                  
+                         */
+
                         MessageBox.Show($"Ingresado! {txtNombre.Text} {txtApellido.Text}, espere que lo confirme un administrador");
                         resetFields();
                     }

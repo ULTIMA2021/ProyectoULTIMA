@@ -18,7 +18,6 @@ namespace CapaDeDatos
         public string Clave;
         public string Apodo;
         public string foto;
-        public string avatar;
         public bool isDeleted;
         public bool enLinea;
 
@@ -28,18 +27,17 @@ namespace CapaDeDatos
 
         public void GuardarPersona()
         {
-            this.comando.CommandText = "INSERT INTO Persona (ci,nombre,apellido,clave,isDeleted,enLinea,foto,avatar) VALUES(" +
-                                    "@cedula,@nombre,@apellido,@clave,@isDeleted,@enlinea,@foto,@avatar);";
+            this.comando.CommandText = "INSERT INTO Persona (ci,nombre,apellido,clave,isDeleted,enLinea,foto) VALUES(" +
+                                    "@cedula,@nombre,@apellido,@clave,@isDeleted,@enlinea,@foto);";
             this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
             this.comando.Parameters.AddWithValue("@nombre", this.Nombre);
             this.comando.Parameters.AddWithValue("@apellido", this.Apellido);
             this.comando.Parameters.AddWithValue("@clave", this.Clave);
             this.comando.Parameters.AddWithValue("@foto", this.foto);
-            this.comando.Parameters.AddWithValue("@avatar", this.avatar);
             this.comando.Parameters.AddWithValue("@isDeleted", false);
             this.comando.Parameters.AddWithValue("@enlinea", false);
             this.comando.Prepare();
-            EjecutarQuery(this.comando,errorType);
+            EjecutarQuery(this.comando, errorType);
 
         }
         public void guardarAlumno()
@@ -52,14 +50,13 @@ namespace CapaDeDatos
         }
         public void guardarAlumno(string grupos)
         {
-            this.comando.CommandText = "INSERT INTO AlumnoTemp (ci, nombre, apellido, clave, foto, avatar, apodo, grupos) " +
-                "VALUES (@Cedula,@nombre,@apellido,@clave,@foto,@avatar,@Apodo,@grupos);";
+            this.comando.CommandText = "INSERT INTO AlumnoTemp (ci, nombre, apellido, clave, foto, apodo, grupos) " +
+                "VALUES (@Cedula,@nombre,@apellido,@clave,@foto,@Apodo,@grupos);";
             this.comando.Parameters.AddWithValue("@Cedula", this.Cedula);
             this.comando.Parameters.AddWithValue("@nombre", this.Nombre);
             this.comando.Parameters.AddWithValue("@apellido", this.Apellido);
             this.comando.Parameters.AddWithValue("@clave", this.Clave);
             this.comando.Parameters.AddWithValue("@foto", this.foto);
-            this.comando.Parameters.AddWithValue("@avatar", this.avatar);
             this.comando.Parameters.AddWithValue("@Apodo", this.Apodo);
             this.comando.Parameters.AddWithValue("@grupos", grupos);
             this.comando.Prepare();
@@ -112,9 +109,11 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 PersonaModelo p = new PersonaModelo(sessionType);
-               // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
+                // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
                 p.Cedula = lector[0].ToString();
-                p.Clave = lector[1].ToString();
+                byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
+                p.Clave = Encoding.Default.GetString(claveArray);
+               // p.Clave = lector[1].ToString();
                 p.Nombre = lector[2].ToString();
                 p.Apellido = lector[3].ToString();
                 personas.Add(p);
@@ -122,13 +121,22 @@ namespace CapaDeDatos
             lector.Close();
             return personas;
         }
+        //old
+        //public List<PersonaModelo> validarAlumno(string user, string pass, byte sessionType)
+        //{
+        //    this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p " +
+        //        "WHERE p.ci=a.ci AND a.ci=@user AND p.clave=@pass AND p.isDeleted=false;";
+        //    this.comando.Parameters.AddWithValue("user", user);
+        //    this.comando.Parameters.AddWithValue("pass", pass);
+        //    return obtenerUsuario(this.comando, sessionType);
+        //}
 
-        public List<PersonaModelo> validarAlumno(string user, string pass, byte sessionType)
+        //new
+        public List<PersonaModelo> validarAlumno(string user, byte sessionType)
         {
-            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p " +
-                "WHERE p.ci=a.ci AND a.ci=@user AND p.clave=@pass AND p.isDeleted=false;";
+            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido, p.foto FROM Alumno a,Persona p " +
+                "WHERE p.ci=a.ci AND a.ci=@user AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
-            this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando, sessionType);
         }
 
@@ -170,7 +178,7 @@ namespace CapaDeDatos
 
         public PersonaModelo obtenerPersona(string cedula, byte sessionType)
         {
-            this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido, p.foto, p.avatar, p.enLinea FROM Persona p " +
+            this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido, p.foto, p.enLinea FROM Persona p " +
                 "WHERE p.ci=@cedula";
             this.comando.Parameters.AddWithValue("cedula", cedula);
             PersonaModelo persona = new PersonaModelo(sessionType);
@@ -181,7 +189,7 @@ namespace CapaDeDatos
                 persona.Nombre = lector[1].ToString();
                 persona.Apellido = lector[2].ToString();
                 persona.foto = null;    //lector[3];
-                persona.avatar = null;  //lector[4];
+                persona.enLinea = bool.Parse(lector[4].ToString());
             }
 
             lector.Close();
@@ -221,7 +229,7 @@ namespace CapaDeDatos
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a, Persona p WHERE " +
                                                      "a.ci=p.ci AND a.ci=@ci;";
-            this.comando.Parameters.AddWithValue("ci",ci);
+            this.comando.Parameters.AddWithValue("ci", ci);
             return obtenerUsuario(this.comando, sessionType);
         }
 
@@ -236,7 +244,7 @@ namespace CapaDeDatos
         {
             this.comando.CommandText = "SELECT p.nombre, p.apellido FROM Docente d INNER JOIN Persona p ON " +
                                          "(d.ci=p.ci);";
-            return obtenerUsuario(this.comando,  sessionType);
+            return obtenerUsuario(this.comando, sessionType);
         }
 
         public List<PersonaModelo> obtenerAdmin(byte sessionType)

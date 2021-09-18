@@ -19,7 +19,6 @@ namespace CapaLogica
             Persona.Apellido = apellido;
             Persona.Clave = clave;
             Persona.foto = null;
-            Persona.avatar = null;
             Persona.GuardarPersona();
         }
 
@@ -46,7 +45,6 @@ namespace CapaLogica
             p.Nombre = nombre;
             p.Clave = clave;
             p.foto = null;
-            p.avatar = null;
             if (GruposDeAlumno.Count > 0)
                 for (int x = 0; x < GruposDeAlumno.Count; x++)
                     if (x == GruposDeAlumno.Count - 1)
@@ -121,40 +119,48 @@ namespace CapaLogica
             return true;
         }
 
+        //public static bool isAlumno(string user, string pass)
+        //{
+        //    PersonaModelo p = new PersonaModelo(Session.type);
+        //    return lista(user, pass, Session.type, p.validarAlumno);
+        //}
+
+        //isAlumno new
         public static bool isAlumno(string user, string pass)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAlumno);
         }
 
-        public static bool isDocente(string user, string pass)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            return lista(user, pass, Session.type, p.validarDocente);
-        }
+        //public static bool isDocente(string user, string pass)
+        //{
+        //    PersonaModelo p = new PersonaModelo(Session.type);
+        //    return lista(user, pass, Session.type, p.validarDocente);
+        //}
 
-        public static bool isAdmin(string user, string pass)
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            return lista(user, pass, Session.type, p.validarAdmin);
-        }
+        //public static bool isAdmin(string user, string pass)
+        //{
+        //    PersonaModelo p = new PersonaModelo(Session.type);
+        //    return lista(user, pass, Session.type, p.validarAdmin);
+        //}
 
-        //aca encriptar la session.clave para que no quede pelada
-        //le pregunte al profe donde guardar la key que se uso para encriptar, no se puede guardar en la bd y no conviene ponerlo en la app como un string pelado
-        //las keys Se necesitan para desencriptar
-        public static bool lista(string user, string pass, byte sessionType, Func<string, string, byte, List<PersonaModelo>> metodoObtener)
+        private static bool lista(string user, string pass, byte sessionType, Func<string, byte, List<PersonaModelo>> metodoObtener)
         {
-            List<PersonaModelo> personas = metodoObtener(user, pass, Session.type);
+            List<PersonaModelo> personas = metodoObtener(user, Session.type);
             if (personas.Count == 1)
             {
-                setSession(personas[0]);
-                return true;
+                bool okPassword = CryptographyUtils.comparePasswords(pass, personas[0].Clave);
+                if (okPassword)
+                    setSession(personas[0]);
+                return okPassword;
             }
             return false;
         }
 
-        private static void setSession(PersonaModelo per){
-            switch (Session.type) {
+        private static void setSession(PersonaModelo per)
+        {
+            switch (Session.type)
+            {
                 case 3:
                     Session.type = 0;
                     GrupoModelo g = new GrupoModelo(Session.type);
@@ -167,7 +173,7 @@ namespace CapaLogica
                     return;
                 case 5:
                     Session.type = 2;
-                    Session.saveToCache(per,null);
+                    Session.saveToCache(per, null);
                     return;
             }
         }

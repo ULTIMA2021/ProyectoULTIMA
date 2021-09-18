@@ -14,7 +14,6 @@ namespace CapaLogica
         public static string apellido { get; set; }
         public static string clave { get; set; }
         //foto
-        //avatar
         public static byte type;//0-alumno   1-docente    2-admin    3-alumnoLogin   4-docenteLogin   5-adminLogin
         public static List<List<string>> grupoMaterias=new List<List<string>>();
 
