@@ -136,7 +136,7 @@ namespace Login
             showRegisterForm(sender, e);       
         }
 
-            private void showRegisterForm(object sender, EventArgs e)
+        private void showRegisterForm(object sender, EventArgs e)
         {
             FormularioRegistro formularioRegistro = new FormularioRegistro();
             formularioRegistro.ShowDialog();
@@ -144,11 +144,16 @@ namespace Login
 
         private void Login_Load(object sender, EventArgs e)
         {
-            txtUsuario.Text = Resources.txtUsuario;
-            txtContra.Text = Resources.txtContra;
-            lblErrorMessage.Text = Resources.lblErrorMessage;
-            lblRegistro.Text = Resources.lblRegistro;
-            lblLink.Text = Resources.lblLink;
+            //txtUsuario.Text = Resources.txtUsuario;
+            //txtContra.Text = Resources.txtContra;
+            //lblErrorMessage.Text = Resources.lblErrorMessage;
+            //lblRegistro.Text = Resources.lblRegistro;
+            //lblLink.Text = Resources.lblLink;
+        }
+
+        private void selectIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

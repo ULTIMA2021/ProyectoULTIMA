@@ -126,6 +126,9 @@ namespace Login
             pictVer.BringToFront();
         }
 
-       
+        private void selectIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

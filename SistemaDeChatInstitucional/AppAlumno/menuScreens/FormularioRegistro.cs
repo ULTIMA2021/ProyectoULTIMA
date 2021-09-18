@@ -93,8 +93,6 @@ namespace Login
         private void comboBoxUser_SelectedValueChanged(object sender, EventArgs e)
         {
            // this.lblGrupo.Location= Point.;
-            
-            
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)

@@ -35,7 +35,7 @@ namespace CapaLogica
             }
         }
 
-        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo,/*, string foto, byte avatar,*/List<int> GruposDeAlumno)
+        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo,/*string foto*/List<int> GruposDeAlumno)
         {
             string gruposString = "";
             PersonaModelo p = new PersonaModelo(Session.type);

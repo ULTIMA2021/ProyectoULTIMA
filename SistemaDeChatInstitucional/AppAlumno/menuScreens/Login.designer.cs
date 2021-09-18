@@ -44,6 +44,7 @@
             this.picOcultar = new System.Windows.Forms.PictureBox();
             this.lblErrorMessage = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.selectIdioma = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictVer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).BeginInit();
@@ -201,12 +202,30 @@
             this.lblErrorMessage.Text = "* Error";
             this.lblErrorMessage.Visible = false;
             // 
+            // selectIdioma
+            // 
+            this.selectIdioma.BackColor = System.Drawing.SystemColors.Window;
+            this.selectIdioma.DropDownWidth = 125;
+            this.selectIdioma.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectIdioma.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.selectIdioma.FormattingEnabled = true;
+            this.selectIdioma.Items.AddRange(new object[] {
+            "Español/Spanish",
+            "Ingles/English"});
+            this.selectIdioma.Location = new System.Drawing.Point(3, 3);
+            this.selectIdioma.Name = "selectIdioma";
+            this.selectIdioma.Size = new System.Drawing.Size(106, 20);
+            this.selectIdioma.TabIndex = 14;
+            this.selectIdioma.Text = "Idioma/Language";
+            this.selectIdioma.SelectedIndexChanged += new System.EventHandler(this.selectIdioma_SelectedIndexChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(409, 399);
+            this.Controls.Add(this.selectIdioma);
             this.Controls.Add(this.lblErrorMessage);
             this.Controls.Add(this.pictVer);
             this.Controls.Add(this.pictureBox1);
@@ -246,5 +265,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.TextBox txtUsuario;
         public System.Windows.Forms.TextBox txtContra;
+        private System.Windows.Forms.ComboBox selectIdioma;
     }
 }
