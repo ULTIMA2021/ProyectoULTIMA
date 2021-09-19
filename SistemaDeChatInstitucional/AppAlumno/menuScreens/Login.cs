@@ -126,13 +126,6 @@ namespace Login
 
         private void lblLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Console.WriteLine($"\nORIGINAL:{txtContra.Text}");
-            //Console.WriteLine($"\nENCRYPTED:{@CryptographyUtils.doEncryption(txtContra.Text, null, null)}");
-
-
-
-
-            //Console.WriteLine($"ENCRYPTED:{CryptographyUtils.comparePasswords(txtContra.Text)}");
             showRegisterForm(sender, e);       
         }
 

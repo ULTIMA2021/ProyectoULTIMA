@@ -113,7 +113,6 @@ namespace CapaDeDatos
                 p.Cedula = lector[0].ToString();
                 byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
                 p.Clave = Encoding.Default.GetString(claveArray);
-               // p.Clave = lector[1].ToString();
                 p.Nombre = lector[2].ToString();
                 p.Apellido = lector[3].ToString();
                 personas.Add(p);
@@ -140,21 +139,19 @@ namespace CapaDeDatos
             return obtenerUsuario(this.comando, sessionType);
         }
 
-        public List<PersonaModelo> validarDocente(string user, string pass, byte sessionType)
+        public List<PersonaModelo> validarDocente(string user, byte sessionType)
         {
             this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM Docente d,Persona p " +
-                "WHERE p.ci=d.ci AND d.ci=@user AND p.clave=@pass AND p.isDeleted=false;";
+                "WHERE p.ci=d.ci AND d.ci=@user AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
-            this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando, sessionType);
         }
 
-        public List<PersonaModelo> validarAdmin(string user, string pass, byte sessionType)
+        public List<PersonaModelo> validarAdmin(string user ,byte sessionType)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Administrador a, Persona p " +
-                "WHERE p.ci = a.ci AND a.ci = @user AND p.clave = @pass AND p.isDeleted=false;";
+                "WHERE p.ci = a.ci AND a.ci = @user AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
-            this.comando.Parameters.AddWithValue("pass", pass);
             return obtenerUsuario(this.comando, sessionType);
         }
 

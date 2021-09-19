@@ -132,17 +132,17 @@ namespace CapaLogica
             return lista(user, pass, Session.type, p.validarAlumno);
         }
 
-        //public static bool isDocente(string user, string pass)
-        //{
-        //    PersonaModelo p = new PersonaModelo(Session.type);
-        //    return lista(user, pass, Session.type, p.validarDocente);
-        //}
+        public static bool isDocente(string user, string pass)
+        {
+            PersonaModelo p = new PersonaModelo(Session.type);
+            return lista(user, pass, Session.type, p.validarDocente);
+        }
 
-        //public static bool isAdmin(string user, string pass)
-        //{
-        //    PersonaModelo p = new PersonaModelo(Session.type);
-        //    return lista(user, pass, Session.type, p.validarAdmin);
-        //}
+        public static bool isAdmin(string user, string pass)
+        {
+            PersonaModelo p = new PersonaModelo(Session.type);
+            return lista(user, pass, Session.type, p.validarAdmin);
+        }
 
         private static bool lista(string user, string pass, byte sessionType, Func<string, byte, List<PersonaModelo>> metodoObtener)
         {
