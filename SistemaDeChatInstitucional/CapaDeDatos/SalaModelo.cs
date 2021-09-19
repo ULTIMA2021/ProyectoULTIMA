@@ -53,14 +53,16 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando, errorType);
         }
 
-        public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria,byte sessionType)
+        //o las salas abiertas o las cerradas
+        public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria,byte sessionType, bool isDone)
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
                 "FROM Sala " +
-                "WHERE idGrupo=@idGrupo AND idMateria=@idMateria AND docenteCi is not null;";
+                "WHERE idGrupo=@idGrupo AND idMateria=@idMateria AND isDone=@isDone AND docenteCi is not null;";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
             this.comando.Prepare();
             return (cargarSalasAlist(this.comando,sessionType));
         }
@@ -85,14 +87,15 @@ namespace CapaDeDatos
             return salas;
         }
 
-        public int salaPorMateriaCount(int idMateria, byte sessionType)
+        public int salaPorMateriaCount(int idMateria, byte sessionType,bool isDone)
         {
             int count;
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT count(*) " +
                 "FROM Sala " +
-                "WHERE idMateria=@idMateria;";
+                "WHERE idMateria=@idMateria AND isDone=@isDone;";
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
             this.comando.Prepare();
 
             lector = comando.ExecuteReader();

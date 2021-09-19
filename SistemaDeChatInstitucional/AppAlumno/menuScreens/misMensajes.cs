@@ -18,7 +18,7 @@ namespace AppAlumno.menuScreens
         string ciDocente;
         string ciAlumno;
         string asunto;
-
+        string status;
         public misMensajes()
         {
             InitializeComponent();
@@ -39,8 +39,9 @@ namespace AppAlumno.menuScreens
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
             asunto = dgvMisMensajes.CurrentRow.Cells[4].Value.ToString();
+            status = dgvMisMensajes.CurrentRow.Cells["Status de consulta"].Value.ToString();
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-            replyScreen r = new replyScreen(mensajes,asunto);
+            replyScreen r = new replyScreen(mensajes,asunto,status);
         }
 
         private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)

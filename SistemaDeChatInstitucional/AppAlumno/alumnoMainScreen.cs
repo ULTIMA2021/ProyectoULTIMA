@@ -121,6 +121,8 @@ namespace AppAlumno
             enable(btnMisDocentes);
             enable(btnAsignaturas);
             enable(btnConfiguracion);
+            enable(btnSala);
+
         }
 
 
@@ -132,6 +134,7 @@ namespace AppAlumno
             enable(btnMisDocentes);
             enable(btnAsignaturas);
             enable(btnConfiguracion);
+
         }
 
 
@@ -171,6 +174,8 @@ namespace AppAlumno
             enable(btnMisMensajes);
             enable(btnMisDocentes);
             enable(btnAsignaturas);
+            enable(btnSala);
+
         }
 
 
@@ -183,7 +188,8 @@ namespace AppAlumno
             enable(btnNuevoMensaje);
             enable(btnMisDocentes);
             enable(btnConfiguracion);
-            
+            enable(btnSala);
+
         }
 
         private void btnMisDocentes_Click(object sender, EventArgs e)
@@ -195,6 +201,7 @@ namespace AppAlumno
             enable(btnNuevoMensaje);
             enable(btnConfiguracion);
             enable(btnAsignaturas);
+            enable(btnSala);
 
 
         }
@@ -207,6 +214,8 @@ namespace AppAlumno
             enable(btnMisDocentes);
             enable(btnConfiguracion);
             enable(btnAsignaturas);
+            enable(btnSala);
+
         }
 
         private void btnMisMensajes_Click(object sender, EventArgs e)
@@ -217,6 +226,7 @@ namespace AppAlumno
             enable(btnMisDocentes);
             enable(btnConfiguracion);
             enable(btnAsignaturas);
+            enable(btnSala);
 
         }
 
@@ -255,6 +265,7 @@ namespace AppAlumno
         {
             esconderSubMenu();
             openScreen(new menuScreens.Salas());
+            disable(btnSala);
         }
 
         private void getTextFromComponents()

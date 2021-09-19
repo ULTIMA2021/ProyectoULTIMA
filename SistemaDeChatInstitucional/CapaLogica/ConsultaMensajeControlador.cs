@@ -10,6 +10,15 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
+        public static void finalizarConsulta(int idConsultaPrivada, int ciDocente, int ciAlumno)
+        {
+            ConsultaPrivadaModelo cpm = new ConsultaPrivadaModelo(Session.type);
+            cpm.ciAlumno = ciAlumno;
+            cpm.ciDocente = ciDocente;
+            cpm.idConsultaPrivada = idConsultaPrivada;
+            cpm.updateConsultaStatus();
+        }
+
         public static void prepararMensaje(int idConsultaPrivada, string docenteCi, string alumnoCi,
             string titulo, string cpStatus, DateTime cpFechaHora)
         {

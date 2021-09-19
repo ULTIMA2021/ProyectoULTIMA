@@ -19,20 +19,16 @@ namespace AppDocente.menuScreens
         string ciDocente;
         List<List<string>> mensajes;
         string alumnoNombre;
+        string status;
 
-        public replyScreen(List<List<string>> mensajesDeSala, string asunto,byte dummy)
-        {
-            InitializeComponent();
-            this.fuckthisButton.Visible = true;
-            ShowDialog();
-        }
-
-        public replyScreen(List<List<string>> mensajes, string asunto)
+        public replyScreen(List<List<string>> mensajes, string asunto,string status)
         {
             cargarMensajesPrivados(mensajes,asunto);
             InitializeComponent();
-            myLoad();
+            this.status = status;
+            myLoad(this.status);
             ShowDialog();
+            
         }
         private void cargarMensajesPrivados(List<List<string>> mensajes, string asunto)
         {
@@ -44,16 +40,19 @@ namespace AppDocente.menuScreens
             alumnoNombre = Controlador.traemeEstaPersona(ciAlumno);
             this.Text = $"{asunto} - @{alumnoNombre}";
         }
-        private void myLoad()
+        private void myLoad(string status)
         {
+            Padding dateP = new Padding(0, -1, 0, 10);
+            Padding TextP = new Padding(0, -1, 0, -1);
+            Padding namesP = new Padding(0, 10, 0, -1);
+
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < mensajes.Count; i++)
             {
-                Label br = new Label();
+                Label fecha = new Label();
                 Label nombrePersona = new Label();
                 TextBox t = new TextBox();
 
-                t.Enabled = true;
                 t.Multiline = true;
                 t.WordWrap = true;
                 t.ReadOnly = true;
@@ -64,12 +63,24 @@ namespace AppDocente.menuScreens
                 t.Name = "t_" + i;
                 t.BorderStyle = BorderStyle.None;
                 t.Font = new Font("Arial", 8.25f);
-
+                t.ForeColor = SystemColors.ControlText;
 
                 nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
                 nombrePersona.Dock = DockStyle.Right;
                 nombrePersona.AutoSize = true;
                 nombrePersona.Name = "label_" + i;
+
+
+                fecha.Font = new Font("Arial", 8.25f);
+                fecha.Dock = DockStyle.Right;
+                fecha.AutoSize = true;
+                fecha.Name = "labelFecha_" + i;
+                //fecha.BackColor = Color.PowderBlue;
+                fecha.Text = mensajes[i][5];
+
+                fecha.Margin = dateP;
+                nombrePersona.Margin = namesP;
+                t.Margin = TextP;
 
                 if (mensajes[i][7] != Session.cedula)
                     nombrePersona.Text = $"{Session.nombre} {Session.apellido}";
@@ -79,6 +90,7 @@ namespace AppDocente.menuScreens
                     t.Dock = DockStyle.Left;
                     nombrePersona.Text = alumnoNombre;
                     nombrePersona.Dock = DockStyle.Left;
+                    fecha.Dock = DockStyle.Left;
                 }
                 t.Text = mensajes[i][4];
 
@@ -89,7 +101,19 @@ namespace AppDocente.menuScreens
 
                 this.flowLayoutPanel1.Controls.Add(nombrePersona);
                 this.flowLayoutPanel1.Controls.Add(t);
+                this.flowLayoutPanel1.Controls.Add(fecha);
+
             }
+            if (status == "resuelta")
+            {
+                this.Controls.Remove(txtRespuesta);
+                this.Controls.Remove(btnFinalizarConsulta);
+                this.Controls.Remove(btnEnviar);
+                this.Controls.Remove(panel1);
+                this.Text = $"{this.Text}-FINALIZADA";
+            }
+            this.Select();
+
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
         }
 
@@ -105,7 +129,6 @@ namespace AppDocente.menuScreens
             newMsg.Add(ciDocente);
             newMsg.Add(ciAlumno);
             newMsg.Add(txtRespuesta.Text);
-            newMsg.Add(null);
             newMsg.Add(fecha.ToString());
             newMsg.Add("recibido");
             newMsg.Add(ciAlumno);
@@ -126,19 +149,28 @@ namespace AppDocente.menuScreens
             if (txtRespuesta.Text != "")
             {
                 enviarMensaje();
-                myLoad();
+                myLoad(status);
             }
         }
 
-
         private void replyScreen_Resize(object sender, EventArgs e)
         {
-            myLoad();
+            myLoad(status);
         }
 
         private void replyScreen_Load(object sender, EventArgs e)
         {
             btnEnviar.Text = Resources.btnEnviar;
+        }
+
+        private void btnFinalizarConsulta_Click(object sender, EventArgs e)
+        {
+            this.Controls.Remove(txtRespuesta);
+            this.Controls.Remove(btnFinalizarConsulta);
+            this.Controls.Remove(btnEnviar);
+            this.Controls.Remove(panel1);
+            Controlador.finalizarConsulta(idConsultaPrivada, int.Parse(ciDocente), int.Parse(ciAlumno));
+
         }
     }
 }

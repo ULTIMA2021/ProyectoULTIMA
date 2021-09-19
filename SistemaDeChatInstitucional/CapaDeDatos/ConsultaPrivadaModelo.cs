@@ -23,7 +23,19 @@ namespace CapaDeDatos
 
         public ConsultaPrivadaModelo(byte sessionType) : base(sessionType)
         {
+           
         }
+
+        public void updateConsultaStatus() {
+            this.comando.CommandText = "UPDATE ConsultaPrivada SET cpStatus='resuelta' WHERE idConsultaPrivada=@idConsultaPrivada AND docenteCi=@docenteCi AND alumnoCi=@alumnoCi; ";
+
+            this.comando.Parameters.AddWithValue("idConsultaPrivada", this.idConsultaPrivada);
+            this.comando.Parameters.AddWithValue("docenteCi", this.ciDocente);
+            this.comando.Parameters.AddWithValue("alumnoCi", this.ciAlumno);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
+
 
         public void crearConsultaPrivada(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)

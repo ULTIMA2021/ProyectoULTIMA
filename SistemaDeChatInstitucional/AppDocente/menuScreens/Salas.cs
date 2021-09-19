@@ -13,7 +13,9 @@ namespace AppDocente.menuScreens
 {
     public partial class Salas : Form
     {
+        bool loadFinishedSalas=false;
         Timer timer;
+        int checker = 0;
         public Salas()
         {
             InitializeComponent();            
@@ -23,11 +25,11 @@ namespace AppDocente.menuScreens
         {
             try
             {
-                Console.WriteLine($"SALA TIMER IS CHECKING {DateTime.Now} COUNT OF SALAS: {Controlador.getSalaCount()}  LOADED COUNT: {dgvSalas.RowCount}");
-                if (Controlador.getSalaCount() > dgvSalas.RowCount)
+                Console.WriteLine($"SALA TIMER IS CHECKING {DateTime.Now} COUNT OF SALAS: {Controlador.getSalaCount(loadFinishedSalas)}  LOADED COUNT: {dgvSalas.RowCount}");
+                if (Controlador.getSalaCount(loadFinishedSalas) > dgvSalas.RowCount)
                 {
                     timer.Stop();
-                    dgvSalas.DataSource = Controlador.loadSalasDePersona();
+                    dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
                     dgvSalas.Update();
                     timer.Start();
                 }
@@ -63,7 +65,7 @@ namespace AppDocente.menuScreens
 
         private void myLoad()
         {
-            dgvSalas.DataSource = Controlador.loadSalasDePersona();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
             dgvSalas.Columns["idSala"].Visible = false;
             dgvSalas.Columns["idGrupo"].Visible = false;
             dgvSalas.Columns["idMateria"].Visible = false;
@@ -105,8 +107,7 @@ namespace AppDocente.menuScreens
                 if (Convert.ToBoolean(Myrow.Cells["isDone"].Value) == false)
                     Myrow.DefaultCellStyle.BackColor = Color.FromArgb(113, 230, 72);    //chat abierto
                 else
-                    //  Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
-                    Myrow.Visible = false;
+                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
             }
         }
 
@@ -122,7 +123,7 @@ namespace AppDocente.menuScreens
             timer.Stop();
             Controlador.updateSalaConnection(idSala.ToString(),true);
             new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion, isDone).ShowDialog();
-            dgvSalas.DataSource = Controlador.loadSalasDePersona();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
             dgvSalas.Update();
             timer.Start();
             /*para que me cierrre la ventana de alumnosConectados pero no funca
@@ -198,7 +199,7 @@ namespace AppDocente.menuScreens
 
                 Controlador.nuevaSala(idGrupo, idMateria, docente, anfitrion, resumen, fechaHora);
                 txtAsuntoSala.Clear();
-                dgvSalas.DataSource = Controlador.loadSalasDePersona();
+                dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
                 dgvSalas.Update();
                 timer.Start();
             }
@@ -219,7 +220,20 @@ namespace AppDocente.menuScreens
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            
+            checker++;
+            if (checker % 2 == 0)
+            {
+                btnHistorial.Text = "Historial";
+                loadFinishedSalas = false;
+            }
+            else {
+                loadFinishedSalas = true;
+                btnHistorial.Text = "Nuevas salas";
+            }
+            timer.Stop();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
+            dgvSalas.Update();
+            timer.Start();
         }
     }
 }

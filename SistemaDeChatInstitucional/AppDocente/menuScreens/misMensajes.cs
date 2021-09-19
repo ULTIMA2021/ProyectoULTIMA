@@ -18,6 +18,7 @@ namespace AppDocente.menuScreens
         string ciDocente;
         string ciAlumno;
         string asunto;
+        string status;
         public misMensajes()
         {
             try
@@ -41,12 +42,13 @@ namespace AppDocente.menuScreens
 
         private void btnAbrir_Click(object sender, EventArgs e)
         {
-            asunto = dgvMisMensajes.CurrentRow.Cells[4].Value.ToString();
-            idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
-            ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
-            ciDocente = Session.cedula;  
+            asunto = dgvMisMensajes.CurrentRow.Cells["titulo de consulta"].Value.ToString();
+            idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells["idConsultaPrivada"].Value.ToString());
+            ciAlumno = dgvMisMensajes.CurrentRow.Cells["ciAlumno"].Value.ToString();
+            ciDocente = Session.cedula;
+            status = dgvMisMensajes.CurrentRow.Cells["Status de consulta"].Value.ToString();
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-            replyScreen r = new replyScreen(mensajes,asunto);
+            replyScreen r = new replyScreen(mensajes,asunto,status);
         }
 
         //little demo with html. its fucking horrendous

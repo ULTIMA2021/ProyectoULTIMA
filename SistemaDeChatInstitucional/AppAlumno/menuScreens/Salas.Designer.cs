@@ -230,6 +230,7 @@
             this.btnHistorial.TabIndex = 22;
             this.btnHistorial.Text = "Historial ";
             this.btnHistorial.UseVisualStyleBackColor = false;
+            this.btnHistorial.Click += new System.EventHandler(this.btnHistorial_Click);
             // 
             // Salas
             // 

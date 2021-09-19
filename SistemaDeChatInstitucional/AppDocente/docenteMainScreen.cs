@@ -99,6 +99,7 @@ namespace AppDocente
         {
             esconderSubMenu();
             openScreen(new menuScreens.agenda());
+            enableButtonsExceptSelected(btnAgenda);
         }
 
 
@@ -138,29 +139,27 @@ namespace AppDocente
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
             openScreen(new menuScreens.configuracion());
+            enableButtonsExceptSelected(btnConfiguracion);
         }
 
 
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
-          //  openScreen(new menuScreens.misAsignaturas());
+            //  openScreen(new menuScreens.misAsignaturas());
+            enableButtonsExceptSelected(btnAsignaturas);
         }
 
         private void btnMisAlumnos_Click(object sender, EventArgs e)
         {
-          //  openScreen(new menuScreens.misDocentes());
-
-            
-        }
-
-        private void btnNuevoMensaje_Click(object sender, EventArgs e)
-        {
-         //   openScreen(new menuScreens.NuevoMensaje());
+            //  openScreen(new menuScreens.misDocentes());
+            enableButtonsExceptSelected(btnMisAlumnos);
         }
 
         private void btnMisMensajes_Click(object sender, EventArgs e)
         {
             openScreen(new menuScreens.misMensajes());
+            enableButtonsExceptSelected(btnMisMensajes);
+
         }
 
         private void alumnoMainScreen_Load(object sender, EventArgs e)
@@ -188,10 +187,30 @@ namespace AppDocente
         {
             esconderSubMenu();
             openScreen(new menuScreens.Salas());
+            enableButtonsExceptSelected(btnSala);
+        }
+        
+        private void enableButtonsExceptSelected(Button butt) {
+            foreach (Button b in GetAll(this,typeof(Button)))
+            {
+                if (b == butt)
+                    b.Enabled = false;
+                else
+                    b.Enabled = true;
+            }
 
         }
+        
+        // returns all controls of a given type in the form 
+        public IEnumerable<Control> GetAll(Control control, Type type)
+        {
+            var controls = control.Controls.Cast<Control>();
 
-       
+            return controls.SelectMany(ctrl => GetAll(ctrl, type))
+                                      .Concat(controls)
+                                      .Where(c => c.GetType() == type);
+        }
+
         private void getTextFromComponents()
         {
             menuScreens.configuracion conf = new menuScreens.configuracion();
