@@ -72,6 +72,30 @@
     <Compile Include="menuScreens\FormularioRegistro.Designer.cs">
       <DependentUpon>FormularioRegistro.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\listarOrientaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\listarOrientaciones.Designer.cs">
+      <DependentUpon>listarOrientaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\listarGrupos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\listarGrupos.Designer.cs">
+      <DependentUpon>listarGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\listarMaterias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\listarMaterias.Designer.cs">
+      <DependentUpon>listarMaterias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\listarRequerimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\listarRequerimientos.Designer.cs">
+      <DependentUpon>listarRequerimientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\listarDocentes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +124,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\FormularioRegistro.resx">
       <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\listarOrientaciones.resx">
+      <DependentUpon>listarOrientaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\listarGrupos.resx">
+      <DependentUpon>listarGrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\listarMaterias.resx">
+      <DependentUpon>listarMaterias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\listarRequerimientos.resx">
+      <DependentUpon>listarRequerimientos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\listarDocentes.resx">
       <DependentUpon>listarDocentes.cs</DependentUpon>

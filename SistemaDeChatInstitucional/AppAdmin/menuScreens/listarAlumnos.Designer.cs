@@ -54,7 +54,7 @@
             this.dgvListarAlumnos.ColumnHeadersHeight = 25;
             this.dgvListarAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvListarAlumnos.EnableHeadersVisualStyles = false;
-            this.dgvListarAlumnos.Location = new System.Drawing.Point(24, 73);
+            this.dgvListarAlumnos.Location = new System.Drawing.Point(57, 85);
             this.dgvListarAlumnos.MultiSelect = false;
             this.dgvListarAlumnos.Name = "dgvListarAlumnos";
             this.dgvListarAlumnos.ReadOnly = true;
@@ -85,7 +85,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(855, 384);
+            this.ClientSize = new System.Drawing.Size(920, 384);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.dgvListarAlumnos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

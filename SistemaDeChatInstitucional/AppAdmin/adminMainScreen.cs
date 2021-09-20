@@ -130,14 +130,34 @@ namespace AppAdmin
 
         private void btnRequerimientoAlumnos_Click(object sender, EventArgs e)
         {
-            menuScreens.FormularioRegistro form = new menuScreens.FormularioRegistro();
-            form.Show();
+           openScreen(new menuScreens.listarRequerimientos());
            
         }
 
         private void btnCursos_Click(object sender, EventArgs e)
         {
             mostrarSubMenu(subMenuCursos);
+        }
+
+        private void btnRequerimientoDocentes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMaterias_Click(object sender, EventArgs e)
+        {
+            openScreen(new menuScreens.listarMaterias());
+        }
+
+        private void btnGrupos_Click(object sender, EventArgs e)
+        {
+            openScreen(new menuScreens.listarGrupos());
+        }
+
+        private void btnOrientaciones_Click(object sender, EventArgs e)
+        {
+            openScreen(new menuScreens.listarOrientaciones());
+            
         }
     }
 }

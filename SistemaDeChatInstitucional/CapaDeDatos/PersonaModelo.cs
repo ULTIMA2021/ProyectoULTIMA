@@ -201,6 +201,8 @@ namespace CapaDeDatos
             return obtenerUsuario(this.comando, sessionType);
         }
 
+        
+
         /*
         public List<PersonaModelo> lista(string ci, Func<List<PersonaModelo>, byte sessionType)
         {

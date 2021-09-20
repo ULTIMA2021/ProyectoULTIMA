@@ -275,7 +275,7 @@ namespace AppAlumno
             //botones del menu
             btnMiPerfil.Text = Resources.btnMiPerfil;            
             btnMensajes.Text = Resources.btnMensajes;
-            btnAgenda.Text = Resources.btnAgenda;
+            
             btnDocentes.Text = Resources.btnDocentes;
             btnSala.Text = Resources.btnSala;
             btnLogout.Text = Resources.btnLogout;

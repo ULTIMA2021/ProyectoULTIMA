@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(misMensajes));
             this.lblBuscar = new System.Windows.Forms.Label();
             this.txtBuscarConsulta = new System.Windows.Forms.TextBox();
@@ -101,8 +102,10 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvMisMensajes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMisMensajes.RowHeadersVisible = false;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
+            this.dgvMisMensajes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMisMensajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMisMensajes.Size = new System.Drawing.Size(481, 207);
+            this.dgvMisMensajes.Size = new System.Drawing.Size(481, 296);
             this.dgvMisMensajes.TabIndex = 2;
             this.dgvMisMensajes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMisMensajes_CellEndEdit);
             this.dgvMisMensajes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvMisMensajes_CellFormatting);

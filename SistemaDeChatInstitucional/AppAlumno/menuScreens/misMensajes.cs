@@ -51,6 +51,18 @@ namespace AppAlumno.menuScreens
 
         private void dgvMisMensajes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            foreach (DataGridViewRow Myrow in dgvMisMensajes.Rows)
+            {
+                if ((String)Myrow.Cells["Status de consulta"].Value == "pendiente")
+                {
+                   Myrow.Cells[5].Style.BackColor = Color.FromArgb(250, 182, 37);
+                                 
+                }
+                else if ((String)Myrow.Cells["Status de consulta"].Value == "resuelta")
+                    Myrow.Cells[5].Style.BackColor = Color.FromArgb(113, 230, 72);
+                    
+            }
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

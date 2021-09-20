@@ -29,6 +29,10 @@ namespace CapaDeDatos
                 throw new Exception($"Conection-{e.Number.ToString()}");
             }
         }
+
+        public Modelo()
+        {
+        }
         
         public void connection(byte sessionType)
         {

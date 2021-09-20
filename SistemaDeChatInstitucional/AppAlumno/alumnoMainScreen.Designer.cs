@@ -42,7 +42,6 @@
             this.btnMisMensajes = new System.Windows.Forms.Button();
             this.btnNuevoMensaje = new System.Windows.Forms.Button();
             this.btnMensajes = new System.Windows.Forms.Button();
-            this.btnAgenda = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
             this.btnInstitucion = new System.Windows.Forms.Button();
             this.btnMisDocentes = new System.Windows.Forms.Button();
@@ -126,7 +125,6 @@
             this.panelInfo.Controls.Add(this.btnLogout);
             this.panelInfo.Controls.Add(this.subMenuMensajes);
             this.panelInfo.Controls.Add(this.btnMensajes);
-            this.panelInfo.Controls.Add(this.btnAgenda);
             this.panelInfo.Controls.Add(this.subMenuDocentes);
             this.panelInfo.Controls.Add(this.btnDocentes);
             this.panelInfo.Controls.Add(this.subMenuMiPerfil);
@@ -199,18 +197,6 @@
             this.btnMensajes.Name = "btnMensajes";
             this.btnMensajes.UseVisualStyleBackColor = false;
             this.btnMensajes.Click += new System.EventHandler(this.btnMensajes_Click);
-            // 
-            // btnAgenda
-            // 
-            this.btnAgenda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            resources.ApplyResources(this.btnAgenda, "btnAgenda");
-            this.btnAgenda.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnAgenda.FlatAppearance.BorderSize = 0;
-            this.btnAgenda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.btnAgenda.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAgenda.Name = "btnAgenda";
-            this.btnAgenda.UseVisualStyleBackColor = false;
-            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
             // 
             // subMenuDocentes
             // 
@@ -388,7 +374,6 @@
         private System.Windows.Forms.Button btnMisDocentes;
         private System.Windows.Forms.Button btnDocentes;
         private System.Windows.Forms.Button btnMensajes;
-        private System.Windows.Forms.Button btnAgenda;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnMaximizar;
         private System.Windows.Forms.Button btnExit;
