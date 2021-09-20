@@ -157,6 +157,7 @@ namespace AppAdmin
         private void btnOrientaciones_Click(object sender, EventArgs e)
         {
             openScreen(new menuScreens.listarOrientaciones());
+            
         }
     }
 }
