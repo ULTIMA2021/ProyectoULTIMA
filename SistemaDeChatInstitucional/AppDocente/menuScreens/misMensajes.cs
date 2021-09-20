@@ -90,7 +90,7 @@ namespace AppDocente.menuScreens
                     Myrow.Cells[5].Style.BackColor = Color.FromArgb(250, 182, 37);
 
                 }
-                else if((String)Myrow.Cells["Status de consulta"].Value == "resuelta")
+                else if ((String)Myrow.Cells["Status de consulta"].Value == "resuelta")
                     Myrow.Cells[5].Style.BackColor = Color.FromArgb(113, 230, 72);
 
             }

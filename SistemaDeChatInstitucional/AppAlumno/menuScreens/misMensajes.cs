@@ -43,10 +43,7 @@ namespace AppAlumno.menuScreens
             replyScreen r = new replyScreen(mensajes,asunto);
         }
 
-        private void dgvMisMensajes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
 
         private void dgvMisMensajes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
