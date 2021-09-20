@@ -10,7 +10,79 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
-           public static DataTable obtenerMaterias()
+        public static void nuevoGrupo(string nombreGrupo) {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.nombreGrupo = nombreGrupo;
+            g.crearGrupoNuevo();
+        }
+
+        public static void nuevaMateria(string nombreMateria)
+        {
+            MateriaModelo m = new MateriaModelo(Session.type);
+            m.nombreMateria = nombreMateria;
+            m.crearMateriaNueva();
+        }
+
+        public static void nuevaOrientacion(string nombreOrientacion)
+        {
+            OrientacionModelo o = new OrientacionModelo(Session.type);
+            o.nombreOrientacion = nombreOrientacion;
+            o.crearMateriaNueva();
+        }
+
+        public static void asignarMateriasAGrupo(List<int> materiasSeleccionadas, string idGrupo) {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idGrupo = int.Parse(idGrupo);
+            foreach (int materia in materiasSeleccionadas)
+            {
+                g.idMateria = materia;
+                g.cargarMateriasAGrupo();
+            }
+        }
+
+        public static void asignarMateriasAGrupo(List<int> gruposSeleccionados, int idMateria)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idMateria = idMateria;
+            foreach (int grupo in gruposSeleccionados)
+            {
+                g.idGrupo = grupo;
+                g.cargarMateriasAGrupo();
+            }
+        }
+
+        public static void asignarOrientacionesAGrupos(List<int> grupoSeleccionados, string idOrientacion)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idOrientacion = int.Parse(idOrientacion);
+            foreach (int grupo in grupoSeleccionados)
+            {
+                g.idGrupo = grupo;
+                g.cargarGruposAOrientacion();
+            }
+        }
+
+
+
+        public static string grupoPorNombreGrupo(string nombreGrupo) {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            return g.getGrupo(nombreGrupo, Session.type);
+        }
+
+        public static string MateriaPorNombreMateria(string nombreMateria)
+        {
+            MateriaModelo m = new MateriaModelo(Session.type);
+            return m.getMateria(nombreMateria, Session.type);
+        }
+
+        public static string orientacionPorNombre(string nombreOrientacion)
+        {
+            OrientacionModelo o = new OrientacionModelo(Session.type);
+            return o.getOrientacion(nombreOrientacion, Session.type);
+        }
+
+
+        public static DataTable obtenerMaterias()
           {
               MateriaModelo m = new MateriaModelo(Session.type);
               List<MateriaModelo> materias = m.getMateria(Session.type);
@@ -26,7 +98,6 @@ namespace CapaLogica
 
               return tabla;
           }
-
           
         public static List<string> MateriasToListForRegister()
         {

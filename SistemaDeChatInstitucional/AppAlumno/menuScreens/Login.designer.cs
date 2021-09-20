@@ -100,12 +100,12 @@
             this.txtUsuario.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsuario.ForeColor = System.Drawing.SystemColors.ButtonShadow;
             this.txtUsuario.Location = new System.Drawing.Point(55, 121);
-            this.txtUsuario.Multiline = true;
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(261, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(261, 18);
             this.txtUsuario.TabIndex = 2;
             this.txtUsuario.Text = "Usuario";
             this.txtUsuario.Enter += new System.EventHandler(this.txtUusuario_Enter);
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.txtUsuario.Leave += new System.EventHandler(this.txtUusuario_Leave);
             // 
             // txtContra
@@ -115,12 +115,12 @@
             this.txtContra.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContra.ForeColor = System.Drawing.SystemColors.ButtonShadow;
             this.txtContra.Location = new System.Drawing.Point(55, 181);
-            this.txtContra.Multiline = true;
             this.txtContra.Name = "txtContra";
-            this.txtContra.Size = new System.Drawing.Size(261, 20);
+            this.txtContra.Size = new System.Drawing.Size(261, 18);
             this.txtContra.TabIndex = 3;
             this.txtContra.Text = "Contraseña";
             this.txtContra.Enter += new System.EventHandler(this.txtContra_Enter);
+            this.txtContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.txtContra.Leave += new System.EventHandler(this.txtContra_Leave);
             // 
             // btnLogin
@@ -241,6 +241,7 @@
             this.Name = "Login";
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictVer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).EndInit();

@@ -46,6 +46,8 @@
             // 
             // dgvListarMaterias
             // 
+            this.dgvListarMaterias.AllowUserToAddRows = false;
+            this.dgvListarMaterias.AllowUserToDeleteRows = false;
             this.dgvListarMaterias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListarMaterias.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvListarMaterias.BackgroundColor = System.Drawing.Color.DarkGray;
@@ -61,7 +63,7 @@
             this.dgvListarMaterias.ColumnHeadersHeight = 25;
             this.dgvListarMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvListarMaterias.EnableHeadersVisualStyles = false;
-            this.dgvListarMaterias.Location = new System.Drawing.Point(152, 34);
+            this.dgvListarMaterias.Location = new System.Drawing.Point(144, 32);
             this.dgvListarMaterias.MultiSelect = false;
             this.dgvListarMaterias.Name = "dgvListarMaterias";
             this.dgvListarMaterias.ReadOnly = true;
@@ -72,7 +74,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvListarMaterias.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvListarMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListarMaterias.Size = new System.Drawing.Size(248, 296);
+            this.dgvListarMaterias.Size = new System.Drawing.Size(250, 294);
             this.dgvListarMaterias.TabIndex = 0;
             // 
             // btnExit
@@ -80,7 +82,7 @@
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(24, 12);
+            this.btnExit.Location = new System.Drawing.Point(25, 12);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(57, 34);
             this.btnExit.TabIndex = 1;
@@ -95,7 +97,7 @@
             this.gbMaterias.Controls.Add(this.label1);
             this.gbMaterias.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbMaterias.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.gbMaterias.Location = new System.Drawing.Point(527, 27);
+            this.gbMaterias.Location = new System.Drawing.Point(528, 23);
             this.gbMaterias.Name = "gbMaterias";
             this.gbMaterias.Size = new System.Drawing.Size(336, 303);
             this.gbMaterias.TabIndex = 3;
@@ -116,7 +118,6 @@
             this.clbGrupos.Name = "clbGrupos";
             this.clbGrupos.Size = new System.Drawing.Size(222, 164);
             this.clbGrupos.TabIndex = 2;
-            
             // 
             // label2
             // 
@@ -145,6 +146,7 @@
             this.btnIngresar.TabIndex = 5;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // listarMaterias
             // 

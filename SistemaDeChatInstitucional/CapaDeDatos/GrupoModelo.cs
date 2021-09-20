@@ -22,13 +22,37 @@ namespace CapaDeDatos
         {
         }
 
-        public void crearGrupoNuevo(string nombreGrupo)
+        public void crearGrupoNuevo()
         {
             this.comando.CommandText = "INSERT INTO Grupo (nombreGrupo) VALUES(@nombreGrupo);";
-            this.comando.Parameters.AddWithValue("nombreGrupo", nombreGrupo);
+            this.comando.Parameters.AddWithValue("nombreGrupo", this.nombreGrupo);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+
+        public string countAlumnoTieneGrupo(string ci)
+        {
+            string count;
+            command = "SELECT COUNT(*) FROM Alumno_tiene_Grupo WHERE alumnoCi=@ci;";
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            count = lector[0].ToString();
+            lector.Close();
+            return count;
+        }
+        public string countDocenteDictaGrupo(string ci)
+        {
+            string count;
+            command = "SELECT COUNT(*) FROM Docente_dicta_G_M WHERE docenteCi = @ci;";
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            count = lector[0].ToString();
+            lector.Close();
+            return count;
+        }
+
         public void nuevoIngresoAlumnoTieneGrupo(string alumnoCi, int idGrupo) {
             command = "INSERT INTO Alumno_tiene_Grupo (alumnoCi,idGrupo) VALUES (@alumnoCi,@idGrupo);";
             this.comando.CommandText = command;
@@ -57,6 +81,26 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
+        }
+
+        public void cargarMateriasAGrupo() {
+            this.comando.Parameters.Clear();
+            command = "INSERT INTO Grupo_tiene_Materia (idGrupo, idMateria) VALUES (@idGrupo, @idMateria);";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@idGrupo",this.idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria", this.idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
+        public void cargarGruposAOrientacion()
+        {
+            this.comando.Parameters.Clear();
+            command = "INSERT INTO Orientacion_tiene_Grupo (idOrientacion, idGrupo) VALUES (@idOrientacion, @idGrupo);";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@idOrientacion", this.idOrientacion);
+            this.comando.Parameters.AddWithValue("@idGrupo", this.idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
         }
 
         private List<GrupoModelo> cargarGrupoALista(MySqlCommand commando, byte sessionType)
@@ -91,14 +135,19 @@ namespace CapaDeDatos
         }
 
         public List<GrupoModelo> getGrupo(byte sessionType) {
-            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo;";
+            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo ORDER BY idGrupo ASC;";
             return cargarGrupoALista(this.comando, sessionType);
         }
-        public List<GrupoModelo> getGrupo(string idGrupo, byte sessionType)
+        public string getGrupo(string nombreGrupo, byte sessionType)
         {
-            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE idGrupo=@idGrupo;";
-            this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
-            return cargarGrupoALista(this.comando, sessionType);
+            string idGrupo;
+            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE nombreGrupo=@nombreGrupo;";
+            this.comando.Parameters.AddWithValue("@nombreGrupo", nombreGrupo);
+            lector = comando.ExecuteReader();
+            lector.Read();  
+            idGrupo = lector[0].ToString();
+            lector.Close();
+            return idGrupo;
         }
 
         //sin implementacion

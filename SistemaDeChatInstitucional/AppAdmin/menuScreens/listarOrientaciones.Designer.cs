@@ -36,7 +36,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.clbMaterias = new System.Windows.Forms.CheckedListBox();
+            this.clbGrupos = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
@@ -46,6 +46,8 @@
             // 
             // dgvListarOrientaciones
             // 
+            this.dgvListarOrientaciones.AllowUserToAddRows = false;
+            this.dgvListarOrientaciones.AllowUserToDeleteRows = false;
             this.dgvListarOrientaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListarOrientaciones.BackgroundColor = System.Drawing.Color.DarkGray;
             this.dgvListarOrientaciones.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
@@ -89,7 +91,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.clbMaterias);
+            this.groupBox1.Controls.Add(this.clbGrupos);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -108,13 +110,13 @@
             this.textBox1.Size = new System.Drawing.Size(220, 25);
             this.textBox1.TabIndex = 3;
             // 
-            // clbMaterias
+            // clbGrupos
             // 
-            this.clbMaterias.FormattingEnabled = true;
-            this.clbMaterias.Location = new System.Drawing.Point(91, 121);
-            this.clbMaterias.Name = "clbMaterias";
-            this.clbMaterias.Size = new System.Drawing.Size(220, 164);
-            this.clbMaterias.TabIndex = 2;
+            this.clbGrupos.FormattingEnabled = true;
+            this.clbGrupos.Location = new System.Drawing.Point(91, 121);
+            this.clbGrupos.Name = "clbGrupos";
+            this.clbGrupos.Size = new System.Drawing.Size(220, 164);
+            this.clbGrupos.TabIndex = 2;
             // 
             // label2
             // 
@@ -143,6 +145,7 @@
             this.btnIngresar.TabIndex = 4;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // listarOrientaciones
             // 
@@ -171,7 +174,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckedListBox clbMaterias;
+        private System.Windows.Forms.CheckedListBox clbGrupos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;

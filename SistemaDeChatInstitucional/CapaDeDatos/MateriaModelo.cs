@@ -17,10 +17,10 @@ namespace CapaDeDatos
         {
         }
 
-        public void crearMateriaNueva(string nombreMateria)
+        public void crearMateriaNueva()
         {
             this.comando.CommandText = "INSERT INTO Materia (nombreMateria) VALUES(@nombreMateria);";
-            this.comando.Parameters.AddWithValue("nomberMateria", nombreMateria);
+            this.comando.Parameters.AddWithValue("@nombreMateria", this.nombreMateria);
             EjecutarQuery(this.comando, errorType);
         }
         private List<MateriaModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
@@ -40,10 +40,21 @@ namespace CapaDeDatos
 
         public List<MateriaModelo> getMateria(byte sessionType)
         {
-            this.comando.CommandText = "SELECT idMateria,nombreMateria FROM Materia;";
+            this.comando.CommandText = "SELECT idMateria,nombreMateria FROM Materia ORDER BY idMateria ASC;";
             return cargarMateriaALista(this.comando, sessionType);
         }
 
+        public string getMateria(string nombreMateria, byte sessionType)
+        {
+            string idMateria;
+            this.comando.CommandText = "SELECT idMateria, nombreMateria FROM Materia WHERE nombreMateria=@nombreMateria;";
+            this.comando.Parameters.AddWithValue("@nombreMateria", nombreMateria);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            idMateria = lector[0].ToString();
+            lector.Close();
+            return idMateria;
+        }
 
     }
 }

@@ -35,10 +35,10 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.clbMaterias = new System.Windows.Forms.CheckedListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.clbMaterias = new System.Windows.Forms.CheckedListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarGrupos)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -46,6 +46,8 @@
             // 
             // dgvListarGrupos
             // 
+            this.dgvListarGrupos.AllowUserToAddRows = false;
+            this.dgvListarGrupos.AllowUserToDeleteRows = false;
             this.dgvListarGrupos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListarGrupos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvListarGrupos.BackgroundColor = System.Drawing.Color.DarkGray;
@@ -102,14 +104,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingresar nuevo grupo";
             // 
-            // label1
+            // textBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre:";
+            this.textBox1.Location = new System.Drawing.Point(91, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(220, 25);
+            this.textBox1.TabIndex = 3;
+            // 
+            // clbMaterias
+            // 
+            this.clbMaterias.FormattingEnabled = true;
+            this.clbMaterias.Location = new System.Drawing.Point(91, 121);
+            this.clbMaterias.Name = "clbMaterias";
+            this.clbMaterias.Size = new System.Drawing.Size(220, 164);
+            this.clbMaterias.TabIndex = 2;
             // 
             // label2
             // 
@@ -120,20 +128,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Materias:";
             // 
-            // clbMaterias
+            // label1
             // 
-            this.clbMaterias.FormattingEnabled = true;
-            this.clbMaterias.Location = new System.Drawing.Point(91, 121);
-            this.clbMaterias.Name = "clbMaterias";
-            this.clbMaterias.Size = new System.Drawing.Size(220, 164);
-            this.clbMaterias.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(91, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 25);
-            this.textBox1.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nombre:";
             // 
             // btnIngresar
             // 
@@ -144,6 +146,7 @@
             this.btnIngresar.TabIndex = 4;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
             // listarGrupos
             // 
