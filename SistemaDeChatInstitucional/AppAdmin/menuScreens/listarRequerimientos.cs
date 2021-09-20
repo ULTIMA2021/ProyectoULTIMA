@@ -11,19 +11,19 @@ using CapaLogica;
 
 namespace AppAdmin.menuScreens
 {
-    public partial class listarDocentes : Form
+    public partial class listarRequerimientos : Form
     {
-        public listarDocentes()
+        public listarRequerimientos()
         {
             InitializeComponent();
         }
 
-        
-
-        private void listarDocentes_Load(object sender, EventArgs e)
+        private void listarRequerimientos_Load(object sender, EventArgs e)
         {
-            dgvListarDocentes.DataSource = Controlador.obtenerDocentes();
+            
         }
+
+       
 
         private void btnExit_Click(object sender, EventArgs e)
         {

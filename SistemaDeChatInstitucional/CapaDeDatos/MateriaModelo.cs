@@ -9,8 +9,8 @@ namespace CapaDeDatos
     public class MateriaModelo: Modelo
     {
 
-        int idMateria;
-        string nombreMateria;
+        public int idMateria;
+        public string nombreMateria;
         public string errorType="Materia";
 
         public MateriaModelo(byte sessionType) : base(sessionType)
@@ -40,7 +40,7 @@ namespace CapaDeDatos
 
         public List<MateriaModelo> getMateria(byte sessionType)
         {
-            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo;";
+            this.comando.CommandText = "SELECT idMateria,nombreMateria FROM Materia;";
             return cargarMateriaALista(this.comando, sessionType);
         }
 

@@ -195,7 +195,7 @@
             this.selectIdioma.Size = new System.Drawing.Size(106, 20);
             this.selectIdioma.TabIndex = 13;
             this.selectIdioma.Text = "Idioma/Language";
-            
+            this.selectIdioma.SelectedIndexChanged += new System.EventHandler(this.selectIdioma_SelectedIndexChanged);
             // 
             // Login
             // 
@@ -216,7 +216,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
             this.Text = "Login";
-            
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictVer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).EndInit();

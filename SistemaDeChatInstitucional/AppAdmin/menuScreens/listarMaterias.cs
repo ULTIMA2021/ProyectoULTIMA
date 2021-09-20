@@ -11,21 +11,24 @@ using CapaLogica;
 
 namespace AppAdmin.menuScreens
 {
-    public partial class listarDocentes : Form
+    public partial class listarMaterias : Form
     {
-        public listarDocentes()
+        public listarMaterias()
         {
             InitializeComponent();
         }
 
-        
+       
 
-        private void listarDocentes_Load(object sender, EventArgs e)
+        private void listarMaterias_Load(object sender, EventArgs e)
         {
-            dgvListarDocentes.DataSource = Controlador.obtenerDocentes();
+            clbGrupos.DataSource = Controlador.gruposToListForRegister();
+            dgvListarMaterias.DataSource = Controlador.obtenerMaterias();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        
+
+        private void btnExit_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -39,7 +39,7 @@ namespace CapaDeDatos
         }
         public List<OrientacionModelo> getOrientacion(byte sessionType)
         {
-            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo;";
+            this.comando.CommandText = "SELECT idOrientacion, nombreOrientacion FROM Orientacion;";
             return cargarMateriaALista(this.comando, sessionType);
         }
     }
