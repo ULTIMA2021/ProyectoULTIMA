@@ -246,6 +246,7 @@
             this.Text = "Salas";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Salas_FormClosing);
             this.Load += new System.EventHandler(this.Salas_Load);
+            this.Shown += new System.EventHandler(this.Salas_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrupoMaterias)).EndInit();
             this.ResumeLayout(false);

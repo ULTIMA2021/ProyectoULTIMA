@@ -218,5 +218,11 @@ namespace AppAlumno.menuScreens
             else
                 btnCrear.Enabled = false;
         }
+
+        private void Salas_Shown(object sender, EventArgs e)
+        {
+            dgvSalas.ClearSelection();
+            dgvGrupoMaterias.ClearSelection();
+        }
     }
 }

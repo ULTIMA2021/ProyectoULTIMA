@@ -29,8 +29,15 @@ namespace AppAdmin.menuScreens
 
         private void listarOrientaciones_Load_1(object sender, EventArgs e)
         {
-            clbMaterias.DataSource = Controlador.MateriasToListForRegister();
+            clbGrupos.DataSource = Controlador.gruposToListForRegister();
             dgvListarOrientaciones.DataSource = Controlador.obtenerOrientaciones();
+
+        }
+
+        private void listarOrientaciones_Shown(object sender, EventArgs e)
+        {
+            dgvListarOrientaciones.ClearSelection();
+
         }
     }
 }

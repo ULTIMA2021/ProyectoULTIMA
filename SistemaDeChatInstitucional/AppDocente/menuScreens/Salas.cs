@@ -226,5 +226,11 @@ namespace AppDocente.menuScreens
         {
             
         }
+
+        private void Salas_Shown(object sender, EventArgs e)
+        {
+            dgvGrupoMaterias.ClearSelection();
+            dgvSalas.ClearSelection();
+        }
     }
 }
