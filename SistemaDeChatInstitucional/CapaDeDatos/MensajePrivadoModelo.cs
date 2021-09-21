@@ -87,6 +87,7 @@ namespace CapaDeDatos
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente, byte sessionType)
         {
+            this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_mensaje cpm " +
                "WHERE cpm.idConsultaPrivada=@idConsultaPrivada AND cpm.ciAlumno=@ciAlumno AND cpm.ciDocente=@ciDocente ; ";

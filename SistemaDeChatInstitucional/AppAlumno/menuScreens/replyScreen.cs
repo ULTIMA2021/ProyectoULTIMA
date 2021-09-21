@@ -20,7 +20,11 @@ namespace AppAlumno.menuScreens
         List<List<string>> mensajes;
         string docenteNombre;
         string status;
-
+        int msgCount = 0;
+        Padding statP = new Padding(0, -1, 0, 10);
+        Padding dateP = new Padding(0, -1, 0, -1);
+        Padding TextP = new Padding(0, -1, 0, -1);
+        Padding namesP = new Padding(0, 10, 0, -1);
 
         public replyScreen()
         {
@@ -44,6 +48,7 @@ namespace AppAlumno.menuScreens
             ciDocente = mensajes[0][2];
             docenteNombre = Controlador.traemeEstaPersona(ciDocente);
             this.Text = $"{asunto} - @{docenteNombre}";
+            msgCount = mensajes.Count;
         }
 
         private void enviarMensaje()
@@ -63,8 +68,9 @@ namespace AppAlumno.menuScreens
             newMsg.Add(ciDocente);
 
             this.mensajes.Add(newMsg);
-
             txtRespuesta.Text = string.Empty;
+
+            msgCount = mensajes.Count;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -77,18 +83,17 @@ namespace AppAlumno.menuScreens
             if (txtRespuesta.Text != "")
             {
                 enviarMensaje();
-                myLoad(status);
+                Label statuss = new Label();
+                Label fecha = new Label();
+                Label nombrePersona = new Label();
+                TextBox t = new TextBox();
+                setMyLabels(msgCount - 1, nombrePersona, t, fecha, statuss);
+                //myLoad(status);
             }
         }
 
         private void myLoad(string status)
         {
-            Padding statP = new Padding(0, -1, 0, 10);
-            Padding dateP = new Padding(0, -1, 0, -1);
-            Padding TextP = new Padding(0, -1, 0, -1);
-            Padding namesP = new Padding(0, 10, 0, -1);
-
-            flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < mensajes.Count; i++)
             {
                 Label statuss = new Label();
@@ -96,68 +101,7 @@ namespace AppAlumno.menuScreens
                 Label nombrePersona = new Label();
                 TextBox t = new TextBox();
 
-                t.Enabled = true;
-                t.Multiline = true;
-                t.WordWrap = true;
-                t.ReadOnly = true;
-                t.BackColor = Color.PowderBlue;
-                t.Visible = true;
-                t.Dock = DockStyle.Right;
-                t.Width= this.flowLayoutPanel1.Width-40;
-                t.Name = "t_" +i;
-                t.BorderStyle = BorderStyle.None;
-                t.Font = new Font("Arial", 8.25f);
-
-                nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
-                nombrePersona.Dock = DockStyle.Right;
-                nombrePersona.AutoSize = true;
-                nombrePersona.Name = "label_" + i;
-
-                fecha.Font = new Font("Arial", 8.25f);
-                fecha.Dock = DockStyle.Right;
-                fecha.AutoSize = true;
-                fecha.Name = "labelFecha_" + i;
-                //fecha.BackColor = Color.PowderBlue;
-                fecha.Text = mensajes[i][5];
-
-                statuss.Font = new Font("Arial", 6.25f);
-                statuss.ForeColor = Color.Red;
-                statuss.Dock = DockStyle.Right;
-                statuss.AutoSize = true;
-                statuss.Name = "labelFecha_" + i;
-                //fecha.BackColor = Color.PowderBlue;
-                statuss.Text = mensajes[i][6];
-
-                statuss.Margin = statP;
-                fecha.Margin = dateP;
-                nombrePersona.Margin = namesP;
-                t.Margin = TextP;
-
-                if(mensajes[i][6] == "leido")
-                    statuss.ForeColor = Color.Green;
-
-                if (mensajes[i][7] != Session.cedula)
-                    nombrePersona.Text = $"{Session.nombre} {Session.apellido}";
-                else{
-                    t.BackColor = Color.PeachPuff;
-                    t.Dock = DockStyle.Right;
-                    nombrePersona.Text = docenteNombre;
-                    nombrePersona.Dock = DockStyle.Left;
-                    fecha.Dock = DockStyle.Left;
-                    statuss.Dock = DockStyle.Left;
-                }
-                t.Text = mensajes[i][4];
-
-                int padding = 10;
-                int numLines = t.GetLineFromCharIndex(t.TextLength) + 1;
-                int border = t.Height - t.ClientSize.Height;
-                t.Height = t.Font.Height * numLines + padding + border;
-
-                this.flowLayoutPanel1.Controls.Add(nombrePersona);
-                this.flowLayoutPanel1.Controls.Add(t);
-                this.flowLayoutPanel1.Controls.Add(fecha);
-                this.flowLayoutPanel1.Controls.Add(statuss);
-
+                setMyLabels(i, nombrePersona, t, fecha, statuss);
             }
             if (status == "resuelta")
             {
@@ -167,18 +111,93 @@ namespace AppAlumno.menuScreens
                 this.Controls.Remove(panel1);
                 this.Text = $"{this.Text}-FINALIZADA";
             }
-            this.Select();
+            btnEnviar.Text = Resources.btnEnviar;
+        }
+        private void setMyLabels(int i, Label nombrePersona, TextBox t, Label fecha, Label statuss)
+        {
+            if (mensajes[i][7] != Session.cedula)
+            {
+                setMsgtxtBox(t, mensajes[i][4], DockStyle.Right, Color.PowderBlue, AnchorStyles.Right, HorizontalAlignment.Right);
+                setNombrePersonaLabel(nombrePersona, $"{Session.nombre} {Session.apellido}", DockStyle.Right, AnchorStyles.Right);
+                setFechaLabel(fecha, mensajes[i][5], DockStyle.Right, AnchorStyles.Right);
+                setStatusLabel(statuss, mensajes[i][6], DockStyle.Right, AnchorStyles.Right);
+            }
+            else
+            {
+                setMsgtxtBox(t, mensajes[i][4], DockStyle.Left, Color.PeachPuff, AnchorStyles.Left, HorizontalAlignment.Left);
+                setNombrePersonaLabel(nombrePersona, docenteNombre, DockStyle.Left, AnchorStyles.Left);
+                setFechaLabel(fecha, mensajes[i][5], DockStyle.Left, AnchorStyles.Left);
+                setStatusLabel(statuss, mensajes[i][6], DockStyle.Left, AnchorStyles.Left);
+            }
+            this.flowLayoutPanel1.Controls.Add(nombrePersona);
+            this.flowLayoutPanel1.Controls.Add(t);
+            this.flowLayoutPanel1.Controls.Add(fecha);
+            this.flowLayoutPanel1.Controls.Add(statuss);
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
+        }
+        private void setFechaLabel(Label fecha, string dateToDisplay, DockStyle dockStyle, AnchorStyles anchor)
+        {
+            fecha.Font = new Font("Arial", 8.25f);
+            fecha.Dock = dockStyle;
+            fecha.AutoSize = true;
+            //fecha.Name = "labelFecha_" + i;
+            //fecha.BackColor = Color.PowderBlue;
+            fecha.Text = dateToDisplay;
+            fecha.Margin = dateP;
+            fecha.Anchor = anchor;
+        }
+        private void setStatusLabel(Label statuss, string statusToDisplay, DockStyle dockStyle, AnchorStyles anchor)
+        {
+            statuss.Font = new Font("Arial", 6.25f);
+            statuss.ForeColor = Color.Red;
+            statuss.Dock = dockStyle;
+            statuss.AutoSize = true;
+            //statuss.Name = "labelFecha_" + i;
+            //fecha.BackColor = Color.PowderBlue;
+            statuss.Text = statusToDisplay;
+            statuss.Margin = statP;
+            statuss.Anchor = anchor;
+            if (statusToDisplay == "leido")
+                statuss.ForeColor = Color.Green;
+        }
+        private void setNombrePersonaLabel(Label nombrePersona, string nameOfPerson, DockStyle dockStyle, AnchorStyles anchor)
+        {
+            nombrePersona.Font = new Font("Arial", 11, FontStyle.Bold);
+            nombrePersona.Dock = dockStyle;
+            nombrePersona.AutoSize = true;
+            //nombrePersona.Name = "label_" + i;
+            nombrePersona.Margin = namesP;
+            nombrePersona.Text = nameOfPerson;
+            nombrePersona.Anchor = anchor;
+        }
+        private void setMsgtxtBox(TextBox t, string textOfMsg, DockStyle dockStyle, Color color, AnchorStyles anchor, HorizontalAlignment txtAlignment)
+        {
+            t.Multiline = true;
+            t.WordWrap = true;
+            t.ReadOnly = true;
+            t.BackColor = color;
+            t.Visible = true;
+            t.Dock = dockStyle;
+            t.Width = this.flowLayoutPanel1.Width - 25;
+            //t.Name = "t_" + i;
+            t.BorderStyle = BorderStyle.None;
+            t.Font = new Font("Arial", 8.25f);
+            t.ForeColor = SystemColors.ControlText;
+            t.Margin = TextP;
+            t.Text = textOfMsg;
+            t.Anchor = anchor;
+            t.TextAlign = txtAlignment;
+
+            int padding = 10;
+            int numLines = t.GetLineFromCharIndex(t.TextLength) + 1;
+            int border = t.Height - t.ClientSize.Height;
+            t.Height = t.Font.Height * numLines + padding + border;
         }
 
         private void replyScreen_SizeChanged(object sender, EventArgs e)
         {
+            flowLayoutPanel1.Controls.Clear();
             myLoad(status);
-        }
-
-        private void replyScreen_Load(object sender, EventArgs e)
-        {
-            btnEnviar.Text = Resources.btnEnviar;
         }
 
         private void btnFinalizarConsulta_Click(object sender, EventArgs e)

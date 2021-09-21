@@ -81,14 +81,12 @@ namespace CapaLogica
         {
             MensajePrivadoModelo mpm = new MensajePrivadoModelo(Session.type);
             List<List<string>> mensajesDeConsulta = new List<List<string>>();
-            int x = 0;
+
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente, Session.type))
             {
-                if(Session.type==0 || Session.type==1)
+                if (Session.type == 0 || Session.type == 1)
                     m.updateStatus();
                 mensajesDeConsulta.Add(m.toStringList());
-               // Console.WriteLine(mensajesDeConsulta[x].ToString());
-                x++;
             }
             return mensajesDeConsulta;
         }

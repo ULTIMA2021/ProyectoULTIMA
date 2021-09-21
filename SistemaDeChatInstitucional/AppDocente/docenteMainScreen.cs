@@ -17,6 +17,9 @@ namespace AppDocente
 {
     public partial class docenteMainScreen : Form
     {
+        System.Windows.Forms.Timer timer;
+        string msgCount;
+
         public docenteMainScreen()
         {
             InitializeComponent();
@@ -27,7 +30,43 @@ namespace AppDocente
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void timer_Tick(Object sender, EventArgs e)
+        {
+            Console.WriteLine("IM CHECKING");
+            try
+            {
+                msgCount = Controlador.getMensajesStatusCount("recibido");
+                msgLabelAndnotification();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+        }
+        private void msgLabelAndnotification()
+        {
+            btnMensajes.Text = $"            Mensajes: {msgCount}";
+            btnMisMensajes.Text = $"●  Mis mensajes: {msgCount}";
 
+            if (int.Parse(msgCount) > 0)
+            {
+                Console.WriteLine("LABELS SHOULDVE CHANGED");
+                btnMisMensajes.BackColor = Color.Firebrick;
+                btnMensajes.BackColor = Color.Firebrick;
+            }
+            else
+            {
+                btnMensajes.BackColor = btnSala.BackColor;
+                btnMisMensajes.BackColor = btnConfiguracion.BackColor;
+            }
+        }
+        private void setTimer()
+        {
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = (1000 * 25);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
         public void esconderSubMenu()
         {
             if(subMenuMiPerfil.Visible == true)
@@ -165,6 +204,9 @@ namespace AppDocente
         private void alumnoMainScreen_Load(object sender, EventArgs e)
         {
             lblNombre.Text = $"{Session.nombre} {Session.apellido}";
+            msgCount = Controlador.getMensajesStatusCount("recibido");
+            msgLabelAndnotification();
+            setTimer();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
