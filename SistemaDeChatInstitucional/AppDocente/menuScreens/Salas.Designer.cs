@@ -54,9 +54,11 @@
             this.dgvSalas.AllowUserToResizeColumns = false;
             this.dgvSalas.AllowUserToResizeRows = false;
             this.dgvSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSalas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSalas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvSalas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSalas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
+            this.dgvSalas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -82,10 +84,11 @@
             this.dgvSalas.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSalas.RowHeadersVisible = false;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.dgvSalas.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSalas.Size = new System.Drawing.Size(687, 205);
-            this.dgvSalas.TabIndex = 0;
+            this.dgvSalas.Size = new System.Drawing.Size(687, 210);
+            this.dgvSalas.TabIndex = 2;
             this.dgvSalas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvSalas_CellFormatting);
             this.dgvSalas.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dgvSalas_ColumnAdded);
             // 
@@ -179,7 +182,7 @@
             this.dgvGrupoMaterias.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvGrupoMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGrupoMaterias.Size = new System.Drawing.Size(153, 104);
-            this.dgvGrupoMaterias.TabIndex = 24;
+            this.dgvGrupoMaterias.TabIndex = 2;
             // 
             // btnCrear
             // 

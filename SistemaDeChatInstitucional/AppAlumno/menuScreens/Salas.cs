@@ -106,6 +106,8 @@ namespace AppAlumno.menuScreens
                     //  Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
                     Myrow.Visible = false;
             }
+
+            
         }
 
         private void btnUnirse_Click(object sender, EventArgs e)
@@ -137,7 +139,8 @@ namespace AppAlumno.menuScreens
                 timer.Start();
                 loadGM();
                 myLoad();
-               
+                
+
             }
             catch (Exception ex)
             {
@@ -151,6 +154,7 @@ namespace AppAlumno.menuScreens
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
 
+            dgvSalas.ClearSelection();
 
             lblCrear.Text = Resources.lblCrear;
             lblSalas.Text = Resources.lblSalas;
@@ -164,6 +168,8 @@ namespace AppAlumno.menuScreens
             dgvSalas.Columns[5].HeaderText = Resources.colGrupo;
             dgvSalas.Columns[6].HeaderText = Resources.colMateria;
             dgvSalas.Columns[8].HeaderText = Resources.colAnfitrion;
+
+           
 
         }
 

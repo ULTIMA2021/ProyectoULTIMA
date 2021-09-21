@@ -79,6 +79,9 @@ namespace AppDocente.menuScreens
             btnAbrir.Text = Resources.btnAbrir;
             btnEliminar.Text = Resources.btnEliminar;
             btnExit.Text = Resources.btnExit;
+
+            dgvMisMensajes.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvMisMensajes.ClearSelection();
         }
 
         private void dgvMisMensajes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -94,6 +97,8 @@ namespace AppDocente.menuScreens
                     Myrow.Cells[5].Style.BackColor = Color.FromArgb(113, 230, 72);
 
             }
+
+            
         }
     }
 }

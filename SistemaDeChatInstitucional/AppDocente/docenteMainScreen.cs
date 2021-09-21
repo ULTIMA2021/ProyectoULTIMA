@@ -98,7 +98,7 @@ namespace AppDocente
         private void btnAgenda_Click(object sender, EventArgs e)
         {
             esconderSubMenu();
-            openScreen(new menuScreens.agenda());
+            openScreen(new menuScreens.agendaDocente());
         }
 
 

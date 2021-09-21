@@ -89,6 +89,8 @@ namespace AppAlumno.menuScreens
             btnAbrir.Text = Resources.btnAbrir;
             btnEliminar.Text = Resources.btnEliminar;
             btnExit.Text = Resources.btnExit;
+
+            dgvMisMensajes.ClearSelection();
         }
     }
 }

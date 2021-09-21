@@ -16,7 +16,10 @@ namespace AppDocente.menuScreens
         Timer timer;
         public Salas()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            dgvSalas.ClearSelection();
+            dgvGrupoMaterias.ClearSelection();
         }
 
         private void timer_Tick(Object sender, EventArgs e)
@@ -167,6 +170,8 @@ namespace AppDocente.menuScreens
             dgvSalas.Columns[5].HeaderText = Resources.colGrupo;
             dgvSalas.Columns[6].HeaderText = Resources.colMateria;
             dgvSalas.Columns[8].HeaderText = Resources.colAnfitrion;
+
+            
 
         }
 
