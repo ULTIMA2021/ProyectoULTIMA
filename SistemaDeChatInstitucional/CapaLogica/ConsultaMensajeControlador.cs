@@ -10,6 +10,15 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
+        public static string getMensajesStatusCount( string status)
+        {
+            MensajePrivadoModelo m = new MensajePrivadoModelo(Session.type);
+            m.ciDestinatario = int.Parse(Session.cedula);
+            m.cp_mensajeStatus = status;
+            return m.mensajesDeConsultaCount();
+        }
+
+
         public static void finalizarConsulta(int idConsultaPrivada, int ciDocente, int ciAlumno)
         {
             ConsultaPrivadaModelo cpm = new ConsultaPrivadaModelo(Session.type);
@@ -75,6 +84,8 @@ namespace CapaLogica
             int x = 0;
             foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente, Session.type))
             {
+                if(Session.type==0 || Session.type==1)
+                    m.updateStatus();
                 mensajesDeConsulta.Add(m.toStringList());
                // Console.WriteLine(mensajesDeConsulta[x].ToString());
                 x++;

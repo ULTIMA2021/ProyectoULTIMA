@@ -83,13 +83,15 @@ namespace AppAlumno.menuScreens
 
         private void myLoad(string status)
         {
-            Padding dateP = new Padding(0, -1, 0, 10);
+            Padding statP = new Padding(0, -1, 0, 10);
+            Padding dateP = new Padding(0, -1, 0, -1);
             Padding TextP = new Padding(0, -1, 0, -1);
             Padding namesP = new Padding(0, 10, 0, -1);
 
             flowLayoutPanel1.Controls.Clear();
             for (int i = 0; i < mensajes.Count; i++)
             {
+                Label statuss = new Label();
                 Label fecha = new Label();
                 Label nombrePersona = new Label();
                 TextBox t = new TextBox();
@@ -118,10 +120,21 @@ namespace AppAlumno.menuScreens
                 //fecha.BackColor = Color.PowderBlue;
                 fecha.Text = mensajes[i][5];
 
+                statuss.Font = new Font("Arial", 6.25f);
+                statuss.ForeColor = Color.Red;
+                statuss.Dock = DockStyle.Right;
+                statuss.AutoSize = true;
+                statuss.Name = "labelFecha_" + i;
+                //fecha.BackColor = Color.PowderBlue;
+                statuss.Text = mensajes[i][6];
+
+                statuss.Margin = statP;
                 fecha.Margin = dateP;
                 nombrePersona.Margin = namesP;
                 t.Margin = TextP;
 
+                if(mensajes[i][6] == "leido")
+                    statuss.ForeColor = Color.Green;
 
                 if (mensajes[i][7] != Session.cedula)
                     nombrePersona.Text = $"{Session.nombre} {Session.apellido}";
@@ -131,6 +144,7 @@ namespace AppAlumno.menuScreens
                     nombrePersona.Text = docenteNombre;
                     nombrePersona.Dock = DockStyle.Left;
                     fecha.Dock = DockStyle.Left;
+                    statuss.Dock = DockStyle.Left;
                 }
                 t.Text = mensajes[i][4];
 
@@ -142,6 +156,7 @@ namespace AppAlumno.menuScreens
                 this.flowLayoutPanel1.Controls.Add(nombrePersona);
                 this.flowLayoutPanel1.Controls.Add(t);
                 this.flowLayoutPanel1.Controls.Add(fecha);
+                this.flowLayoutPanel1.Controls.Add(statuss);
 
             }
             if (status == "resuelta")
