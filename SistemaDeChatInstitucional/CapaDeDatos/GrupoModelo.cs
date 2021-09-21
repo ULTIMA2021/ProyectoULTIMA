@@ -138,6 +138,7 @@ namespace CapaDeDatos
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo ORDER BY idGrupo ASC;";
             return cargarGrupoALista(this.comando, sessionType);
         }
+
         public string getGrupo(string nombreGrupo, byte sessionType)
         {
             string idGrupo;
@@ -148,6 +149,15 @@ namespace CapaDeDatos
             idGrupo = lector[0].ToString();
             lector.Close();
             return idGrupo;
+        }
+
+        public List<GrupoModelo> getGruposSinOrientacion(byte sessionType)
+        {
+            this.comando.CommandText = "SELECT DISTINCT g.idGrupo,g.nombreGrupo " +
+                "FROM Grupo g, Orientacion_tiene_Grupo og " +
+                "WHERE g.idGrupo " +
+                "NOT IN (SELECT idGrupo FROM Orientacion_tiene_Grupo) ORDER BY g.idGrupo ASC;";
+            return cargarGrupoALista(this.comando, sessionType);
         }
 
         //sin implementacion

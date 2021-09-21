@@ -16,6 +16,7 @@ namespace AppAdmin.menuScreens
         public listarGrupos()
         {
             InitializeComponent();
+            //quiero que no seleccione por defecto nada pero no funciona
             clbMaterias.ClearSelected();
         }
 
@@ -30,23 +31,34 @@ namespace AppAdmin.menuScreens
             dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
         }
 
-        private List<int> getIndexesMateriaChecklist()
-        {
-            List<int> checkedIndexes = new List<int>();
-            int index;
-                foreach (var item in clbMaterias.CheckedItems)
-                {
-                    index = clbMaterias.Items.IndexOf(item) + 1;
-                    checkedIndexes.Add(index);
-                    Console.WriteLine($" item: {item}   index of item in database:{ index}");
-                }
+        //private List<int> getIndexesMateriaChecklist()
+        //{
+        //    List<int> checkedIndexes = new List<int>();
+        //    int index;
+        //        foreach (var item in clbMaterias.CheckedItems)
+        //        {
+        //            index = clbMaterias.Items.IndexOf(item) + 1;
+        //            checkedIndexes.Add(index);
+        //            Console.WriteLine($" item: {item}   index of item in database:{ index}");
+        //        }
             
-            return checkedIndexes;
+        //    return checkedIndexes;
+        //}
+
+        private List<int> getIdsFromText()
+        {
+            List<int> actualId = new List<int>();
+            char[] seperator = { ' ', ' ', ' ' };
+            for (int i = 0; i < clbMaterias.CheckedItems.Count; i++)
+            {
+                actualId.Add(int.Parse(clbMaterias.CheckedItems[i].ToString().Split(seperator)[0]));
+            }
+            return actualId;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            List<int> materiasSeleccionadas = getIndexesMateriaChecklist();
+            List<int> materiasSeleccionadas = getIdsFromText();
             string nombreGrupo = textBox1.Text;
             try
             {
@@ -59,6 +71,9 @@ namespace AppAdmin.menuScreens
                 textBox1.Clear();
                 foreach (int i in clbMaterias.CheckedIndices)
                     clbMaterias.SetItemCheckState(i, CheckState.Unchecked);
+
+                dgvListarGrupos.DataSource = null;
+                dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
             }
             catch (Exception ex)
             {

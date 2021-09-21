@@ -120,6 +120,17 @@ namespace CapaLogica
                 gString.Add($"{g.idGrupo}   {g.nombreGrupo}");
             }
             return gString;
+        }
+
+        public static List<string> gruposSinOrientacion()
+        {
+            GrupoModelo grupo = new GrupoModelo(Session.type);
+            List<string> gString = new List<string>();
+            foreach (GrupoModelo g in grupo.getGruposSinOrientacion(Session.type))
+            {
+                gString.Add($"{g.idGrupo}   {g.nombreGrupo}");
+            }
+            return gString;
 
         }
 

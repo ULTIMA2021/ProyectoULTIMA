@@ -23,28 +23,26 @@ namespace AppAdmin.menuScreens
             this.Close();
         }
 
-        private List<int> getIndexesMateriaChecklist()
+        private List<int> getIdsFromText()
         {
-            List<int> checkedIndexes = new List<int>();
-            int index;
-            foreach (var item in clbGrupos.CheckedItems)
+            List<int> actualId = new List<int>();
+            char[] seperator = {' ',' ',' '};
+            for (int i = 0; i < clbGrupos.CheckedItems.Count ; i++)
             {
-                index = clbGrupos.Items.IndexOf(item) + 1;
-                checkedIndexes.Add(index);
+                actualId.Add(int.Parse(clbGrupos.CheckedItems[i].ToString().Split(seperator)[0]));
             }
-
-            return checkedIndexes;
+            return actualId;
         }
 
         private void listarOrientaciones_Load_1(object sender, EventArgs e)
         {
-            clbGrupos.DataSource = Controlador.gruposToListForRegister();
+            clbGrupos.DataSource = Controlador.gruposSinOrientacion();
             dgvListarOrientaciones.DataSource = Controlador.obtenerOrientaciones();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            List<int> gruposSeleccionados = getIndexesMateriaChecklist();
+            List<int> gruposSeleccionados = getIdsFromText();
             string nombreOrientacion = textBox1.Text;
             try
             {
@@ -56,6 +54,10 @@ namespace AppAdmin.menuScreens
                 textBox1.Clear();
                 foreach (int i in clbGrupos.CheckedIndices)
                     clbGrupos.SetItemCheckState(i, CheckState.Unchecked);
+
+                dgvListarOrientaciones.DataSource = null;
+                clbGrupos.DataSource = null;
+                listarOrientaciones_Load_1(sender, e);
             }
             catch (Exception ex)
             {
