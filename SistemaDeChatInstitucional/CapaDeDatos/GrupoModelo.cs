@@ -17,6 +17,7 @@ namespace CapaDeDatos
         public string nombreOrientacion;
         public int ci;
         public string errorType = "Grupo";
+        public string isDeleted;
 
         public GrupoModelo(byte sessionType) : base(sessionType)
         {
@@ -196,6 +197,7 @@ namespace CapaDeDatos
                 g.nombreGrupo = lector[1].ToString();
                 g.idMateria = int.Parse(lector[2].ToString());
                 g.nombreMateria = lector[3].ToString();
+                g.isDeleted = lector[4].ToString();
                 listaGruposDelAlumno.Add(g);
             }
             lector.Close();
@@ -203,7 +205,7 @@ namespace CapaDeDatos
         }
 
         public List<GrupoModelo> getAlumnoGrupoyYmaterias(string ci, byte sessionType) {
-            this.comando.CommandText = "SELECT g.idGrupo, g.nombreGrupo, m.idMateria, m.nombreMateria FROM Grupo g, Alumno_tiene_Grupo ag, Materia m, Grupo_tiene_Materia gm " +
+            this.comando.CommandText = "SELECT g.idGrupo, g.nombreGrupo, m.idMateria, m.nombreMateria, g.isDeleted FROM Grupo g, Alumno_tiene_Grupo ag, Materia m, Grupo_tiene_Materia gm " +
                 "WHERE ag.idGrupo=g.idGrupo " +
                 "AND ag.alumnoCi=@ci " +
                 "AND gm.idGrupo=ag.idGrupo " +
@@ -215,7 +217,7 @@ namespace CapaDeDatos
 
         public List<GrupoModelo> getDocenteDictaGM(string ci, byte sessionType)
         {
-            this.comando.CommandText = "SELECT dgm.idGrupo,g.nombreGrupo, dgm.idMateria, m.NombreMateria " +
+            this.comando.CommandText = "SELECT dgm.idGrupo,g.nombreGrupo, dgm.idMateria, m.NombreMateria, g.isDeleted " +
                 "FROM Docente_dicta_G_M dgm, Grupo g, Materia m " +
                 "WHERE dgm.docenteCi=@ci " +
                 "AND dgm.idMateria = m.idMateria " +

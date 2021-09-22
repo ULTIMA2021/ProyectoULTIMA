@@ -17,9 +17,7 @@ namespace AppAdmin
         public adminMainScreen()
         {
             InitializeComponent();
-
         }
-
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -30,25 +28,16 @@ namespace AppAdmin
         public void esconderSubMenu()
         {
             if (subMenuAlumnos.Visible == true)
-            {
                 subMenuAlumnos.Visible = false;
-            }
 
             if (subMenuDocentes.Visible == true)
-            {
                 subMenuDocentes.Visible = false;
-            }
 
             if (subMenuAdmin.Visible == true)
-            {
                 subMenuAdmin.Visible = false;
-            }
 
-            if(subMenuCursos.Visible == true)
-            {
+            if (subMenuCursos.Visible == true)
                 subMenuCursos.Visible = false;
-            }
-
         }
 
 
@@ -61,9 +50,7 @@ namespace AppAdmin
 
             }
             else
-            {
                 subMenu.Visible = false;
-            }
 
         }
 
@@ -71,10 +58,7 @@ namespace AppAdmin
         public void openScreen(Form ventana)
         {
             if (ventanaActiva != null)
-            {
                 ventanaActiva.Close();
-
-            }
 
             ventanaActiva = ventana;
             ventana.TopLevel = false;

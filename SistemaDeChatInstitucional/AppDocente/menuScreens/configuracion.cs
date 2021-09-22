@@ -16,16 +16,12 @@ namespace AppDocente.menuScreens
 {
     public partial class configuracion : Form
     {
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
 
-        public configuracion()
-        {
-            InitializeComponent();
+        public configuracion() => InitializeComponent();
 
-        }
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
 
         private void btnExaminar_Click(object sender, EventArgs e)
         {
@@ -100,5 +96,7 @@ namespace AppDocente.menuScreens
                 Application.Restart();
             }
         }
+
+        private void configuracion_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
     }
 }

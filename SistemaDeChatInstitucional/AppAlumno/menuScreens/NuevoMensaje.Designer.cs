@@ -197,6 +197,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NuevoMensaje";
             this.Text = "NuevoMensaje";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NuevoMensaje_FormClosed);
             this.Load += new System.EventHandler(this.NuevoMensaje_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaDocentes)).EndInit();
             this.ResumeLayout(false);

@@ -19,6 +19,9 @@ namespace AppAlumno.menuScreens
         string ciAlumno;
         string asunto;
         string status;
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
+
         public misMensajes()
         {
             InitializeComponent();
@@ -94,5 +97,7 @@ namespace AppAlumno.menuScreens
             btnEliminar.Text = Resources.btnEliminar;
             btnExit.Text = Resources.btnExit;
         }
+
+        private void misMensajes_FormClosed(object sender, FormClosedEventArgs e)=> CustomFormClosed(sender, e, "Hello World!");
     }
 }

@@ -19,6 +19,8 @@ namespace AppDocente.menuScreens
         string ciAlumno;
         string asunto;
         string status;
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
         public misMensajes()
         {
             try
@@ -35,10 +37,7 @@ namespace AppDocente.menuScreens
             }
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
 
         private void btnAbrir_Click(object sender, EventArgs e)
         {
@@ -97,5 +96,6 @@ namespace AppDocente.menuScreens
 
             }
         }
+        private void misMensajes_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
     }
 }

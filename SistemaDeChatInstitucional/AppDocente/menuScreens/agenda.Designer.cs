@@ -137,6 +137,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "agenda";
             this.Text = "agenda";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.agenda_FormClosed);
             this.Load += new System.EventHandler(this.agenda_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

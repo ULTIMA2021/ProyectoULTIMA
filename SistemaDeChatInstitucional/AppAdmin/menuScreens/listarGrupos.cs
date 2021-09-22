@@ -31,20 +31,6 @@ namespace AppAdmin.menuScreens
             dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
         }
 
-        //private List<int> getIndexesMateriaChecklist()
-        //{
-        //    List<int> checkedIndexes = new List<int>();
-        //    int index;
-        //        foreach (var item in clbMaterias.CheckedItems)
-        //        {
-        //            index = clbMaterias.Items.IndexOf(item) + 1;
-        //            checkedIndexes.Add(index);
-        //            Console.WriteLine($" item: {item}   index of item in database:{ index}");
-        //        }
-            
-        //    return checkedIndexes;
-        //}
-
         private List<int> getIdsFromText()
         {
             List<int> actualId = new List<int>();
@@ -79,6 +65,22 @@ namespace AppAdmin.menuScreens
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
+        }
+
+        private void deleteGroup() {
+            //get selected group id
+            /*
+            int affectedAlumnos = Controlador.getAlumnoPorGrupo(idGrupo);
+            int affectedDocentes = Controlador.getDocentePorGrupo(idGrupo);
+            int countConsulta = Controlador.getConsultasPorGrupoMateria(idGrupo,null);
+            int countSala = Controlador.getSalasPorGrupoMateria(idGrupo, null);
+
+            string text = $"Borrar el grupo {dgvListarGrupos.SelectedRows[0].ToString()} estaria afectando a: \n\t{affectedAlumnos} alumnos\n\t{affectedDocentes}docentes\n\t{countConsulta} consultas\n\t{countSala} salas\nRealmente desea continuar?";
+
+            MessageBox.Show(text );
+    */
+            
+
         }
     }
 }

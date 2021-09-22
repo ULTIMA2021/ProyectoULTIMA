@@ -70,6 +70,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "misAsignaturas";
             this.Text = "misAsignaturas";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.misAsignaturas_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsignaturas)).EndInit();
             this.ResumeLayout(false);
 

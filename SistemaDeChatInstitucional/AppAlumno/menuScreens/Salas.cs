@@ -16,10 +16,11 @@ namespace AppAlumno.menuScreens
         Timer timer;
         bool loadFinishedSalas = false;
         int checker = 0;
-        public Salas()
-        {
-            InitializeComponent();            
-        }
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
+
+        public Salas() => InitializeComponent();            
+        
 
         private void timer_Tick(Object sender, EventArgs e)
         {
@@ -88,8 +89,11 @@ namespace AppAlumno.menuScreens
             dataGM.Columns.Add("Grupo");
             dataGM.Columns.Add("idMateria");
             dataGM.Columns.Add("Materia");
-            foreach (List<string>materia in Session.grupoMaterias) {
-                dataGM.Rows.Add(materia[0],materia[1],materia[2],materia[3]);
+            for (int i = 0; i < Session.grupoMaterias.Count; i++)
+            {
+                Console.WriteLine(Session.grupoMaterias[i][4].ToString());
+                if (Session.grupoMaterias[i][4].ToString() == "False")
+                    dataGM.Rows.Add(Session.grupoMaterias[i][0], Session.grupoMaterias[i][1], Session.grupoMaterias[i][2], Session.grupoMaterias[i][3]);
             }
             dgvGrupoMaterias.DataSource = dataGM;
             dgvGrupoMaterias.Columns["idGrupo"].Visible = false;
@@ -232,5 +236,7 @@ namespace AppAlumno.menuScreens
             dgvSalas.Update();
             timer.Start();
         }
+
+        private void Salas_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
     }
 }

@@ -13,21 +13,16 @@ namespace AppAlumno.menuScreens
 {
     public partial class NuevoMensaje : Form
     {
-        public NuevoMensaje()
-        {
-            InitializeComponent();
-        }
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        public NuevoMensaje() => InitializeComponent();
 
-        private void btnEnviar_Click(object sender, EventArgs e)
-        {
-            enviarMensaje();
 
-        }
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
+
+        private void btnEnviar_Click(object sender, EventArgs e) => enviarMensaje();
+
 
         private void enviarMensaje()
         {
@@ -62,7 +57,9 @@ namespace AppAlumno.menuScreens
             lblObligatorio.Text = Resources.lblObligatorio;
             lblCaracteres.Text = Resources.lblCaracteres;
             btnEnviar.Text = Resources.btnEnviar;
-
         }
+
+        private void NuevoMensaje_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
+
     }
 }
