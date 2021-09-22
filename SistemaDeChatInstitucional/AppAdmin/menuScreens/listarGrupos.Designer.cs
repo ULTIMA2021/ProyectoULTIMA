@@ -76,6 +76,8 @@
             this.dgvListarGrupos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListarGrupos.Size = new System.Drawing.Size(250, 294);
             this.dgvListarGrupos.TabIndex = 0;
+            this.dgvListarGrupos.TabStop = false;
+            this.dgvListarGrupos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvListarGrupos_DataBindingComplete);
             // 
             // btnExit
             // 

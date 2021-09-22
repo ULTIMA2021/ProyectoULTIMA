@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,22 +14,16 @@ namespace AppAdmin.menuScreens
 {
     public partial class listarGrupos : Form
     {
-        public listarGrupos()
-        {
-            InitializeComponent();
-            //quiero que no seleccione por defecto nada pero no funciona
-            clbMaterias.ClearSelected();
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        public listarGrupos() => InitializeComponent();
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
+        
 
         private void listarGrupos_Load(object sender, EventArgs e)
         {
             clbMaterias.DataSource = Controlador.MateriasToListForRegister();
             dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
+
+            clbMaterias.ClearSelected();
         }
 
         private List<int> getIdsFromText()
@@ -36,9 +31,8 @@ namespace AppAdmin.menuScreens
             List<int> actualId = new List<int>();
             char[] seperator = { ' ', ' ', ' ' };
             for (int i = 0; i < clbMaterias.CheckedItems.Count; i++)
-            {
                 actualId.Add(int.Parse(clbMaterias.CheckedItems[i].ToString().Split(seperator)[0]));
-            }
+
             return actualId;
         }
 
@@ -77,10 +71,11 @@ namespace AppAdmin.menuScreens
 
             string text = $"Borrar el grupo {dgvListarGrupos.SelectedRows[0].ToString()} estaria afectando a: \n\t{affectedAlumnos} alumnos\n\t{affectedDocentes}docentes\n\t{countConsulta} consultas\n\t{countSala} salas\nRealmente desea continuar?";
 
-            MessageBox.Show(text );
-    */
+            MessageBox.Show(text ); */
             
 
         }
+
+        private void dgvListarGrupos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarGrupos.ClearSelection();
     }
 }

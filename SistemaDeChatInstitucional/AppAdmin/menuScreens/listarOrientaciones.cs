@@ -13,15 +13,9 @@ namespace AppAdmin.menuScreens
 {
     public partial class listarOrientaciones : Form
     {
-        public listarOrientaciones()
-        {
-            InitializeComponent();
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        public listarOrientaciones() => InitializeComponent();
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
+        
 
         private List<int> getIdsFromText()
         {
@@ -38,6 +32,8 @@ namespace AppAdmin.menuScreens
         {
             clbGrupos.DataSource = Controlador.gruposSinOrientacion();
             dgvListarOrientaciones.DataSource = Controlador.obtenerOrientaciones();
+
+            clbGrupos.ClearSelected();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -64,5 +60,7 @@ namespace AppAdmin.menuScreens
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
         }
+
+        private void dgvListarOrientaciones_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarOrientaciones.ClearSelection();
     }
 }

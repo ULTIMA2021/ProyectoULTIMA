@@ -76,6 +76,7 @@
             this.dgvListarMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListarMaterias.Size = new System.Drawing.Size(250, 294);
             this.dgvListarMaterias.TabIndex = 0;
+            this.dgvListarMaterias.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvListarMaterias_DataBindingComplete);
             // 
             // btnExit
             // 

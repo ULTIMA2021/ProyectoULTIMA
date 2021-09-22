@@ -13,22 +13,19 @@ namespace AppAdmin.menuScreens
 {
     public partial class listarMaterias : Form
     {
-        public listarMaterias()
-        {
-            InitializeComponent();
-        }
+        public listarMaterias() => InitializeComponent();
+        
 
         private void listarMaterias_Load(object sender, EventArgs e)
         {
             clbGrupos.DataSource = Controlador.gruposToListForRegister();
             dgvListarMaterias.DataSource = Controlador.obtenerMaterias();
+
+            clbGrupos.ClearSelected();
         }
 
-        private void btnExit_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        private void btnExit_Click_1(object sender, EventArgs e) => this.Dispose();
+        
         //private List<int> getIndexesMateriaChecklist()
         //{
         //    List<int> checkedIndexes = new List<int>();
@@ -76,5 +73,8 @@ namespace AppAdmin.menuScreens
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
         }
+
+        private void dgvListarMaterias_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarMaterias.ClearSelection();
+        
     }
 }
