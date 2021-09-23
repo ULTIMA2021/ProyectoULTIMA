@@ -147,6 +147,7 @@ namespace AppAdmin.menuScreens
         {
             if (cbModificar.Checked)
             {
+                oldMaterias.Clear();
                 dgvListarGrupos.ClearSelection();
                 dgvListarGrupos.Enabled = true;
                 groupBox1.Text = "Modificar grupo";
