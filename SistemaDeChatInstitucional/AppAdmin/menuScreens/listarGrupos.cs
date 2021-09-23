@@ -15,7 +15,7 @@ namespace AppAdmin.menuScreens
 {
     public partial class listarGrupos : Form
     {
-        bool modify = false;
+        //bool modify = false;
         List<int> oldMaterias = new List<int>();
         int fuckingcounter = 0;
         char[] seperator = { ' ', ' ', ' ' };
@@ -44,7 +44,7 @@ namespace AppAdmin.menuScreens
         {
             List<int> materiasSeleccionadas = getIdsFromText();
             string nombreGrupo = textBox1.Text;
-            if (modify)
+            if (cbModificar.Checked)
             {
 
                 //update grupo name 
@@ -59,18 +59,19 @@ namespace AppAdmin.menuScreens
                     }
                     catch //foreign key constraint exc
                     { }
-                    
-                    for (int i = 0; i < oldMaterias.Count; i++)
-                        for (int h = 0; h < clbMaterias.CheckedItems.Count; h++)
-                            if (clbMaterias.CheckedIndices[h] != oldMaterias[i] && h == clbMaterias.Items.Count - 1)
-                            {
-                                idMat = clbMaterias.CheckedItems[clbMaterias.CheckedIndices[h]].ToString().Split(seperator)[0];
-                                string countSalasDeMateria = Controlador.countSalaPorMateria(idMat);
-                                Controlador.deleteMateria(int.Parse(idMat), idGrupo);
-                            }
-                               
 
+                    foreach (int oldMat in oldMaterias)
+                        if (!clbMaterias.CheckedIndices.Contains(oldMat))
+                            Console.WriteLine($"SACA LA MATERIA {clbMaterias.Items[oldMat].ToString()}");
                     
+                    //for (int i = 0; i < oldMaterias.Count; i++)
+                    //    for (int h = 0; h < clbMaterias.CheckedItems.Count; h++)
+                    //        if (clbMaterias.CheckedIndices[h] != oldMaterias[i] && h == clbMaterias.Items.Count - 1)
+                    //        {
+                    //            idMat = clbMaterias.CheckedItems[clbMaterias.CheckedIndices[h]].ToString().Split(seperator)[0];
+                    //            string countSalasDeMateria = Controlador.countSalaPorMateria(idMat);
+                    //            Controlador.deleteMateria(int.Parse(idMat), idGrupo);
+                    //        }
                 }
             }
             else
@@ -94,7 +95,6 @@ namespace AppAdmin.menuScreens
                     MessageBox.Show(Controlador.errorHandler(ex));
                 }
             }
-            modify = false;
             dgvListarGrupos.ClearSelection();
         }
 
