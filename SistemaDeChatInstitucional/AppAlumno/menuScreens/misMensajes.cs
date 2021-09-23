@@ -90,6 +90,12 @@ namespace AppAlumno.menuScreens
             btnEliminar.Text = Resources.btnEliminar;
             btnExit.Text = Resources.btnExit;
 
+
+            dgvMisMensajes.Columns[4].HeaderText = Resources.lblAsunto;
+            dgvMisMensajes.Columns[5].HeaderText = Resources.colStatus;
+            dgvMisMensajes.Columns[6].HeaderText = Resources.colFecha;
+            
+
             dgvMisMensajes.ClearSelection();
         }
     }

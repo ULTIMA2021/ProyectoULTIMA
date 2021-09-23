@@ -186,14 +186,20 @@
   <data name="colAnfitrion" xml:space="preserve">
     <value>Host</value>
   </data>
+  <data name="colFecha" xml:space="preserve">
+    <value>Date</value>
+  </data>
   <data name="colGrupo" xml:space="preserve">
     <value>Group</value>
   </data>
   <data name="colMateria" xml:space="preserve">
     <value>Subject</value>
   </data>
+  <data name="colStatus" xml:space="preserve">
+    <value>Message status</value>
+  </data>
   <data name="lblApellido" xml:space="preserve">
-    <value>Last name:</value>
+    <value>Last name</value>
   </data>
   <data name="lblAsunto" xml:space="preserve">
     <value>Title</value>
@@ -202,25 +208,25 @@
     <value>Search</value>
   </data>
   <data name="lblCambiarPass" xml:space="preserve">
-    <value>Change password:</value>
+    <value>Change password</value>
   </data>
   <data name="lblCaracteres" xml:space="preserve">
     <value>Max. 1000 characters</value>
   </data>
   <data name="lblCrear" xml:space="preserve">
-    <value>Create room:</value>
+    <value>Create room</value>
   </data>
   <data name="lblErrorMessage" xml:space="preserve">
     <value />
   </data>
   <data name="lblFoto" xml:space="preserve">
-    <value>Photo:</value>
+    <value>Photo</value>
   </data>
   <data name="lblLink" xml:space="preserve">
     <value>Click here</value>
   </data>
   <data name="lblNombre" xml:space="preserve">
-    <value>Name:</value>
+    <value>Name</value>
   </data>
   <data name="lblObligatorio" xml:space="preserve">
     <value>* Required</value>
@@ -235,10 +241,10 @@
     <value>if you have not registered as a user</value>
   </data>
   <data name="lblSalas" xml:space="preserve">
-    <value>Rooms:</value>
+    <value>Rooms</value>
   </data>
   <data name="lblUsuario" xml:space="preserve">
-    <value>User name:**</value>
+    <value>User name *</value>
   </data>
   <data name="txtContra" xml:space="preserve">
     <value>Password</value>

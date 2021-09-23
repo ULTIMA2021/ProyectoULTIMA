@@ -32,11 +32,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lblDia = new System.Windows.Forms.Label();
             this.cbDia = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblHoraEntrada = new System.Windows.Forms.Label();
             this.txtHoraEntrada = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblHoraSalida = new System.Windows.Forms.Label();
             this.txtHoraSalida = new System.Windows.Forms.TextBox();
-            this.btnConfirmar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -75,15 +75,15 @@
             this.cbDia.TabIndex = 2;
             this.cbDia.Text = "Seleccionar dia";
             // 
-            // label1
+            // lblHoraEntrada
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(481, 185);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 14);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Hora de entrada:";
+            this.lblHoraEntrada.AutoSize = true;
+            this.lblHoraEntrada.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraEntrada.Location = new System.Drawing.Point(481, 185);
+            this.lblHoraEntrada.Name = "lblHoraEntrada";
+            this.lblHoraEntrada.Size = new System.Drawing.Size(95, 14);
+            this.lblHoraEntrada.TabIndex = 3;
+            this.lblHoraEntrada.Text = "Hora de entrada:";
             // 
             // txtHoraEntrada
             // 
@@ -92,15 +92,15 @@
             this.txtHoraEntrada.Size = new System.Drawing.Size(76, 20);
             this.txtHoraEntrada.TabIndex = 4;
             // 
-            // label2
+            // lblHoraSalida
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(481, 245);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 14);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Hora de salida:";
+            this.lblHoraSalida.AutoSize = true;
+            this.lblHoraSalida.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraSalida.Location = new System.Drawing.Point(481, 245);
+            this.lblHoraSalida.Name = "lblHoraSalida";
+            this.lblHoraSalida.Size = new System.Drawing.Size(84, 14);
+            this.lblHoraSalida.TabIndex = 5;
+            this.lblHoraSalida.Text = "Hora de salida:";
             // 
             // txtHoraSalida
             // 
@@ -109,19 +109,19 @@
             this.txtHoraSalida.Size = new System.Drawing.Size(76, 20);
             this.txtHoraSalida.TabIndex = 6;
             // 
-            // btnConfirmar
+            // btnGuardar
             // 
-            this.btnConfirmar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.btnConfirmar.FlatAppearance.BorderSize = 0;
-            this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnConfirmar.Location = new System.Drawing.Point(474, 333);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(93, 25);
-            this.btnConfirmar.TabIndex = 7;
-            this.btnConfirmar.Text = "Confirmar";
-            this.btnConfirmar.UseVisualStyleBackColor = false;
+            this.btnGuardar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnGuardar.FlatAppearance.BorderSize = 0;
+            this.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGuardar.Location = new System.Drawing.Point(474, 333);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(93, 25);
+            this.btnGuardar.TabIndex = 7;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
             // 
             // btnModificar
             // 
@@ -158,20 +158,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(717, 510);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.txtHoraSalida);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblHoraSalida);
             this.Controls.Add(this.txtHoraEntrada);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblHoraEntrada);
             this.Controls.Add(this.cbDia);
             this.Controls.Add(this.lblDia);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "agendaDocente";
             this.Text = "agendaDocente";
+            this.Load += new System.EventHandler(this.agendaDocente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -183,11 +185,11 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label lblDia;
         private System.Windows.Forms.ComboBox cbDia;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblHoraEntrada;
         private System.Windows.Forms.TextBox txtHoraEntrada;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblHoraSalida;
         private System.Windows.Forms.TextBox txtHoraSalida;
-        private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnExit;
     }

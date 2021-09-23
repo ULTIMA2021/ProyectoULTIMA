@@ -186,20 +186,26 @@
   <data name="colAnfitrion" xml:space="preserve">
     <value>Anfitrion del chat</value>
   </data>
+  <data name="colFecha" xml:space="preserve">
+    <value>Fecha </value>
+  </data>
   <data name="colGrupo" xml:space="preserve">
     <value>Grupo</value>
   </data>
   <data name="colMateria" xml:space="preserve">
     <value>Materia</value>
   </data>
+  <data name="colStatus" xml:space="preserve">
+    <value>Estado de la consulta</value>
+  </data>
   <data name="lblApellido" xml:space="preserve">
-    <value>Apellido:</value>
+    <value>Apellido</value>
   </data>
   <data name="lblAsunto" xml:space="preserve">
     <value>Asunto</value>
   </data>
   <data name="lblBuscar" xml:space="preserve">
-    <value>Buscar:</value>
+    <value>Buscar</value>
   </data>
   <data name="lblCambiarPass" xml:space="preserve">
     <value>Cambiar contraseña</value>
@@ -208,19 +214,19 @@
     <value>Max. 1000 caracteres</value>
   </data>
   <data name="lblCrear" xml:space="preserve">
-    <value>Crear sala:</value>
+    <value>Crear sala</value>
   </data>
   <data name="lblErrorMessage" xml:space="preserve">
     <value> </value>
   </data>
   <data name="lblFoto" xml:space="preserve">
-    <value>Foto:</value>
+    <value>Foto</value>
   </data>
   <data name="lblLink" xml:space="preserve">
     <value>Click aqui</value>
   </data>
   <data name="lblNombre" xml:space="preserve">
-    <value>Nombre:</value>
+    <value>Nombre</value>
   </data>
   <data name="lblObligatorio" xml:space="preserve">
     <value>* Obligatorio</value>
@@ -235,10 +241,10 @@
     <value>Si aun no te has registrado como usuario/a</value>
   </data>
   <data name="lblSalas" xml:space="preserve">
-    <value>Salas:</value>
+    <value>Salas</value>
   </data>
   <data name="lblUsuario" xml:space="preserve">
-    <value>Nombre de usuario:**</value>
+    <value>Nombre de usuario *</value>
   </data>
   <data name="txtContra" xml:space="preserve">
     <value>Contraseña</value>

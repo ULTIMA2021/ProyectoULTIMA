@@ -163,7 +163,7 @@
     <value>            Salas</value>
   </data>
   <data name="lblApellido" xml:space="preserve">
-    <value>Apellido:</value>
+    <value>Apellido</value>
   </data>
   <data name="lblCambiarPass" xml:space="preserve">
     <value>Cambiar contraseña</value>
@@ -172,7 +172,7 @@
     <value>Foto:</value>
   </data>
   <data name="lblNombre" xml:space="preserve">
-    <value>Nombre:</value>
+    <value>Nombre</value>
   </data>
   <data name="lblPassNueva" xml:space="preserve">
     <value>Nueva contraseña:</value>
@@ -181,6 +181,6 @@
     <value>Contraseña anterior:</value>
   </data>
   <data name="lblUsuario" xml:space="preserve">
-    <value>Nombre de usuario:**</value>
+    <value>Nombre de usuario *</value>
   </data>
 </root>

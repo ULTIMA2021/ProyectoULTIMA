@@ -174,6 +174,9 @@
   <data name="btnMisMensajes" xml:space="preserve">
     <value>●  Mis mensajes</value>
   </data>
+  <data name="btnModificar" xml:space="preserve">
+    <value>Modificar</value>
+  </data>
   <data name="btnNuevoMensaje" xml:space="preserve">
     <value>●  Nuevo mensaje</value>
   </data>
@@ -192,11 +195,14 @@
   <data name="colMateria" xml:space="preserve">
     <value>Materia</value>
   </data>
+  <data name="Jueves" xml:space="preserve">
+    <value>Jueves</value>
+  </data>
   <data name="lblApellido" xml:space="preserve">
     <value>Apellido:</value>
   </data>
   <data name="lblAsunto" xml:space="preserve">
-    <value>Asunto:</value>
+    <value>Asunto</value>
   </data>
   <data name="lblBuscar" xml:space="preserve">
     <value>Buscar:</value>
@@ -210,6 +216,9 @@
   <data name="lblCrear" xml:space="preserve">
     <value>Crear sala:</value>
   </data>
+  <data name="lblDia" xml:space="preserve">
+    <value>Dia:</value>
+  </data>
   <data name="lblErrorMessage" xml:space="preserve">
     <value> </value>
   </data>
@@ -218,6 +227,12 @@
   </data>
   <data name="lblGrupos" xml:space="preserve">
     <value>Grupos:</value>
+  </data>
+  <data name="lblHoraEntrada" xml:space="preserve">
+    <value>Hora de entrada:</value>
+  </data>
+  <data name="lblHoraSalida" xml:space="preserve">
+    <value>Hora de salida:</value>
   </data>
   <data name="lblLink" xml:space="preserve">
     <value>Click aqui</value>
@@ -243,10 +258,31 @@
   <data name="lblUsuario" xml:space="preserve">
     <value>Nombre de usuario:**</value>
   </data>
+  <data name="Lunes" xml:space="preserve">
+    <value>Lunes</value>
+  </data>
+  <data name="Martes" xml:space="preserve">
+    <value>Martes</value>
+  </data>
+  <data name="Miercoles" xml:space="preserve">
+    <value>Miercoles</value>
+  </data>
+  <data name="SeleccionarDia" xml:space="preserve">
+    <value>Seleccionar dia</value>
+  </data>
   <data name="txtContra" xml:space="preserve">
     <value>Contraseña</value>
   </data>
   <data name="txtUsuario" xml:space="preserve">
     <value>Usuario</value>
+  </data>
+  <data name="Viernes" xml:space="preserve">
+    <value>Viernes</value>
+  </data>
+  <data name="colFecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="colStatus" xml:space="preserve">
+    <value>Estado del mensaje</value>
   </data>
 </root>

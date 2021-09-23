@@ -232,6 +232,15 @@ namespace AppDocente {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modificar.
+        /// </summary>
+        internal static string btnModificar {
+            get {
+                return ResourceManager.GetString("btnModificar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ●  Nuevo mensaje.
         /// </summary>
         internal static string btnNuevoMensaje {
@@ -268,6 +277,15 @@ namespace AppDocente {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha.
+        /// </summary>
+        internal static string colFecha {
+            get {
+                return ResourceManager.GetString("colFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grupo.
         /// </summary>
         internal static string colGrupo {
@@ -286,6 +304,24 @@ namespace AppDocente {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estado del mensaje.
+        /// </summary>
+        internal static string colStatus {
+            get {
+                return ResourceManager.GetString("colStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jueves.
+        /// </summary>
+        internal static string Jueves {
+            get {
+                return ResourceManager.GetString("Jueves", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apellido:.
         /// </summary>
         internal static string lblApellido {
@@ -295,7 +331,7 @@ namespace AppDocente {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asunto:.
+        ///   Looks up a localized string similar to Asunto.
         /// </summary>
         internal static string lblAsunto {
             get {
@@ -340,6 +376,15 @@ namespace AppDocente {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dia:.
+        /// </summary>
+        internal static string lblDia {
+            get {
+                return ResourceManager.GetString("lblDia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  .
         /// </summary>
         internal static string lblErrorMessage {
@@ -363,6 +408,24 @@ namespace AppDocente {
         internal static string lblGrupos {
             get {
                 return ResourceManager.GetString("lblGrupos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hora de entrada:.
+        /// </summary>
+        internal static string lblHoraEntrada {
+            get {
+                return ResourceManager.GetString("lblHoraEntrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hora de salida:.
+        /// </summary>
+        internal static string lblHoraSalida {
+            get {
+                return ResourceManager.GetString("lblHoraSalida", resourceCulture);
             }
         }
         
@@ -439,6 +502,42 @@ namespace AppDocente {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lunes.
+        /// </summary>
+        internal static string Lunes {
+            get {
+                return ResourceManager.GetString("Lunes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Martes.
+        /// </summary>
+        internal static string Martes {
+            get {
+                return ResourceManager.GetString("Martes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Miercoles.
+        /// </summary>
+        internal static string Miercoles {
+            get {
+                return ResourceManager.GetString("Miercoles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seleccionar dia.
+        /// </summary>
+        internal static string SeleccionarDia {
+            get {
+                return ResourceManager.GetString("SeleccionarDia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contraseña.
         /// </summary>
         internal static string txtContra {
@@ -453,6 +552,15 @@ namespace AppDocente {
         internal static string txtUsuario {
             get {
                 return ResourceManager.GetString("txtUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Viernes.
+        /// </summary>
+        internal static string Viernes {
+            get {
+                return ResourceManager.GetString("Viernes", resourceCulture);
             }
         }
     }

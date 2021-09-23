@@ -268,6 +268,15 @@ namespace AppAlumno {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha .
+        /// </summary>
+        internal static string colFecha {
+            get {
+                return ResourceManager.GetString("colFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grupo.
         /// </summary>
         internal static string colGrupo {
@@ -286,7 +295,16 @@ namespace AppAlumno {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apellido:.
+        ///   Looks up a localized string similar to Estado de la consulta.
+        /// </summary>
+        internal static string colStatus {
+            get {
+                return ResourceManager.GetString("colStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apellido.
         /// </summary>
         internal static string lblApellido {
             get {
@@ -304,7 +322,7 @@ namespace AppAlumno {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Buscar:.
+        ///   Looks up a localized string similar to Buscar.
         /// </summary>
         internal static string lblBuscar {
             get {
@@ -331,7 +349,7 @@ namespace AppAlumno {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crear sala:.
+        ///   Looks up a localized string similar to Crear sala.
         /// </summary>
         internal static string lblCrear {
             get {
@@ -349,7 +367,7 @@ namespace AppAlumno {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Foto:.
+        ///   Looks up a localized string similar to Foto.
         /// </summary>
         internal static string lblFoto {
             get {
@@ -367,7 +385,7 @@ namespace AppAlumno {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombre:.
+        ///   Looks up a localized string similar to Nombre.
         /// </summary>
         internal static string lblNombre {
             get {
@@ -412,7 +430,7 @@ namespace AppAlumno {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salas:.
+        ///   Looks up a localized string similar to Salas.
         /// </summary>
         internal static string lblSalas {
             get {
@@ -421,7 +439,7 @@ namespace AppAlumno {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nombre de usuario:**.
+        ///   Looks up a localized string similar to Nombre de usuario *.
         /// </summary>
         internal static string lblUsuario {
             get {
