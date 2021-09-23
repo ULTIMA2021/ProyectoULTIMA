@@ -11,6 +11,7 @@ namespace CapaDeDatos
 
         public int idMateria;
         public string nombreMateria;
+        public string isDeleted;
         public string errorType="Materia";
 
         public MateriaModelo(byte sessionType) : base(sessionType)
@@ -23,6 +24,14 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@nombreMateria", this.nombreMateria);
             EjecutarQuery(this.comando, errorType);
         }
+        public void actualizarNombreDeMateria()
+        {
+            this.comando.CommandText = "UPDATE Orientacion SET nombreMateria = @nombreMateria WHERE idMateria = @idMateria;";
+            this.comando.Parameters.AddWithValue("@nombreOrientacion", this.nombreMateria);
+            this.comando.Parameters.AddWithValue("@idOrientacion", this.idMateria);
+            EjecutarQuery(comando, errorType);
+        }
+
         private List<MateriaModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
         {
             lector = commando.ExecuteReader();
@@ -32,6 +41,14 @@ namespace CapaDeDatos
                 MateriaModelo m = new MateriaModelo(sessionType);
                 m.idMateria = Int32.Parse(lector[0].ToString());
                 m.nombreMateria = lector[1].ToString();
+                try
+                {
+                    m.isDeleted = lector[2].ToString();
+                }
+                catch (Exception)
+                {
+                    m.isDeleted = null;
+                }
                 listaM.Add(m);
             }
             lector.Close();
@@ -40,14 +57,15 @@ namespace CapaDeDatos
 
         public List<MateriaModelo> getMateria(byte sessionType)
         {
-            this.comando.CommandText = "SELECT idMateria,nombreMateria FROM Materia ORDER BY idMateria ASC;";
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT idMateria,nombreMateria,isDeleted FROM Materia ORDER BY nombreMateria ASC;";
             return cargarMateriaALista(this.comando, sessionType);
         }
 
         public string getMateria(string nombreMateria, byte sessionType)
         {
             string idMateria;
-            this.comando.CommandText = "SELECT idMateria, nombreMateria FROM Materia WHERE nombreMateria=@nombreMateria;";
+            this.comando.CommandText = "SELECT idMateria, nombreMateria FROM Materia WHERE nombreMateria=@nombreMateria ORDER BY nombreMateria ASC;";
             this.comando.Parameters.AddWithValue("@nombreMateria", nombreMateria);
             lector = comando.ExecuteReader();
             lector.Read();
@@ -56,5 +74,28 @@ namespace CapaDeDatos
             return idMateria;
         }
 
+        public List<MateriaModelo> getGrupoTieneMateria(string idGrupo, byte sessionType)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT gm.idMateria, m.nombreMateria " +
+                "FROM Grupo_tiene_Materia gm, materia m " +
+                "WHERE gm.idGrupo = @idGrupo AND gm.idMateria = m.idMateria; ";
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            return (cargarMateriaALista(this.comando, sessionType));
+        }
+
+        public string countSalaPorMateria()
+        {
+            string count = null;
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT count(*) from Sala WHERE idMateria = @idMateria;";
+            this.comando.Parameters.AddWithValue("@idMateria", this.idMateria);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            count = lector[0].ToString();
+            lector.Close();
+            return count;
+
+        }
     }
 }

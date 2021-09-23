@@ -30,6 +30,14 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+        public void actualizarNombreDeGrupo()
+        {
+            this.comando.CommandText = "UPDATE Grupo SET nombreGrupo = @nombreGrupo WHERE idGrupo = @idGrupo;";
+            this.comando.Parameters.AddWithValue("@nombreGrupo", this.nombreGrupo );
+            this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);
+            EjecutarQuery(comando,errorType);
+        }
+
 
         public string countAlumnoTieneGrupo(string ci)
         {
@@ -142,14 +150,25 @@ namespace CapaDeDatos
 
         public string getGrupo(string nombreGrupo, byte sessionType)
         {
-            string idGrupo;
+            string idGrupo="";
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE nombreGrupo=@nombreGrupo;";
             this.comando.Parameters.AddWithValue("@nombreGrupo", nombreGrupo);
             lector = comando.ExecuteReader();
-            lector.Read();  
-            idGrupo = lector[0].ToString();
+            while (lector.Read())
+                idGrupo = lector[0].ToString();
             lector.Close();
             return idGrupo;
+        }
+        public void getGrupo(string idGrupo, string nombreGrupo, byte sessionType)
+        {
+            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE nombreGrupo=@nombreGrupo AND idGrupo=@idGrupo;";
+            this.comando.Parameters.AddWithValue("@nombreGrupo", nombreGrupo);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            if (lector[0].ToString() is null)
+                throw new Exception("grupo id and grupo name has changed") ;
+            lector.Close();
         }
 
         public List<GrupoModelo> getGruposSinOrientacion(byte sessionType)
@@ -159,14 +178,6 @@ namespace CapaDeDatos
                 "WHERE g.idGrupo " +
                 "NOT IN (SELECT idGrupo FROM Orientacion_tiene_Grupo) ORDER BY g.idGrupo ASC;";
             return cargarGrupoALista(this.comando, sessionType);
-        }
-
-        //sin implementacion
-        public List<GrupoModelo> getGrupoTieneMateria(byte sessionType) {
-            this.comando.CommandText = "SELECT gm.idGrupo, gm.idMateria,g.nombreGrupo,m.nombreMateria " +
-                "FROM Grupo_tiene_Materia gm, grupo g, materia m " +
-                "WHERE gm.idGrupo = g.idGrupo AND gm.idMateria = m.idMateria; ";
-            return (cargarGrupoMateriaALista(this.comando, sessionType));
         }
 
         public override string ToString()
@@ -213,7 +224,6 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@ci", ci);
             return cargarGM(this.comando,sessionType);
         }
-
 
         public List<GrupoModelo> getDocenteDictaGM(string ci, byte sessionType)
         {

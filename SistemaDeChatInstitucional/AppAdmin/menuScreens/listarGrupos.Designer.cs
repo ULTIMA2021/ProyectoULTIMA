@@ -40,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
+            this.cbModificar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarGrupos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             this.dgvListarGrupos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListarGrupos.ColumnHeadersHeight = 25;
             this.dgvListarGrupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvListarGrupos.Enabled = false;
             this.dgvListarGrupos.EnableHeadersVisualStyles = false;
             this.dgvListarGrupos.Location = new System.Drawing.Point(144, 32);
             this.dgvListarGrupos.MultiSelect = false;
@@ -78,6 +80,7 @@
             this.dgvListarGrupos.TabIndex = 0;
             this.dgvListarGrupos.TabStop = false;
             this.dgvListarGrupos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvListarGrupos_DataBindingComplete);
+            this.dgvListarGrupos.SelectionChanged += new System.EventHandler(this.dgvListarGrupos_SelectionChanged);
             // 
             // btnExit
             // 
@@ -150,12 +153,26 @@
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
+            // cbModificar
+            // 
+            this.cbModificar.AutoSize = true;
+            this.cbModificar.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cbModificar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.cbModificar.Location = new System.Drawing.Point(247, 345);
+            this.cbModificar.Name = "cbModificar";
+            this.cbModificar.Size = new System.Drawing.Size(147, 21);
+            this.cbModificar.TabIndex = 5;
+            this.cbModificar.Text = "Modificar grupos";
+            this.cbModificar.UseVisualStyleBackColor = true;
+            this.cbModificar.CheckedChanged += new System.EventHandler(this.cbModificar_CheckedChanged);
+            // 
             // listarGrupos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(920, 384);
+            this.Controls.Add(this.cbModificar);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnExit);
@@ -168,6 +185,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -182,5 +200,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.CheckBox cbModificar;
     }
 }

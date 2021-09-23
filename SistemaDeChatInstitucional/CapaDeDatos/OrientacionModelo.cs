@@ -23,7 +23,13 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("nombreOrientacion",this.nombreOrientacion);
             EjecutarQuery(this.comando, errorType);
         }
-
+        public void actualizarNombreDeOrientacion()
+        {
+            this.comando.CommandText = "UPDATE Orientacion SET nombreGrupo = @nombreOrientacion WHERE idOrientacion = @idOrientacion;";
+            this.comando.Parameters.AddWithValue("@nombreOrientacion", this.nombreOrientacion);
+            this.comando.Parameters.AddWithValue("@idOrientacion", this.idOrientacion);
+            EjecutarQuery(comando, errorType);
+        }
         private List<OrientacionModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
         {
             lector = commando.ExecuteReader();

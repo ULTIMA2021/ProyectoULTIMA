@@ -10,6 +10,14 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
+        public static void deleteMateria(int idMateria, string idGrupo)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idGrupo = int.Parse(idGrupo);
+            g.idMateria = idMateria;
+            g.cargarMateriasAGrupo();
+        }
+
         public static void nuevoGrupo(string nombreGrupo) {
             GrupoModelo g = new GrupoModelo(Session.type);
             g.nombreGrupo = nombreGrupo;
@@ -29,7 +37,7 @@ namespace CapaLogica
             o.nombreOrientacion = nombreOrientacion;
             o.crearMateriaNueva();
         }
-
+        //maybe delete
         public static void asignarMateriasAGrupo(List<int> materiasSeleccionadas, string idGrupo) {
             GrupoModelo g = new GrupoModelo(Session.type);
             g.idGrupo = int.Parse(idGrupo);
@@ -38,6 +46,20 @@ namespace CapaLogica
                 g.idMateria = materia;
                 g.cargarMateriasAGrupo();
             }
+        }
+        public static void asignarMateriasAGrupo(int idMateria, string idGrupo)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idGrupo = int.Parse(idGrupo);
+            g.idMateria = idMateria;
+            g.cargarMateriasAGrupo();    
+        }
+
+        public static string countSalaPorMateria(string idMateria)
+        {
+            MateriaModelo m = new MateriaModelo(Session.type);
+            m.idMateria = int.Parse(idMateria);
+            return m.countSalaPorMateria();
         }
 
         public static void asignarMateriasAGrupo(List<int> gruposSeleccionados, int idMateria)
@@ -62,8 +84,6 @@ namespace CapaLogica
             }
         }
 
-
-
         public static string grupoPorNombreGrupo(string nombreGrupo) {
             GrupoModelo g = new GrupoModelo(Session.type);
             return g.getGrupo(nombreGrupo, Session.type);
@@ -82,23 +102,40 @@ namespace CapaLogica
         }
 
 
-        public static DataTable obtenerMaterias()
+        public static List<string> obtenerMaterias()
           {
-              MateriaModelo m = new MateriaModelo(Session.type);
-              List<MateriaModelo> materias = m.getMateria(Session.type);
-              DataTable tabla = new DataTable();
-
-              tabla.Columns.Add("Materias");
+            MateriaModelo m = new MateriaModelo(Session.type);
+            List<MateriaModelo> materias = m.getMateria(Session.type);
+            List<string> pinga = new List<string>();
 
               foreach (MateriaModelo materia in materias)
-              {
-                  tabla.Rows.Add(materia.nombreMateria);
-              }
-
-
-              return tabla;
+                pinga.Add(materia.nombreMateria);
+              
+              return pinga;
           }
-          
+
+        //un forma de darle check a las boxes del checked list
+        public static List<int> obtenerMaterias(string idGrupo)
+        {
+            MateriaModelo m = new MateriaModelo(Session.type);
+            List<MateriaModelo> todasLasMaterias = m.getMateria(Session.type);
+            string idMateria;
+            List<int> checkedListBoxIndexesToCheck = new List<int>();
+
+            foreach (MateriaModelo materia in m.getGrupoTieneMateria(idGrupo, Session.type))
+            {
+                idMateria = materia.idMateria.ToString();
+                //idMateriasDeGrupo.Add(materia.idMateria.ToString());
+                for (int y = 0; y < todasLasMaterias.Count; y++)
+                    if (todasLasMaterias[y].idMateria.ToString() == idMateria)
+                    {
+                        checkedListBoxIndexesToCheck.Add(y);
+                        break;
+                    }   
+            }
+            return checkedListBoxIndexesToCheck;
+        }
+
         public static List<string> MateriasToListForRegister()
         {
             MateriaModelo materia = new MateriaModelo(Session.type);
@@ -182,15 +219,55 @@ namespace CapaLogica
             List<GrupoModelo> grupos = g.getGrupo(Session.type);
             DataTable tabla = new DataTable();
 
+            tabla.Columns.Add("idGrupo");
             tabla.Columns.Add("Grupos");
 
             foreach (GrupoModelo grupo in grupos)
-            {
-                tabla.Rows.Add(grupo.nombreGrupo);
-            }
-
+                tabla.Rows.Add(grupo.idGrupo, grupo.nombreGrupo);
+            
 
             return tabla;
+        }
+        public static List<string> obtenerGrupo(string idGrupo)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.getGrupo(idGrupo,Session.type);
+            List<string> s = new List<string>();
+
+            s.Add(g.idGrupo.ToString());
+            s.Add(g.nombreGrupo);
+            return s;
+        }
+
+        public static void actualizarNombreGrupo(string newName, string idGrupo)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idGrupo = int.Parse(idGrupo);
+            g.nombreGrupo = newName;
+            g.actualizarNombreDeGrupo();
+        }
+        public static void actualizarNombreMateria(string newName, string idMateria)
+        {
+            MateriaModelo m = new MateriaModelo(Session.type);
+            m.idMateria = int.Parse(idMateria);
+            m.nombreMateria = newName;
+            m.actualizarNombreDeMateria();
+        }
+        public static void actualizarNombreOrientacion(string newName, string idOrientacion)
+        {
+            OrientacionModelo o = new OrientacionModelo(Session.type);
+            o.idOrientacion = int.Parse(idOrientacion);
+            o.nombreOrientacion = newName;
+            o.actualizarNombreDeOrientacion();
+        }
+
+
+
+        public static bool validarGrupo(string idGrupo, string nombreGrupo) {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.getGrupo(idGrupo, nombreGrupo, Session.type);
+
+            return true;
         }
     }
 }
