@@ -261,7 +261,7 @@ namespace AppDocente.menuScreens
             result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                Controlador.updateEstadoSala(idSala);
+                Controlador.updateEstadoSala(idSala,true);
                 this.Dispose();
                 this.Close();
             }
