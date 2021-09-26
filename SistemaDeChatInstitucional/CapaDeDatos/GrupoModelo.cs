@@ -30,14 +30,22 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
-        public void actualizarNombreDeGrupo()
+        public void actualizarNombreDeGrupo(string nombreGrupo, string idGrupo)
         {
             this.comando.CommandText = "UPDATE Grupo SET nombreGrupo = @nombreGrupo WHERE idGrupo = @idGrupo;";
-            this.comando.Parameters.AddWithValue("@nombreGrupo", this.nombreGrupo );
+            this.comando.Parameters.AddWithValue("@nombreGrupo",nombreGrupo );
             this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);
             EjecutarQuery(comando,errorType);
         }
-
+        public void sacarFilaGrupoTieneMateria()
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "DELETE FROM Grupo_tiene_Materia WHERE idMateria = @idMateria AND idGrupo = @idGrupo";
+            this.comando.Parameters.AddWithValue("@idGrupo",this.idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria",this.idMateria);
+            this.comando.Prepare();
+            EjecutarSpecialQuery(this.comando);
+        }
 
         public string countAlumnoTieneGrupo(string ci)
         {
@@ -91,15 +99,37 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
         }
+        public void actualizarDocenteTieneGM(string idMateria, string idGrupo, bool status)
+        {
+            command = "UPDATE Docente_dicta_G_M SET isDeleted=@isDeleted WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@isDeleted", status);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+            this.comando.Parameters.Clear();
+        }
+        public void actualizarGrupoTieneMateria(string idMateria, string idGrupo,bool isDeleted)
+        {
+            this.comando.Parameters.Clear();
+            command = "UPDATE Grupo_tiene_Materia SET isDeleted = @isDeleted WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarSpecialQuery(this.comando);
+        }
 
-        public void cargarMateriasAGrupo() {
+        public void cargarMateriasAGrupo(string idMateria, string idGrupo) {
             this.comando.Parameters.Clear();
             command = "INSERT INTO Grupo_tiene_Materia (idGrupo, idMateria) VALUES (@idGrupo, @idMateria);";
             this.comando.CommandText = command;
-            this.comando.Parameters.AddWithValue("@idGrupo",this.idGrupo);
-            this.comando.Parameters.AddWithValue("@idMateria", this.idMateria);
+            this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
-            EjecutarQuery(this.comando, errorType);
+            EjecutarSpecialQuery(this.comando);
         }
         public void cargarGruposAOrientacion()
         {
@@ -144,7 +174,7 @@ namespace CapaDeDatos
         }
 
         public List<GrupoModelo> getGrupo(byte sessionType) {
-            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo ORDER BY idGrupo ASC;";
+            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE isDeleted = false ORDER BY idGrupo ASC;";
             return cargarGrupoALista(this.comando, sessionType);
         }
 
@@ -167,7 +197,7 @@ namespace CapaDeDatos
             lector = comando.ExecuteReader();
             lector.Read();
             if (lector[0].ToString() is null)
-                throw new Exception("grupo id and grupo name has changed") ;
+                throw new Exception("grupo id and grup name has changed") ;
             lector.Close();
         }
 
@@ -215,6 +245,21 @@ namespace CapaDeDatos
             return listaGruposDelAlumno;
         }
 
+        public List<GrupoModelo> grupoMateria(string idMateria,byte sessionType)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT  gm.idGrupo, gm.idMateria, g.nombreGrupo, m.NombreMateria " +
+                "FROM Grupo_tiene_Materia gm, Grupo g, Materia m " +
+                "WHERE gm.idGrupo = g.idGrupo " +
+                "AND gm.idMateria = m.idMateria " +
+                "AND m.idMateria = @idMateria " +
+                "AND g.isDeleted = false " +
+                "AND m.isDeleted = false " +
+                "AND gm.isDeleted = false;";
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            return (cargarGrupoMateriaALista(this.comando, sessionType));
+        }
+
         public List<GrupoModelo> getAlumnoGrupoyYmaterias(string ci, byte sessionType) {
             this.comando.CommandText = "SELECT g.idGrupo, g.nombreGrupo, m.idMateria, m.nombreMateria, g.isDeleted FROM Grupo g, Alumno_tiene_Grupo ag, Materia m, Grupo_tiene_Materia gm " +
                 "WHERE ag.idGrupo=g.idGrupo " +
@@ -253,5 +298,7 @@ namespace CapaDeDatos
                 throw new Exception("DGM-noTeacher");
             return ci;
         }
+
+
     }
 }

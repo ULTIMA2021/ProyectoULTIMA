@@ -30,7 +30,8 @@ namespace CapaLogica
             sala.crearSala();
         }
 
-        public static void finalizarSala(int idSala) => new SalaModelo(Session.type).salaFinalizada(idSala);
+        public static void updateEstadoSala(int idSala, bool estado) => new SalaModelo(Session.type).updateEstado(idSala, estado);
+        public static void updateEstadoSala(string idMateria, string idGrupo, bool estado) => new SalaModelo(Session.type).updateEstado(idMateria, idGrupo, estado);
 
         public static DataTable loadSalasDePersona(bool isDone) {
             List<SalaModelo> salasPorGM = new List<SalaModelo>();

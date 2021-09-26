@@ -51,19 +51,17 @@ namespace AppAdmin.menuScreens
                 string idGrupo = dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
 
                 Controlador.actualizarNombreGrupo(nombreGrupo, idGrupo);
-                string idMat="";
                 foreach (int materia in materiasSeleccionadas) {
                     try
                     {
-                        Controlador.asignarMateriasAGrupo(materia, idGrupo);
+                        Controlador.asignarMateriasAGrupo(materia.ToString(), idGrupo);
                     }
                     catch //foreign key constraint exc
                     { }
 
                     foreach (int oldMat in oldMaterias)
                         if (!clbMaterias.CheckedIndices.Contains(oldMat))
-                            Console.WriteLine($"SACA LA MATERIA {clbMaterias.Items[oldMat].ToString()}");
-                    
+                            Controlador.deleteMateria(int.Parse(clbMaterias.Items[oldMat].ToString().Split(seperator)[0]), idGrupo);                    
                     //for (int i = 0; i < oldMaterias.Count; i++)
                     //    for (int h = 0; h < clbMaterias.CheckedItems.Count; h++)
                     //        if (clbMaterias.CheckedIndices[h] != oldMaterias[i] && h == clbMaterias.Items.Count - 1)

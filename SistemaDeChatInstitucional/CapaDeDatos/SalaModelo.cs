@@ -44,14 +44,24 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
-        public void salaFinalizada(int idSala)
+        public void updateEstado(int idSala, bool estado)
         {
             this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idSala=@idSala;";
-            this.comando.Parameters.AddWithValue("@isDone", true);
+            this.comando.Parameters.AddWithValue("@isDone", estado);
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+        public void updateEstado(string idMateria, string idGrupo, bool estado)
+        {
+            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.Parameters.AddWithValue("@isDone", estado);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
+
 
         //o las salas abiertas o las cerradas
         public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria,byte sessionType, bool isDone)

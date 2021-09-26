@@ -15,7 +15,15 @@ namespace CapaLogica
             GrupoModelo g = new GrupoModelo(Session.type);
             g.idGrupo = int.Parse(idGrupo);
             g.idMateria = idMateria;
-            g.cargarMateriasAGrupo();
+           // g.deleteMateriasDeGrupo();
+        }
+
+        public static void sacarGrupoMateria(int idMateria, int idGrupo)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idGrupo = idGrupo;
+            g.idMateria = idMateria;
+            g.sacarFilaGrupoTieneMateria();
         }
 
         public static void nuevoGrupo(string nombreGrupo) {
@@ -40,20 +48,11 @@ namespace CapaLogica
         //maybe delete
         public static void asignarMateriasAGrupo(List<int> materiasSeleccionadas, string idGrupo) {
             GrupoModelo g = new GrupoModelo(Session.type);
-            g.idGrupo = int.Parse(idGrupo);
             foreach (int materia in materiasSeleccionadas)
-            {
-                g.idMateria = materia;
-                g.cargarMateriasAGrupo();
-            }
+                g.cargarMateriasAGrupo(materia.ToString(),idGrupo);
+            
         }
-        public static void asignarMateriasAGrupo(int idMateria, string idGrupo)
-        {
-            GrupoModelo g = new GrupoModelo(Session.type);
-            g.idGrupo = int.Parse(idGrupo);
-            g.idMateria = idMateria;
-            g.cargarMateriasAGrupo();    
-        }
+        public static void asignarMateriasAGrupo(string idMateria, string idGrupo) => new GrupoModelo(Session.type).cargarMateriasAGrupo( idMateria, idGrupo); 
 
         public static string countSalaPorMateria(string idMateria)
         {
@@ -65,12 +64,8 @@ namespace CapaLogica
         public static void asignarMateriasAGrupo(List<int> gruposSeleccionados, int idMateria)
         {
             GrupoModelo g = new GrupoModelo(Session.type);
-            g.idMateria = idMateria;
             foreach (int grupo in gruposSeleccionados)
-            {
-                g.idGrupo = grupo;
-                g.cargarMateriasAGrupo();
-            }
+                g.cargarMateriasAGrupo(idMateria.ToString(), grupo.ToString());
         }
 
         public static void asignarOrientacionesAGrupos(List<int> grupoSeleccionados, string idOrientacion)
@@ -113,6 +108,19 @@ namespace CapaLogica
               
               return pinga;
           }
+
+        public static DataTable obtenerMateriass()
+        {
+            MateriaModelo m = new MateriaModelo(Session.type);
+            DataTable data = new DataTable();
+            data.Columns.Add("idMateria");
+            data.Columns.Add("Materia");
+
+            foreach (MateriaModelo materia in m.getMateria(Session.type))
+                data.Rows.Add(materia.idMateria , materia.nombreMateria);
+
+            return data;
+        }
 
         //un forma de darle check a las boxes del checked list
         public static List<int> obtenerMaterias(string idGrupo)
@@ -199,6 +207,22 @@ namespace CapaLogica
             return gmString;
         }
 
+        public static List<List<string>> gruposDeMateria(string idMateria)
+        {
+            List<List <string>> GruposYMaterias = new List<List<string>>();
+            GrupoModelo gm = new GrupoModelo(Session.type);
+            foreach (GrupoModelo g in gm.grupoMateria(idMateria, Session.type))
+            {
+            List<string> grupoMateriaFila = new List<string>();
+                grupoMateriaFila.Add(g.idGrupo.ToString());
+                grupoMateriaFila.Add(g.idMateria.ToString());
+                grupoMateriaFila.Add(g.nombreGrupo);
+                grupoMateriaFila.Add(g.nombreMateria);
+                GruposYMaterias.Add(grupoMateriaFila);
+            }
+            return GruposYMaterias;
+        }
+
         public static DataTable obtenerOrientaciones()
         {
             OrientacionModelo o = new OrientacionModelo(Session.type);
@@ -239,31 +263,14 @@ namespace CapaLogica
             return s;
         }
 
-        public static void actualizarNombreGrupo(string newName, string idGrupo)
-        {
-            GrupoModelo g = new GrupoModelo(Session.type);
-            g.idGrupo = int.Parse(idGrupo);
-            g.nombreGrupo = newName;
-            g.actualizarNombreDeGrupo();
-        }
-        public static void actualizarNombreMateria(string newName, string idMateria)
-        {
-            MateriaModelo m = new MateriaModelo(Session.type);
-            m.idMateria = int.Parse(idMateria);
-            m.nombreMateria = newName;
-            m.actualizarNombreDeMateria();
-        }
-        public static void actualizarNombreOrientacion(string newName, string idOrientacion)
-        {
-            OrientacionModelo o = new OrientacionModelo(Session.type);
-            o.idOrientacion = int.Parse(idOrientacion);
-            o.nombreOrientacion = newName;
-            o.actualizarNombreDeOrientacion();
-        }
-
-
-
-        public static bool validarGrupo(string idGrupo, string nombreGrupo) {
+        public static void actualizarNombreGrupo(string newName, string idGrupo) => new GrupoModelo(Session.type).actualizarNombreDeGrupo(newName,idGrupo);
+        public static void actualizarNombreMateria(string newName, string idMateria) => new MateriaModelo(Session.type).actualizarNombreDeMateria(newName,idMateria);
+        public static void actualizarNombreOrientacion(string newName, string idOrientacion) => new OrientacionModelo(Session.type).actualizarNombreDeOrientacion(newName,idOrientacion);
+        public static void actualizarGrupoTieneMateria(string idMateria, string idGrupo, bool isDeleted) => new GrupoModelo(Session.type).actualizarGrupoTieneMateria(idMateria,idGrupo,isDeleted);
+        public static void actualizarDocenteDictaGM(string idMateria, string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, idGrupo, status);
+    
+        public static bool validarGrupo(string idGrupo, string nombreGrupo)
+        { 
             GrupoModelo g = new GrupoModelo(Session.type);
             g.getGrupo(idGrupo, nombreGrupo, Session.type);
 

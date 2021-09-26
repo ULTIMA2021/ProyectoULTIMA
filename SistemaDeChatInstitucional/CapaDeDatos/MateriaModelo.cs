@@ -24,11 +24,12 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@nombreMateria", this.nombreMateria);
             EjecutarQuery(this.comando, errorType);
         }
-        public void actualizarNombreDeMateria()
+        public void actualizarNombreDeMateria(string nombreMateria, string idMateria)
         {
-            this.comando.CommandText = "UPDATE Orientacion SET nombreMateria = @nombreMateria WHERE idMateria = @idMateria;";
-            this.comando.Parameters.AddWithValue("@nombreOrientacion", this.nombreMateria);
-            this.comando.Parameters.AddWithValue("@idOrientacion", this.idMateria);
+            this.comando.CommandText = "UPDATE Materia SET nombreMateria = @nombreMateria WHERE idMateria = @idMateria;";
+            this.comando.Parameters.AddWithValue("@nombreMateria", nombreMateria);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
             EjecutarQuery(comando, errorType);
         }
 
@@ -58,7 +59,7 @@ namespace CapaDeDatos
         public List<MateriaModelo> getMateria(byte sessionType)
         {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "SELECT idMateria,nombreMateria,isDeleted FROM Materia ORDER BY nombreMateria ASC;";
+            this.comando.CommandText = "SELECT idMateria,nombreMateria FROM Materia WHERE isDeleted = false ORDER BY nombreMateria ASC;";
             return cargarMateriaALista(this.comando, sessionType);
         }
 

@@ -57,10 +57,23 @@ namespace CapaDeDatos
             }
             catch (MySqlException e)
             {
-                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery:  { e.Number}\n {e.Message}");
+                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery:  {e.Number}\n {e.Message}");
                 throw new Exception($"{errorType}-{e.Number}");
             }
         }
+        public void EjecutarSpecialQuery(MySqlCommand comando)
+        {
+            try
+            {
+                comando.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery:  {e.Number}\n {e.Message}");
+                throw new Exception($"{e.Message}-{e.Number}");
+            }
+        }
+
 
         protected void InicializarConexion(byte sessionType)
         {
