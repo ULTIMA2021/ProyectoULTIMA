@@ -90,7 +90,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlumnoTemporalModelo.cs" />
     <Compile Include="ConsultaPrivadaModelo.cs" />
     <Compile Include="GrupoModelo.cs" />
     <Compile Include="MateriaModelo.cs" />
