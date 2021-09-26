@@ -16,9 +16,13 @@ namespace AppAdmin.menuScreens
     public partial class listarGrupos : Form
     {
         //bool modify = false;
-        List<int> oldMaterias = new List<int>();
-        int fuckingcounter = 0;
+
+        // List<int> oldMaterias = new List<int>();
+
+        List<List<string>> materiaDeEsteGrupo;          //[0]=idGrupo   [1]=idMat   [2]=nombreGrupo   [3]=nombremat
+        List<string> todasMisMaterias;                  //formato, con 3 espacios: "{idGrupo}   {nombreGrupo}"
         char[] seperator = { ' ', ' ', ' ' };
+        string idGrupo;
         public listarGrupos() => InitializeComponent();
         private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
 
@@ -27,11 +31,12 @@ namespace AppAdmin.menuScreens
         {
             clbMaterias.DataSource = Controlador.MateriasToListForRegister();
             dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
+            dgvListarGrupos.Columns[0].Visible = false;
 
             clbMaterias.ClearSelected();
         }
 
-        private List<int> getIdsFromText()
+        private List<int> getIdsFromClb()
         {
             List<int> actualId = new List<int>();
             for (int i = 0; i < clbMaterias.CheckedItems.Count; i++)
@@ -39,51 +44,81 @@ namespace AppAdmin.menuScreens
 
             return actualId;
         }
+        private void sacarMateriasDeGrupo()
+        {
+            for (int z = 0; z < clbMaterias.Items.Count; z++)
+            {
+                if (!clbMaterias.CheckedItems.Contains(clbMaterias.Items[z]))
+                {
+                    int uncheckedIdMateria = int.Parse(clbMaterias.Items[z].ToString().Split(seperator)[0]);
+                    Console.WriteLine($"The group with ID:{uncheckedIdMateria} will get deleted from grupoTieneMateria");
+                    try
+                    {
+                        Controlador.sacarGrupoMateria(uncheckedIdMateria, int.Parse(idGrupo));
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message == "cannot delete grupoTieneMateria-1644")
+                        {
+                            Controlador.actualizarGrupoTieneMateria(uncheckedIdMateria.ToString(), idGrupo, true);
+                            Controlador.updateEstadoSala(uncheckedIdMateria.ToString(), idGrupo, true);
+                            Controlador.actualizarDocenteDictaGM(uncheckedIdMateria.ToString(), idGrupo, true);
+                        }
+                    }
+                }
+            }
+        }
+        private void cargarMateriasAGrupo(List<int> selectedMateriaIds)
+        {
+            for (int i = 0; i < selectedMateriaIds.Count; i++)
+            {
+                try
+                {
+                    Controlador.asignarMateriasAGrupo(selectedMateriaIds[i].ToString(), idGrupo);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message == "isDeleted set to FALSE docenteDictaGM-1644")
+                        Controlador.actualizarGrupoTieneMateria(selectedMateriaIds[i].ToString(), idGrupo, false);
+                }
+            }
+
+        }
+
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            List<int> materiasSeleccionadas = getIdsFromText();
+            List<int> materiasSeleccionadas = getIdsFromClb();
             string nombreGrupo = textBox1.Text;
+
             if (cbModificar.Checked)
             {
 
-                //update grupo name 
-                string idGrupo = dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
-
-                Controlador.actualizarNombreGrupo(nombreGrupo, idGrupo);
-                foreach (int materia in materiasSeleccionadas) {
-                    try
-                    {
-                        Controlador.asignarMateriasAGrupo(materia.ToString(), idGrupo);
-                    }
-                    catch //foreign key constraint exc
-                    { }
-
-                    foreach (int oldMat in oldMaterias)
-                        if (!clbMaterias.CheckedIndices.Contains(oldMat))
-                            Controlador.deleteMateria(int.Parse(clbMaterias.Items[oldMat].ToString().Split(seperator)[0]), idGrupo);                    
-                    //for (int i = 0; i < oldMaterias.Count; i++)
-                    //    for (int h = 0; h < clbMaterias.CheckedItems.Count; h++)
-                    //        if (clbMaterias.CheckedIndices[h] != oldMaterias[i] && h == clbMaterias.Items.Count - 1)
-                    //        {
-                    //            idMat = clbMaterias.CheckedItems[clbMaterias.CheckedIndices[h]].ToString().Split(seperator)[0];
-                    //            string countSalasDeMateria = Controlador.countSalaPorMateria(idMat);
-                    //            Controlador.deleteMateria(int.Parse(idMat), idGrupo);
-                    //        }
+                try
+                {
+                    idGrupo = dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
+                    Controlador.actualizarNombreGrupo(nombreGrupo, idGrupo);
+                    sacarMateriasDeGrupo();
+                    cargarMateriasAGrupo(materiasSeleccionadas);
                 }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                }
+            
             }
             else
             {
                 try
                 {
                     Controlador.nuevoGrupo(nombreGrupo);
-                    string idGrupo = Controlador.grupoPorNombreGrupo(nombreGrupo);
+                    idGrupo = Controlador.grupoPorNombreGrupo(nombreGrupo);
                     Console.WriteLine($"THE GROUP ID IN THE SYSTEM IS {idGrupo}");
                     if (clbMaterias.SelectedIndices.Count > 0)
                         Controlador.asignarMateriasAGrupo(materiasSeleccionadas, idGrupo);
 
                     textBox1.Clear();
-                    uncheckMyClb();
+                    uncheckAllBoxes();
                     dgvListarGrupos.DataSource = null;
                     dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
                     clbMaterias.ClearSelected();
@@ -111,46 +146,54 @@ namespace AppAdmin.menuScreens
 
         private void dgvListarGrupos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) { dgvListarGrupos.ClearSelection(); dgvListarGrupos.Columns["idGrupo"].Visible = false; }
 
-
         private void dgvListarGrupos_SelectionChanged(object sender, EventArgs e)
         {
             if (cbModificar.Checked)
             {
-                loadMateriasForModificacion();
+                loadAllMaterias();
+                idGrupo = dgvListarGrupos.CurrentRow.Cells[0].Value.ToString();
+                loadMateriasOfSelectedGrupo(idGrupo);
                 textBox1.Text = dgvListarGrupos.CurrentRow.Cells["Grupos"].Value.ToString();
+                checkBoxes();
             }
         }
 
-        private void loadMateriasForModificacion()
+        private void loadMateriasOfSelectedGrupo(string idGrupo) => materiaDeEsteGrupo = Controlador.gruposDeMateria(int.Parse(idGrupo));
+
+        private void loadAllMaterias()
         {
             clbMaterias.DataSource = null;
-            string idGrupo= dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
-            string nombreGrupo = dgvListarGrupos.CurrentRow.Cells["Grupos"].Value.ToString();
-
-            if (fuckingcounter > 0 && Controlador.validarGrupo(idGrupo, nombreGrupo))
-            {
-            idGrupo = dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
-            clbMaterias.DataSource = Controlador.MateriasToListForRegister();
-                foreach (int item in Controlador.obtenerMaterias(idGrupo))
-                {
-                    clbMaterias.SetItemChecked(item, true);
-                    oldMaterias.Add(item);
-                }
-            }
-            clbMaterias.ClearSelected();
-            fuckingcounter++;
+            todasMisMaterias = Controlador.MateriasToListForRegister();
+            clbMaterias.DataSource = todasMisMaterias;
         }
+
+        //private void loadMateriasForModificacion()
+        //{
+        //    clbMaterias.DataSource = null;
+        //    string idGrupo= dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
+        //    string nombreGrupo = dgvListarGrupos.CurrentRow.Cells["Grupos"].Value.ToString();
+
+        //    if (fuckingcounter > 0 && Controlador.validarGrupo(idGrupo, nombreGrupo))
+        //    {
+        //    idGrupo = dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
+        //    clbMaterias.DataSource = Controlador.MateriasToListForRegister();
+        //        foreach (int item in Controlador.obtenerMaterias(idGrupo))
+        //        {
+        //            clbMaterias.SetItemChecked(item, true);
+        //        }
+        //    }
+        //    clbMaterias.ClearSelected();
+        //    fuckingcounter++;
+        //}
 
         private void cbModificar_CheckedChanged(object sender, EventArgs e)
         {
             if (cbModificar.Checked)
             {
-                oldMaterias.Clear();
                 dgvListarGrupos.ClearSelection();
                 dgvListarGrupos.Enabled = true;
                 groupBox1.Text = "Modificar grupo";
                 btnIngresar.Text = "Guardar cambios";
-                loadMateriasForModificacion();
             }
             else
             {
@@ -158,17 +201,23 @@ namespace AppAdmin.menuScreens
                 dgvListarGrupos.Enabled = false;
                 clbMaterias.ClearSelected();
                 dgvListarGrupos.ClearSelection();
-                uncheckMyClb();
+                uncheckAllBoxes();
                 groupBox1.Text = "Ingresar nuevo grupo";
                 btnIngresar.Text = "Ingresar";
             }
         }
 
-        private void uncheckMyClb()
+        private void checkBoxes()
+        {
+            for (int i = 0; i < materiaDeEsteGrupo.Count; i++)
+                for (int x = 0; x < todasMisMaterias.Count; x++)
+                    if (todasMisMaterias[x].Split(seperator)[0] == materiaDeEsteGrupo[i][1])
+                        clbMaterias.SetItemCheckState(x, CheckState.Checked);
+        }
+        private void uncheckAllBoxes()
         {
             for (int i = 0; i < clbMaterias.Items.Count; i++)
-                clbMaterias.SetItemChecked(i, false);
+                clbMaterias.SetItemCheckState(i, CheckState.Unchecked);
         }
-
     }
 }

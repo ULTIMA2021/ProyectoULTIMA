@@ -19,7 +19,6 @@ namespace AppAdmin.menuScreens
         string idMateria;
 
         public listarMaterias() => InitializeComponent();
-        
 
         private void listarMaterias_Load(object sender, EventArgs e)
         {
@@ -41,7 +40,46 @@ namespace AppAdmin.menuScreens
             }
             return actualId;
         }
-        
+
+        private void sacarGrupoDeMateria()
+        {
+            for (int z = 0; z < clbGrupos.Items.Count; z++)
+            {
+                if (!clbGrupos.CheckedItems.Contains(clbGrupos.Items[z]))
+                {
+                    int uncheckedIdGrupo = int.Parse(clbGrupos.Items[z].ToString().Split(seperator)[0]);
+                    Console.WriteLine($"The group with ID:{uncheckedIdGrupo} will get deleted from grupoTieneMateria");
+                    try
+                    {
+                        Controlador.sacarGrupoMateria(int.Parse(idMateria), uncheckedIdGrupo);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message == "cannot delete grupoTieneMateria-1644")
+                        {
+                            Controlador.actualizarGrupoTieneMateria(idMateria, uncheckedIdGrupo.ToString(), true);
+                            Controlador.updateEstadoSala(idMateria, uncheckedIdGrupo.ToString(), true);
+                            Controlador.actualizarDocenteDictaGM(idMateria, uncheckedIdGrupo.ToString(), true);
+                        }
+                    }
+                }
+            }
+        }
+        private void cargarGrupoAmateria(List<int> selectedGrupoIds)
+        {
+            for (int i = 0; i < selectedGrupoIds.Count; i++)
+            {
+                try
+                {
+                    Controlador.asignarMateriasAGrupo(idMateria, selectedGrupoIds[i].ToString());
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message == "isDeleted set to FALSE docenteDictaGM-1644")
+                        Controlador.actualizarGrupoTieneMateria(idMateria, selectedGrupoIds[i].ToString(), false);
+                }
+            }
+        }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -53,48 +91,13 @@ namespace AppAdmin.menuScreens
                 try
                 {
                     Controlador.actualizarNombreMateria(textBox1.Text, idMateria);
-                    List<int>selectedGrupoIds = getIdsFromText();
-
-
-                    for (int z = 0; z < clbGrupos.Items.Count; z++)
-                    {
-                        if (!clbGrupos.CheckedItems.Contains(clbGrupos.Items[z]))
-                        {
-                            int uncheckedIdGrupo = int.Parse(clbGrupos.Items[z].ToString().Split(seperator)[0]);
-                            Console.WriteLine($"The group with ID:{uncheckedIdGrupo} will get deleted from grupoTieneMateria");
-                            try
-                            {
-                            Controlador.sacarGrupoMateria(int.Parse(idMateria),uncheckedIdGrupo);
-                            }
-                            catch (Exception  ex)
-                            {
-                                if (ex.Message == "cannot delete grupoTieneMateria-1644")
-                                {
-                                    Controlador.actualizarGrupoTieneMateria(idMateria, uncheckedIdGrupo.ToString() , true);
-                                    Controlador.updateEstadoSala(idMateria,uncheckedIdGrupo.ToString(),true);
-                                    Controlador.actualizarDocenteDictaGM(idMateria, uncheckedIdGrupo.ToString(),true );
-                                }
-                            }
-                        }
-                    }
-                    for (int i = 0; i < selectedGrupoIds.Count; i++)
-                    {
-                        try
-                        {
-                            Controlador.asignarMateriasAGrupo(idMateria, selectedGrupoIds[i].ToString());
-                        }
-                        catch (Exception ex)
-                        {
-                            if(ex.Message == "isDeleted set to FALSE docenteDictaGM-1644")
-                                Controlador.actualizarGrupoTieneMateria(idMateria, selectedGrupoIds[i].ToString(), false);
-                        }
-                    }
+                    sacarGrupoDeMateria();
+                    cargarGrupoAmateria(gruposSeleccionados);
 
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(Controlador.errorHandler(ex));
-
                 }
 
             }
@@ -103,7 +106,7 @@ namespace AppAdmin.menuScreens
                 try
                 {
                     Controlador.nuevaMateria(nombreMateria);
-                    string idMateria = Controlador.MateriaPorNombreMateria(nombreMateria);
+                    idMateria = Controlador.MateriaPorNombreMateria(nombreMateria);
                     if (clbGrupos.SelectedIndices.Count > 0)
                         Controlador.asignarMateriasAGrupo(gruposSeleccionados, int.Parse(idMateria));
 
@@ -147,7 +150,6 @@ namespace AppAdmin.menuScreens
         {
             if (cbModificar.Checked)
             {
-                
                 dgvListarMaterias.ClearSelection();
                 dgvListarMaterias.Enabled = true;
                 gbMaterias.Text = "Modificar materia";

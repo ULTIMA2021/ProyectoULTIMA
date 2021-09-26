@@ -259,6 +259,20 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             return (cargarGrupoMateriaALista(this.comando, sessionType));
         }
+        public List<GrupoModelo> grupoMateria(int idGrupo, byte sessionType)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT  gm.idGrupo, gm.idMateria, g.nombreGrupo, m.NombreMateria " +
+                "FROM Grupo_tiene_Materia gm, Grupo g, Materia m " +
+                "WHERE gm.idGrupo = g.idGrupo " +
+                "AND gm.idMateria = m.idMateria " +
+                "AND g.idGrupo = @idGrupo " +
+                "AND g.isDeleted = false " +
+                "AND m.isDeleted = false " +
+                "AND gm.isDeleted = false;";
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            return (cargarGrupoMateriaALista(this.comando, sessionType));
+        }
 
         public List<GrupoModelo> getAlumnoGrupoyYmaterias(string ci, byte sessionType) {
             this.comando.CommandText = "SELECT g.idGrupo, g.nombreGrupo, m.idMateria, m.nombreMateria, g.isDeleted FROM Grupo g, Alumno_tiene_Grupo ag, Materia m, Grupo_tiene_Materia gm " +

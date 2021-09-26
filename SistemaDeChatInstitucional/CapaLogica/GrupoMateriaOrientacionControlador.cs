@@ -207,7 +207,7 @@ namespace CapaLogica
             return gmString;
         }
 
-        public static List<List<string>> gruposDeMateria(string idMateria)
+        public static List<List<string>> gruposDeMateria(string idMateria) //grupos no ocultados de la materia indicada
         {
             List<List <string>> GruposYMaterias = new List<List<string>>();
             GrupoModelo gm = new GrupoModelo(Session.type);
@@ -222,6 +222,22 @@ namespace CapaLogica
             }
             return GruposYMaterias;
         }
+        public static List<List<string>> gruposDeMateria(int idGrupo) //materias no ocultadas del grupo indicado
+        {
+            List<List<string>> GruposYMaterias = new List<List<string>>();
+            GrupoModelo gm = new GrupoModelo(Session.type);
+            foreach (GrupoModelo g in gm.grupoMateria(idGrupo, Session.type))
+            {
+                List<string> grupoMateriaFila = new List<string>();
+                grupoMateriaFila.Add(g.idGrupo.ToString());
+                grupoMateriaFila.Add(g.idMateria.ToString());
+                grupoMateriaFila.Add(g.nombreGrupo);
+                grupoMateriaFila.Add(g.nombreMateria);
+                GruposYMaterias.Add(grupoMateriaFila);
+            }
+            return GruposYMaterias;
+        }
+
 
         public static DataTable obtenerOrientaciones()
         {
@@ -248,8 +264,7 @@ namespace CapaLogica
 
             foreach (GrupoModelo grupo in grupos)
                 tabla.Rows.Add(grupo.idGrupo, grupo.nombreGrupo);
-            
-
+           
             return tabla;
         }
         public static List<string> obtenerGrupo(string idGrupo)
