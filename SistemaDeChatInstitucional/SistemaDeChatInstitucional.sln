@@ -13,12 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppAdmin", "AppAdmin\AppAdm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppAlumno", "AppAlumno\AppAlumno.csproj", "{DCBC3250-731A-42D9-A418-0C07AF86681C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4B2902C2-29A2-4147-AA14-CBBF7BA276D0}"
-	ProjectSection(SolutionItems) = preProject
-		HTMLTest.html = HTMLTest.html
-		StyleSheet3.css = StyleSheet3.css
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

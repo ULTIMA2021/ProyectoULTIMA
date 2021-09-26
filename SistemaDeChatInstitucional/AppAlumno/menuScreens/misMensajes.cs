@@ -64,19 +64,6 @@ namespace AppAlumno.menuScreens
             }
 
         }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
-            string indexDestinatario = dgvMisMensajes.CurrentRow.Cells[7].Value.ToString();
-            string ciDocente;
-
-            ciAlumno = dgvMisMensajes.CurrentRow.Cells[3].Value.ToString();
-            ciDocente = Session.cedula;
-            List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-
-            new UglyHTMLmensajes(mensajes);
-        }
         private void Loadd()
         {
             dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();

@@ -114,12 +114,6 @@
     <Compile Include="menuScreens\Salas.Designer.cs">
       <DependentUpon>Salas.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\UglyHTMLmensajes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menuScreens\UglyHTMLmensajes.Designer.cs">
-      <DependentUpon>UglyHTMLmensajes.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
@@ -169,9 +163,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\Salas.resx">
       <DependentUpon>Salas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\UglyHTMLmensajes.resx">
-      <DependentUpon>UglyHTMLmensajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

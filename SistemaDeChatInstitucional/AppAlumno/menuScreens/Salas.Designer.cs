@@ -257,7 +257,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Salas_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Salas_FormClosed);
             this.Load += new System.EventHandler(this.Salas_Load);
-            this.Shown += new System.EventHandler(this.Salas_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrupoMaterias)).EndInit();
             this.ResumeLayout(false);
