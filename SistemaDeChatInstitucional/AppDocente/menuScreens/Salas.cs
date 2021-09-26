@@ -13,24 +13,22 @@ namespace AppDocente.menuScreens
 {
     public partial class Salas : Form
     {
+        bool loadFinishedSalas=false;
         Timer timer;
-        public Salas()
-        {
-            InitializeComponent();
-
-            dgvSalas.ClearSelection();
-            dgvGrupoMaterias.ClearSelection();
-        }
+        int checker = 0;
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
+        public Salas() => InitializeComponent();            
 
         private void timer_Tick(Object sender, EventArgs e)
         {
             try
             {
-                Console.WriteLine($"SALA TIMER IS CHECKING {DateTime.Now} COUNT OF SALAS: {Controlador.getSalaCount()}  LOADED COUNT: {dgvSalas.RowCount}");
-                if (Controlador.getSalaCount() > dgvSalas.RowCount)
+                Console.WriteLine($"SALA TIMER IS CHECKING {DateTime.Now} COUNT OF SALAS: {Controlador.getSalaCount(loadFinishedSalas)}  LOADED COUNT: {dgvSalas.RowCount}");
+                if (Controlador.getSalaCount(loadFinishedSalas) > dgvSalas.RowCount)
                 {
                     timer.Stop();
-                    dgvSalas.DataSource = Controlador.loadSalasDePersona();
+                    dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
                     dgvSalas.Update();
                     timer.Start();
                 }
@@ -66,7 +64,7 @@ namespace AppDocente.menuScreens
 
         private void myLoad()
         {
-            dgvSalas.DataSource = Controlador.loadSalasDePersona();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
             dgvSalas.Columns["idSala"].Visible = false;
             dgvSalas.Columns["idGrupo"].Visible = false;
             dgvSalas.Columns["idMateria"].Visible = false;
@@ -90,9 +88,11 @@ namespace AppDocente.menuScreens
             dataGM.Columns.Add("Grupo");
             dataGM.Columns.Add("idMateria");
             dataGM.Columns.Add("Materia");
-            foreach (List<string> materia in Session.grupoMaterias)
+            for (int i = 0; i < Session.grupoMaterias.Count; i++)
             {
-                dataGM.Rows.Add(materia[0], materia[1], materia[2], materia[3]);
+                Console.WriteLine(Session.grupoMaterias[i][4].ToString());
+                if (Session.grupoMaterias[i][4].ToString() == "False")
+                    dataGM.Rows.Add(Session.grupoMaterias[i][0], Session.grupoMaterias[i][1], Session.grupoMaterias[i][2], Session.grupoMaterias[i][3]);
             }
             dgvGrupoMaterias.DataSource = dataGM;
             dgvGrupoMaterias.Columns["idGrupo"].Visible = false;
@@ -108,8 +108,7 @@ namespace AppDocente.menuScreens
                 if (Convert.ToBoolean(Myrow.Cells["isDone"].Value) == false)
                     Myrow.DefaultCellStyle.BackColor = Color.FromArgb(113, 230, 72);    //chat abierto
                 else
-                    //  Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
-                    Myrow.Visible = false;
+                    Myrow.DefaultCellStyle.BackColor = Color.FromArgb(227, 97, 68);     //chat terminado
             }
         }
 
@@ -125,7 +124,7 @@ namespace AppDocente.menuScreens
             timer.Stop();
             Controlador.updateSalaConnection(idSala.ToString(),true);
             new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion, isDone).ShowDialog();
-            dgvSalas.DataSource = Controlador.loadSalasDePersona();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
             dgvSalas.Update();
             timer.Start();
             /*para que me cierrre la ventana de alumnosConectados pero no funca
@@ -170,9 +169,6 @@ namespace AppDocente.menuScreens
             dgvSalas.Columns[5].HeaderText = Resources.colGrupo;
             dgvSalas.Columns[6].HeaderText = Resources.colMateria;
             dgvSalas.Columns[8].HeaderText = Resources.colAnfitrion;
-
-            
-
         }
 
         private void Salas_FormClosing(object sender, FormClosingEventArgs e)
@@ -203,7 +199,7 @@ namespace AppDocente.menuScreens
 
                 Controlador.nuevaSala(idGrupo, idMateria, docente, anfitrion, resumen, fechaHora);
                 txtAsuntoSala.Clear();
-                dgvSalas.DataSource = Controlador.loadSalasDePersona();
+                dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
                 dgvSalas.Update();
                 timer.Start();
             }
@@ -224,13 +220,22 @@ namespace AppDocente.menuScreens
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            
+            checker++;
+            if (checker % 2 == 0)
+            {
+                btnHistorial.Text = "Historial";
+                loadFinishedSalas = false;
+            }
+            else {
+                loadFinishedSalas = true;
+                btnHistorial.Text = "Nuevas salas";
+            }
+            timer.Stop();
+            dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
+            dgvSalas.Update();
+            timer.Start();
         }
 
-        private void Salas_Shown(object sender, EventArgs e)
-        {
-            dgvGrupoMaterias.ClearSelection();
-            dgvSalas.ClearSelection();
-        }
+        private void Salas_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
     }
 }

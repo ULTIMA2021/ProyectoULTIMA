@@ -104,6 +104,7 @@
             this.txtUsuario.TabIndex = 2;
             this.txtUsuario.Text = "Usuario";
             this.txtUsuario.Enter += new System.EventHandler(this.txtUusuario_Enter);
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.txtUsuario.Leave += new System.EventHandler(this.txtUusuario_Leave);
             // 
             // txtContra
@@ -119,6 +120,7 @@
             this.txtContra.TabIndex = 3;
             this.txtContra.Text = "Contraseña";
             this.txtContra.Enter += new System.EventHandler(this.txtContra_Enter);
+            this.txtContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.txtContra.Leave += new System.EventHandler(this.txtContra_Leave);
             // 
             // btnLogin
@@ -216,6 +218,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
             this.Text = "Login";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictVer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).EndInit();

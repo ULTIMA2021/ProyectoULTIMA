@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(listarMaterias));
             this.dgvListarMaterias = new System.Windows.Forms.DataGridView();
             this.btnExit = new System.Windows.Forms.Button();
@@ -40,47 +40,54 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
+            this.cbModificar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarMaterias)).BeginInit();
             this.gbMaterias.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvListarMaterias
             // 
+            this.dgvListarMaterias.AllowUserToAddRows = false;
+            this.dgvListarMaterias.AllowUserToDeleteRows = false;
             this.dgvListarMaterias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListarMaterias.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvListarMaterias.BackgroundColor = System.Drawing.Color.DarkGray;
             this.dgvListarMaterias.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListarMaterias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListarMaterias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvListarMaterias.ColumnHeadersHeight = 25;
             this.dgvListarMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvListarMaterias.Enabled = false;
             this.dgvListarMaterias.EnableHeadersVisualStyles = false;
-            this.dgvListarMaterias.Location = new System.Drawing.Point(152, 34);
+            this.dgvListarMaterias.Location = new System.Drawing.Point(144, 32);
             this.dgvListarMaterias.MultiSelect = false;
             this.dgvListarMaterias.Name = "dgvListarMaterias";
             this.dgvListarMaterias.ReadOnly = true;
             this.dgvListarMaterias.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvListarMaterias.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvListarMaterias.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvListarMaterias.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListarMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListarMaterias.Size = new System.Drawing.Size(248, 296);
+            this.dgvListarMaterias.Size = new System.Drawing.Size(250, 294);
             this.dgvListarMaterias.TabIndex = 0;
+            this.dgvListarMaterias.TabStop = false;
+            this.dgvListarMaterias.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvListarMaterias_DataBindingComplete);
+            this.dgvListarMaterias.SelectionChanged += new System.EventHandler(this.dgvListarMaterias_SelectionChanged);
             // 
             // btnExit
             // 
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(24, 12);
+            this.btnExit.Location = new System.Drawing.Point(25, 12);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(57, 34);
             this.btnExit.TabIndex = 1;
@@ -95,7 +102,7 @@
             this.gbMaterias.Controls.Add(this.label1);
             this.gbMaterias.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbMaterias.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.gbMaterias.Location = new System.Drawing.Point(527, 27);
+            this.gbMaterias.Location = new System.Drawing.Point(528, 23);
             this.gbMaterias.Name = "gbMaterias";
             this.gbMaterias.Size = new System.Drawing.Size(336, 303);
             this.gbMaterias.TabIndex = 3;
@@ -116,7 +123,6 @@
             this.clbGrupos.Name = "clbGrupos";
             this.clbGrupos.Size = new System.Drawing.Size(222, 164);
             this.clbGrupos.TabIndex = 2;
-            
             // 
             // label2
             // 
@@ -145,6 +151,20 @@
             this.btnIngresar.TabIndex = 5;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
+            // 
+            // cbModificar
+            // 
+            this.cbModificar.AutoSize = true;
+            this.cbModificar.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cbModificar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.cbModificar.Location = new System.Drawing.Point(144, 345);
+            this.cbModificar.Name = "cbModificar";
+            this.cbModificar.Size = new System.Drawing.Size(295, 21);
+            this.cbModificar.TabIndex = 6;
+            this.cbModificar.Text = "Modificar grupos asignados a materias";
+            this.cbModificar.UseVisualStyleBackColor = true;
+            this.cbModificar.CheckedChanged += new System.EventHandler(this.cbModificar_CheckedChanged);
             // 
             // listarMaterias
             // 
@@ -152,6 +172,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(920, 384);
+            this.Controls.Add(this.cbModificar);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.gbMaterias);
             this.Controls.Add(this.btnExit);
@@ -164,6 +185,7 @@
             this.gbMaterias.ResumeLayout(false);
             this.gbMaterias.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -178,5 +200,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.CheckBox cbModificar;
     }
 }

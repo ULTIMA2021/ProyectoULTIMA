@@ -338,6 +338,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "configuracion";
             this.Text = "configuracion";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.configuracion_FormClosed);
             this.Load += new System.EventHandler(this.configuracion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.ResumeLayout(false);

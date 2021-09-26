@@ -41,7 +41,7 @@ namespace Login
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(Controlador.errorHandler(ex));
                     }
 
                 }
@@ -123,6 +123,14 @@ namespace Login
         {
             txtContra.PasswordChar = '●';
             pictVer.BringToFront();
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin_Click(sender, e);
+            }
         }
     }
 }

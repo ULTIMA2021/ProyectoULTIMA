@@ -17,6 +17,9 @@ namespace AppDocente
 {
     public partial class docenteMainScreen : Form
     {
+        System.Windows.Forms.Timer timer;
+        string msgCount;
+
         public docenteMainScreen()
         {
             InitializeComponent();
@@ -27,7 +30,43 @@ namespace AppDocente
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private void timer_Tick(Object sender, EventArgs e)
+        {
+            Console.WriteLine("IM CHECKING");
+            try
+            {
+                msgCount = Controlador.getMensajesStatusCount("recibido");
+                msgLabelAndnotification();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+        }
+        private void msgLabelAndnotification()
+        {
+            btnMensajes.Text = $"            Mensajes: {msgCount}";
+            btnMisMensajes.Text = $"●  Mis mensajes: {msgCount}";
 
+            if (int.Parse(msgCount) > 0)
+            {
+                Console.WriteLine("LABELS SHOULDVE CHANGED");
+                btnMisMensajes.BackColor = Color.Firebrick;
+                btnMensajes.BackColor = Color.Firebrick;
+            }
+            else
+            {
+                btnMensajes.BackColor = btnSala.BackColor;
+                btnMisMensajes.BackColor = btnConfiguracion.BackColor;
+            }
+        }
+        private void setTimer()
+        {
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = (1000 * 25);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
         public void esconderSubMenu()
         {
             if(subMenuMiPerfil.Visible == true)
@@ -47,7 +86,6 @@ namespace AppDocente
 
         }
 
-
         public void mostrarSubMenu(Panel subMenu)
         {
             if(subMenu.Visible == false)
@@ -63,15 +101,14 @@ namespace AppDocente
             
         }
 
-
         private Form ventanaActiva = null;
         public void openScreen(Form ventana)
         {
-
             if (ventanaActiva != null)
             {
                 ventanaActiva.Close();
             }
+
             ventanaActiva = ventana;
             ventana.TopLevel = false;
             ventana.Dock = DockStyle.Fill;
@@ -81,32 +118,42 @@ namespace AppDocente
             ventana.Show();
            
         }
-
-        
-        private void btnMiPerfil_Click(object sender, EventArgs e)
+        private void setConfig(menuScreens.configuracion ventana)
         {
-            mostrarSubMenu(subMenuMiPerfil);
+            ventana.CustomFormClosed += CloseListener;
+            openScreen(ventana);
+        }
+        //private void setAsignaturas(menuScreens.misAsignaturas ventana)
+        //{
+        //    ventana.CustomFormClosed += CloseListener;
+        //    openScreen(ventana);
+        //}
+        private void setSala(menuScreens.Salas ventana)
+        {
+            ventana.CustomFormClosed += CloseListener;
+            openScreen(ventana);
+        }
+        private void setAgenda(menuScreens.agenda ventana)
+        {
+            ventana.CustomFormClosed += CloseListener;
+            openScreen(ventana);
+        }
+        private void setMisMsg(menuScreens.misMensajes ventana)
+        {
+            ventana.CustomFormClosed += CloseListener;
+            openScreen(ventana);
         }
 
-
-        private void btnAlumnos_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuDocentes);
-        }
-
+        private void btnMiPerfil_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuMiPerfil);
+        private void btnAlumnos_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuDocentes);
+        private void btnMensajes_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuMensajes);
 
         private void btnAgenda_Click(object sender, EventArgs e)
         {
-            esconderSubMenu();
-            openScreen(new menuScreens.agendaDocente());
+            menuScreens.agenda window = new menuScreens.agenda();
+            setAgenda(window);
+            enableButtonsExceptSelected(btnAgenda);
         }
-
-
-        private void btnMensajes_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuMensajes);
-        }
-
 
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -114,58 +161,54 @@ namespace AppDocente
             Application.Exit(); 
         }
 
-
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Maximized;
             btnNormal.BringToFront();
         }
 
+        private void btnMinimizar_Click(object sender, EventArgs e) => WindowState = FormWindowState.Minimized;
         
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
-
         private void btnNormal_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Normal;
             btnMaximizar.BringToFront();
         }
 
-
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.configuracion());
+            menuScreens.configuracion window = new menuScreens.configuracion();
+            setConfig(window);
+            enableButtonsExceptSelected(btnConfiguracion);
         }
-
 
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
-          //  openScreen(new menuScreens.misAsignaturas());
+            //menuScreens.asignaturas window = new menuScreens.asignaturas();
+            //setAsignaturas(window);
+            enableButtonsExceptSelected(btnAsignaturas);
         }
 
         private void btnMisAlumnos_Click(object sender, EventArgs e)
         {
-          //  openScreen(new menuScreens.misDocentes());
-
-            
-        }
-
-        private void btnNuevoMensaje_Click(object sender, EventArgs e)
-        {
-         //   openScreen(new menuScreens.NuevoMensaje());
+            //menuScreens.misAlumnos window = new menuScreens.misAlumnos();
+            //setMisAlumnos(window);
+            enableButtonsExceptSelected(btnMisAlumnos);
         }
 
         private void btnMisMensajes_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.misMensajes());
+            menuScreens.misMensajes window = new menuScreens.misMensajes();
+            setMisMsg(window);
+            enableButtonsExceptSelected(btnMisMensajes);
         }
 
-        private void alumnoMainScreen_Load(object sender, EventArgs e)
+        private void btnSala_Click(object sender, EventArgs e)
         {
-            lblNombre.Text = $"{Session.nombre} {Session.apellido}";
+            esconderSubMenu();
+            menuScreens.Salas window = new menuScreens.Salas();
+            setSala(window);
+            enableButtonsExceptSelected(btnSala);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -178,20 +221,40 @@ namespace AppDocente
             }
         }
 
+        private void alumnoMainScreen_Load(object sender, EventArgs e)
+        {
+            lblNombre.Text = $"{Session.nombre} {Session.apellido}";
+            msgCount = Controlador.getMensajesStatusCount("recibido");
+            msgLabelAndnotification();
+            setTimer();
+        }
+
         private void panelOpciones_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-
-        private void btnSala_Click(object sender, EventArgs e)
-        {
-            esconderSubMenu();
-            openScreen(new menuScreens.Salas());
+        
+        private void enableButtonsExceptSelected(Button butt) {
+            foreach (Button b in GetAll(this,typeof(Button)))
+            {
+                if (b == butt)
+                    b.Enabled = false;
+                else
+                    b.Enabled = true;
+            }
 
         }
+        // returns all controls of a given type in the form 
+        public IEnumerable<Control> GetAll(Control control, Type type)
+        {
+            var controls = control.Controls.Cast<Control>();
 
-       
+            return controls.SelectMany(ctrl => GetAll(ctrl, type))
+                                      .Concat(controls)
+                                      .Where(c => c.GetType() == type);
+        }
+
         private void getTextFromComponents()
         {
             menuScreens.configuracion conf = new menuScreens.configuracion();
@@ -217,25 +280,25 @@ namespace AppDocente
 
 
         }
+        private void CloseListener(object sender, EventArgs e, string test)
+        {
+            //DO SHIT HERE
+            enableButtonsExceptSelected(null);
+        }
 
         private void selectIdioma_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = selectIdioma.SelectedIndex;
-
             if (selectIdioma.Items[index].ToString() == "Ingles/English")
             {
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
-
                 getTextFromComponents();
             }
 
             if (selectIdioma.Items[index].ToString() == "Español/Spanish")
             {
-
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
                 getTextFromComponents();
-
-
             }
         }
     }

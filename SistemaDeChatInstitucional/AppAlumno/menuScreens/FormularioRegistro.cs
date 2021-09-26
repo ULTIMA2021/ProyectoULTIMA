@@ -34,7 +34,7 @@ namespace Login
                 {
                     if (Controlador.existePersona(txtCedula.Text))
                     {
-                        clave = CryptographyUtils.encryptThis(clave);
+                        clave = CryptographyUtils.doEncryption(clave, null, null);
                         Console.WriteLine($"original password: {txtClave.Text}\nencrypted is {clave}");
                         Controlador.AltaAlumno(
                                                   txtCedula.Text,
@@ -43,6 +43,7 @@ namespace Login
                                                   clave,
                                                   txtApodo.Text,
                                                   getIndexesChecklist());
+
                         MessageBox.Show($"Ingresado! {txtNombre.Text} {txtApellido.Text}, espere que lo confirme un administrador");
                         resetFields();
                     }
@@ -82,8 +83,6 @@ namespace Login
         private void comboBoxUser_SelectedValueChanged(object sender, EventArgs e)
         {
            // this.lblGrupo.Location= Point.;
-            
-            
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)

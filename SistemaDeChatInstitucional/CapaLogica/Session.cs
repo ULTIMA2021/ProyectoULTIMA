@@ -14,7 +14,6 @@ namespace CapaLogica
         public static string apellido { get; set; }
         public static string clave { get; set; }
         //foto
-        //avatar
         public static byte type;//0-alumno   1-docente    2-admin    3-alumnoLogin   4-docenteLogin   5-adminLogin
         public static List<List<string>> grupoMaterias=new List<List<string>>();
 
@@ -36,7 +35,8 @@ namespace CapaLogica
                 fila.Add(g.nombreGrupo);
                 fila.Add(g.idMateria.ToString());
                 fila.Add(g.nombreMateria);
-                //Console.WriteLine($"idGrupo: {fila[0]}   nombreGrupo: {fila[1]}   idmateria: {fila[2]}   nombreMateria: {fila[3]}");
+                fila.Add(g.isDeleted);
+                Console.WriteLine($"idGrupo: {fila[0]}   nombreGrupo: {fila[1]}   idmateria: {fila[2]}   nombreMateria: {fila[3]}   isDeleted: {fila[4]}");
                 grupoMaterias.Add(fila);
             }
         }

@@ -115,7 +115,7 @@ namespace AppAlumno.menuScreens
                 fecha.Dock = DockStyle.Right;
                 fecha.AutoSize = true;
                 fecha.Name = "labelFecha_" + i;
-                fecha.BackColor = Color.PowderBlue;
+                //fecha.BackColor = Color.PowderBlue;
                 fecha.Text = mensajes[i][4];
 
                 fecha.Margin = dateP;
@@ -135,7 +135,7 @@ namespace AppAlumno.menuScreens
                     nombrePersona.Text = mensajes[i][5];
                     nombrePersona.Dock = DockStyle.Left;
                     nombrePersona.BackColor = Color.PeachPuff;
-                    fecha.BackColor = Color.PeachPuff;
+                    //fecha.BackColor = Color.PeachPuff;
                     fecha.Dock = DockStyle.Left;
                 }
                 t.Text = mensajes[i][3];
@@ -274,7 +274,7 @@ namespace AppAlumno.menuScreens
              result = MessageBox.Show(message,caption,MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                Controlador.finalizarSala(idSala);
+                Controlador.updateEstadoSala(idSala, true);
                 this.Dispose();
                 this.Close();
             }

@@ -35,17 +35,20 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.clbMaterias = new System.Windows.Forms.CheckedListBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.clbMaterias = new System.Windows.Forms.CheckedListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
+            this.cbModificar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarGrupos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvListarGrupos
             // 
+            this.dgvListarGrupos.AllowUserToAddRows = false;
+            this.dgvListarGrupos.AllowUserToDeleteRows = false;
             this.dgvListarGrupos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListarGrupos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvListarGrupos.BackgroundColor = System.Drawing.Color.DarkGray;
@@ -60,6 +63,7 @@
             this.dgvListarGrupos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvListarGrupos.ColumnHeadersHeight = 25;
             this.dgvListarGrupos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvListarGrupos.Enabled = false;
             this.dgvListarGrupos.EnableHeadersVisualStyles = false;
             this.dgvListarGrupos.Location = new System.Drawing.Point(144, 32);
             this.dgvListarGrupos.MultiSelect = false;
@@ -74,6 +78,9 @@
             this.dgvListarGrupos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListarGrupos.Size = new System.Drawing.Size(250, 294);
             this.dgvListarGrupos.TabIndex = 0;
+            this.dgvListarGrupos.TabStop = false;
+            this.dgvListarGrupos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvListarGrupos_DataBindingComplete);
+            this.dgvListarGrupos.SelectionChanged += new System.EventHandler(this.dgvListarGrupos_SelectionChanged);
             // 
             // btnExit
             // 
@@ -102,14 +109,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ingresar nuevo grupo";
             // 
-            // label1
+            // textBox1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre:";
+            this.textBox1.Location = new System.Drawing.Point(91, 36);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(220, 25);
+            this.textBox1.TabIndex = 3;
+            // 
+            // clbMaterias
+            // 
+            this.clbMaterias.FormattingEnabled = true;
+            this.clbMaterias.Location = new System.Drawing.Point(91, 121);
+            this.clbMaterias.Name = "clbMaterias";
+            this.clbMaterias.Size = new System.Drawing.Size(220, 164);
+            this.clbMaterias.TabIndex = 2;
             // 
             // label2
             // 
@@ -120,20 +133,14 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Materias:";
             // 
-            // clbMaterias
+            // label1
             // 
-            this.clbMaterias.FormattingEnabled = true;
-            this.clbMaterias.Location = new System.Drawing.Point(91, 121);
-            this.clbMaterias.Name = "clbMaterias";
-            this.clbMaterias.Size = new System.Drawing.Size(220, 164);
-            this.clbMaterias.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(91, 36);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 25);
-            this.textBox1.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Nombre:";
             // 
             // btnIngresar
             // 
@@ -144,6 +151,20 @@
             this.btnIngresar.TabIndex = 4;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
+            this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
+            // 
+            // cbModificar
+            // 
+            this.cbModificar.AutoSize = true;
+            this.cbModificar.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cbModificar.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.cbModificar.Location = new System.Drawing.Point(247, 345);
+            this.cbModificar.Name = "cbModificar";
+            this.cbModificar.Size = new System.Drawing.Size(147, 21);
+            this.cbModificar.TabIndex = 5;
+            this.cbModificar.Text = "Modificar grupos";
+            this.cbModificar.UseVisualStyleBackColor = true;
+            this.cbModificar.CheckedChanged += new System.EventHandler(this.cbModificar_CheckedChanged);
             // 
             // listarGrupos
             // 
@@ -151,6 +172,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(920, 384);
+            this.Controls.Add(this.cbModificar);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnExit);
@@ -163,6 +185,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -177,5 +200,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnIngresar;
+        private System.Windows.Forms.CheckBox cbModificar;
     }
 }

@@ -12,20 +12,19 @@ namespace AppDocente.menuScreens
 {
     public partial class agenda : Form
     {
-        public agenda()
-        {
-            InitializeComponent();
-        }
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        public agenda() => InitializeComponent();
+
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
 
         private void agenda_Load(object sender, EventArgs e)
         {
             lblAsunto.Text = Resources.lblAsunto;
             lblGrupos.Text = Resources.lblGrupos;
         }
+
+        private void agenda_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
     }
 }

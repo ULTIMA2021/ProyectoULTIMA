@@ -8,15 +8,15 @@ namespace CapaDeDatos
 {
     public class MensajePrivadoModelo : Modelo
     {
-        int idCp_mensaje;
+         int idCp_mensaje;
          int idConsultaPrivada;
          int ciDocente;
          int ciAlumno;
          public string contenido;
         //public attachment
          DateTime cp_mensajeFechaHora;
-         string cp_mensajeStatus; //'recibido','leido'
-         int ciDestinatario;
+         public  string cp_mensajeStatus; //'recibido','leido'
+         public int ciDestinatario;
          string errorType="MensajePrivado";
 
         public MensajePrivadoModelo(byte sessionType) : base(sessionType)
@@ -87,6 +87,7 @@ namespace CapaDeDatos
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente, byte sessionType)
         {
+            this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_mensaje cpm " +
                "WHERE cpm.idConsultaPrivada=@idConsultaPrivada AND cpm.ciAlumno=@ciAlumno AND cpm.ciDocente=@ciDocente ; ";
@@ -94,6 +95,27 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
             return cargarMensajePrivadoALista(this.comando,  sessionType);
+        }
+        public string mensajesDeConsultaCount() {
+            string count;
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT count(*) from CP_Mensaje WHERE cp_mensajeStatus = @cp_mensajeStatus AND ciDestinatario = @ciDestinatario; ";
+            this.comando.Parameters.AddWithValue("@ciDestinatario", this.ciDestinatario);
+            this.comando.Parameters.AddWithValue("@cp_mensajeStatus", this.cp_mensajeStatus);
+            lector = comando.ExecuteReader();
+            lector.Read();
+            count = lector[0].ToString();
+            lector.Close();
+            return count;
+        }
+        public void updateStatus() {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "UPDATE CP_mensaje SET cp_mensajeStatus = 'leido' " +
+                "WHERE ciDestinatario = @ciDestinatario AND " +
+                "idConsultaPrivada = @idConsultaPrivada;";
+            this.comando.Parameters.AddWithValue("@ciDestinatario", this.ciDestinatario);
+            this.comando.Parameters.AddWithValue("@idConsultaPrivada", this.idConsultaPrivada);
+            EjecutarQuery(this.comando, errorType);
         }
         public override string ToString()
         {

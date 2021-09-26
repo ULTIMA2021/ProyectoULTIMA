@@ -1,14 +1,8 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
@@ -16,15 +10,11 @@ namespace AppAlumno.menuScreens
 {
     public partial class configuracion : Form
     {
-        public configuracion()
-        {
-            InitializeComponent();
-        }
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        public configuracion() => InitializeComponent();
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
 
         private void btnExaminar_Click(object sender, EventArgs e)
         {
@@ -102,5 +92,7 @@ namespace AppAlumno.menuScreens
             }
         }
 
+        private void configuracion_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
+        
     }
 }

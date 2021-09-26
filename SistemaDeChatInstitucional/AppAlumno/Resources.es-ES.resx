@@ -183,4 +183,10 @@
   <data name="lblUsuario" xml:space="preserve">
     <value>Nombre de usuario *</value>
   </data>
+  <data name="txtContra" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="txtUsuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
 </root>

@@ -30,9 +30,10 @@ namespace CapaLogica
             sala.crearSala();
         }
 
-        public static void finalizarSala(int idSala) => new SalaModelo(Session.type).salaFinalizada(idSala);
+        public static void updateEstadoSala(int idSala, bool estado) => new SalaModelo(Session.type).updateEstado(idSala, estado);
+        public static void updateEstadoSala(string idMateria, string idGrupo, bool estado) => new SalaModelo(Session.type).updateEstado(idMateria, idGrupo, estado);
 
-        public static DataTable loadSalasDePersona() {
+        public static DataTable loadSalasDePersona(bool isDone) {
             List<SalaModelo> salasPorGM = new List<SalaModelo>();
             DataTable salasDataTable = new DataTable();
             loadTableColumns(salasDataTable);
@@ -41,12 +42,11 @@ namespace CapaLogica
             for (int x = 0; x < Session.grupoMaterias.Count; x++) {
                 idGrupo = int.Parse(Session.grupoMaterias[x][0]);
                 idMateria = int.Parse(Session.grupoMaterias[x][2]);               
-                salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupoMateria(idGrupo, idMateria, Session.type)); 
+                salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupoMateria(idGrupo, idMateria, Session.type,isDone)); 
             }
             salasPorGM.Sort((y, z) => DateTime.Compare(z.creacion, y.creacion));
             loadSalasToDataTable(salasDataTable, salasPorGM);
             
-
             return salasDataTable;
         }
 
@@ -138,10 +138,10 @@ namespace CapaLogica
             msg.enviarMensaje();
         }
 
-        public static int getSalaCount() {
+        public static int getSalaCount(bool isDone) {
             int salasDePersona = 0;
             for (int i = 0; i < Session.grupoMaterias.Count; i++)
-                salasDePersona = salasDePersona + new SalaModelo(Session.type).salaPorMateriaCount(int.Parse(Session.grupoMaterias[i][2]),Session.type);
+                salasDePersona = salasDePersona + new SalaModelo(Session.type).salaPorMateriaCount(int.Parse(Session.grupoMaterias[i][2]),Session.type,isDone);
             return salasDePersona;
         }
 

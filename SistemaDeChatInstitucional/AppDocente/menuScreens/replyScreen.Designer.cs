@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.fuckthisButton = new System.Windows.Forms.Button();
+            this.btnFinalizarConsulta = new System.Windows.Forms.Button();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRespuesta = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -40,7 +40,7 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.fuckthisButton);
+            this.panel1.Controls.Add(this.btnFinalizarConsulta);
             this.panel1.Controls.Add(this.btnEnviar);
             this.panel1.Controls.Add(this.txtRespuesta);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -49,20 +49,21 @@
             this.panel1.Size = new System.Drawing.Size(671, 117);
             this.panel1.TabIndex = 0;
             // 
-            // fuckthisButton
+            // btnFinalizarConsulta
             // 
-            this.fuckthisButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.fuckthisButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
-            this.fuckthisButton.FlatAppearance.BorderSize = 0;
-            this.fuckthisButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.fuckthisButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fuckthisButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.fuckthisButton.Location = new System.Drawing.Point(518, 79);
-            this.fuckthisButton.Name = "fuckthisButton";
-            this.fuckthisButton.Size = new System.Drawing.Size(125, 35);
-            this.fuckthisButton.TabIndex = 2;
-            this.fuckthisButton.UseVisualStyleBackColor = false;
-            this.fuckthisButton.Visible = false;
+            this.btnFinalizarConsulta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFinalizarConsulta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnFinalizarConsulta.FlatAppearance.BorderSize = 0;
+            this.btnFinalizarConsulta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinalizarConsulta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFinalizarConsulta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnFinalizarConsulta.Location = new System.Drawing.Point(518, 79);
+            this.btnFinalizarConsulta.Name = "btnFinalizarConsulta";
+            this.btnFinalizarConsulta.Size = new System.Drawing.Size(125, 35);
+            this.btnFinalizarConsulta.TabIndex = 2;
+            this.btnFinalizarConsulta.Text = "Finalizar consulta";
+            this.btnFinalizarConsulta.UseVisualStyleBackColor = false;
+            this.btnFinalizarConsulta.Click += new System.EventHandler(this.btnFinalizarConsulta_Click);
             // 
             // btnEnviar
             // 
@@ -114,7 +115,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "replyScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Load += new System.EventHandler(this.replyScreen_Load);
             this.Resize += new System.EventHandler(this.replyScreen_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -129,6 +129,6 @@
         public System.Windows.Forms.Button btnEnviar;
         public System.Windows.Forms.TextBox txtRespuesta;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        public System.Windows.Forms.Button fuckthisButton;
+        public System.Windows.Forms.Button btnFinalizarConsulta;
     }
 }

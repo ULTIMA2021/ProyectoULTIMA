@@ -18,6 +18,9 @@ namespace AppAlumno.menuScreens
         string ciDocente;
         string ciAlumno;
         string asunto;
+        string status;
+        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public event CustomFormClosedHandler CustomFormClosed;
 
         public misMensajes()
         {
@@ -39,8 +42,9 @@ namespace AppAlumno.menuScreens
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
             asunto = dgvMisMensajes.CurrentRow.Cells[4].Value.ToString();
+            status = dgvMisMensajes.CurrentRow.Cells["Status de consulta"].Value.ToString();
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
-            replyScreen r = new replyScreen(mensajes,asunto);
+            replyScreen r = new replyScreen(mensajes,asunto,status);
         }
 
         
@@ -98,5 +102,7 @@ namespace AppAlumno.menuScreens
 
             dgvMisMensajes.ClearSelection();
         }
+
+        private void misMensajes_FormClosed(object sender, FormClosedEventArgs e)=> CustomFormClosed(sender, e, "Hello World!");
     }
 }

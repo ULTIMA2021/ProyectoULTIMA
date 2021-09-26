@@ -4,58 +4,141 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.IO;
 using System.Security.Cryptography;
 
 namespace CapaLogica
 {
     public static class CryptographyUtils
     {
+        //public static string encryptThis(string target, bool isLogging) {
 
-        //donde saque el codigo:
-        //https://www.youtube.com/watch?v=PrjgsaY2hac
+        //    byte[] buffer = Encoding.Default.GetBytes(target);
+        //    string result;
+        //    AesCryptoServiceProvider aes = new AesCryptoServiceProvider();
+        //    aes.KeySize = 256;
+        //    aes.GenerateKey();
+        //    aes.GenerateIV();
+        //    Console.WriteLine($"KEY:{Encoding.Default.GetString(aes.Key)}");
+        //    Console.WriteLine($"KEYSIZE:{Encoding.Default.GetString(aes.Key).Length}");
+        //    Console.WriteLine($"IV:{Encoding.Default.GetString(aes.IV)}");
+        //    Console.WriteLine($"IVSIZE:{Encoding.Default.GetString(aes.IV).Length}");
 
-        //funciona pero para guardar la clave encriptada en la bd tambien necesito la key que se uso
-        //en el algoritmo de encripcion. Para llamarlo en la desencripcion
+        //    ICryptoTransform transform = aes.CreateEncryptor();
+        //    var t = transform.TransformFinalBlock(buffer, 0, buffer.Length);
+        //    result =
+        //        Encoding.Default.GetString(t) +
+        //        Convert.ToChar(Encoding.Default.GetString(t).Length) +
+        //        Encoding.Default.GetString(aes.Key) +
+        //        Convert.ToChar(Encoding.Default.GetString(aes.Key).Length) +
+        //        Encoding.Default.GetString(aes.IV) +
+        //        Convert.ToChar(Encoding.Default.GetString(aes.IV).Length);
 
-        private static byte[] KEY;
-        private static byte[] IV;
+        //    // esta parte iria en un metodo aparte es para extraer la llave y IV de el string incriptado
+        //    // luego se usa la llave y la IV para comparar la clave del usuario sin decriptarla esos campos para comparar la clave ya encrypted
 
-        public static string encryptThis(string target)
+        //    Console.WriteLine($"OUTPUT:{result}");
+        //    Console.WriteLine($"reading............");
+
+        //    byte[] resArray = Encoding.Default.GetBytes(result);
+        //    byte identifierIV = resArray[resArray.Length - 1];
+        //    byte identifierKey = resArray[resArray.Length - identifierIV - 2];
+        //    byte identifierPw = resArray[resArray.Length - identifierIV - identifierKey - 3];
+
+        //    byte[] iv = new byte[identifierIV];
+        //    byte[] key = new byte[identifierKey];
+        //    byte[] pw = new byte[identifierPw];
+
+        //    Array.Copy(resArray, resArray.Length - identifierIV - 1, iv, 0, identifierIV);
+        //    Array.Copy(resArray, resArray.Length - identifierIV - identifierKey - 2, key, 0, identifierKey);
+        //    Array.Copy(resArray, resArray.Length - identifierPw - identifierIV - identifierKey - 3, pw, 0, identifierPw);
+
+        //    Console.WriteLine($"IV:{Encoding.Default.GetString(iv)}");
+        //    Console.WriteLine($"KEY:{Encoding.Default.GetString(key)}");
+        //    Console.WriteLine($"PW:{Encoding.Default.GetString(pw)}");
+
+        //    return (result);
+        //}
+
+
+        public static bool comparePasswords(string submittedText, string encryptedText)
         {
-            newSafeKey();
-            var buffer = Encoding.UTF8.GetBytes(target);
-            var tripleDES = new TripleDESCryptoServiceProvider()
-            {
-                IV = IV,
-                Key = KEY
-            };
-            ICryptoTransform transform = tripleDES.CreateEncryptor();
-            var cipherText = transform.TransformFinalBlock(buffer, 0, buffer.Length);
-            //Console.WriteLine(@Convert.ToBase64String(cipherText));
-            return @Convert.ToBase64String(cipherText);
+            Console.WriteLine($"INCOMING:{encryptedText}");
+            Console.WriteLine($"INCOMING:{encryptedText}");
+
+            byte[] encryptedArray = Encoding.Default.GetBytes(encryptedText);
+            byte identifierIV = encryptedArray[encryptedArray.Length - 1];
+            byte identifierKey = encryptedArray[encryptedArray.Length - identifierIV - 2];
+            byte identifierPw = encryptedArray[encryptedArray.Length - identifierIV - identifierKey - 3];
+
+            byte[] iv = getIV(encryptedArray, identifierIV);
+            byte[] key = getKey(encryptedArray, identifierIV, identifierKey);
+            byte[] pw = new byte[identifierPw];
+            string encryptedSubmitted = doEncryption(submittedText, key, iv);
+
+            Console.WriteLine($"INCOMING:{encryptedText}");
+
+            Console.WriteLine($"IV:{Encoding.Default.GetString(iv)}");
+            Console.WriteLine($"KEY:{Encoding.Default.GetString(key)}");
+            Console.WriteLine($"PW:{Encoding.Default.GetString(pw)}");
+
+
+            if (string.Equals(encryptedSubmitted, encryptedText))
+                return true;
+            return false;
         }
 
-        public static string decryptThis(string encryptedText)
+        private static byte[] getIV(byte[] encryptedArray, byte identifierIV)
         {
-            var buffer = @Convert.FromBase64String(encryptedText);
-            var tripleDES = new TripleDESCryptoServiceProvider()
-            {
-                IV = IV,
-                Key = KEY
-            };
-            ICryptoTransform transform = tripleDES.CreateDecryptor();
-            var cipherText = transform.TransformFinalBlock(buffer, 0, buffer.Length);
-            return Encoding.UTF8.GetString(cipherText);
+            byte[] iv = new byte[identifierIV];
+            Array.Copy(encryptedArray, encryptedArray.Length - identifierIV - 1, iv, 0, identifierIV);
+            return iv;
         }
 
-        //me genera una crypto key y vector de inicialization nuevo
-        public static void newSafeKey()
+        private static byte[] getKey(byte[] encryptedArray, byte identifierIV, byte identifierKey)
         {
-            KEY = null;
-            IV = null;
-            var tripleDES = new TripleDESCryptoServiceProvider();
-            KEY = tripleDES.Key;
-            IV = tripleDES.IV;
+            byte[] key = new byte[identifierKey];
+            Array.Copy(encryptedArray, encryptedArray.Length - identifierIV - identifierKey - 2, key, 0, identifierKey);
+            return key;
+        }
+
+        public static string doEncryption(string target, byte[] key, byte[] iv)
+        {
+            byte[] buffer = Encoding.Default.GetBytes(target);
+            AesCryptoServiceProvider aes = new AesCryptoServiceProvider();
+            if (key is null)
+            {
+                aes.KeySize = 256;
+                aes.GenerateKey();
+                aes.GenerateIV();
+            }
+            else
+            {
+                aes.Key = key;
+                aes.IV = iv;
+            }
+            ICryptoTransform transform = aes.CreateEncryptor();
+            byte[] t = transform.TransformFinalBlock(buffer, 0, buffer.Length);
+            return @combineFields(aes, t);
+        }
+
+        private static string combineFields(AesCryptoServiceProvider aes, byte[] t)
+        {
+            string @result =
+               @Encoding.Default.GetString(t) +
+               Convert.ToChar(@Encoding.Default.GetString(t).Length) +
+               @Encoding.Default.GetString(aes.Key) +
+               Convert.ToChar(@Encoding.Default.GetString(aes.Key).Length) +
+               Encoding.Default.GetString(aes.IV) +
+               Convert.ToChar(@Encoding.Default.GetString(aes.IV).Length);
+
+
+            Console.WriteLine($"KEY:{Encoding.Default.GetString(aes.Key)}");
+            Console.WriteLine($"KEYSIZE:{Encoding.Default.GetString(aes.Key).Length}");
+            Console.WriteLine($"IV:{Encoding.Default.GetString(aes.IV)}");
+            Console.WriteLine($"IVSIZE:{Encoding.Default.GetString(aes.IV).Length}");
+
+            return @result;
         }
     }
 }

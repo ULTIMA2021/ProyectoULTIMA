@@ -70,6 +70,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "misDocentes";
             this.Text = "misDocentes";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.misDocentes_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
