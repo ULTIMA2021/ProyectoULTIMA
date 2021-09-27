@@ -376,6 +376,7 @@
             this.btnListarAlumnos.TabIndex = 3;
             this.btnListarAlumnos.Text = "Listar todos";
             this.btnListarAlumnos.UseVisualStyleBackColor = true;
+            this.btnListarAlumnos.Click += new System.EventHandler(this.btnListarAlumnos_Click_1);
             // 
             // pbImagenInicio
             // 

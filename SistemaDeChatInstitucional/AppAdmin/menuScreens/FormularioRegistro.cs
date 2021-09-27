@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaLogica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,8 +14,7 @@ namespace AppAdmin.menuScreens
 
 {
     public partial class FormularioRegistro : Form
-    {
-        
+    {    
         public FormularioRegistro()
         {
             InitializeComponent();
@@ -24,35 +24,82 @@ namespace AppAdmin.menuScreens
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
+            Dispose();
         }
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
-            if (txtClave.Text == txtClaveVerificacion.Text)
+             -can remove the is persona exists shit and we need to encrypt the passwords.
+             -make it prettier.
+             -check that correct groups and mats are being loaded, no deleted ones.
+             -If persona does exist ask if they want to reactivate acc
+             -put all this hsit in a try catch
+            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
             {
-                // codigo para mandar el formulariooo.....
-                //verificar si persona esta en el sistema
-               MessageBox.Show(" Ingresado ");
+                if (Controlador.existePersona(txtCedula.Text))// not really needed, we just throw it at the db, no need for this
+                {
+                    Console.WriteLine("this person is getting registered");
+                    Controlador.AltaPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text);
+                    if (this.comboBoxUser.SelectedIndex == 0)
+                    {
+                        Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
+                        this.checkedListBox1.DataSource = Controlador.gruposToListForRegister();
+
+                    }
+                    else if (this.comboBoxUser.SelectedIndex == 1)
+                    {
+                        Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
+                        this.checkedListBox1.DataSource = Controlador.grupoMateriaToListForRegister();
+                    }
+                    else
+                    {
+                        Controlador.AltaAdmin(txtCedula.Text);
+                    }
+                    //MessageBox.Show(" Ingresado! espere que lo confirme un administrador");
+
+                }
+                else MessageBox.Show("Una persona con esa cedula ya existe");
+
             }
             else MessageBox.Show("Las contraseñas no coinciden");
-            //metodos de capalogica
-            //verificar que no exista ya la persona
-            //verificaar campos, o de una intentar guardarlos en la base para ver que pasa, ver el sql script por si se decide verificar en la app
-            // si esta todo bien, mandar datos a admin para confirmacion
-            // capaz que se tiene que agregar un atributo mas para Persona en la base de datos que sea isConfirmed. nose Hay que ver 
+
+            MessageBox.Show($"Ingresado! Bienvenido {txtNombre.Text} {txtApellido.Text}");
+            resetFields();
         }
 
-       
+        private void load() => this.comboBoxUser.SelectedIndex = 0;
+        
+        private List<int> getIndexesChecklist()
+        {
+            List<int> checkedIndexes = new List<int>();
+            int index;
+            if (comboBoxUser.SelectedIndex == 0)
+            {
+                foreach (Object item in checkedListBox1.CheckedItems)
+                {
+                    index = checkedListBox1.Items.IndexOf(item) + 1;
+                    checkedIndexes.Add(index);
+                    Console.WriteLine($" item: {item}   index of item in database:{ index}");
+                }
+            }
+            else if (comboBoxUser.SelectedIndex == 1)
+            {
+                foreach (Object item in checkedListBox1.CheckedItems)
+                {
+                    index = checkedListBox1.Items.IndexOf(item);
+                    checkedIndexes.Add(index);
+                    Console.WriteLine($" item: {item}   index of item in database:{ index + 1}");
+                }
+            }
 
-        private void load() {
-            this.comboBoxUser.SelectedIndex = 0;
+            return checkedIndexes;
         }
- 
+
         private void comboBoxUser_SelectedValueChanged(object sender, EventArgs e)
         {
 
-           // this.lblGrupo.Location= Point.;
+            // this.lblGrupo.Location= Point.;
             this.label14.Visible = true;
             this.lblAsterix.Visible = true;
             this.pbFoto.Enabled = true;
@@ -62,17 +109,20 @@ namespace AppAdmin.menuScreens
             if (this.comboBoxUser.SelectedIndex == 0)
             {
                 this.lblAsterix.Visible = false;
-                this.txtApodo.Enabled = false;
                 this.lblGrupo.Text = "Grupo/s";
-
-               
-                //invocar algun metodo que le haga un update a la checklist con las entradas de grupoMateria que no estan en la tabla docente_dicta_G_M
-                //se podria combinar grupo y materia de la tabla a un string y pasarlo como una opcion para elegir
-            }else if (this.comboBoxUser.SelectedIndex == 1)
+                this.checkedListBox1.DataSource = null;
+                this.checkedListBox1.DataSource = Controlador.gruposToListForRegister();
+                this.checkedListBox1.ClearSelected();
+            }
+            else if (this.comboBoxUser.SelectedIndex == 1)
             {
                 this.lblAsterix.Visible = false;
                 this.txtApodo.Enabled = false;
                 this.lblGrupo.Text = "Grupo-materia";
+                this.checkedListBox1.DataSource = null;
+                this.checkedListBox1.DataSource = Controlador.grupoMateriaToListForRegister();
+                this.checkedListBox1.ClearSelected();
+
             }
             else if (this.comboBoxUser.SelectedIndex == 2)
             {
@@ -82,9 +132,9 @@ namespace AppAdmin.menuScreens
                 this.pbFoto.Enabled = false;
                 this.checkedListBox1.Enabled = false;
                 this.txtApodo.Enabled = false;
+                this.checkedListBox1.DataSource = null;
 
             }
-            
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)
@@ -100,9 +150,17 @@ namespace AppAdmin.menuScreens
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) => Dispose();
+
+        private void resetFields()
         {
-            this.Close();
+            this.txtApellido.Clear();
+            this.txtNombre.Clear();
+            this.txtCedula.Clear();
+            this.txtApodo.Clear();
+            this.txtClave.Clear();
+            this.txtClaveVerificacion.Clear();
+            this.checkedListBox1.DataSource = null;
         }
     }
 }

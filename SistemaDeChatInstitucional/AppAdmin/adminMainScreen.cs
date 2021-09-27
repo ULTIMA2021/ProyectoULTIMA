@@ -143,5 +143,11 @@ namespace AppAdmin
             openScreen(new menuScreens.listarOrientaciones());
             
         }
+
+        private void btnListarAlumnos_Click_1(object sender, EventArgs e)
+        {
+
+            openScreen(new menuScreens.FormularioRegistro());
+        }
     }
 }

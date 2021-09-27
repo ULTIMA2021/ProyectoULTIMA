@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioRegistro));
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblAsterix = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -62,23 +62,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(176, 501);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 12);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Los campos con * deben ser llenados";
-            // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(65, 87);
+            this.label1.Location = new System.Drawing.Point(135, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 0;
@@ -86,9 +74,9 @@
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(104, 114);
+            this.label3.Location = new System.Drawing.Point(174, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 13);
             this.label3.TabIndex = 2;
@@ -96,9 +84,9 @@
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(103, 137);
+            this.label4.Location = new System.Drawing.Point(173, 80);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 3;
@@ -106,9 +94,9 @@
             // 
             // label5
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(103, 163);
+            this.label5.Location = new System.Drawing.Point(173, 106);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 4;
@@ -116,9 +104,9 @@
             // 
             // label7
             // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(109, 191);
+            this.label7.Location = new System.Drawing.Point(179, 134);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 6;
@@ -126,9 +114,9 @@
             // 
             // label8
             // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(103, 405);
+            this.label8.Location = new System.Drawing.Point(183, 158);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 7;
@@ -136,7 +124,7 @@
             // 
             // comboBoxUser
             // 
-            this.comboBoxUser.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.comboBoxUser.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.comboBoxUser.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.comboBoxUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUser.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -145,7 +133,7 @@
             "Alumno",
             "Docente",
             "Administrador"});
-            this.comboBoxUser.Location = new System.Drawing.Point(156, 84);
+            this.comboBoxUser.Location = new System.Drawing.Point(226, 27);
             this.comboBoxUser.Name = "comboBoxUser";
             this.comboBoxUser.Size = new System.Drawing.Size(93, 21);
             this.comboBoxUser.TabIndex = 10;
@@ -153,10 +141,10 @@
             // 
             // txtCedula
             // 
-            this.txtCedula.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtCedula.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtCedula.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtCedula.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtCedula.Location = new System.Drawing.Point(156, 111);
+            this.txtCedula.Location = new System.Drawing.Point(226, 54);
             this.txtCedula.MaxLength = 8;
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(59, 20);
@@ -164,10 +152,10 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtNombre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNombre.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtNombre.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtNombre.Location = new System.Drawing.Point(156, 137);
+            this.txtNombre.Location = new System.Drawing.Point(226, 80);
             this.txtNombre.MaxLength = 20;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(93, 20);
@@ -175,10 +163,10 @@
             // 
             // txtApellido
             // 
-            this.txtApellido.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtApellido.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtApellido.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtApellido.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtApellido.Location = new System.Drawing.Point(156, 163);
+            this.txtApellido.Location = new System.Drawing.Point(226, 106);
             this.txtApellido.MaxLength = 20;
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(93, 20);
@@ -186,10 +174,10 @@
             // 
             // txtApodo
             // 
-            this.txtApodo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtApodo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtApodo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtApodo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtApodo.Location = new System.Drawing.Point(156, 188);
+            this.txtApodo.Location = new System.Drawing.Point(226, 131);
             this.txtApodo.MaxLength = 20;
             this.txtApodo.Name = "txtApodo";
             this.txtApodo.Size = new System.Drawing.Size(93, 20);
@@ -197,10 +185,10 @@
             // 
             // txtClave
             // 
-            this.txtClave.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtClave.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtClave.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtClave.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtClave.Location = new System.Drawing.Point(146, 402);
+            this.txtClave.Location = new System.Drawing.Point(226, 155);
             this.txtClave.MaxLength = 15;
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(103, 20);
@@ -208,9 +196,9 @@
             // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(46, 431);
+            this.label9.Location = new System.Drawing.Point(126, 184);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(94, 13);
             this.label9.TabIndex = 17;
@@ -218,10 +206,10 @@
             // 
             // txtClaveVerificacion
             // 
-            this.txtClaveVerificacion.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtClaveVerificacion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtClaveVerificacion.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtClaveVerificacion.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtClaveVerificacion.Location = new System.Drawing.Point(146, 428);
+            this.txtClaveVerificacion.Location = new System.Drawing.Point(226, 181);
             this.txtClaveVerificacion.MaxLength = 15;
             this.txtClaveVerificacion.Name = "txtClaveVerificacion";
             this.txtClaveVerificacion.Size = new System.Drawing.Size(103, 20);
@@ -229,13 +217,13 @@
             // 
             // btnGuardarDatos
             // 
-            this.btnGuardarDatos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnGuardarDatos.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnGuardarDatos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
             this.btnGuardarDatos.FlatAppearance.BorderSize = 0;
             this.btnGuardarDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGuardarDatos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarDatos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardarDatos.Location = new System.Drawing.Point(210, 544);
+            this.btnGuardarDatos.Location = new System.Drawing.Point(385, 309);
             this.btnGuardarDatos.Name = "btnGuardarDatos";
             this.btnGuardarDatos.Size = new System.Drawing.Size(130, 25);
             this.btnGuardarDatos.TabIndex = 22;
@@ -245,9 +233,9 @@
             // 
             // lblGrupo
             // 
-            this.lblGrupo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblGrupo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblGrupo.AutoSize = true;
-            this.lblGrupo.Location = new System.Drawing.Point(54, 247);
+            this.lblGrupo.Location = new System.Drawing.Point(377, 41);
             this.lblGrupo.Name = "lblGrupo";
             this.lblGrupo.Size = new System.Drawing.Size(49, 13);
             this.lblGrupo.TabIndex = 24;
@@ -255,9 +243,9 @@
             // 
             // label10
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(345, 87);
+            this.label10.Location = new System.Drawing.Point(710, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 13);
             this.label10.TabIndex = 26;
@@ -265,32 +253,44 @@
             // 
             // checkedListBox1
             // 
-            this.checkedListBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.checkedListBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.checkedListBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(125, 259);
+            this.checkedListBox1.Location = new System.Drawing.Point(448, 53);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(146, 94);
             this.checkedListBox1.TabIndex = 23;
             // 
             // pbFoto
             // 
-            this.pbFoto.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pbFoto.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pbFoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbFoto.Location = new System.Drawing.Point(355, 114);
+            this.pbFoto.Location = new System.Drawing.Point(720, 54);
             this.pbFoto.Name = "pbFoto";
             this.pbFoto.Size = new System.Drawing.Size(120, 120);
             this.pbFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbFoto.TabIndex = 27;
             this.pbFoto.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(351, 284);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(191, 12);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Los campos con * deben ser llenados";
+            // 
             // lblAsterix
             // 
-            this.lblAsterix.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblAsterix.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblAsterix.AutoSize = true;
             this.lblAsterix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAsterix.ForeColor = System.Drawing.Color.Red;
-            this.lblAsterix.Location = new System.Drawing.Point(255, 188);
+            this.lblAsterix.Location = new System.Drawing.Point(325, 131);
             this.lblAsterix.Name = "lblAsterix";
             this.lblAsterix.Size = new System.Drawing.Size(16, 20);
             this.lblAsterix.TabIndex = 30;
@@ -298,11 +298,11 @@
             // 
             // label11
             // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Red;
-            this.label11.Location = new System.Drawing.Point(255, 163);
+            this.label11.Location = new System.Drawing.Point(325, 106);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(16, 20);
             this.label11.TabIndex = 31;
@@ -310,11 +310,11 @@
             // 
             // label12
             // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(255, 137);
+            this.label12.Location = new System.Drawing.Point(325, 80);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(16, 20);
             this.label12.TabIndex = 32;
@@ -322,11 +322,11 @@
             // 
             // label13
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(221, 111);
+            this.label13.Location = new System.Drawing.Point(291, 54);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(16, 20);
             this.label13.TabIndex = 33;
@@ -334,11 +334,11 @@
             // 
             // label14
             // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(277, 259);
+            this.label14.Location = new System.Drawing.Point(600, 53);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(16, 20);
             this.label14.TabIndex = 34;
@@ -346,11 +346,11 @@
             // 
             // label15
             // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Red;
-            this.label15.Location = new System.Drawing.Point(255, 402);
+            this.label15.Location = new System.Drawing.Point(335, 154);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(16, 20);
             this.label15.TabIndex = 35;
@@ -358,11 +358,11 @@
             // 
             // label16
             // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Red;
-            this.label16.Location = new System.Drawing.Point(255, 428);
+            this.label16.Location = new System.Drawing.Point(335, 181);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(16, 20);
             this.label16.TabIndex = 36;
@@ -370,11 +370,11 @@
             // 
             // label17
             // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.Red;
-            this.label17.Location = new System.Drawing.Point(255, 85);
+            this.label17.Location = new System.Drawing.Point(325, 28);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(16, 20);
             this.label17.TabIndex = 37;
@@ -382,12 +382,13 @@
             // 
             // btnExaminar
             // 
+            this.btnExaminar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnExaminar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
             this.btnExaminar.FlatAppearance.BorderSize = 0;
             this.btnExaminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExaminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExaminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnExaminar.Location = new System.Drawing.Point(397, 240);
+            this.btnExaminar.Location = new System.Drawing.Point(762, 180);
             this.btnExaminar.Name = "btnExaminar";
             this.btnExaminar.Size = new System.Drawing.Size(78, 20);
             this.btnExaminar.TabIndex = 38;
@@ -401,7 +402,7 @@
             this.btnExit.FlatAppearance.BorderSize = 0;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
-            this.btnExit.Location = new System.Drawing.Point(491, 2);
+            this.btnExit.Location = new System.Drawing.Point(879, 4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(29, 26);
             this.btnExit.TabIndex = 39;
@@ -413,7 +414,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(522, 621);
+            this.ClientSize = new System.Drawing.Size(920, 384);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnExaminar);
             this.Controls.Add(this.label17);
@@ -456,7 +457,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
+
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -476,6 +477,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.PictureBox pbFoto;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblAsterix;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
