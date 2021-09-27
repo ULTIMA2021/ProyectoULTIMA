@@ -35,6 +35,8 @@ namespace AppAdmin.menuScreens
              -check that correct groups and mats are being loaded, no deleted ones.
              -If persona does exist ask if they want to reactivate acc
              -put all this hsit in a try catch
+             -ENCRYPPT THE PASSWORDS BOY, look at new register form and copy+paste what is needed
+
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
             {
                 if (Controlador.existePersona(txtCedula.Text))// not really needed, we just throw it at the db, no need for this
