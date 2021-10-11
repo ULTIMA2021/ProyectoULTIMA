@@ -10,6 +10,7 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
+        public static void deleteOrientacion(string idOrientacion) => new OrientacionModelo(Session.type).borrarOrientacion(idOrientacion);
         public static void deleteMateria(string idMateria) => new MateriaModelo(Session.type).borrarMateria(idMateria);
         public static void deleteGrupo(string idGrupo) => new GrupoModelo(Session.type).borrarGrupo(idGrupo);
         public static void sacarGrupoMateria(int idMateria, int idGrupo)
@@ -18,6 +19,13 @@ namespace CapaLogica
             g.idGrupo = idGrupo;
             g.idMateria = idMateria;
             g.sacarFilaGrupoTieneMateria();
+        }
+        public static void sacarGrupoOrientacion(int idOrienatcion, int idGrupo)
+        {
+            GrupoModelo g = new GrupoModelo(Session.type);
+            g.idGrupo = idGrupo;
+            g.idOrientacion = idOrienatcion;
+            g.sacarFilaOrientacionTieneGrupo();
         }
 
         public static void nuevoGrupo(string nombreGrupo) {
@@ -45,7 +53,8 @@ namespace CapaLogica
                 g.cargarMateriasAGrupo(materia.ToString(),idGrupo);
             
         }
-        public static void asignarMateriasAGrupo(string idMateria, string idGrupo) => new GrupoModelo(Session.type).cargarMateriasAGrupo( idMateria, idGrupo); 
+        public static void asignarMateriasAGrupo(string idMateria, string idGrupo) => new GrupoModelo(Session.type).cargarMateriasAGrupo( idMateria, idGrupo);
+        public static void asignarGruposAOrientacion(string idOrientacion, string idGrupo) => new GrupoModelo(Session.type).cargarGruposAOrientacion(idOrientacion,idGrupo);
 
         public static string countSalaPorMateria(string idMateria)
         {
@@ -64,12 +73,8 @@ namespace CapaLogica
         public static void asignarOrientacionesAGrupos(List<int> grupoSeleccionados, string idOrientacion)
         {
             GrupoModelo g = new GrupoModelo(Session.type);
-            g.idOrientacion = int.Parse(idOrientacion);
             foreach (int grupo in grupoSeleccionados)
-            {
-                g.idGrupo = grupo;
-                g.cargarGruposAOrientacion();
-            }
+                g.cargarGruposAOrientacion(idOrientacion,grupo.ToString());
         }
 
         public static string grupoPorNombreGrupo(string nombreGrupo) {
@@ -230,21 +235,37 @@ namespace CapaLogica
             }
             return GruposYMaterias;
         }
+        public static List<List<string>> gruposDeOrientacion(string idOrientacion)
+        {
+            List<List<string>> gruposDeOrientacion = new List<List<string>>();
+            GrupoModelo go = new GrupoModelo(Session.type);
+            foreach (GrupoModelo g in go.getGruposDeOrientacion(idOrientacion, Session.type))
+            {
+                List<string> grupoOrientacion = new List<string>();
+                grupoOrientacion.Add(g.idGrupo.ToString());
+                grupoOrientacion.Add(g.idMateria.ToString());
+                grupoOrientacion.Add(g.nombreGrupo);
+                grupoOrientacion.Add(g.nombreMateria);
+                gruposDeOrientacion.Add(grupoOrientacion);
+            }
+            return gruposDeOrientacion;
+
+        }
 
         public static DataTable obtenerOrientaciones()
         {
             OrientacionModelo o = new OrientacionModelo(Session.type);
             List<OrientacionModelo> orientaciones = o.getOrientacion(Session.type);
             DataTable tabla = new DataTable();
+            tabla.Columns.Add("id");
             tabla.Columns.Add("Orientaciones");
             
             foreach (OrientacionModelo orientacion in orientaciones)
             {
-                tabla.Rows.Add(orientacion.nombreOrientacion);
+                tabla.Rows.Add(orientacion.idOrientacion,orientacion.nombreOrientacion);
             }
             return tabla;
         }
-
         public static DataTable obtenerGrupos()
         {
             GrupoModelo g = new GrupoModelo(Session.type);

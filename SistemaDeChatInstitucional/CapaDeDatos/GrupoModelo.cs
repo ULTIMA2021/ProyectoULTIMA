@@ -53,6 +53,15 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);
         }
+        public void sacarFilaOrientacionTieneGrupo()
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "DELETE FROM Orientacion_tiene_Grupo WHERE idOrientacion = @idOrientacion AND idGrupo = @idGrupo";
+            this.comando.Parameters.AddWithValue("@idGrupo", this.idGrupo);
+            this.comando.Parameters.AddWithValue("@idOrientacion", this.idOrientacion);
+            this.comando.Prepare();
+            EjecutarSpecialQuery(this.comando);
+        }
         public void borrarGrupo(string idGrupo)
         {
             this.comando.Parameters.Clear();
@@ -61,6 +70,7 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);
         }
+
 
         public string countAlumnoTieneGrupo(string ci)
         {
@@ -187,13 +197,13 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);
         }
-        public void cargarGruposAOrientacion()
+        public void cargarGruposAOrientacion(string idOrientacion, string idGrupo)
         {
             this.comando.Parameters.Clear();
             command = "INSERT INTO Orientacion_tiene_Grupo (idOrientacion, idGrupo) VALUES (@idOrientacion, @idGrupo);";
             this.comando.CommandText = command;
-            this.comando.Parameters.AddWithValue("@idOrientacion", this.idOrientacion);
-            this.comando.Parameters.AddWithValue("@idGrupo", this.idGrupo);
+            this.comando.Parameters.AddWithValue("@idOrientacion", idOrientacion);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
@@ -228,6 +238,22 @@ namespace CapaDeDatos
             lector.Close();
             return listaGM;
         }
+        private List<GrupoModelo> cargarGrupoOrientacionALista(MySqlCommand commando, byte sessionType)
+        {
+            lector = commando.ExecuteReader();
+            List<GrupoModelo> listaGO = new List<GrupoModelo>();
+            while (lector.Read())
+            {
+                GrupoModelo go = new GrupoModelo(sessionType);
+                go.idGrupo = Int32.Parse(lector[0].ToString());
+                go.idOrientacion = Int32.Parse(lector[1].ToString());
+                go.nombreGrupo = lector[2].ToString();
+                go.nombreOrientacion = lector[3].ToString();
+                listaGO.Add(go);
+            }
+            lector.Close();
+            return listaGO;
+        }
 
         public List<GrupoModelo> getGrupo(byte sessionType) {
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE isDeleted = false ORDER BY idGrupo ASC;";
@@ -259,10 +285,22 @@ namespace CapaDeDatos
 
         public List<GrupoModelo> getGruposSinOrientacion(byte sessionType)
         {
+            this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT DISTINCT g.idGrupo,g.nombreGrupo " +
                 "FROM Grupo g, Orientacion_tiene_Grupo og " +
                 "WHERE g.idGrupo " +
                 "NOT IN (SELECT idGrupo FROM Orientacion_tiene_Grupo) ORDER BY g.idGrupo ASC;";
+            return cargarGrupoALista(this.comando, sessionType);
+        }
+        public List<GrupoModelo> getGruposDeOrientacion(string idOrientacion,byte sessionType)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT g.idGrupo,o.idOrientacion, g.nombreGrupo, o.nombreOrientacion " +
+                "FROM Grupo g, Orientacion o, Orientacion_tiene_Grupo og " +
+                "WHERE og.idGrupo=g.idGrupo " +
+                "AND og.idOrientacion = o.idOrientacion " +
+                "AND og.idOrientacion = @idOrientacion ORDER BY g.idGrupo ASC;";
+            this.comando.Parameters.AddWithValue("@idOrientacion", idOrientacion);
             return cargarGrupoALista(this.comando, sessionType);
         }
 
@@ -313,7 +351,7 @@ namespace CapaDeDatos
                 "AND m.isDeleted = false " +
                 "AND gm.isDeleted = false;";
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
-            return (cargarGrupoMateriaALista(this.comando, sessionType));
+            return cargarGrupoMateriaALista(this.comando, sessionType);
         }
         public List<GrupoModelo> grupoMateria(int idGrupo, byte sessionType)
         {

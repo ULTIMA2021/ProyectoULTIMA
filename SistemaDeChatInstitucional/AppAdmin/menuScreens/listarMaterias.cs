@@ -111,7 +111,6 @@ namespace AppAdmin.menuScreens
 
             }
             else
-            {
                 try
                 {
                     Controlador.nuevaMateria(nombreMateria);
@@ -128,7 +127,6 @@ namespace AppAdmin.menuScreens
                 {
                     MessageBox.Show(Controlador.errorHandler(ex));
                 }
-            }
         }
 
         private void dgvListarMaterias_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarMaterias.ClearSelection();
