@@ -52,6 +52,22 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+        public void updateEstado(string idGrupo, bool estado)
+        {
+            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idGrupo=@idGrupo;";
+            this.comando.Parameters.AddWithValue("@isDone", estado);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
+        public void updateEstado(string idMateria, bool estado, byte dummy)
+        {
+            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idMateria=@idMateria;";
+            this.comando.Parameters.AddWithValue("@isDone", estado);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
         public void updateEstado(string idMateria, string idGrupo, bool estado)
         {
             this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";

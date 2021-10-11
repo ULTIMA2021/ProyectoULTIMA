@@ -32,6 +32,23 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(comando, errorType);
         }
+        public void actualizarEstadoDeMateria(bool isDeleted, string idMateria)
+        {
+            this.comando.CommandText = "UPDATE Materia SET isDeleted = @isDeleted WHERE idMateria = @idMateria;";
+            this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(comando, errorType);
+        }
+
+        public void borrarMateria(string idMateria)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "DELETE FROM Materia WHERE idMateria = @idMateria;";
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarSpecialQuery(this.comando);
+        }
 
         private List<MateriaModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
         {

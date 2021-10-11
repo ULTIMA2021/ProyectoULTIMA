@@ -10,14 +10,8 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
-        public static void deleteMateria(int idMateria, string idGrupo)
-        {
-            GrupoModelo g = new GrupoModelo(Session.type);
-            g.idGrupo = int.Parse(idGrupo);
-            g.idMateria = idMateria;
-           // g.deleteMateriasDeGrupo();
-        }
-
+        public static void deleteMateria(string idMateria) => new MateriaModelo(Session.type).borrarMateria(idMateria);
+        public static void deleteGrupo(string idGrupo) => new GrupoModelo(Session.type).borrarGrupo(idGrupo);
         public static void sacarGrupoMateria(int idMateria, int idGrupo)
         {
             GrupoModelo g = new GrupoModelo(Session.type);
@@ -31,14 +25,12 @@ namespace CapaLogica
             g.nombreGrupo = nombreGrupo;
             g.crearGrupoNuevo();
         }
-
         public static void nuevaMateria(string nombreMateria)
         {
             MateriaModelo m = new MateriaModelo(Session.type);
             m.nombreMateria = nombreMateria;
             m.crearMateriaNueva();
         }
-
         public static void nuevaOrientacion(string nombreOrientacion)
         {
             OrientacionModelo o = new OrientacionModelo(Session.type);
@@ -46,6 +38,7 @@ namespace CapaLogica
             o.crearMateriaNueva();
         }
         //maybe delete
+
         public static void asignarMateriasAGrupo(List<int> materiasSeleccionadas, string idGrupo) {
             GrupoModelo g = new GrupoModelo(Session.type);
             foreach (int materia in materiasSeleccionadas)
@@ -238,7 +231,6 @@ namespace CapaLogica
             return GruposYMaterias;
         }
 
-
         public static DataTable obtenerOrientaciones()
         {
             OrientacionModelo o = new OrientacionModelo(Session.type);
@@ -278,12 +270,22 @@ namespace CapaLogica
             return s;
         }
 
+        public static void actualizarEstadoGrupo(bool isDeleted, string idGrupo) => new GrupoModelo(Session.type).actualizarEstadoDeGrupo(isDeleted, idGrupo);
+        public static void actualizarEstadoMateria(bool isDeleted, string idMateria) => new MateriaModelo(Session.type).actualizarEstadoDeMateria(isDeleted, idMateria);
+
         public static void actualizarNombreGrupo(string newName, string idGrupo) => new GrupoModelo(Session.type).actualizarNombreDeGrupo(newName,idGrupo);
         public static void actualizarNombreMateria(string newName, string idMateria) => new MateriaModelo(Session.type).actualizarNombreDeMateria(newName,idMateria);
         public static void actualizarNombreOrientacion(string newName, string idOrientacion) => new OrientacionModelo(Session.type).actualizarNombreDeOrientacion(newName,idOrientacion);
+
         public static void actualizarGrupoTieneMateria(string idMateria, string idGrupo, bool isDeleted) => new GrupoModelo(Session.type).actualizarGrupoTieneMateria(idMateria,idGrupo,isDeleted);
+        public static void actualizarGrupoTieneMateria(string idGrupo, bool isDeleted) => new GrupoModelo(Session.type).actualizarGrupoTieneMateria(idGrupo,isDeleted);
+        public static void actualizarGrupoTieneMateria(int idMateria, bool isDeleted) => new GrupoModelo(Session.type).actualizarGrupoTieneMateria(idMateria, isDeleted);
+
         public static void actualizarDocenteDictaGM(string idMateria, string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, idGrupo, status);
-    
+        public static void actualizarDocenteDictaGM(string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idGrupo, status);
+        public static void actualizarDocenteDictaGM(int idMateria, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, status);
+
+
         public static bool validarGrupo(string idGrupo, string nombreGrupo)
         { 
             GrupoModelo g = new GrupoModelo(Session.type);

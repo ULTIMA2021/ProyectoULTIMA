@@ -190,6 +190,7 @@ namespace AppAdmin.menuScreens
         {
             if (cbModificar.Checked)
             {
+                btnBorrar.Enabled = true;
                 dgvListarGrupos.ClearSelection();
                 dgvListarGrupos.Enabled = true;
                 groupBox1.Text = "Modificar grupo";
@@ -197,6 +198,7 @@ namespace AppAdmin.menuScreens
             }
             else
             {
+                btnBorrar.Enabled = false;
                 textBox1.Clear();
                 dgvListarGrupos.Enabled = false;
                 clbMaterias.ClearSelected();
@@ -218,6 +220,33 @@ namespace AppAdmin.menuScreens
         {
             for (int i = 0; i < clbMaterias.Items.Count; i++)
                 clbMaterias.SetItemCheckState(i, CheckState.Unchecked);
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Controlador.deleteGrupo(idGrupo);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "set grupo isDeleted=true-1644")
+                {
+                    Console.WriteLine("...OK setting group isDeleted=true");
+                    Controlador.actualizarEstadoGrupo(true, idGrupo);
+                    Controlador.actualizarGrupoTieneMateria(idGrupo, true);
+                    Controlador.updateEstadoSala(idGrupo, true);
+                    Controlador.actualizarDocenteDictaGM(idGrupo, true);
+                }
+                else
+                    MessageBox.Show(Controlador.errorHandler(ex));
+
+            }
+            textBox1.Clear();
+            uncheckAllBoxes();
+            dgvListarGrupos.DataSource = null;
+            dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
+            clbMaterias.ClearSelected();
         }
     }
 }

@@ -62,5 +62,10 @@ namespace AppAdmin.menuScreens
         }
 
         private void dgvListarOrientaciones_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarOrientaciones.ClearSelection();
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

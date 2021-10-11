@@ -41,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.cbModificar = new System.Windows.Forms.CheckBox();
+            this.btnBorrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarGrupos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -145,7 +146,7 @@
             // btnIngresar
             // 
             this.btnIngresar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresar.Location = new System.Drawing.Point(651, 340);
+            this.btnIngresar.Location = new System.Drawing.Point(548, 340);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(112, 32);
             this.btnIngresar.TabIndex = 4;
@@ -166,12 +167,25 @@
             this.cbModificar.UseVisualStyleBackColor = true;
             this.cbModificar.CheckedChanged += new System.EventHandler(this.cbModificar_CheckedChanged);
             // 
+            // btnBorrar
+            // 
+            this.btnBorrar.Enabled = false;
+            this.btnBorrar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBorrar.Location = new System.Drawing.Point(727, 340);
+            this.btnBorrar.Name = "btnBorrar";
+            this.btnBorrar.Size = new System.Drawing.Size(112, 32);
+            this.btnBorrar.TabIndex = 6;
+            this.btnBorrar.Text = "Borrar grupo";
+            this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
             // listarGrupos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(920, 384);
+            this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.cbModificar);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.groupBox1);
@@ -201,5 +215,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.CheckBox cbModificar;
+        private System.Windows.Forms.Button btnBorrar;
     }
 }

@@ -30,12 +30,12 @@ namespace AppAdmin.menuScreens
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
-             -can remove the is persona exists shit and we need to encrypt the passwords.
-             -make it prettier.
-             -check that correct groups and mats are being loaded, no deleted ones.
-             -If persona does exist ask if they want to reactivate acc
-             -put all this hsit in a try catch
-             -ENCRYPPT THE PASSWORDS BOY, look at new register form and copy+paste what is needed
+             //-can remove the is persona exists shit and we need to encrypt the passwords.
+             //-make it prettier.
+             //-check that correct groups and mats are being loaded, no deleted ones.
+             //-If persona does exist ask if they want to reactivate acc
+             //-put all this hsit in a try catch
+             //-ENCRYPPT THE PASSWORDS BOY, look at new register form and copy+paste what is needed
 
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
             {

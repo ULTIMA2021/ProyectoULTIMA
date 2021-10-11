@@ -32,6 +32,8 @@ namespace CapaLogica
 
         public static void updateEstadoSala(int idSala, bool estado) => new SalaModelo(Session.type).updateEstado(idSala, estado);
         public static void updateEstadoSala(string idMateria, string idGrupo, bool estado) => new SalaModelo(Session.type).updateEstado(idMateria, idGrupo, estado);
+        public static void updateEstadoSala(string idMateria, bool estado, byte dummy) => new SalaModelo(Session.type).updateEstado(idMateria, estado,1);
+        public static void updateEstadoSala(string idGrupo, bool estado) => new SalaModelo(Session.type).updateEstado(idGrupo, estado);
 
         public static DataTable loadSalasDePersona(bool isDone) {
             List<SalaModelo> salasPorGM = new List<SalaModelo>();

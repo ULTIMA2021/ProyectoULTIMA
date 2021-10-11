@@ -37,12 +37,27 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);
             EjecutarQuery(comando,errorType);
         }
+        public void actualizarEstadoDeGrupo(bool isDeleted, string idGrupo)
+        {
+            this.comando.CommandText = "UPDATE Grupo SET isDeleted = @isDeleted WHERE idGrupo = @idGrupo;";
+            this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            EjecutarQuery(comando, errorType);
+        }
         public void sacarFilaGrupoTieneMateria()
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "DELETE FROM Grupo_tiene_Materia WHERE idMateria = @idMateria AND idGrupo = @idGrupo";
             this.comando.Parameters.AddWithValue("@idGrupo",this.idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria",this.idMateria);
+            this.comando.Prepare();
+            EjecutarSpecialQuery(this.comando);
+        }
+        public void borrarGrupo(string idGrupo)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "DELETE FROM Grupo WHERE idGrupo = @idGrupo;";
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);
         }
@@ -110,6 +125,27 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
         }
+        public void actualizarDocenteTieneGM(string idGrupo, bool status)
+        {
+            command = "UPDATE Docente_dicta_G_M SET isDeleted=@isDeleted WHERE idGrupo=@idGrupo;";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@isDeleted", status);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+            this.comando.Parameters.Clear();
+        }
+        public void actualizarDocenteTieneGM(int idMateria, bool status)
+        {
+            command = "UPDATE Docente_dicta_G_M SET isDeleted=@isDeleted WHERE idMateria=@idMateria;";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@isDeleted", status);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+            this.comando.Parameters.Clear();
+        }
+
         public void actualizarGrupoTieneMateria(string idMateria, string idGrupo,bool isDeleted)
         {
             this.comando.Parameters.Clear();
@@ -117,6 +153,26 @@ namespace CapaDeDatos
             this.comando.CommandText = command;
             this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarSpecialQuery(this.comando);
+        }
+        public void actualizarGrupoTieneMateria(string idGrupo, bool isDeleted)
+        {
+            this.comando.Parameters.Clear();
+            command = "UPDATE Grupo_tiene_Materia SET isDeleted = @isDeleted WHERE idGrupo=@idGrupo;";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarSpecialQuery(this.comando);
+        }
+        public void actualizarGrupoTieneMateria(int idMateria, bool isDeleted)
+        {
+            this.comando.Parameters.Clear();
+            command = "UPDATE Grupo_tiene_Materia SET isDeleted = @isDeleted WHERE idMateria=@idMateria;";
+            this.comando.CommandText = command;
+            this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);

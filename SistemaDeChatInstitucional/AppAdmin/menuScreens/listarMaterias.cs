@@ -22,10 +22,19 @@ namespace AppAdmin.menuScreens
 
         private void listarMaterias_Load(object sender, EventArgs e)
         {
-            loadAllGrupos();
-            dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
-            dgvListarMaterias.Columns[0].Visible = false;
+            try
+            {
+                loadAllGrupos();
+                dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
+                dgvListarMaterias.Columns[0].Visible = false;
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+  
             clbGrupos.ClearSelected();
         }
 
@@ -111,9 +120,7 @@ namespace AppAdmin.menuScreens
                         Controlador.asignarMateriasAGrupo(gruposSeleccionados, int.Parse(idMateria));
 
                     textBox1.Clear();
-                    foreach (int i in clbGrupos.CheckedIndices)
-                        clbGrupos.SetItemCheckState(i, CheckState.Unchecked);
-
+                    uncheckAllBoxes();
                     dgvListarMaterias.DataSource = null;
                     dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
                 }
@@ -150,6 +157,7 @@ namespace AppAdmin.menuScreens
         {
             if (cbModificar.Checked)
             {
+                btnBorrar.Enabled = true;
                 dgvListarMaterias.ClearSelection();
                 dgvListarMaterias.Enabled = true;
                 gbMaterias.Text = "Modificar materia";
@@ -157,6 +165,7 @@ namespace AppAdmin.menuScreens
             }
             else
             {
+                btnBorrar.Enabled = false;
                 textBox1.Clear();
                 dgvListarMaterias.Enabled = false;
                 clbGrupos.ClearSelected();
@@ -177,6 +186,31 @@ namespace AppAdmin.menuScreens
                 textBox1.Text = dgvListarMaterias.CurrentRow.Cells["Materia"].Value.ToString();
                 checkBoxes();
             }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Controlador.deleteMateria(idMateria);
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "set materia isDeleted=true-1644")
+                {
+                    Console.WriteLine("...OK setting materia isDeleted=true");
+                    Controlador.actualizarEstadoMateria(true, idMateria);
+                    Controlador.actualizarGrupoTieneMateria(int.Parse(idMateria), true);
+                    Controlador.updateEstadoSala(idMateria, true,1);
+                    Controlador.actualizarDocenteDictaGM(int.Parse(idMateria), true);
+                }
+                else
+                    MessageBox.Show(Controlador.errorHandler(ex));
+            }
+            textBox1.Clear();
+            uncheckAllBoxes();
+            dgvListarMaterias.DataSource = null;
+            dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
         }
     }
 }
