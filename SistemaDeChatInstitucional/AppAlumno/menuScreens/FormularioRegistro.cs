@@ -28,7 +28,21 @@ namespace Login
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
+
             string clave = @txtClave.Text;
+            byte[] foto = { };
+            try
+            {
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                pbFoto.Image.Save(ms, pbFoto.Image.RawFormat);
+                foto = ms.ToArray();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
             if (txtClave.Text == txtClaveVerificacion.Text)
                 try
                 {
@@ -42,6 +56,7 @@ namespace Login
                                                   txtApellido.Text,
                                                   clave,
                                                   txtApodo.Text,
+                                                  foto,
                                                   getIndexesChecklist());
 
                         MessageBox.Show($"Ingresado! {txtNombre.Text} {txtApellido.Text}, espere que lo confirme un administrador");
@@ -105,6 +120,7 @@ namespace Login
             txtApodo.Clear();
             txtClave.Clear();
             txtClaveVerificacion.Clear();
+            pbFoto.Image = null;
             checkedListBox1.DataSource = null; 
         }
 

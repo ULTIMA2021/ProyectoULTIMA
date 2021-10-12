@@ -11,14 +11,14 @@ namespace CapaLogica
     public static partial class Controlador
     {
         //agregar foto y avatar.
-        public static void AltaPersona(string cedula, string nombre, string apellido, string clave /*, string foto, byte avatar*/)
+        public static void AltaPersona(string cedula, string nombre, string apellido, string clave, byte[] foto)
         {
             PersonaModelo Persona = new PersonaModelo(Session.type);
             Persona.Cedula = cedula;
             Persona.Nombre = nombre;
             Persona.Apellido = apellido;
             Persona.Clave = clave;
-            Persona.foto = null;
+            Persona.foto = foto;
             Persona.GuardarPersona();
         }
         public static void AltaAlumno(string cedula, string apodo, List<int> GruposDeAlumno)
@@ -33,7 +33,7 @@ namespace CapaLogica
                 g.nuevoIngresoAlumnoTieneGrupo(cedula, grupo);
             }
         }
-        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo,/*string foto*/List<int> GruposDeAlumno)
+        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo,byte [] foto, List<int> GruposDeAlumno)
         {
             string gruposString = "";
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -42,7 +42,7 @@ namespace CapaLogica
             p.Apellido = apellido;
             p.Nombre = nombre;
             p.Clave = clave;
-            p.foto = null;
+            p.foto = foto;
             if (GruposDeAlumno.Count > 0)
                 for (int x = 0; x < GruposDeAlumno.Count; x++)
                     if (x == GruposDeAlumno.Count - 1)

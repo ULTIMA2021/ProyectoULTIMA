@@ -66,12 +66,6 @@
     <Compile Include="menuScreens\bienvenido.designer.cs">
       <DependentUpon>bienvenido.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\FormularioRegistro.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="menuScreens\FormularioRegistro.Designer.cs">
-      <DependentUpon>FormularioRegistro.cs</DependentUpon>
-    </Compile>
     <Compile Include="menuScreens\listarOrientaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,9 +115,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\bienvenido.resx">
       <DependentUpon>bienvenido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\FormularioRegistro.resx">
-      <DependentUpon>FormularioRegistro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\listarOrientaciones.resx">
       <DependentUpon>listarOrientaciones.cs</DependentUpon>

@@ -111,7 +111,7 @@ namespace AppAdmin
         
         private void btnOrientaciones_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarOrientaciones());
             
-        private void btnListarAlumnos_Click_1(object sender, EventArgs e) => openScreen(new menuScreens.FormularioRegistro());
+        private void btnListarAlumnos_Click_1(object sender, EventArgs e) => openScreen(new menuScreens.UsuarioRegistro());
         
         private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
 

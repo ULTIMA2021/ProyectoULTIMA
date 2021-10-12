@@ -28,7 +28,7 @@ namespace AppAdmin.menuScreens
             clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
             dgvPersonas.DataSource = null;
-           // dgvPersonas.DataSource = Controlador.
+            // dgvPersonas.DataSource = Controlador.
         }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
 
@@ -37,7 +37,7 @@ namespace AppAdmin.menuScreens
             //-check that correct groups and mats are being loaded, no deleted ones.
             //-If persona does exist ask if they want to reactivate acc
 
-            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8 && comboBoxUser.SelectedIndex > 0)
+            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8 && clbOpciones.CheckedItems.Count>0)
             {
                 if (Controlador.existePersona(txtCedula.Text))// not really needed, we just throw it at the db, no need for this
                 {
@@ -45,12 +45,20 @@ namespace AppAdmin.menuScreens
                     {
                         Console.WriteLine("this person is getting registered");
                         string safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
-                        
+                        byte [] foto= { };
+                        try
+                        {
+                            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                            pbFoto.Image.Save(ms, pbFoto.Image.RawFormat);
+                            foto = ms.ToArray();
+                        }
+                        catch (Exception er)
+                        { }
                         Controlador.AltaPersona(
                             txtCedula.Text.Trim(' '),
                             txtNombre.Text.Trim(' '),
                             txtApellido.Text.Trim(' '),
-                            safePW);
+                            safePW, foto);
                         if (comboBoxUser.SelectedIndex == 1)
                         {
                             Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
@@ -62,7 +70,7 @@ namespace AppAdmin.menuScreens
                             Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
                             clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
                         }
-                        else if(comboBoxUser.SelectedIndex == 3)
+                        else if (comboBoxUser.SelectedIndex == 3)
                         {
                             Controlador.AltaAdmin(txtCedula.Text);
                         }
@@ -87,7 +95,7 @@ namespace AppAdmin.menuScreens
             txtClaveVerificacion.Clear();
             clbOpciones.DataSource = null;
             comboBoxUser.SelectedIndex = 0;
-            pbFoto.Image.Dispose();
+            pbFoto.Image = null;
         }
         private List<int> getIndexesChecklist()
         {
@@ -155,7 +163,7 @@ namespace AppAdmin.menuScreens
                     {
                         txt.Enabled = true;
                     }
-                    btnIngresar.Enabled = true;
+                   // btnIngresar.Enabled = true;
                     btnFoto.Enabled = true;
                     clbOpciones.Enabled = true;
 
@@ -170,7 +178,7 @@ namespace AppAdmin.menuScreens
                     {
                         txt.Enabled = true;
                     }
-                    btnIngresar.Enabled = true;
+                   // btnIngresar.Enabled = true;
                     btnFoto.Enabled = true;
                     clbOpciones.Enabled = true;
 
