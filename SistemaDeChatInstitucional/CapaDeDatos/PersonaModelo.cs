@@ -154,24 +154,26 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("user", user);
             return obtenerUsuario(this.comando, sessionType);
         }
+        
+        //public List<PersonaModelo> obtenerPersona(byte sessionType)
+        //{
+        //    this.comando.CommandText = "SELECT ci, nombre, apellido, foto, isDeleted FROM Persona;";
+        //    List<PersonaModelo> personas = new List<PersonaModelo>();
+        //    lector = this.comando.ExecuteReader();
+        //    while (lector.Read())
+        //    {
+        //        PersonaModelo p = new PersonaModelo(sessionType);
+        //        p.Cedula = lector[0].ToString();
+        //        p.Nombre = lector[1].ToString();
+        //        p.Apellido = lector[2].ToString();
+        //        p.foto = lector[3].ToString();
+        //        p.isDeleted = lector[4].ToString();
+        //        personas.Add(p);
+        //    }
 
-        public List<PersonaModelo> obtenerPersona(byte sessionType)
-        {
-            this.comando.CommandText = "SELECT ci, nombre, apellido FROM Persona;";
-            List<PersonaModelo> personas = new List<PersonaModelo>();
-            lector = this.comando.ExecuteReader();
-            while (lector.Read())
-            {
-                PersonaModelo p = new PersonaModelo(sessionType);
-                p.Cedula = lector[0].ToString();
-                p.Nombre = lector[1].ToString();
-                p.Apellido = lector[2].ToString();
-                personas.Add(p);
-            }
-
-            lector.Close();
-            return personas;
-        }
+        //    lector.Close();
+        //    return personas;
+        //}
 
         public PersonaModelo obtenerPersona(string cedula, byte sessionType)
         {

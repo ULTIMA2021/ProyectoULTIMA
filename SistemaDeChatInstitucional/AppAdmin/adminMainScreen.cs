@@ -24,22 +24,20 @@ namespace AppAdmin
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-
         public void esconderSubMenu()
         {
             if (subMenuAlumnos.Visible == true)
                 subMenuAlumnos.Visible = false;
 
-            if (subMenuDocentes.Visible == true)
-                subMenuDocentes.Visible = false;
+            //if (subMenuDocentes.Visible == true)
+            //    subMenuDocentes.Visible = false;
 
-            if (subMenuAdmin.Visible == true)
-                subMenuAdmin.Visible = false;
+            //if (subMenuAdmin.Visible == true)
+            //    subMenuAdmin.Visible = false;
 
             if (subMenuCursos.Visible == true)
                 subMenuCursos.Visible = false;
         }
-
 
         public void mostrarSubMenu(Panel subMenu)
         {
@@ -68,86 +66,53 @@ namespace AppAdmin
             ventana.BringToFront();
             ventana.Show();
             subMenuAlumnos.BringToFront();
-            subMenuDocentes.BringToFront();
-            subMenuAdmin.BringToFront();
+            //subMenuDocentes.BringToFront();
+            //subMenuAdmin.BringToFront();
             subMenuCursos.BringToFront();
             esconderSubMenu();
         }
 
-        private void btnAlumno_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuAlumnos);
-        }
+        //private void btnAlumno_Click(object sender, EventArgs e)
+        //{
+        //    mostrarSubMenu(subMenuAlumnos);
+        //}
 
-        private void btnDocente_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuDocentes);
-        }
+        //private void btnDocente_Click(object sender, EventArgs e)
+        //{
+        //   // mostrarSubMenu(subMenuDocentes);
+        //}
 
-        private void btnAdministradores_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuAdmin);
-        }
+        //private void btnAdministradores_Click(object sender, EventArgs e)
+        //{
+        //    //mostrarSubMenu(subMenuAdmin);
+        //}
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-       
-        private void btnListarAlumnos_Click(object sender, EventArgs e)
-        {
-            openScreen(new menuScreens.listarAlumnos());
-        }
-
-       
-        private void panelTitulo_MouseDown(object sender, MouseEventArgs e)
+        private void btnExit_Click(object sender, EventArgs e) => Application.Exit();
+        
+        private void btnListarAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarAlumnos());
+        
+        private void panelTitulo_MouseDown(object sender, MouseEventArgs e) 
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void btnListarDocentes_Click(object sender, EventArgs e)
-        {
-            openScreen(new menuScreens.listarDocentes());
-        }
+        private void btnListarDocentes_Click(object sender, EventArgs e) => openScreen(new menuScreens.UsuarioRegistro());
+        
+        private void btnRequerimientoAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.UsuarioRegistro());
 
-        private void btnRequerimientoAlumnos_Click(object sender, EventArgs e)
-        {
-           openScreen(new menuScreens.listarRequerimientos());
-           
-        }
+        private void btnCursos_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuCursos);
 
-        private void btnCursos_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuCursos);
-        }
+        private void btnRequerimientoDocentes_Click(object sender, EventArgs e) { }
 
-        private void btnRequerimientoDocentes_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnMaterias_Click(object sender, EventArgs e)
-        {
-            openScreen(new menuScreens.listarMaterias());
-        }
-
-        private void btnGrupos_Click(object sender, EventArgs e)
-        {
-            openScreen(new menuScreens.listarGrupos());
-        }
-
-        private void btnOrientaciones_Click(object sender, EventArgs e)
-        {
-            openScreen(new menuScreens.listarOrientaciones());
+        private void btnMaterias_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarMaterias());
+        
+        private void btnGrupos_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarGrupos());
+        
+        private void btnOrientaciones_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarOrientaciones());
             
-        }
-
-        private void btnListarAlumnos_Click_1(object sender, EventArgs e)
-        {
-
-            openScreen(new menuScreens.FormularioRegistro());
-        }
+        private void btnListarAlumnos_Click_1(object sender, EventArgs e) => openScreen(new menuScreens.FormularioRegistro());
+        
+        private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
     }
 }

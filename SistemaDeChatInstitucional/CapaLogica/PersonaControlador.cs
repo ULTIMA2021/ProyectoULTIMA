@@ -21,7 +21,6 @@ namespace CapaLogica
             Persona.foto = null;
             Persona.GuardarPersona();
         }
-
         public static void AltaAlumno(string cedula, string apodo, List<int> GruposDeAlumno)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -34,7 +33,6 @@ namespace CapaLogica
                 g.nuevoIngresoAlumnoTieneGrupo(cedula, grupo);
             }
         }
-
         public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo,/*string foto*/List<int> GruposDeAlumno)
         {
             string gruposString = "";
@@ -55,7 +53,6 @@ namespace CapaLogica
                 gruposString = null;
             p.guardarAlumno(gruposString);
         }
-
         public static void AltaDocente(string cedula, List<int> GruposMateriasDeDocente)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -72,7 +69,6 @@ namespace CapaLogica
                 g.actualizarDocenteTieneGM(cedula, idGrupo, idMateria);
             }
         }
-
         public static void AltaAdmin(string cedula)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -94,7 +90,6 @@ namespace CapaLogica
             p.enLinea = state;
             p.actualizarPersona();
         }
-
         public static bool actualizarClavePersona(string claveVieja, string claveNueva)
         {
             if (Session.clave == claveVieja)
@@ -131,19 +126,16 @@ namespace CapaLogica
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAlumno);
         }
-
         public static bool isDocente(string user, string pass)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarDocente);
         }
-
         public static bool isAdmin(string user, string pass)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAdmin);
         }
-
         private static bool lista(string user, string pass, byte sessionType, Func<string, byte, List<PersonaModelo>> metodoObtener)
         {
             List<PersonaModelo> personas = metodoObtener(user, Session.type);
@@ -177,6 +169,14 @@ namespace CapaLogica
                     return;
             }
         }
+
+        //public static List<string> obtenerPersona()
+        //{
+        //    foreach (PersonaModelo persona in new PersonaModelo(Session.type).obtenerPersona(Session.type)
+        //    {
+        //        pers
+        //    }
+        //}
 
         public static bool obtenerAlumno(string ci)
         {

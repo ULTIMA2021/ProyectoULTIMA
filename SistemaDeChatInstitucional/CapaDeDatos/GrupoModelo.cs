@@ -96,6 +96,7 @@ namespace CapaDeDatos
         }
 
         public void nuevoIngresoAlumnoTieneGrupo(string alumnoCi, int idGrupo) {
+            this.comando.Parameters.Clear();
             command = "INSERT INTO Alumno_tiene_Grupo (alumnoCi,idGrupo) VALUES (@alumnoCi,@idGrupo);";
             this.comando.CommandText = command;
             this.comando.Parameters.AddWithValue("alumnoCi", alumnoCi);
