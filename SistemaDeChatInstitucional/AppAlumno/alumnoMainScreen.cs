@@ -216,6 +216,14 @@ namespace AppAlumno
             msgCount = Controlador.getMensajesStatusCount("recibido");
             msgLabelAndnotification();
             setTimer();
+            try
+            {
+                MemoryStream ms = new MemoryStream(Session.foto);
+                fotoAlumno.Image = Image.FromStream(ms);
+            }
+            catch (ArgumentNullException ex)
+            {
+            }
         }
 
         private void btnLogout_Click(object sender, EventArgs e){
@@ -303,6 +311,11 @@ namespace AppAlumno
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
                 getTextFromComponents();
             }
+        }
+
+        private void alumnoMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

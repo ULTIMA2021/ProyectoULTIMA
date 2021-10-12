@@ -114,5 +114,10 @@ namespace AppAdmin
         private void btnListarAlumnos_Click_1(object sender, EventArgs e) => openScreen(new menuScreens.FormularioRegistro());
         
         private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
+
+        private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

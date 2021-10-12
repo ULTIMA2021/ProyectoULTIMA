@@ -17,7 +17,7 @@ namespace CapaDeDatos
         public string Apellido;
         public string Clave;
         public string Apodo;
-        public string foto;
+        public byte[] foto;
         public bool isDeleted;
         public bool enLinea;
 
@@ -38,8 +38,8 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@enlinea", false);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
-
         }
+
         public void guardarAlumno()
         {
             this.comando.CommandText = "INSERT INTO Alumno (ci,apodo) VALUES (@Cedula,@Apodo);";
@@ -120,61 +120,94 @@ namespace CapaDeDatos
             lector.Close();
             return personas;
         }
-        //old
-        //public List<PersonaModelo> validarAlumno(string user, string pass, byte sessionType)
-        //{
-        //    this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Alumno a,Persona p " +
-        //        "WHERE p.ci=a.ci AND a.ci=@user AND p.clave=@pass AND p.isDeleted=false;";
-        //    this.comando.Parameters.AddWithValue("user", user);
-        //    this.comando.Parameters.AddWithValue("pass", pass);
-        //    return obtenerUsuario(this.comando, sessionType);
-        //}
 
-        //new
         public List<PersonaModelo> validarAlumno(string user, byte sessionType)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido, p.foto FROM Alumno a,Persona p " +
                 "WHERE p.ci=a.ci AND a.ci=@user AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
-            return obtenerUsuario(this.comando, sessionType);
+            lector = comando.ExecuteReader();
+            List<PersonaModelo> personas = new List<PersonaModelo>();
+            while (lector.Read())
+            {
+                PersonaModelo p = new PersonaModelo(sessionType);
+                // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
+                p.Cedula = lector[0].ToString();
+                byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
+                p.Clave = Encoding.Default.GetString(claveArray);
+                p.Nombre = lector[2].ToString();
+                p.Apellido = lector[3].ToString();
+                try
+                {
+                    p.foto = (byte[])lector[4];
+                }
+                catch (Exception wx)
+                {}
+                personas.Add(p);
+            }
+            lector.Close();
+            return personas;
+           // return obtenerUsuario(this.comando, sessionType);
         }
 
         public List<PersonaModelo> validarDocente(string user, byte sessionType)
         {
-            this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM Docente d,Persona p " +
+            this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido, p.foto FROM Docente d,Persona p " +
                 "WHERE p.ci=d.ci AND d.ci=@user AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
+            lector = comando.ExecuteReader();
+            List<PersonaModelo> personas = new List<PersonaModelo>();
+            while (lector.Read())
+            {
+                PersonaModelo p = new PersonaModelo(sessionType);
+                // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
+                p.Cedula = lector[0].ToString();
+                byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
+                p.Clave = Encoding.Default.GetString(claveArray);
+                p.Nombre = lector[2].ToString();
+                p.Apellido = lector[3].ToString();
+                try
+                {
+                    p.foto = (byte[])lector[4];
+                }
+                catch (Exception wx)
+                { }
+                personas.Add(p);
+            }
+            lector.Close();
+            return personas;
             return obtenerUsuario(this.comando, sessionType);
         }
 
         public List<PersonaModelo> validarAdmin(string user ,byte sessionType)
         {
-            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM Administrador a, Persona p " +
+            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido, p.foto FROM Administrador a, Persona p " +
                 "WHERE p.ci = a.ci AND a.ci = @user AND p.isDeleted=false;";
             this.comando.Parameters.AddWithValue("user", user);
+            lector = comando.ExecuteReader();
+            List<PersonaModelo> personas = new List<PersonaModelo>();
+            while (lector.Read())
+            {
+                PersonaModelo p = new PersonaModelo(sessionType);
+                // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
+                p.Cedula = lector[0].ToString();
+                byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
+                p.Clave = Encoding.Default.GetString(claveArray);
+                p.Nombre = lector[2].ToString();
+                p.Apellido = lector[3].ToString();
+                try
+                {
+                    p.foto = (byte[])lector[4];
+                }
+                catch (Exception wx)
+                { }
+                personas.Add(p);
+            }
+            lector.Close();
+            return personas;
             return obtenerUsuario(this.comando, sessionType);
         }
         
-        //public List<PersonaModelo> obtenerPersona(byte sessionType)
-        //{
-        //    this.comando.CommandText = "SELECT ci, nombre, apellido, foto, isDeleted FROM Persona;";
-        //    List<PersonaModelo> personas = new List<PersonaModelo>();
-        //    lector = this.comando.ExecuteReader();
-        //    while (lector.Read())
-        //    {
-        //        PersonaModelo p = new PersonaModelo(sessionType);
-        //        p.Cedula = lector[0].ToString();
-        //        p.Nombre = lector[1].ToString();
-        //        p.Apellido = lector[2].ToString();
-        //        p.foto = lector[3].ToString();
-        //        p.isDeleted = lector[4].ToString();
-        //        personas.Add(p);
-        //    }
-
-        //    lector.Close();
-        //    return personas;
-        //}
-
         public PersonaModelo obtenerPersona(string cedula, byte sessionType)
         {
             this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido, p.foto, p.enLinea FROM Persona p " +
@@ -202,29 +235,6 @@ namespace CapaDeDatos
                                          "(a.ci=p.ci);";
             return obtenerUsuario(this.comando, sessionType);
         }
-
-        
-
-        /*
-        public List<PersonaModelo> lista(string ci, Func<List<PersonaModelo>, byte sessionType)
-        {
-            List<PersonaModelo> personas = new List<PersonaModelo>();
-            foreach (PersonaModelo usuario in metodo(sessionType))
-            {
-                if (ci == usuario.Cedula)
-                {
-                    lector = this.comando.ExecuteReader();
-                    PersonaModelo u = new PersonaModelo( sessionType);
-                    PersonaModelo p = new PersonaModelo( sessionType);
-                    u.Cedula = p.Cedula;
-                    u.Nombre = p.Nombre;
-                    u.Apellido = p.Apellido;
-                    personas.Add(u);
-                }
-            }
-            return personas;
-            }
-            */
 
         public List<PersonaModelo> obtenerAlumno(string ci, byte sessionType)
         {

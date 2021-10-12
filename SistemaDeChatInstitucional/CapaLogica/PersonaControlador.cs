@@ -114,13 +114,6 @@ namespace CapaLogica
             return true;
         }
 
-        //public static bool isAlumno(string user, string pass)
-        //{
-        //    PersonaModelo p = new PersonaModelo(Session.type);
-        //    return lista(user, pass, Session.type, p.validarAlumno);
-        //}
-
-        //isAlumno new
         public static bool isAlumno(string user, string pass)
         {
             PersonaModelo p = new PersonaModelo(Session.type);

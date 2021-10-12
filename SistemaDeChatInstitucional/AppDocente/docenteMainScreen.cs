@@ -227,6 +227,14 @@ namespace AppDocente
             msgCount = Controlador.getMensajesStatusCount("recibido");
             msgLabelAndnotification();
             setTimer();
+            try
+            {
+                MemoryStream ms = new MemoryStream(Session.foto);
+                fotoAlumno.Image = Image.FromStream(ms);
+            }
+            catch (ArgumentNullException ex)
+            {
+            }
         }
 
         private void panelOpciones_MouseDown(object sender, MouseEventArgs e)
@@ -273,12 +281,6 @@ namespace AppDocente
             btnInstitucion.Text = Resources.btnInstitucion;
             btnMisMensajes.Text = Resources.btnMisMensajes;
             btnMisAlumnos.Text = Resources.btnMisAlumnos;
-
-           
-          
-
-
-
         }
         private void CloseListener(object sender, EventArgs e, string test)
         {
@@ -300,6 +302,11 @@ namespace AppDocente
                 Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-ES");
                 getTextFromComponents();
             }
+        }
+
+        private void docenteMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -25,7 +25,6 @@ namespace AppAdmin.menuScreens
             pbFoto.Enabled = true;
             txtApodo.Enabled = true;
             lblApodoAst.Visible = false;
-            lblOptions.Text = "Grupo/s";
             clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
             dgvPersonas.DataSource = null;
@@ -88,6 +87,7 @@ namespace AppAdmin.menuScreens
             txtClaveVerificacion.Clear();
             clbOpciones.DataSource = null;
             comboBoxUser.SelectedIndex = 0;
+            pbFoto.Image.Dispose();
         }
         private List<int> getIndexesChecklist()
         {
@@ -138,27 +138,57 @@ namespace AppAdmin.menuScreens
             pbFoto.Enabled = true;
             clbOpciones.Enabled = true;
             txtApodo.Enabled = true;
+
             switch (comboBoxUser.SelectedIndex)
             {
-
+                case 0:
+                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                    {
+                        txt.Enabled = false;
+                    }
+                    btnIngresar.Enabled = false;
+                    btnFoto.Enabled = false;
+                    clbOpciones.Enabled = false;
+                    break;
                 case 1:
+                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                    {
+                        txt.Enabled = true;
+                    }
+                    btnIngresar.Enabled = true;
+                    btnFoto.Enabled = true;
+                    clbOpciones.Enabled = true;
+
                     lblApodoAst.Visible = true;
-                    lblOptions.Text = "Grupos:";
                     clbOpciones.DataSource = null;
                     clbOpciones.DataSource = Controlador.gruposToListForRegister();
                     clbOpciones.ClearSelected();
-                    lblOptions.Location = new Point(441, 32);
+                    //lblOptions.Location = new Point(441, 32);
                     break;
                 case 2:
+                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                    {
+                        txt.Enabled = true;
+                    }
+                    btnIngresar.Enabled = true;
+                    btnFoto.Enabled = true;
+                    clbOpciones.Enabled = true;
+
                     lblApodoAst.Visible = false;
                     txtApodo.Enabled = false;
-                    lblOptions.Text = "Grupo-materia:";
                     clbOpciones.DataSource = null;
                     clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
                     clbOpciones.ClearSelected();
-                    lblOptions.Location = new Point(389, 32);
+                    //lblOptions.Location = new Point(389, 32);
                     break;
                 case 3:
+                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                    {
+                        txt.Enabled = true;
+                    }
+                    btnIngresar.Enabled = true;
+                    btnFoto.Enabled = true;
+
                     lblApodoAst.Visible = false;
                     pbFoto.Enabled = false;
                     clbOpciones.Enabled = false;
@@ -166,6 +196,14 @@ namespace AppAdmin.menuScreens
                     clbOpciones.DataSource = null;
                     break;
             }
+        }
+        private IEnumerable<Control> GetAll(Control control, Type type)
+        {
+            var controls = control.Controls.Cast<Control>();
+
+            return controls.SelectMany(ctrl => GetAll(ctrl, type))
+                                      .Concat(controls)
+                                      .Where(c => c.GetType() == type);
         }
 
         private void dgvPersonas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

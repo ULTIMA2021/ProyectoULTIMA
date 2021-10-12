@@ -13,6 +13,7 @@ namespace CapaLogica
         public static string nombre { get; set; }
         public static string apellido { get; set; }
         public static string clave { get; set; }
+        public static byte[] foto { get; set; }
         //foto
         public static byte type;//0-alumno   1-docente    2-admin    3-alumnoLogin   4-docenteLogin   5-adminLogin
         public static List<List<string>> grupoMaterias=new List<List<string>>();
@@ -23,6 +24,7 @@ namespace CapaLogica
             nombre = per.Nombre;
             apellido = per.Apellido;
             clave = per.Clave;
+            foto = per.foto;
             if(!(gList is null))
             saveGrupoMaterias(gList);
         }

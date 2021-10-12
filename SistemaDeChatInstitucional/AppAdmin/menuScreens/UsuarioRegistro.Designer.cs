@@ -223,6 +223,7 @@
             // 
             // comboBoxUser
             // 
+            this.comboBoxUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUser.FormattingEnabled = true;
             this.comboBoxUser.Items.AddRange(new object[] {
             " ",
@@ -346,11 +347,11 @@
             // lblOptions
             // 
             this.lblOptions.AutoSize = true;
-            this.lblOptions.Location = new System.Drawing.Point(379, 32);
+            this.lblOptions.Location = new System.Drawing.Point(365, 32);
             this.lblOptions.Name = "lblOptions";
-            this.lblOptions.Size = new System.Drawing.Size(63, 17);
+            this.lblOptions.Size = new System.Drawing.Size(76, 17);
             this.lblOptions.TabIndex = 1;
-            this.lblOptions.Text = "Grupos:";
+            this.lblOptions.Text = "Opciones:";
             // 
             // label1
             // 

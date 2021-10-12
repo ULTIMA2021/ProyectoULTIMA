@@ -38,10 +38,10 @@
             this.btnMaterias = new System.Windows.Forms.Button();
             this.btnGrupos = new System.Windows.Forms.Button();
             this.subMenuAlumnos = new System.Windows.Forms.Panel();
+            this.btnNuevosAlumnos = new System.Windows.Forms.Button();
             this.btnRegi = new System.Windows.Forms.Button();
             this.btnListarAlumnos = new System.Windows.Forms.Button();
             this.pbImagenInicio = new System.Windows.Forms.PictureBox();
-            this.btnNuevosAlumnos = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnCursos = new System.Windows.Forms.Button();
@@ -172,6 +172,21 @@
             this.subMenuAlumnos.TabIndex = 9;
             this.subMenuAlumnos.Visible = false;
             // 
+            // btnNuevosAlumnos
+            // 
+            this.btnNuevosAlumnos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnNuevosAlumnos.FlatAppearance.BorderSize = 0;
+            this.btnNuevosAlumnos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
+            this.btnNuevosAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevosAlumnos.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevosAlumnos.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnNuevosAlumnos.Location = new System.Drawing.Point(0, 70);
+            this.btnNuevosAlumnos.Name = "btnNuevosAlumnos";
+            this.btnNuevosAlumnos.Size = new System.Drawing.Size(460, 35);
+            this.btnNuevosAlumnos.TabIndex = 5;
+            this.btnNuevosAlumnos.Text = "Verificar ticket de alumno";
+            this.btnNuevosAlumnos.UseVisualStyleBackColor = true;
+            // 
             // btnRegi
             // 
             this.btnRegi.Dock = System.Windows.Forms.DockStyle.Top;
@@ -212,21 +227,6 @@
             this.pbImagenInicio.Size = new System.Drawing.Size(267, 274);
             this.pbImagenInicio.TabIndex = 8;
             this.pbImagenInicio.TabStop = false;
-            // 
-            // btnNuevosAlumnos
-            // 
-            this.btnNuevosAlumnos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnNuevosAlumnos.FlatAppearance.BorderSize = 0;
-            this.btnNuevosAlumnos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnNuevosAlumnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNuevosAlumnos.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevosAlumnos.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnNuevosAlumnos.Location = new System.Drawing.Point(0, 70);
-            this.btnNuevosAlumnos.Name = "btnNuevosAlumnos";
-            this.btnNuevosAlumnos.Size = new System.Drawing.Size(460, 35);
-            this.btnNuevosAlumnos.TabIndex = 5;
-            this.btnNuevosAlumnos.Text = "Verificar ticket de alumno";
-            this.btnNuevosAlumnos.UseVisualStyleBackColor = true;
             // 
             // btnUsuarios
             // 
@@ -284,6 +284,7 @@
             this.Name = "adminMainScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "adminMainScreen";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.adminMainScreen_FormClosed);
             this.panelTitulo.ResumeLayout(false);
             this.panelTitulo.PerformLayout();
             this.panelContenedor.ResumeLayout(false);
