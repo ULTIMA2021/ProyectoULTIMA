@@ -186,6 +186,7 @@
             this.btnNuevosAlumnos.TabIndex = 5;
             this.btnNuevosAlumnos.Text = "Verificar ticket de alumno";
             this.btnNuevosAlumnos.UseVisualStyleBackColor = true;
+            this.btnNuevosAlumnos.Click += new System.EventHandler(this.btnNuevosAlumnos_Click);
             // 
             // btnRegi
             // 

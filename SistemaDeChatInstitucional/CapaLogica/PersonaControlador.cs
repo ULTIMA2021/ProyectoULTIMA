@@ -10,7 +10,6 @@ namespace CapaLogica
 {
     public static partial class Controlador
     {
-        //agregar foto y avatar.
         public static void AltaPersona(string cedula, string nombre, string apellido, string clave, byte[] foto)
         {
             PersonaModelo Persona = new PersonaModelo(Session.type);
@@ -33,7 +32,7 @@ namespace CapaLogica
                 g.nuevoIngresoAlumnoTieneGrupo(cedula, grupo);
             }
         }
-        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo,byte [] foto, List<int> GruposDeAlumno)
+        public static void AltaAlumno(string cedula, string nombre, string apellido, string clave, string apodo, byte[] foto, List<int> GruposDeAlumno)
         {
             string gruposString = "";
             PersonaModelo p = new PersonaModelo(Session.type);
@@ -178,6 +177,24 @@ namespace CapaLogica
                 return true;
             return false;
         }
+
+        public static List<List<string>> obtenerAlumnoTemp()
+        {
+            List<List<string>> alumnos = new List<List<string>>();
+            List<string> a = new List<string>();
+            foreach (var item in new PersonaModelo(Session.type).obtenerAlumnoTemp(Session.type))
+            {
+                a.Add(item.Cedula);
+                a.Add(item.Nombre);
+                a.Add(item.Apellido);
+                a.Add(item.Apodo);
+                a.Add(item.Clave);
+                alumnos.Add(a);
+            }
+            return alumnos;
+        }
+        public static byte[] obtenerFotoAlumnoTemp(string ciAlumnoTemp)=> new PersonaModelo(Session.type).obtenerAlumnoTemp(ciAlumnoTemp);
+        
 
         //cambiar esto para que cargue todo en una lista, para mostrar fotos tambien
         public static string traemeEstaPersona(string ci)

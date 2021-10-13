@@ -228,6 +228,43 @@ namespace CapaDeDatos
             return persona;
         }
 
+        public List<PersonaModelo> obtenerAlumnoTemp(byte sessionType)
+        {
+            comando.CommandText = "SELECT ci, nombre, apellido, apodo, grupos, foto FROM AlumnoTemp;";
+            lector = comando.ExecuteReader();
+            List<PersonaModelo> personas = new List<PersonaModelo>();
+            while (lector.Read())
+            {
+                PersonaModelo p = new PersonaModelo(sessionType);
+                p.Cedula = lector[0].ToString();
+                p.Nombre = lector[1].ToString();
+                p.Apellido = lector[2].ToString();
+                p.Apodo = lector[3].ToString();
+                p.Clave = lector[4].ToString();  //no deberia hacer esto pero no voy a crear un variable solo para esto
+                try
+                {
+                    p.foto = (byte[])lector[5];
+                }
+                catch (Exception wx)
+                { }
+                personas.Add(p);
+            }
+            lector.Close();
+            return personas;
+        }
+        public byte [] obtenerAlumnoTemp(string ci)
+        {
+            byte[] foto = null;
+            comando.Parameters.Clear();
+            comando.CommandText = "SELECT foto FROM AlumnoTemp WHERE ci=@ci;";
+            comando.Parameters.AddWithValue("@ci",ci);
+            lector = comando.ExecuteReader();
+            while (lector.Read())
+                foto = (byte[])lector[0];
+            lector.Close();
+            return foto;
+        }
+
         //retorna tabla entera de alumno con algunos campos de persona
         public List<PersonaModelo> obtenerAlumno(byte sessionType)
         {

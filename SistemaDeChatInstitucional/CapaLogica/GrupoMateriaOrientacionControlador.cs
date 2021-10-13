@@ -283,13 +283,14 @@ namespace CapaLogica
         public static List<string> obtenerGrupo(string idGrupo)
         {
             GrupoModelo g = new GrupoModelo(Session.type);
-            g.getGrupo(idGrupo,Session.type);
+            g = g.getGrupo(int.Parse(idGrupo),Session.type);
             List<string> s = new List<string>();
 
             s.Add(g.idGrupo.ToString());
             s.Add(g.nombreGrupo);
             return s;
         }
+
 
         public static void actualizarEstadoGrupo(bool isDeleted, string idGrupo) => new GrupoModelo(Session.type).actualizarEstadoDeGrupo(isDeleted, idGrupo);
         public static void actualizarEstadoMateria(bool isDeleted, string idMateria) => new MateriaModelo(Session.type).actualizarEstadoDeMateria(isDeleted, idMateria);
@@ -306,13 +307,5 @@ namespace CapaLogica
         public static void actualizarDocenteDictaGM(string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idGrupo, status);
         public static void actualizarDocenteDictaGM(int idMateria, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, status);
 
-
-        public static bool validarGrupo(string idGrupo, string nombreGrupo)
-        { 
-            GrupoModelo g = new GrupoModelo(Session.type);
-            g.getGrupo(idGrupo, nombreGrupo, Session.type);
-
-            return true;
-        }
     }
 }

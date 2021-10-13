@@ -272,16 +272,19 @@ namespace CapaDeDatos
             lector.Close();
             return idGrupo;
         }
-        public void getGrupo(string idGrupo, string nombreGrupo, byte sessionType)
+        public GrupoModelo getGrupo(int id, byte sessionType)
         {
-            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE nombreGrupo=@nombreGrupo AND idGrupo=@idGrupo;";
-            this.comando.Parameters.AddWithValue("@nombreGrupo", nombreGrupo);
-            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            GrupoModelo g = new GrupoModelo(sessionType);
+            this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM Grupo WHERE idGrupo=@idGrupo;";
+            this.comando.Parameters.AddWithValue("@idGrupo", id);
             lector = comando.ExecuteReader();
-            lector.Read();
-            if (lector[0].ToString() is null)
-                throw new Exception("grupo id and grup name has changed") ;
+            while (lector.Read())
+            {
+                g.idGrupo = int.Parse(lector[0].ToString());
+                g.nombreGrupo = lector[1].ToString();
+            }
             lector.Close();
+            return g;
         }
 
         public List<GrupoModelo> getGruposSinOrientacion(byte sessionType)

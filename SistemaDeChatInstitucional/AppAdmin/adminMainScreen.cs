@@ -89,7 +89,7 @@ namespace AppAdmin
 
         private void btnExit_Click(object sender, EventArgs e) => Application.Exit();
         
-        private void btnListarAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarAlumnos());
+        private void btnListarAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.TicketAlumno());
         
         private void panelTitulo_MouseDown(object sender, MouseEventArgs e) 
         {
@@ -115,9 +115,8 @@ namespace AppAdmin
         
         private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
 
-        private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
+        private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
+
+        private void btnNuevosAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.TicketAlumno());
     }
 }
