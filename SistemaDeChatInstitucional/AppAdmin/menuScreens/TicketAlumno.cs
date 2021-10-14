@@ -17,7 +17,7 @@ namespace AppAdmin.menuScreens
     {
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
         List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]
-        List<List<List<string>>> gruposDeAlumnos = new List<List<List<string>>>();   //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=id  [][][1]=name
+        List<List<List<string>>> gruposDeAlumnos = new List<List<List<string>>>();   //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo
         Size pbSize = new Size(111, 107);
         Padding padHori = new Padding(3, 3, 3, 10);
         Padding padRestofControls = new Padding(3, 3, 3, 3);
@@ -31,10 +31,6 @@ namespace AppAdmin.menuScreens
             createControls();
         }
 
-        private void listarAlumnos_Load(object sender, EventArgs e)
-        {
-
-        }
         private void createControls()
         {
             //get alumnos temp
@@ -47,45 +43,22 @@ namespace AppAdmin.menuScreens
                 Label apellido = new Label();
                 Label ci = new Label();
                 Label apodo = new Label();
-                Label grupo = new Label();
+                Label groups = new Label();
 
                 Button ingreso = new Button();
                 Button modificar = new Button();
                 Button delete = new Button();
 
-                FlowLayoutPanel vert = new FlowLayoutPanel();
-
-                vert = defineFlowPanel(vert, $"flpVert_{x}");
-                vert.FlowDirection = FlowDirection.TopDown;
-                //vert.Dock = DockStyle.Fill;
-                vert.Size = pbSize;
-
-                //labels for grupos y materias
-                List<List<string>> grupos = new List<List<string>>();
-                string[] idGrupo = System.Text.RegularExpressions.Regex.Split(alumnos[x][4], @"\D+");
-                foreach (string id in idGrupo)
-                {
-                    List<string> test = new List<string>();
-                    test = Controlador.obtenerGrupo(id);
-                    grupos.Add(test);
-                }
-                gruposDeAlumnos.Add(grupos);
+                //ordeno los grupos de cada alumno en List<List<List<string>>> gruposDeAlumnos
+                loadToLists(x);
                 Console.WriteLine("THIS PERSON HAS THE FOLLOWING GROUPS");
+                string groupnameText = prepareGroupLabelText(x);
 
-                for (int i = 0; i < gruposDeAlumnos[x].Count; i++)
-                {
-                    Label groupName = new Label();
-                    groupName = defineLabels(groupName,$"g_{x}_{i}", gruposDeAlumnos[x][i][1]);
-                    Console.WriteLine(gruposDeAlumnos[x][i][1]);
-                    vert.Controls.Add(groupName);
-                }
-
-                //add values for the alumnos actual data from the list of objects alumno
-                ci = defineLabels(ci, $"lblCi_{x}", $"Ci: {alumnos[x][0]}");
-                nombre = defineLabels(nombre, $"lblName_{x}", $"Nombre: {alumnos[x][1]}");
-                apellido = defineLabels(apellido, $"lblApellido_{x}", $"Apellido: {alumnos[x][2]}");
-                apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo: {alumnos[x][3]}");
-                grupo = defineLabels(grupo, $"lblGrupo_{x}","Grupos:");
+                ci = defineLabels(ci, $"lblCi_{x}", $"Ci:\n{alumnos[x][0]}");
+                nombre = defineLabels(nombre, $"lblName_{x}", $"Nombre:\n{alumnos[x][1]}");
+                apellido = defineLabels(apellido, $"lblApellido_{x}", $"Apellido:\n{alumnos[x][2]}");
+                apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{alumnos[x][3]}");
+                groups = defineLabels(groups, $"g_{x}", groupnameText);
 
                 foto = definePictureBox(foto, $"pb_{x}", Controlador.obtenerFotoAlumnoTemp(alumnos[x][0]));
 
@@ -95,21 +68,40 @@ namespace AppAdmin.menuScreens
                 modificar = defineButton(modificar, $"btnModificar_{x}");
                 delete = defineButton(delete, $"btnDelete_{x}");
 
-
                 hori.Controls.Add(foto);
                 hori.Controls.Add(ci);
                 hori.Controls.Add(nombre);
                 hori.Controls.Add(apellido);
                 hori.Controls.Add(apodo);
-                hori.Controls.Add(vert);
-
+                hori.Controls.Add(groups);
                 hori.Controls.Add(ingreso);
                // hori.Controls.Add(modificar);
                 hori.Controls.Add(delete);
 
                 flowLayoutPanel1.Controls.Add(hori);
-                //hori.BringToFront();
             }
+        }
+        private string prepareGroupLabelText(int indexOFAlumnoInApp)
+        {
+            string target = "Grupos: ";
+            for (int i = 0; i < gruposDeAlumnos[indexOFAlumnoInApp].Count; i++)
+            {
+                target = $"{target}\n{gruposDeAlumnos[indexOFAlumnoInApp][i][1]}";
+                Console.WriteLine(gruposDeAlumnos[indexOFAlumnoInApp][i][1]);
+            }
+            return target;
+        }
+        private void loadToLists(int indexOFAlumnoInApp)
+        {
+            List<List<string>> grupos = new List<List<string>>();
+            string[] idGrupo = System.Text.RegularExpressions.Regex.Split(alumnos[indexOFAlumnoInApp][4], @"\D+");
+            foreach (string id in idGrupo)
+            {
+                List<string> test = new List<string>();
+                test = Controlador.obtenerGrupo(id);
+                grupos.Add(test);
+            }
+            gruposDeAlumnos.Add(grupos);
         }
 
         private Label defineLabels(Label lbl, string lblName, string lblText)
@@ -135,7 +127,7 @@ namespace AppAdmin.menuScreens
                 var ms = new MemoryStream(imgByte);
                 pb.Image = Image.FromStream(ms);
             }
-            catch (ArgumentNullException ex)
+            catch (Exception ex)
             {
                 //Load the default image
             }
@@ -160,6 +152,7 @@ namespace AppAdmin.menuScreens
             b.Name = bName;
             b.Font = buttonFont;
             b.Enabled = true;
+            
             //aca se podria poner algun icon
             // b.Image = System.
             b.Anchor = AnchorStyles.None;
@@ -179,10 +172,7 @@ namespace AppAdmin.menuScreens
             return b;
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void btnExit_Click(object sender, EventArgs e) => Dispose();
 
         private void TicketAlumno_Load(object sender, EventArgs e)
         {

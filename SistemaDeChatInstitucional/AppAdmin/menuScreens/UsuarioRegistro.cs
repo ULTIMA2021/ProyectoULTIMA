@@ -27,8 +27,6 @@ namespace AppAdmin.menuScreens
             lblApodoAst.Visible = false;
             clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
-            dgvPersonas.DataSource = null;
-            // dgvPersonas.DataSource = Controlador.
         }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
 
@@ -37,7 +35,7 @@ namespace AppAdmin.menuScreens
             //-check that correct groups and mats are being loaded, no deleted ones.
             //-If persona does exist ask if they want to reactivate acc
 
-            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8 && clbOpciones.CheckedItems.Count>0)
+            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
             {
                 if (Controlador.existePersona(txtCedula.Text))// not really needed, we just throw it at the db, no need for this
                 {
@@ -163,7 +161,7 @@ namespace AppAdmin.menuScreens
                     {
                         txt.Enabled = true;
                     }
-                   // btnIngresar.Enabled = true;
+                    btnIngresar.Enabled = true;
                     btnFoto.Enabled = true;
                     clbOpciones.Enabled = true;
 
@@ -178,7 +176,7 @@ namespace AppAdmin.menuScreens
                     {
                         txt.Enabled = true;
                     }
-                   // btnIngresar.Enabled = true;
+                    btnIngresar.Enabled = true;
                     btnFoto.Enabled = true;
                     clbOpciones.Enabled = true;
 
@@ -212,11 +210,6 @@ namespace AppAdmin.menuScreens
             return controls.SelectMany(ctrl => GetAll(ctrl, type))
                                       .Concat(controls)
                                       .Where(c => c.GetType() == type);
-        }
-
-        private void dgvPersonas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-
         }
     }
 }

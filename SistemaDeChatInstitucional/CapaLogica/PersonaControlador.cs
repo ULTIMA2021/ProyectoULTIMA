@@ -181,9 +181,9 @@ namespace CapaLogica
         public static List<List<string>> obtenerAlumnoTemp()
         {
             List<List<string>> alumnos = new List<List<string>>();
-            List<string> a = new List<string>();
             foreach (var item in new PersonaModelo(Session.type).obtenerAlumnoTemp(Session.type))
             {
+                List<string> a = new List<string>();
                 a.Add(item.Cedula);
                 a.Add(item.Nombre);
                 a.Add(item.Apellido);

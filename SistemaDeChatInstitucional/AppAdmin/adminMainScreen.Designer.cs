@@ -216,7 +216,7 @@
             this.btnListarAlumnos.Name = "btnListarAlumnos";
             this.btnListarAlumnos.Size = new System.Drawing.Size(460, 35);
             this.btnListarAlumnos.TabIndex = 3;
-            this.btnListarAlumnos.Text = "Consultar informacion de usuarios";
+            this.btnListarAlumnos.Text = "Informacion de usuarios";
             this.btnListarAlumnos.UseVisualStyleBackColor = true;
             this.btnListarAlumnos.Click += new System.EventHandler(this.btnListarAlumnos_Click_1);
             // 
