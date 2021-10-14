@@ -81,6 +81,8 @@ namespace CapaLogica
             p.Cedula = Session.cedula;
             p.actualizarPersona(true);
         }
+        public static void bajaPersona(string ci) => new PersonaModelo(Session.type).bajaPersona(ci);
+        public static void bajaAlumnoTemp(string ci) => new PersonaModelo(Session.type).bajaAlumnoTemp(ci);
 
         public static void actualizarEstadoPersona(bool state)
         {
@@ -188,6 +190,7 @@ namespace CapaLogica
                 a.Add(item.Nombre);
                 a.Add(item.Apellido);
                 a.Add(item.Apodo);
+                a.Add(item.Grupos);
                 a.Add(item.Clave);
                 alumnos.Add(a);
             }

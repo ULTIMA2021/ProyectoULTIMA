@@ -37,13 +37,13 @@ namespace AppAdmin.menuScreens
 
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
             {
-                if (Controlador.existePersona(txtCedula.Text))// not really needed, we just throw it at the db, no need for this
+                try
                 {
-                    try
+                    if (Controlador.existePersona(txtCedula.Text))// not really needed, we just throw it at the db, no need for this
                     {
                         Console.WriteLine("this person is getting registered");
                         string safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
-                        byte [] foto= { };
+                        byte[] foto = { };
                         try
                         {
                             System.IO.MemoryStream ms = new System.IO.MemoryStream();
@@ -74,12 +74,9 @@ namespace AppAdmin.menuScreens
                         }
                         resetFields();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(Controlador.errorHandler(ex));
-                    }
                 }
-                else MessageBox.Show("Una persona con esa cedula ya existe");
+                catch (Exception ex)
+                { Controlador.errorHandler(ex); }
             }
             else MessageBox.Show("Las contraseñas no coinciden");
         }

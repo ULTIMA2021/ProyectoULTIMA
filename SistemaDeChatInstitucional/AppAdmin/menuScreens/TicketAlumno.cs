@@ -16,7 +16,7 @@ namespace AppAdmin.menuScreens
     public partial class TicketAlumno : Form
     {
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
-        List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]
+        List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]    clave=[5]
         List<List<List<string>>> gruposDeAlumnos = new List<List<List<string>>>();   //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo
         Size pbSize = new Size(111, 107);
         Padding padHori = new Padding(3, 3, 3, 10);
@@ -33,8 +33,6 @@ namespace AppAdmin.menuScreens
 
         private void createControls()
         {
-            //get alumnos temp
-
             for (int x = 0; x < alumnos.Count; x++)
             {
                 FlowLayoutPanel hori = new FlowLayoutPanel();
@@ -97,9 +95,9 @@ namespace AppAdmin.menuScreens
             string[] idGrupo = System.Text.RegularExpressions.Regex.Split(alumnos[indexOFAlumnoInApp][4], @"\D+");
             foreach (string id in idGrupo)
             {
-                List<string> test = new List<string>();
-                test = Controlador.obtenerGrupo(id);
-                grupos.Add(test);
+                List<string> grupo = new List<string>();
+                grupo = Controlador.obtenerGrupo(id);
+                grupos.Add(grupo);
             }
             gruposDeAlumnos.Add(grupos);
         }
@@ -152,26 +150,77 @@ namespace AppAdmin.menuScreens
             b.Name = bName;
             b.Font = buttonFont;
             b.Enabled = true;
+            b.AccessibleName = bName;
             
             //aca se podria poner algun icon
             // b.Image = System.
             b.Anchor = AnchorStyles.None;
+
             //add events for modificar, delete, or ingreso
             if (bName.Contains("Ingreso"))
             {
+                b.Click += new EventHandler(mybutton_Click_Ingreso);
                 b.Text = "Ingreso";
             }
             else if (bName.Contains("Modificar"))
             {
+                b.Click += new EventHandler(mybutton_Click_Modificacion);
+
                 b.Text = "Modificar";
             }
             else
             {
+                b.Click += new EventHandler(mybutton_Click_Delete);
                 b.Text = "Delete";
             }
             return b;
         }
+        private void mybutton_Click_Ingreso(object sender, EventArgs e)
+        {
+            Button b = (Button)sender;
+            int indexFromButton = int.Parse(b.AccessibleName.Substring(11));
+            string ci = alumnos[indexFromButton][0];
+            string nombre = alumnos[indexFromButton][1];
+            string apellido = alumnos[indexFromButton][2];
+            string apodo = alumnos[indexFromButton][3];
+            string clave = alumnos[indexFromButton][5];
+            List<int> groupsToInt = GroupsToInt(indexFromButton);
 
+            try
+            {
+                Controlador.AltaPersona(ci, nombre, apellido, clave,null);
+                Controlador.AltaAlumno(ci,apodo,groupsToInt);
+            }
+            catch (Exception ex)
+            {
+                //DELETE FROM PERSONA JUST INCASE SHIT FAILS
+                Controlador.bajaPersona(ci);
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+            Console.WriteLine($"selected:\n{alumnos[indexFromButton][0]}\n{alumnos[indexFromButton][1]}\n{alumnos[indexFromButton][2]}\n{alumnos[indexFromButton][3]}\n{alumnos[indexFromButton][4]}");
+            createControls();
+        }
+
+        private List<int> GroupsToInt(int indexFromButton)
+        {
+            List<int> groupsToInt = new List<int>();
+            for (int i = 0; i < gruposDeAlumnos[indexFromButton].Count; i++)
+                groupsToInt.Add(int.Parse(gruposDeAlumnos[indexFromButton][i][0]));
+            return groupsToInt;
+        }
+
+        private void mybutton_Click_Modificacion(object sender, EventArgs e)
+        {
+            Button cb = (Button)sender;
+            string strName = cb.AccessibleName;
+        }
+        private void mybutton_Click_Delete(object sender, EventArgs e)
+        {
+            Button cb = (Button)sender;
+            int indexFromButton = int.Parse(b.AccessibleName.Substring(11));
+            string ci = alumnos[indexFromButton][0];
+            Controlador.bajaAlumnoTemp(ci);
+        }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
 
         private void TicketAlumno_Load(object sender, EventArgs e)

@@ -20,6 +20,7 @@ namespace CapaDeDatos
         public byte[] foto;
         public bool isDeleted;
         public bool enLinea;
+        public string Grupos;
 
         public PersonaModelo(byte sessionType) : base(sessionType)
         {
@@ -230,7 +231,7 @@ namespace CapaDeDatos
 
         public List<PersonaModelo> obtenerAlumnoTemp(byte sessionType)
         {
-            comando.CommandText = "SELECT ci, nombre, apellido, apodo, grupos, foto FROM AlumnoTemp;";
+            comando.CommandText = "SELECT ci, nombre, apellido, apodo, grupos, foto, clave FROM AlumnoTemp;";
             lector = comando.ExecuteReader();
             List<PersonaModelo> personas = new List<PersonaModelo>();
             while (lector.Read())
@@ -240,13 +241,15 @@ namespace CapaDeDatos
                 p.Nombre = lector[1].ToString();
                 p.Apellido = lector[2].ToString();
                 p.Apodo = lector[3].ToString();
-                p.Clave = lector[4].ToString();  //no deberia hacer esto pero no voy a crear un variable solo para esto
+                p.Grupos = lector[4].ToString();
                 try
                 {
                     p.foto = (byte[])lector[5];
                 }
                 catch (Exception wx)
                 { }
+                byte[] claveArray = Encoding.Default.GetBytes(lector[6].ToString());
+                p.Clave = Encoding.Default.GetString(claveArray);
                 personas.Add(p);
             }
             lector.Close();
