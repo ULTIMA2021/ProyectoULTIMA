@@ -103,6 +103,23 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando, errorType);
         }
 
+        public void bajaAlumnoTemp(string ci)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "DELETE FROM AlumnoTemp WHERE ci=@ci";
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            this.comando.Prepare();
+            EjecutarQuery(comando, errorType);
+        }
+        public void bajaPersona(string ci)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "DELETE FROM Persona WHERE ci=@ci";
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            this.comando.Prepare();
+            EjecutarQuery(comando, errorType);
+        }
+
         private List<PersonaModelo> obtenerUsuario(MySqlCommand commando, byte sessionType)
         {
             lector = commando.ExecuteReader();

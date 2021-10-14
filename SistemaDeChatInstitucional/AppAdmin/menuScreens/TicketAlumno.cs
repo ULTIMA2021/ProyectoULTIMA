@@ -33,6 +33,7 @@ namespace AppAdmin.menuScreens
 
         private void createControls()
         {
+            flowLayoutPanel1.Controls.Clear();
             for (int x = 0; x < alumnos.Count; x++)
             {
                 FlowLayoutPanel hori = new FlowLayoutPanel();
@@ -185,11 +186,13 @@ namespace AppAdmin.menuScreens
             string apodo = alumnos[indexFromButton][3];
             string clave = alumnos[indexFromButton][5];
             List<int> groupsToInt = GroupsToInt(indexFromButton);
+            Console.WriteLine($"selected:\n{alumnos[indexFromButton][0]}\n{alumnos[indexFromButton][1]}\n{alumnos[indexFromButton][2]}\n{alumnos[indexFromButton][3]}\n{alumnos[indexFromButton][4]}");
 
             try
             {
                 Controlador.AltaPersona(ci, nombre, apellido, clave,null);
                 Controlador.AltaAlumno(ci,apodo,groupsToInt);
+                Console.WriteLine($"PERSON IS NOW IN SYSTEM");
             }
             catch (Exception ex)
             {
@@ -197,7 +200,6 @@ namespace AppAdmin.menuScreens
                 Controlador.bajaPersona(ci);
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
-            Console.WriteLine($"selected:\n{alumnos[indexFromButton][0]}\n{alumnos[indexFromButton][1]}\n{alumnos[indexFromButton][2]}\n{alumnos[indexFromButton][3]}\n{alumnos[indexFromButton][4]}");
             createControls();
         }
 
@@ -211,15 +213,22 @@ namespace AppAdmin.menuScreens
 
         private void mybutton_Click_Modificacion(object sender, EventArgs e)
         {
-            Button cb = (Button)sender;
-            string strName = cb.AccessibleName;
+            Button b = (Button)sender;
         }
         private void mybutton_Click_Delete(object sender, EventArgs e)
         {
-            Button cb = (Button)sender;
+            Button b = (Button)sender;
             int indexFromButton = int.Parse(b.AccessibleName.Substring(11));
             string ci = alumnos[indexFromButton][0];
-            Controlador.bajaAlumnoTemp(ci);
+            try
+            {
+                Controlador.bajaAlumnoTemp(ci);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+            createControls();
         }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
 
