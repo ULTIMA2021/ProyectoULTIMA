@@ -315,7 +315,7 @@ namespace CapaDeDatos
 
         public List<GrupoModelo> getDocenteDictaGM(byte sessionType)
         {
-            this.comando.CommandText = " SELECT dgm.idGrupo, dgm.idMateria, g.nombregrupo, m.NombreMateria " +
+            this.comando.CommandText = " SELECT dgm.idGrupo, dgm.idMateria, g.nombreGrupo, m.nombreMateria " +
                 "FROM Docente_dicta_G_M dgm, Grupo g, Materia m " +
                 "WHERE dgm.docenteCi is null " +
                 "AND dgm.idMateria = m.idMateria " +
@@ -346,7 +346,7 @@ namespace CapaDeDatos
         public List<GrupoModelo> grupoMateria(string idMateria,byte sessionType)
         {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "SELECT  gm.idGrupo, gm.idMateria, g.nombreGrupo, m.NombreMateria " +
+            this.comando.CommandText = "SELECT  gm.idGrupo, gm.idMateria, g.nombreGrupo, m.nombreMateria " +
                 "FROM Grupo_tiene_Materia gm, Grupo g, Materia m " +
                 "WHERE gm.idGrupo = g.idGrupo " +
                 "AND gm.idMateria = m.idMateria " +
@@ -360,7 +360,7 @@ namespace CapaDeDatos
         public List<GrupoModelo> grupoMateria(int idGrupo, byte sessionType)
         {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "SELECT  gm.idGrupo, gm.idMateria, g.nombreGrupo, m.NombreMateria " +
+            this.comando.CommandText = "SELECT  gm.idGrupo, gm.idMateria, g.nombreGrupo, m.nombreMateria " +
                 "FROM Grupo_tiene_Materia gm, Grupo g, Materia m " +
                 "WHERE gm.idGrupo = g.idGrupo " +
                 "AND gm.idMateria = m.idMateria " +
@@ -384,7 +384,7 @@ namespace CapaDeDatos
 
         public List<GrupoModelo> getDocenteDictaGM(string ci, byte sessionType)
         {
-            this.comando.CommandText = "SELECT dgm.idGrupo,g.nombreGrupo, dgm.idMateria, m.NombreMateria, g.isDeleted " +
+            this.comando.CommandText = "SELECT dgm.idGrupo,g.nombreGrupo, dgm.idMateria, m.nombreMateria, g.isDeleted " +
                 "FROM Docente_dicta_G_M dgm, Grupo g, Materia m " +
                 "WHERE dgm.docenteCi=@ci " +
                 "AND dgm.idMateria = m.idMateria " +
