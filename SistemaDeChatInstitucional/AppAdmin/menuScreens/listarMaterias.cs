@@ -194,7 +194,7 @@ namespace AppAdmin.menuScreens
             }
             catch (Exception ex)
             {
-                if (ex.Message == "set materia isDeleted=true-1644")
+                if (ex.Message == "set materia isDeleted=TRUE-1644")
                 {
                     Console.WriteLine("...OK setting materia isDeleted=true");
                     Controlador.actualizarEstadoMateria(true, idMateria);

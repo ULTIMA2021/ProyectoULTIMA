@@ -80,8 +80,8 @@
             this.dgvListarGrupos.Size = new System.Drawing.Size(250, 294);
             this.dgvListarGrupos.TabIndex = 0;
             this.dgvListarGrupos.TabStop = false;
+            this.dgvListarGrupos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListarGrupos_CellClick);
             this.dgvListarGrupos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvListarGrupos_DataBindingComplete);
-            this.dgvListarGrupos.SelectionChanged += new System.EventHandler(this.dgvListarGrupos_SelectionChanged);
             // 
             // btnExit
             // 

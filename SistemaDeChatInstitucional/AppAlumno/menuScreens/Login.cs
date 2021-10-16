@@ -131,8 +131,16 @@ namespace Login
 
         private void showRegisterForm(object sender, EventArgs e)
         {
-            FormularioRegistro formularioRegistro = new FormularioRegistro();
-            formularioRegistro.ShowDialog();
+            try
+            {
+                FormularioRegistro formularioRegistro = new FormularioRegistro();
+                formularioRegistro.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
         }
 
         private void Login_Load(object sender, EventArgs e)

@@ -26,7 +26,6 @@ namespace AppAdmin.menuScreens
         public listarGrupos() => InitializeComponent();
         private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
 
-
         private void listarGrupos_Load(object sender, EventArgs e)
         {
             clbMaterias.DataSource = Controlador.MateriasToListForRegister();
@@ -55,6 +54,8 @@ namespace AppAdmin.menuScreens
                     try
                     {
                         Controlador.sacarGrupoMateria(uncheckedIdMateria, int.Parse(idGrupo));
+                        Controlador.sacarGrupoMateria(uncheckedIdMateria, int.Parse(idGrupo));
+
                     }
                     catch (Exception ex)
                     {
@@ -78,7 +79,7 @@ namespace AppAdmin.menuScreens
                 }
                 catch (Exception ex)
                 {
-                    if (ex.Message == "isDeleted set to FALSE docenteDictaGM-1644")
+                    if (ex.Message == "isDeleted set to FALSE docenteDictaGM-1644"|| ex.Message == "already in docente_dicta_g_m set isdeleted to false-1062")
                         Controlador.actualizarGrupoTieneMateria(selectedMateriaIds[i].ToString(), idGrupo, false);
                 }
             }
@@ -116,18 +117,18 @@ namespace AppAdmin.menuScreens
                     Console.WriteLine($"THE GROUP ID IN THE SYSTEM IS {idGrupo}");
                     if (clbMaterias.SelectedIndices.Count > 0)
                         Controlador.asignarMateriasAGrupo(materiasSeleccionadas, idGrupo);
-
-                    textBox1.Clear();
-                    uncheckAllBoxes();
-                    dgvListarGrupos.DataSource = null;
-                    dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
-                    clbMaterias.ClearSelected();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(Controlador.errorHandler(ex));
                 }
             }
+            textBox1.Clear();
+            uncheckAllBoxes();
+            dgvListarGrupos.DataSource = null;
+            dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
+            clbMaterias.ClearSelected();
+
             dgvListarGrupos.ClearSelection();
         }
 
@@ -146,17 +147,6 @@ namespace AppAdmin.menuScreens
 
         private void dgvListarGrupos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) { dgvListarGrupos.ClearSelection(); dgvListarGrupos.Columns["idGrupo"].Visible = false; }
 
-        private void dgvListarGrupos_SelectionChanged(object sender, EventArgs e)
-        {
-            if (cbModificar.Checked)
-            {
-                loadAllMaterias();
-                idGrupo = dgvListarGrupos.CurrentRow.Cells[0].Value.ToString();
-                loadMateriasOfSelectedGrupo(idGrupo);
-                textBox1.Text = dgvListarGrupos.CurrentRow.Cells["Grupos"].Value.ToString();
-                checkBoxes();
-            }
-        }
 
         private void loadMateriasOfSelectedGrupo(string idGrupo) => materiaDeEsteGrupo = Controlador.gruposDeMateria(int.Parse(idGrupo));
 
@@ -190,7 +180,7 @@ namespace AppAdmin.menuScreens
         {
             if (cbModificar.Checked)
             {
-                btnBorrar.Enabled = true;
+                btnIngresar.Enabled = false;
                 dgvListarGrupos.ClearSelection();
                 dgvListarGrupos.Enabled = true;
                 groupBox1.Text = "Modificar grupo";
@@ -198,6 +188,7 @@ namespace AppAdmin.menuScreens
             }
             else
             {
+                btnIngresar.Enabled = true;
                 btnBorrar.Enabled = false;
                 textBox1.Clear();
                 dgvListarGrupos.Enabled = false;
@@ -230,7 +221,7 @@ namespace AppAdmin.menuScreens
             }
             catch (Exception ex)
             {
-                if (ex.Message == "set grupo isDeleted=true-1644")
+                if (ex.Message == "set grupo isDeleted=TRUE-1644")
                 {
                     Console.WriteLine("...OK setting group isDeleted=true");
                     Controlador.actualizarEstadoGrupo(true, idGrupo);
@@ -243,10 +234,33 @@ namespace AppAdmin.menuScreens
 
             }
             textBox1.Clear();
-            uncheckAllBoxes();
+            loadAllMaterias();
             dgvListarGrupos.DataSource = null;
             dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
             clbMaterias.ClearSelected();
+            allowMod(false);
+        }
+
+        private void dgvListarGrupos_CellClick(object sender, DataGridViewCellEventArgs e) => allowMod(true);
+
+        private void allowMod(bool check)
+        {
+            if (cbModificar.Checked && check)
+            {
+                btnBorrar.Enabled = true;
+                btnIngresar.Enabled = true;
+                loadAllMaterias();
+                idGrupo = dgvListarGrupos.CurrentRow.Cells[0].Value.ToString();
+                loadMateriasOfSelectedGrupo(idGrupo);
+                textBox1.Text = dgvListarGrupos.CurrentRow.Cells["Grupos"].Value.ToString();
+                checkBoxes();
+            }
+            else
+            {
+                btnBorrar.Enabled = false;
+                btnIngresar.Enabled = false;
+            }
+
         }
     }
 }
