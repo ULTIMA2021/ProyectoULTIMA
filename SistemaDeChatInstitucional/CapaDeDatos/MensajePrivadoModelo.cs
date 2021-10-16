@@ -26,7 +26,7 @@ namespace CapaDeDatos
         public void enviarMensaje(int idCp_Mensaje, int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
                                    DateTime cp_mensajeFechaHora, string cp_mensajeStatus,int ciDestinatario)
         {
-            this.comando.CommandText = "INSERT INTO CP_mensaje (idCp_Mensaje,idConsultaPrivada,ciDocente,ciAlumno, contenido, attachment, " +
+            this.comando.CommandText = "INSERT INTO cp_mensaje (idCp_Mensaje,idConsultaPrivada,ciDocente,ciAlumno, contenido, attachment, " +
                                         "cp_mensajeFechaHora, cp_mensajeStatus,ciDestinatario) VALUES(@idCp_Mensaje ,@idConsultaPrivada, " +
                                         "@ciDocente, @ciAlumno, @contenido, @attachment, @cp_mensajeFechaHora, @cp_mensajeStatus, @ciDestinatario);";
             this.comando.Parameters.AddWithValue("idCp_Mensaje", idCp_Mensaje);
@@ -66,13 +66,13 @@ namespace CapaDeDatos
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta(byte sessionType) {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_mensaje cpm; ";
+                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM cp_mensaje cpm; ";
             return cargarMensajePrivadoALista(this.comando, sessionType);
         }
         public List<MensajePrivadoModelo> mensajesDeConsulta(int ciAlumno, byte sessionType)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus,cpm.ciDestinatario FROM CP_mensaje cpm" +
+                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus,cpm.ciDestinatario FROM cp_mensaje cpm" +
                 "WHERE cpm.ciAlumno=@ciAlumno; ";
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
             return cargarMensajePrivadoALista(this.comando, sessionType);
@@ -80,7 +80,7 @@ namespace CapaDeDatos
         public List<MensajePrivadoModelo> mensajesDeConsulta(string ciDocente, byte sessionType)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM CP_mensaje cpm" +
+               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM cp_mensaje cpm" +
                "WHERE cpm.ciDocente=@ciDocente; ";
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
             return cargarMensajePrivadoALista(this.comando, sessionType);
@@ -89,7 +89,7 @@ namespace CapaDeDatos
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
-               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM CP_mensaje cpm " +
+               "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM cp_mensaje cpm " +
                "WHERE cpm.idConsultaPrivada=@idConsultaPrivada AND cpm.ciAlumno=@ciAlumno AND cpm.ciDocente=@ciDocente ; ";
             this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
@@ -99,7 +99,7 @@ namespace CapaDeDatos
         public string mensajesDeConsultaCount() {
             string count;
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "SELECT count(*) from CP_Mensaje WHERE cp_mensajeStatus = @cp_mensajeStatus AND ciDestinatario = @ciDestinatario; ";
+            this.comando.CommandText = "SELECT count(*) from cp_mensaje WHERE cp_mensajeStatus = @cp_mensajeStatus AND ciDestinatario = @ciDestinatario; ";
             this.comando.Parameters.AddWithValue("@ciDestinatario", this.ciDestinatario);
             this.comando.Parameters.AddWithValue("@cp_mensajeStatus", this.cp_mensajeStatus);
             lector = comando.ExecuteReader();
@@ -110,7 +110,7 @@ namespace CapaDeDatos
         }
         public void updateStatus() {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "UPDATE CP_mensaje SET cp_mensajeStatus = 'leido' " +
+            this.comando.CommandText = "UPDATE cp_mensaje SET cp_mensajeStatus = 'leido' " +
                 "WHERE ciDestinatario = @ciDestinatario AND " +
                 "idConsultaPrivada = @idConsultaPrivada;";
             this.comando.Parameters.AddWithValue("@ciDestinatario", this.ciDestinatario);

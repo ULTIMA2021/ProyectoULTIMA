@@ -20,13 +20,13 @@ namespace CapaDeDatos
 
         public void crearMateriaNueva()
         {
-            this.comando.CommandText = "INSERT INTO Materia (nombreMateria) VALUES(@nombreMateria);";
+            this.comando.CommandText = "INSERT INTO materia (nombreMateria) VALUES(@nombreMateria);";
             this.comando.Parameters.AddWithValue("@nombreMateria", this.nombreMateria);
             EjecutarQuery(this.comando, errorType);
         }
         public void actualizarNombreDeMateria(string nombreMateria, string idMateria)
         {
-            this.comando.CommandText = "UPDATE Materia SET nombreMateria = @nombreMateria WHERE idMateria = @idMateria;";
+            this.comando.CommandText = "UPDATE materia SET nombreMateria = @nombreMateria WHERE idMateria = @idMateria;";
             this.comando.Parameters.AddWithValue("@nombreMateria", nombreMateria);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
@@ -34,7 +34,7 @@ namespace CapaDeDatos
         }
         public void actualizarEstadoDeMateria(bool isDeleted, string idMateria)
         {
-            this.comando.CommandText = "UPDATE Materia SET isDeleted = @isDeleted WHERE idMateria = @idMateria;";
+            this.comando.CommandText = "UPDATE materia SET isDeleted = @isDeleted WHERE idMateria = @idMateria;";
             this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
@@ -44,7 +44,7 @@ namespace CapaDeDatos
         public void borrarMateria(string idMateria)
         {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "DELETE FROM Materia WHERE idMateria = @idMateria;";
+            this.comando.CommandText = "DELETE FROM materia WHERE idMateria = @idMateria;";
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);
@@ -76,14 +76,14 @@ namespace CapaDeDatos
         public List<MateriaModelo> getMateria(byte sessionType)
         {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "SELECT idMateria,nombreMateria FROM Materia WHERE isDeleted = false ORDER BY nombreMateria ASC;";
+            this.comando.CommandText = "SELECT idMateria,nombreMateria FROM materia WHERE isDeleted = FALSE ORDER BY nombreMateria ASC;";
             return cargarMateriaALista(this.comando, sessionType);
         }
 
         public string getMateria(string nombreMateria, byte sessionType)
         {
             string idMateria;
-            this.comando.CommandText = "SELECT idMateria, nombreMateria FROM Materia WHERE nombreMateria=@nombreMateria ORDER BY nombreMateria ASC;";
+            this.comando.CommandText = "SELECT idMateria, nombreMateria FROM materia WHERE nombreMateria=@nombreMateria ORDER BY nombreMateria ASC;";
             this.comando.Parameters.AddWithValue("@nombreMateria", nombreMateria);
             lector = comando.ExecuteReader();
             lector.Read();
@@ -96,7 +96,7 @@ namespace CapaDeDatos
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT gm.idMateria, m.nombreMateria " +
-                "FROM Grupo_tiene_Materia gm, materia m " +
+                "FROM grupo_tiene_materia gm, materia m " +
                 "WHERE gm.idGrupo = @idGrupo AND gm.idMateria = m.idMateria; ";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             return (cargarMateriaALista(this.comando, sessionType));

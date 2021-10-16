@@ -24,7 +24,7 @@ namespace CapaDeDatos
 
         public void crearSala()
         {
-            this.comando.CommandText = "INSERT INTO Sala (idGrupo, idMateria, docenteCi, anfitrion, resumen ,creacion,isDone) VALUES(" +
+            this.comando.CommandText = "INSERT INTO sala (idGrupo, idMateria, docenteCi, anfitrion, resumen ,creacion,isDone) VALUES(" +
                                     "@idGrupo,@idMateria,@docenteCi,@anfitrion,@resumen,@creacion,@isDone);";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
@@ -38,7 +38,7 @@ namespace CapaDeDatos
         }
         public void salaResumenUpdate()
         {
-            this.comando.CommandText = "UPDATE Sala SET resumen=@resumen WHERE idSala=@idSala;";
+            this.comando.CommandText = "UPDATE sala SET resumen=@resumen WHERE idSala=@idSala;";
             this.comando.Parameters.AddWithValue("@resumen",resumen);
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             this.comando.Prepare();
@@ -46,7 +46,7 @@ namespace CapaDeDatos
         }
         public void updateEstado(int idSala, bool estado)
         {
-            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idSala=@idSala;";
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idSala=@idSala;";
             this.comando.Parameters.AddWithValue("@isDone", estado);
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             this.comando.Prepare();
@@ -54,7 +54,7 @@ namespace CapaDeDatos
         }
         public void updateEstado(string idGrupo, bool estado)
         {
-            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idGrupo=@idGrupo;";
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idGrupo=@idGrupo;";
             this.comando.Parameters.AddWithValue("@isDone", estado);
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Prepare();
@@ -62,7 +62,7 @@ namespace CapaDeDatos
         }
         public void updateEstado(string idMateria, bool estado, byte dummy)
         {
-            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idMateria=@idMateria;";
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idMateria=@idMateria;";
             this.comando.Parameters.AddWithValue("@isDone", estado);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
@@ -70,7 +70,7 @@ namespace CapaDeDatos
         }
         public void updateEstado(string idMateria, string idGrupo, bool estado)
         {
-            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
             this.comando.Parameters.AddWithValue("@isDone", estado);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
@@ -84,8 +84,8 @@ namespace CapaDeDatos
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
-                "FROM Sala " +
-                "WHERE idGrupo=@idGrupo AND idMateria=@idMateria AND isDone=@isDone AND docenteCi is not null;";
+                "FROM sala " +
+                "WHERE idGrupo=@idGrupo AND idMateria=@idMateria AND isDone=@isDone AND docenteCi IS NOT NULL;";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Parameters.AddWithValue("@isDone", isDone);
@@ -118,7 +118,7 @@ namespace CapaDeDatos
             int count;
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT count(*) " +
-                "FROM Sala " +
+                "FROM sala " +
                 "WHERE idMateria=@idMateria AND isDone=@isDone;";
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Parameters.AddWithValue("@isDone", isDone);

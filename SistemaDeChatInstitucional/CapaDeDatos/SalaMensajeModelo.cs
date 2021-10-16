@@ -38,7 +38,7 @@ namespace CapaDeDatos
         }
 
         public void enviarMensaje() {
-            this.comando.CommandText = "INSERT INTO Sala_mensaje (idSala,autorCi, contenido, fechaHora) " +
+            this.comando.CommandText = "INSERT INTO sala_mensaje (idSala,autorCi, contenido, fechaHora) " +
                 "VALUES (@idSala,@autorCi,@contenido, @fechaHora);";
             this.comando.Parameters.AddWithValue("@idSala",idSala);
             this.comando.Parameters.AddWithValue("@autorCi", autorCi);
@@ -52,7 +52,7 @@ namespace CapaDeDatos
         public List<SalaMensajeModelo> getMensajesDeSala(int idSala,byte sessionType) {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT sm.idSala, sm.idMensaje, sm.autorCi, sm.contenido, sm.fechaHora " +
-                "FROM Sala_mensaje sm " +
+                "FROM sala_mensaje sm " +
                 "WHERE sm.idSala = @idSala " +
                 "ORDER BY sm.fechaHora;";
             this.comando.Parameters.AddWithValue("@idSala", idSala);
@@ -63,7 +63,7 @@ namespace CapaDeDatos
         {
             int count;
             this.comando.Parameters.Clear();
-            this.comando.CommandText = " SELECT count(*) FROM Sala_mensaje sm where sm.idSala = @idSala;";
+            this.comando.CommandText = " SELECT count(*) FROM sala_mensaje sm where sm.idSala = @idSala;";
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             lector = comando.ExecuteReader();
             lector.Read();

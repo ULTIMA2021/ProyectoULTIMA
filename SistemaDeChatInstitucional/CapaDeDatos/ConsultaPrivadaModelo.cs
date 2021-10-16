@@ -27,7 +27,7 @@ namespace CapaDeDatos
         }
 
         public void updateConsultaStatus() {
-            this.comando.CommandText = "UPDATE ConsultaPrivada SET cpStatus='resuelta' WHERE idConsultaPrivada=@idConsultaPrivada AND docenteCi=@docenteCi AND alumnoCi=@alumnoCi; ";
+            this.comando.CommandText = "UPDATE consultaprivada SET cpStatus='resuelta' WHERE idConsultaPrivada=@idConsultaPrivada AND docenteCi=@docenteCi AND alumnoCi=@alumnoCi; ";
 
             this.comando.Parameters.AddWithValue("idConsultaPrivada", this.idConsultaPrivada);
             this.comando.Parameters.AddWithValue("docenteCi", this.ciDocente);
@@ -40,7 +40,7 @@ namespace CapaDeDatos
         public void crearConsultaPrivada(int idConsultaPrivada,string docenteCi, string alumnoCi, string titulo, 
             string cpStatus, DateTime cpFechaHora)
         {
-            this.comando.CommandText = "INSERT INTO ConsultaPrivada (idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora) VALUES(" +
+            this.comando.CommandText = "INSERT INTO consultaprivada (idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora) VALUES(" +
                                     "@idConsultaPrivada, @docenteCi, @alumnoCi, @titulo, @cpStatus, @cpFechaHora);";
             this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
             this.comando.Parameters.AddWithValue("docenteCi", docenteCi);
@@ -121,7 +121,8 @@ namespace CapaDeDatos
         public List<ConsultaPrivadaModelo> getConsultas(byte sessionType)
         {
             List<ConsultaPrivadaModelo> consultas = new List<ConsultaPrivadaModelo>();
-            this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario FROM ConsultaPrivada cp, CP_mensaje m " +
+            this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario " +
+                "FROM consultaprivada cp, cp_mensaje m " +
                 "WHERE cp.idConsultaPrivada = m.idConsultaPrivada " +
                 "AND cp.alumnoCi = m.ciAlumno AND cp.docenteCi = m.ciDestinatario AND m.idCp_mensaje = 1;";
             lector = this.comando.ExecuteReader();

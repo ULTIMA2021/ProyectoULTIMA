@@ -39,8 +39,7 @@ namespace CapaLogica
             m.nombreMateria = nombreMateria;
             m.crearMateriaNueva();
         }
-        public static void nuevaOrientacion(string 
-            )
+        public static void nuevaOrientacion(string nombreOrientacion)
         {
             OrientacionModelo o = new OrientacionModelo(Session.type);
             o.nombreOrientacion = nombreOrientacion;

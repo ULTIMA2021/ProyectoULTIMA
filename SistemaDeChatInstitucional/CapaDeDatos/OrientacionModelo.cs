@@ -19,21 +19,21 @@ namespace CapaDeDatos
 
         public void crearMateriaNueva()
         {
-            this.comando.CommandText = "INSERT INTO Orientacion (nombreOrientacion) VALUES(@nombreOrientacion);";
+            this.comando.CommandText = "INSERT INTO orientacion (nombreOrientacion) VALUES(@nombreOrientacion);";
             this.comando.Parameters.AddWithValue("nombreOrientacion",this.nombreOrientacion);
             EjecutarQuery(this.comando, errorType);
         }
         public void borrarOrientacion(string idOrientacion)
         {
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "DELETE FROM Orientacion WHERE idOrientacion=@idOrientacion;";
+            this.comando.CommandText = "DELETE FROM orientacion WHERE idOrientacion=@idOrientacion;";
             this.comando.Parameters.AddWithValue("@idOrientacion",idOrientacion);
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);
         }
         public void actualizarNombreDeOrientacion(string nombreOrientacion, string idOrientacion)
         {
-            this.comando.CommandText = "UPDATE Orientacion SET nombreOrientacion = @nombreOrientacion WHERE idOrientacion = @idOrientacion;";
+            this.comando.CommandText = "UPDATE orientacion SET nombreOrientacion = @nombreOrientacion WHERE idOrientacion = @idOrientacion;";
             this.comando.Parameters.AddWithValue("@nombreOrientacion", nombreOrientacion);
             this.comando.Parameters.AddWithValue("@idOrientacion", idOrientacion);
             EjecutarQuery(comando, errorType);
@@ -55,14 +55,14 @@ namespace CapaDeDatos
 
         public List<OrientacionModelo> getOrientacion(byte sessionType)
         {
-            this.comando.CommandText = "SELECT idOrientacion, nombreOrientacion FROM Orientacion;";
+            this.comando.CommandText = "SELECT idOrientacion, nombreOrientacion FROM orientacion;";
             return cargarOrientacionAlista(this.comando, sessionType);
         }
 
         public string getOrientacion(string nombreOrientacion, byte sessionType)
         {
             string idOrientacion;
-            this.comando.CommandText = "SELECT idOrientacion FROM Orientacion WHERE nombreOrientacion=@nombreOrientacion;";
+            this.comando.CommandText = "SELECT idOrientacion FROM orientacion WHERE nombreOrientacion=@nombreOrientacion;";
             this.comando.Parameters.AddWithValue("@nombreOrientacion", nombreOrientacion);
             lector = comando.ExecuteReader();
             lector.Read();
