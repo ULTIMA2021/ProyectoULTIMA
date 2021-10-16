@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
@@ -178,6 +172,7 @@ namespace AppAdmin.menuScreens
         }
         private void mybutton_Click_Ingreso(object sender, EventArgs e)
         {
+            Enabled = false;
             Button b = (Button)sender;
             int indexFromButton = int.Parse(b.AccessibleName.Substring(11));
             string ci = alumnos[indexFromButton][0];
@@ -201,6 +196,7 @@ namespace AppAdmin.menuScreens
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
             createControls();
+            Enabled = true;
         }
 
         private List<int> GroupsToInt(int indexFromButton)
@@ -213,10 +209,13 @@ namespace AppAdmin.menuScreens
 
         private void mybutton_Click_Modificacion(object sender, EventArgs e)
         {
+            Enabled = false;
             Button b = (Button)sender;
+            Enabled = true;
         }
         private void mybutton_Click_Delete(object sender, EventArgs e)
         {
+            Enabled = false;
             Button b = (Button)sender;
             int indexFromButton = int.Parse(b.AccessibleName.Substring(11));
             string ci = alumnos[indexFromButton][0];
@@ -229,6 +228,7 @@ namespace AppAdmin.menuScreens
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
             createControls();
+            Enabled = true;
         }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
 

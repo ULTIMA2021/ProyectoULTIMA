@@ -26,10 +26,8 @@ namespace AppAlumno.menuScreens
         Padding TextP = new Padding(0, -1, 0, -1);
         Padding namesP = new Padding(0, 10, 0, -1);
 
-        public replyScreen()
-        {
-            InitializeComponent();
-        }
+        public replyScreen()=>InitializeComponent();
+        
 
         public replyScreen(List<List<string>> mensajes, string asunto, string status)
         {
@@ -73,13 +71,11 @@ namespace AppAlumno.menuScreens
             msgCount = mensajes.Count;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void button1_Click(object sender, EventArgs e) => Dispose();
 
         private void btnEnviar_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             if (txtRespuesta.Text != "")
             {
                 enviarMensaje();
@@ -90,6 +86,7 @@ namespace AppAlumno.menuScreens
                 setMyLabels(msgCount - 1, nombrePersona, t, fecha, statuss);
                 //myLoad(status);
             }
+            Enabled = true;
         }
 
         private void myLoad(string status)
@@ -202,11 +199,13 @@ namespace AppAlumno.menuScreens
 
         private void btnFinalizarConsulta_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             this.Controls.Remove(txtRespuesta);
             this.Controls.Remove(btnFinalizarConsulta);
             this.Controls.Remove(btnEnviar);
             this.Controls.Remove(panel1);
             Controlador.finalizarConsulta(idConsultaPrivada, int.Parse(ciDocente) ,int.Parse(Session.cedula));
+            Enabled = true;
 
         }
     }

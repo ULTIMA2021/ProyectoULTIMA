@@ -136,6 +136,7 @@ namespace AppAlumno.menuScreens
 
         private void Salas_Load(object sender, EventArgs e)
         {
+            Enabled = false;
             try
             {
                 timer = setTimer();
@@ -169,7 +170,7 @@ namespace AppAlumno.menuScreens
             dgvSalas.Columns[5].HeaderText = Resources.colGrupo;
             dgvSalas.Columns[6].HeaderText = Resources.colMateria;
             dgvSalas.Columns[8].HeaderText = Resources.colAnfitrion;
-
+            Enabled = true;
         }
 
         private void Salas_FormClosing(object sender, FormClosingEventArgs e)
@@ -183,6 +184,7 @@ namespace AppAlumno.menuScreens
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             string idGrupo;
             string idMateria;
             string docente;
@@ -208,6 +210,7 @@ namespace AppAlumno.menuScreens
             {
                MessageBox.Show(Controlador.errorHandler(ex));
             }
+            Enabled = true;
         }
 
         private void txtAsuntoSala_TextChanged(object sender, EventArgs e)
@@ -220,6 +223,7 @@ namespace AppAlumno.menuScreens
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             checker++;
             if (checker % 2 == 0)
             {
@@ -235,6 +239,7 @@ namespace AppAlumno.menuScreens
             dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
             dgvSalas.Update();
             timer.Start();
+            Enabled = true;
         }
 
         private void Salas_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");

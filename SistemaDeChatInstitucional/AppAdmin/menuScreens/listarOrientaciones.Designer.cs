@@ -78,8 +78,8 @@
             this.dgvListarOrientaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListarOrientaciones.Size = new System.Drawing.Size(250, 294);
             this.dgvListarOrientaciones.TabIndex = 0;
+            this.dgvListarOrientaciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListarOrientaciones_CellClick);
             this.dgvListarOrientaciones.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvListarOrientaciones_DataBindingComplete);
-            this.dgvListarOrientaciones.SelectionChanged += new System.EventHandler(this.dgvListarOrientaciones_SelectionChanged);
             // 
             // btnExit
             // 

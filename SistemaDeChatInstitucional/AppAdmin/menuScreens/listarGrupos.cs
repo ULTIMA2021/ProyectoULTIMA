@@ -1,13 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
@@ -91,7 +83,7 @@ namespace AppAdmin.menuScreens
         {
             List<int> materiasSeleccionadas = getIdsFromClb();
             string nombreGrupo = textBox1.Text;
-
+            Enabled = false;
             if (cbModificar.Checked)
             {
 
@@ -128,21 +120,8 @@ namespace AppAdmin.menuScreens
             dgvListarGrupos.DataSource = null;
             dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
             clbMaterias.ClearSelected();
-
+            Enabled = true;
             dgvListarGrupos.ClearSelection();
-        }
-
-        private void deleteGroup() {
-            //get selected group id
-            /*
-            int affectedAlumnos = Controlador.getAlumnoPorGrupo(idGrupo);
-            int affectedDocentes = Controlador.getDocentePorGrupo(idGrupo);
-            int countConsulta = Controlador.getConsultasPorGrupoMateria(idGrupo,null);
-            int countSala = Controlador.getSalasPorGrupoMateria(idGrupo, null);
-
-            string text = $"Borrar el grupo {dgvListarGrupos.SelectedRows[0].ToString()} estaria afectando a: \n\t{affectedAlumnos} alumnos\n\t{affectedDocentes}docentes\n\t{countConsulta} consultas\n\t{countSala} salas\nRealmente desea continuar?";
-
-            MessageBox.Show(text ); */
         }
 
         private void dgvListarGrupos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) { dgvListarGrupos.ClearSelection(); dgvListarGrupos.Columns["idGrupo"].Visible = false; }
@@ -157,27 +136,9 @@ namespace AppAdmin.menuScreens
             clbMaterias.DataSource = todasMisMaterias;
         }
 
-        //private void loadMateriasForModificacion()
-        //{
-        //    clbMaterias.DataSource = null;
-        //    string idGrupo= dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
-        //    string nombreGrupo = dgvListarGrupos.CurrentRow.Cells["Grupos"].Value.ToString();
-
-        //    if (fuckingcounter > 0 && Controlador.validarGrupo(idGrupo, nombreGrupo))
-        //    {
-        //    idGrupo = dgvListarGrupos.CurrentRow.Cells["idGrupo"].Value.ToString();
-        //    clbMaterias.DataSource = Controlador.MateriasToListForRegister();
-        //        foreach (int item in Controlador.obtenerMaterias(idGrupo))
-        //        {
-        //            clbMaterias.SetItemChecked(item, true);
-        //        }
-        //    }
-        //    clbMaterias.ClearSelected();
-        //    fuckingcounter++;
-        //}
-
         private void cbModificar_CheckedChanged(object sender, EventArgs e)
         {
+            Enabled = false;
             if (cbModificar.Checked)
             {
                 btnIngresar.Enabled = false;
@@ -198,6 +159,7 @@ namespace AppAdmin.menuScreens
                 groupBox1.Text = "Ingresar nuevo grupo";
                 btnIngresar.Text = "Ingresar";
             }
+            Enabled = true;
         }
 
         private void checkBoxes()
@@ -215,6 +177,7 @@ namespace AppAdmin.menuScreens
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             try
             {
                 Controlador.deleteGrupo(idGrupo);
@@ -239,6 +202,7 @@ namespace AppAdmin.menuScreens
             dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
             clbMaterias.ClearSelected();
             allowMod(false);
+            Enabled = true;
         }
 
         private void dgvListarGrupos_CellClick(object sender, DataGridViewCellEventArgs e) => allowMod(true);

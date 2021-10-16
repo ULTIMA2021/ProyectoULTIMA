@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
@@ -34,7 +31,7 @@ namespace AppAdmin.menuScreens
         {
             //-check that correct groups and mats are being loaded, no deleted ones.
             //-If persona does exist ask if they want to reactivate acc
-
+            Enabled = false;
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
             {
                 try
@@ -79,6 +76,8 @@ namespace AppAdmin.menuScreens
                 { Controlador.errorHandler(ex); }
             }
             else MessageBox.Show("Las contraseñas no coinciden");
+
+            Enabled = true;
         }
         private void resetFields()
         {
@@ -136,6 +135,7 @@ namespace AppAdmin.menuScreens
 
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Enabled = false;
             // this.lblGrupo.Location= Point.;
             lblApodoAst.Visible = true;
             pbFoto.Enabled = true;
@@ -199,6 +199,7 @@ namespace AppAdmin.menuScreens
                     clbOpciones.DataSource = null;
                     break;
             }
+            Enabled = true;
         }
         private IEnumerable<Control> GetAll(Control control, Type type)
         {

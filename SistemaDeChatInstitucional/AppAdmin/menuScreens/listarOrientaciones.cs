@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
@@ -78,6 +72,7 @@ namespace AppAdmin.menuScreens
         }
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             List<int> gruposSeleccionados = getIdsFromText();
             string nombreOrientacion = textBox1.Text;
             takenGroup.Clear();
@@ -127,6 +122,7 @@ namespace AppAdmin.menuScreens
                 {
                     MessageBox.Show(Controlador.errorHandler(ex));
                 }
+            Enabled = true;
         }
 
         private void dgvListarOrientaciones_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarOrientaciones.ClearSelection();
@@ -146,6 +142,7 @@ namespace AppAdmin.menuScreens
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             try
             {
                 Controlador.deleteOrientacion(dgvListarOrientaciones.CurrentRow.Cells["id"].Value.ToString());
@@ -165,10 +162,12 @@ namespace AppAdmin.menuScreens
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
+            Enabled = true;
         }
 
         private void cbModificar_CheckedChanged(object sender, EventArgs e)
         {
+            Enabled = false;
             if (cbModificar.Checked)
             {
                 btnBorrar.Enabled = true;
@@ -188,10 +187,12 @@ namespace AppAdmin.menuScreens
                 groupBox1.Text = "Ingresar nueva orientacion";
                 btnIngresar.Text = "Ingresar";
             }
+            Enabled = true;
         }
-       
-        private void dgvListarOrientaciones_SelectionChanged(object sender, EventArgs e)
+
+        private void dgvListarOrientaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            Enabled = false;
             if (cbModificar.Checked)
             {
                 loadAllGrupos();
@@ -200,6 +201,7 @@ namespace AppAdmin.menuScreens
                 textBox1.Text = dgvListarOrientaciones.CurrentRow.Cells["Orientaciones"].Value.ToString();
                 checkBoxes();
             }
+            Enabled = true;
         }
     }
 }

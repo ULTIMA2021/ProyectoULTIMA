@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
@@ -92,17 +86,24 @@ namespace AppAdmin.menuScreens
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            this.Enabled = false;
             List<int> gruposSeleccionados = getIdsFromText();
             string nombreMateria = textBox1.Text;
             idMateria = dgvListarMaterias.CurrentRow.Cells[0].Value.ToString();
             if (cbModificar.Checked)
             {
                 try
-                {
+                {   
                     Controlador.actualizarNombreMateria(textBox1.Text, idMateria);
                     sacarGrupoDeMateria();
                     cargarGrupoAmateria(gruposSeleccionados);
 
+                    textBox1.Clear();
+                    uncheckAllBoxes();
+
+                    dgvListarMaterias.DataSource = null;
+                    dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
+                    dgvListarMaterias.Columns[0].Visible = false;
                 }
                 catch (Exception ex)
                 {
@@ -118,15 +119,19 @@ namespace AppAdmin.menuScreens
                     if (clbGrupos.SelectedIndices.Count > 0)
                         Controlador.asignarMateriasAGrupo(gruposSeleccionados, int.Parse(idMateria));
 
-                    textBox1.Clear();
-                    uncheckAllBoxes();
                     dgvListarMaterias.DataSource = null;
                     dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
+                    textBox1.Clear();
+                    uncheckAllBoxes();
+                    dgvListarMaterias.Columns[0].Visible = false;
+
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(Controlador.errorHandler(ex));
                 }
+            this.Enabled = true;
+            clbGrupos.ClearSelected();
         }
 
         private void dgvListarMaterias_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarMaterias.ClearSelection();
@@ -153,6 +158,7 @@ namespace AppAdmin.menuScreens
         }
         private void cbModificar_CheckedChanged(object sender, EventArgs e)
         {
+            Enabled = false;
             if (cbModificar.Checked)
             {
                 btnBorrar.Enabled = true;
@@ -172,22 +178,12 @@ namespace AppAdmin.menuScreens
                 gbMaterias.Text = "Ingresar nueva Materia";
                 btnIngresar.Text = "Ingresar";
             }
-        }
-
-        private void dgvListarMaterias_SelectionChanged(object sender, EventArgs e)
-        {
-            if (cbModificar.Checked)
-            {
-                loadAllGrupos();
-                idMateria = dgvListarMaterias.CurrentRow.Cells[0].Value.ToString();
-                loadGruposOfSelectedMateria(idMateria);
-                textBox1.Text = dgvListarMaterias.CurrentRow.Cells["Materia"].Value.ToString();
-                checkBoxes();
-            }
+            Enabled = true;
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
+            this.Enabled = false;
             try
             {
                 Controlador.deleteMateria(idMateria);
@@ -209,6 +205,22 @@ namespace AppAdmin.menuScreens
             uncheckAllBoxes();
             dgvListarMaterias.DataSource = null;
             dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
+            dgvListarMaterias.Columns[0].Visible = false;
+            this.Enabled = true;
+        }
+
+        private void dgvListarMaterias_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Enabled = false;
+            if (cbModificar.Checked)
+            {
+                loadAllGrupos();
+                idMateria = dgvListarMaterias.CurrentRow.Cells[0].Value.ToString();
+                loadGruposOfSelectedMateria(idMateria);
+                textBox1.Text = dgvListarMaterias.CurrentRow.Cells["Materia"].Value.ToString();
+                checkBoxes();
+            }
+            Enabled = true;
         }
     }
 }
