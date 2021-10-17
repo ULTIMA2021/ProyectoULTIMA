@@ -407,7 +407,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UsuarioRegistro";
             this.Text = "listarDocentes";
-            this.Load += new System.EventHandler(this.listarDocentes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();

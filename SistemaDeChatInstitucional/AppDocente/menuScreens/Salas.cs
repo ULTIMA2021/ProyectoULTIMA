@@ -99,6 +99,7 @@ namespace AppDocente.menuScreens
             dgvGrupoMaterias.Columns["Grupo"].Visible = true;
             dgvGrupoMaterias.Columns["idMateria"].Visible = false;
             dgvGrupoMaterias.Columns["Materia"].Visible = true;
+            dgvGrupoMaterias.ClearSelection();
         }
 
         private void dgvSalas_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

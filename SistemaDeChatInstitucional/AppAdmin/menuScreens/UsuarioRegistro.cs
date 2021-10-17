@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CapaLogica;
@@ -10,30 +11,77 @@ namespace AppAdmin.menuScreens
 {
     public partial class UsuarioRegistro : Form
     {
+
+        char[] seperator = { ' ', ' ', ' ' };
         public UsuarioRegistro()
         {
             InitializeComponent();
             load();
         }
-        public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List <int> grupos, int type)
+        public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List<int> checkedItems, int type)
         {
             InitializeComponent();
             load();
             CenterToScreen();
-            loadDatos(ci, nombre, apellido, apodo, clave, grupos, type);
+            loadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type);
         }
         private void loadDatos(string ci, string nombre, string apellido, string apodo, string clave, List<int> checkedItems, int type)
         {
-            changeFieldsForUser(type);
+            setFields(ci, nombre, apellido, type);
             switch (type)
             {
-                case 1:
+                case 1: //alumno
+                    //todosMisGrupos = Controlador.gruposToListForRegister();
+                    comboBoxUser.SelectedIndex = 1;
+                    txtApodo.Text = apodo;
+                    checkTheseBoxes(checkedItems);
                     break;
-                case 2:
+
+                case 2: //docente
+                        //todosMisGrupos = Controlador.grupoMateriaToListForRegister();
+                    comboBoxUser.SelectedIndex = 2;
+
+                    checkTheseBoxes(checkedItems);
                     break;
-                case 3:
+
+                case 4: //alumnotemp
+                    comboBoxUser.SelectedIndex = 1;
+                    txtClave.Text = clave;
+                    txtClaveVerificacion.Text = clave;
+                    txtClave.Enabled = false;
+                    txtClaveVerificacion.Enabled = false;
+                    txtApodo.Text = apodo;
+                    checkTheseBoxes(checkedItems);
+
+
                     break;
             }
+        }
+        private void setFields(string ci, string nombre, string apellido, int type)
+        {
+            changeFieldsForUser(type);
+            txtCedula.Enabled = false;
+            comboBoxUser.Enabled = false;
+
+            txtCedula.Text = ci;
+            txtNombre.Text = nombre;
+            txtApellido.Text = apellido;
+            try
+            {
+                var ms = new MemoryStream(Controlador.obtenerFotoAlumnoTemp(ci));
+                pbFoto.Image = Image.FromStream(ms);
+            }
+            catch (Exception ex)
+            {
+                //Load the default image
+            }
+        }
+        private void checkTheseBoxes(List<int> checkedItems)
+        {
+            for (int x = 0; x < checkedItems.Count; x++)
+                for (int y = 0; y < clbOpciones.Items.Count; y++)
+                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x].ToString())
+                        clbOpciones.SetItemCheckState(y, CheckState.Checked);
         }
 
         private void load()
@@ -46,52 +94,50 @@ namespace AppAdmin.menuScreens
             clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
         }
+
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            //-check that correct groups and mats are being loaded, no deleted ones.
             //-If persona does exist ask if they want to reactivate acc
             Enabled = false;
             if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
             {
                 try
                 {
-                    if (Controlador.existePersona(txtCedula.Text))// not really needed, we just throw it at the db, no need for this
+                    Console.WriteLine("this person is getting registered");
+                    string safePW = txtClave.Text;
+                    if (txtClave.Enabled == true)
+                        safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
+                    byte[] foto = { };
+                    try
                     {
-                        Console.WriteLine("this person is getting registered");
-                        string safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
-                        byte[] foto = { };
-                        try
-                        {
-                            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-                            pbFoto.Image.Save(ms, pbFoto.Image.RawFormat);
-                            foto = ms.ToArray();
-                        }
-                        catch (Exception er)
-                        { }
-                        Controlador.AltaPersona(
-                            txtCedula.Text.Trim(' '),
-                            txtNombre.Text.Trim(' '),
-                            txtApellido.Text.Trim(' '),
-                            safePW, foto);
-                        if (comboBoxUser.SelectedIndex == 1)
-                        {
-                            Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
-                            clbOpciones.DataSource = Controlador.gruposToListForRegister();
-
-                        }
-                        else if (comboBoxUser.SelectedIndex == 2)
-                        {
-                            Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
-                            clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
-                        }
-                        else if (comboBoxUser.SelectedIndex == 3)
-                        {
-                            Controlador.AltaAdmin(txtCedula.Text);
-                        }
-                        resetFields();
+                        MemoryStream ms = new MemoryStream();
+                        pbFoto.Image.Save(ms, pbFoto.Image.RawFormat);
+                        foto = ms.ToArray();
                     }
+                    catch (Exception er)
+                    { }
+                    Controlador.AltaPersona(
+                        txtCedula.Text.Trim(' '),
+                        txtNombre.Text.Trim(' '),
+                        txtApellido.Text.Trim(' '),
+                        safePW, foto);
+                    if (comboBoxUser.SelectedIndex == 1)
+                    {
+                        Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
+                        clbOpciones.DataSource = Controlador.gruposToListForRegister();
+                    }
+                    else if (comboBoxUser.SelectedIndex == 2)
+                    {
+                        Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
+                        clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
+                    }
+                    else if (comboBoxUser.SelectedIndex == 3)
+                        Controlador.AltaAdmin(txtCedula.Text);
+                    if (txtClave.Enabled == false)
+                        Dispose();
+                    resetFields();
                 }
                 catch (Exception ex)
                 { Controlador.errorHandler(ex); }
@@ -147,11 +193,6 @@ namespace AppAdmin.menuScreens
 
             if (abrirFoto.ShowDialog() == DialogResult.OK)
                 pbFoto.Image = Image.FromFile(abrirFoto.FileName);
-        }
-
-        private void listarDocentes_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)

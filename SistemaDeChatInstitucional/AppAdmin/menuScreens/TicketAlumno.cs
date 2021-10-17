@@ -102,6 +102,7 @@ namespace AppAdmin.menuScreens
             alumnos.Clear();
             alumnos = Controlador.obtenerAlumnoTemp();
         }
+
         private Label defineLabels(Label lbl, string lblName, string lblText)
         {
             lbl.Font = new Font("Cambria", 11, FontStyle.Bold);
@@ -160,7 +161,7 @@ namespace AppAdmin.menuScreens
             if (bName.Contains("Ingreso"))
             {
                 b.Click += new EventHandler(mybutton_Click_Ingreso);
-                b.Text = "Ingreso";
+                b.Text = "Ingresar";
             }
             else if (bName.Contains("Modificar"))
             {
@@ -171,10 +172,19 @@ namespace AppAdmin.menuScreens
             else
             {
                 b.Click += new EventHandler(mybutton_Click_Delete);
-                b.Text = "Delete";
+                b.Text = "Borrar";
             }
             return b;
         }
+
+        private List<int> GroupsToInt(int indexFromButton)
+        {
+            List<int> groupsToInt = new List<int>();
+            for (int i = 0; i < gruposDeAlumnos[indexFromButton].Count; i++)
+                groupsToInt.Add(int.Parse(gruposDeAlumnos[indexFromButton][i][0]));
+            return groupsToInt;
+        }
+
         private void mybutton_Click_Ingreso(object sender, EventArgs e)
         {
             Enabled = false;
@@ -200,18 +210,10 @@ namespace AppAdmin.menuScreens
                 Controlador.bajaPersona(ci);
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
+            flowLayoutPanel1.Controls.Clear();
             createControls();
             Enabled = true;
         }
-
-        private List<int> GroupsToInt(int indexFromButton)
-        {
-            List<int> groupsToInt = new List<int>();
-            for (int i = 0; i < gruposDeAlumnos[indexFromButton].Count; i++)
-                groupsToInt.Add(int.Parse(gruposDeAlumnos[indexFromButton][i][0]));
-            return groupsToInt;
-        }
-
         private void mybutton_Click_Modificacion(object sender, EventArgs e)
         {
             Enabled = false;
@@ -223,7 +225,9 @@ namespace AppAdmin.menuScreens
             string apodo = alumnos[indexFromButton][3];
             string clave = alumnos[indexFromButton][5];
             List<int> groupsToInt = GroupsToInt(indexFromButton);
-            new UsuarioRegistro(ci, nombre, apellido, apodo, clave, groupsToInt,1).ShowDialog();
+            new UsuarioRegistro(ci, nombre, apellido, apodo, clave, groupsToInt,4).ShowDialog();
+            flowLayoutPanel1.Controls.Clear();
+            createControls();
             Enabled = true;
         }
         private void mybutton_Click_Delete(object sender, EventArgs e)
@@ -242,6 +246,7 @@ namespace AppAdmin.menuScreens
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
+            flowLayoutPanel1.Controls.Clear();
             createControls();
             Enabled = true;
         }

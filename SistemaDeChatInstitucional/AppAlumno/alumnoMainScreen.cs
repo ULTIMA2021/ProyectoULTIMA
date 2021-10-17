@@ -171,37 +171,47 @@ namespace AppAlumno
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.configuracion window = new menuScreens.configuracion();
             setConfig(window);
             enableButtonsExceptSelected(btnConfiguracion);
+            Enabled = true;
         }
 
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.misAsignaturas window = new menuScreens.misAsignaturas();
             setAsignaturas(window);
             enableButtonsExceptSelected(btnAsignaturas);
+            Enabled = true;
         }
 
         private void btnMisDocentes_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.misDocentes window = new menuScreens.misDocentes();
             setMisDoc(window);
             enableButtonsExceptSelected(btnMisDocentes);
+            Enabled = true;
         }
 
         private void btnNuevoMensaje_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.NuevoMensaje window = new menuScreens.NuevoMensaje();
             setNuevoMsg(window);
             enableButtonsExceptSelected(btnNuevoMensaje);
+            Enabled = true;
         }
 
         private void btnMisMensajes_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.misMensajes windoow = new menuScreens.misMensajes();
             setMisMsg(windoow);
             enableButtonsExceptSelected(btnMisMensajes);
+            Enabled = true;
         }
 
         private void CloseListener(object sender, EventArgs e, string test)
@@ -221,7 +231,7 @@ namespace AppAlumno
                 MemoryStream ms = new MemoryStream(Session.foto);
                 fotoAlumno.Image = Image.FromStream(ms);
             }
-            catch (ArgumentNullException ex)
+            catch (Exception ex)
             {
             }
         }

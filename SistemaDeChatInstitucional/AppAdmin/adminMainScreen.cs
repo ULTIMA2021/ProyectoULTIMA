@@ -7,10 +7,8 @@ namespace AppAdmin
     public partial class adminMainScreen : Form
     {
 
-        public adminMainScreen()
-        {
-            InitializeComponent();
-        }
+        public adminMainScreen() => InitializeComponent();
+
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -81,35 +79,57 @@ namespace AppAdmin
         //}
 
         private void btnExit_Click(object sender, EventArgs e) => Application.Exit();
-        
-        private void btnListarAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.TicketAlumno());
-        
-        private void panelTitulo_MouseDown(object sender, MouseEventArgs e) 
+
+        private void panelTitulo_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void btnListarDocentes_Click(object sender, EventArgs e) => openScreen(new menuScreens.UsuarioRegistro());
-        
-        private void btnRequerimientoAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.UsuarioRegistro());
-
         private void btnCursos_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuCursos);
 
-        private void btnRequerimientoDocentes_Click(object sender, EventArgs e) { }
+        private void btnMaterias_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            openScreen(new menuScreens.listarMaterias());
+            Enabled = true;
+        }
 
-        private void btnMaterias_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarMaterias());
-        
-        private void btnGrupos_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarGrupos());
-        
-        private void btnOrientaciones_Click(object sender, EventArgs e) => openScreen(new menuScreens.listarOrientaciones());
-            
-        private void btnListarAlumnos_Click_1(object sender, EventArgs e) => openScreen(new menuScreens.UsuarioRegistro());
-        
+        private void btnGrupos_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            openScreen(new menuScreens.listarGrupos());
+            Enabled = true;
+        }
+
+        private void btnOrientaciones_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            openScreen(new menuScreens.listarOrientaciones());
+            Enabled = true;
+        }
+                    
         private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
 
         private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
 
-        private void btnNuevosAlumnos_Click(object sender, EventArgs e) => openScreen(new menuScreens.TicketAlumno());
+        private void btnNuevosAlumnos_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            openScreen(new menuScreens.TicketAlumno());
+            Enabled = true;
+        }
+
+        private void btnRegi_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            openScreen(new menuScreens.UsuarioRegistro());
+            Enabled = true;
+        }
+
+        private void btnInfoUser_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

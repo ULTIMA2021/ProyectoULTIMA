@@ -20,11 +20,9 @@ namespace AppDocente
         System.Windows.Forms.Timer timer;
         string msgCount;
 
-        public docenteMainScreen()
-        {
-            InitializeComponent();
+        public docenteMainScreen() => InitializeComponent();
             
-        }
+        
         // Metodos para desplazar ventana
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -92,13 +90,11 @@ namespace AppDocente
             {
                 esconderSubMenu();
                 subMenu.Visible = true;
-                
             }
             else
             {
                 subMenu.Visible = false;
             }
-            
         }
 
         private Form ventanaActiva = null;
@@ -150,9 +146,11 @@ namespace AppDocente
 
         private void btnAgenda_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.agenda window = new menuScreens.agenda();
             setAgenda(window);
             enableButtonsExceptSelected(btnAgenda);
+            Enabled = true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -177,38 +175,48 @@ namespace AppDocente
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.configuracion window = new menuScreens.configuracion();
             setConfig(window);
             enableButtonsExceptSelected(btnConfiguracion);
+            Enabled = true;
         }
 
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             //menuScreens.asignaturas window = new menuScreens.asignaturas();
             //setAsignaturas(window);
             enableButtonsExceptSelected(btnAsignaturas);
+            Enabled = true;
         }
 
         private void btnMisAlumnos_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             //menuScreens.misAlumnos window = new menuScreens.misAlumnos();
             //setMisAlumnos(window);
             enableButtonsExceptSelected(btnMisAlumnos);
+            Enabled = true;
         }
 
         private void btnMisMensajes_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             menuScreens.misMensajes window = new menuScreens.misMensajes();
             setMisMsg(window);
             enableButtonsExceptSelected(btnMisMensajes);
+            Enabled = true;
         }
 
         private void btnSala_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             esconderSubMenu();
             menuScreens.Salas window = new menuScreens.Salas();
             setSala(window);
             enableButtonsExceptSelected(btnSala);
+            Enabled = true;
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
