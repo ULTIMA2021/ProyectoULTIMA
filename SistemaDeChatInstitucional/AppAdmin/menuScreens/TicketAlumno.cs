@@ -10,7 +10,7 @@ namespace AppAdmin.menuScreens
     public partial class TicketAlumno : Form
     {
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
-        List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]    clave=[5]
+        List<List<string>> alumnos = new List<List<string>>();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]    clave=[5]
         List<List<List<string>>> gruposDeAlumnos = new List<List<List<string>>>();   //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo
         Size pbSize = new Size(111, 107);
         Padding padHori = new Padding(3, 3, 3, 10);
@@ -27,7 +27,7 @@ namespace AppAdmin.menuScreens
 
         private void createControls()
         {
-            flowLayoutPanel1.Controls.Clear();
+            preparelists();
             for (int x = 0; x < alumnos.Count; x++)
             {
                 FlowLayoutPanel hori = new FlowLayoutPanel();
@@ -68,7 +68,7 @@ namespace AppAdmin.menuScreens
                 hori.Controls.Add(apodo);
                 hori.Controls.Add(groups);
                 hori.Controls.Add(ingreso);
-               // hori.Controls.Add(modificar);
+                hori.Controls.Add(modificar);
                 hori.Controls.Add(delete);
 
                 flowLayoutPanel1.Controls.Add(hori);
@@ -96,7 +96,12 @@ namespace AppAdmin.menuScreens
             }
             gruposDeAlumnos.Add(grupos);
         }
-
+        private void preparelists()
+        {
+            gruposDeAlumnos.Clear();
+            alumnos.Clear();
+            alumnos = Controlador.obtenerAlumnoTemp();
+        }
         private Label defineLabels(Label lbl, string lblName, string lblText)
         {
             lbl.Font = new Font("Cambria", 11, FontStyle.Bold);
@@ -211,17 +216,27 @@ namespace AppAdmin.menuScreens
         {
             Enabled = false;
             Button b = (Button)sender;
+            int indexFromButton = int.Parse(b.AccessibleName.Substring(13));
+            string ci = alumnos[indexFromButton][0];
+            string nombre = alumnos[indexFromButton][1];
+            string apellido = alumnos[indexFromButton][2];
+            string apodo = alumnos[indexFromButton][3];
+            string clave = alumnos[indexFromButton][5];
+            List<int> groupsToInt = GroupsToInt(indexFromButton);
+            new UsuarioRegistro(ci, nombre, apellido, apodo, clave, groupsToInt,1).ShowDialog();
             Enabled = true;
         }
         private void mybutton_Click_Delete(object sender, EventArgs e)
         {
+
             Enabled = false;
             Button b = (Button)sender;
-            int indexFromButton = int.Parse(b.AccessibleName.Substring(11));
+            int indexFromButton = int.Parse(b.AccessibleName.Substring(10));
             string ci = alumnos[indexFromButton][0];
             try
             {
                 Controlador.bajaAlumnoTemp(ci);
+                flowLayoutPanel1.Controls.Clear();
             }
             catch (Exception ex)
             {
@@ -231,10 +246,5 @@ namespace AppAdmin.menuScreens
             Enabled = true;
         }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
-
-        private void TicketAlumno_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

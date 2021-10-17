@@ -82,7 +82,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TicketAlumno";
             this.Text = "listarAlumnos";
-            this.Load += new System.EventHandler(this.TicketAlumno_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

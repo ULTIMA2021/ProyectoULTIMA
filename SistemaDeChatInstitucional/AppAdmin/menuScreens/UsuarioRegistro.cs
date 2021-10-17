@@ -15,6 +15,27 @@ namespace AppAdmin.menuScreens
             InitializeComponent();
             load();
         }
+        public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List <int> grupos, int type)
+        {
+            InitializeComponent();
+            load();
+            CenterToScreen();
+            loadDatos(ci, nombre, apellido, apodo, clave, grupos, type);
+        }
+        private void loadDatos(string ci, string nombre, string apellido, string apodo, string clave, List<int> checkedItems, int type)
+        {
+            changeFieldsForUser(type);
+            switch (type)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }
+
         private void load()
         {
             comboBoxUser.SelectedIndex = 0;
@@ -141,8 +162,12 @@ namespace AppAdmin.menuScreens
             pbFoto.Enabled = true;
             clbOpciones.Enabled = true;
             txtApodo.Enabled = true;
-
-            switch (comboBoxUser.SelectedIndex)
+            changeFieldsForUser(comboBoxUser.SelectedIndex);
+            Enabled = true;
+        }
+        private void changeFieldsForUser(int type)
+        {
+            switch (type)
             {
                 case 0:
                     foreach (TextBox txt in GetAll(this, typeof(TextBox)))
@@ -199,8 +224,8 @@ namespace AppAdmin.menuScreens
                     clbOpciones.DataSource = null;
                     break;
             }
-            Enabled = true;
         }
+
         private IEnumerable<Control> GetAll(Control control, Type type)
         {
             var controls = control.Controls.Cast<Control>();
