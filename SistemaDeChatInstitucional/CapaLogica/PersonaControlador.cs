@@ -210,6 +210,7 @@ namespace CapaLogica
             personaString.Add(p.Apellido);
             return string.Join("", personaString);
         }
+        public static byte[] getFotoPersona(string ci) => new PersonaModelo(Session.type).obtenerPersona(ci);
 
         public static DataTable obtenerDocentes()
         {

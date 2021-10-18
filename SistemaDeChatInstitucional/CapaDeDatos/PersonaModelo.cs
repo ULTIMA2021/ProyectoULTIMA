@@ -225,7 +225,20 @@ namespace CapaDeDatos
             return personas;
             return obtenerUsuario(this.comando, sessionType);
         }
-        
+
+        public byte[] obtenerPersona(string ci)
+        {
+            byte[] foto = null;
+            comando.Parameters.Clear();
+            comando.CommandText = "SELECT foto FROM persona WHERE ci=@ci;";
+            comando.Parameters.AddWithValue("@ci", ci);
+            lector = comando.ExecuteReader();
+            while (lector.Read())
+                foto = (byte[])lector[0];
+            lector.Close();
+            return foto;
+        } 
+
         public PersonaModelo obtenerPersona(string cedula, byte sessionType)
         {
             this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido, p.foto, p.enLinea FROM persona p " +

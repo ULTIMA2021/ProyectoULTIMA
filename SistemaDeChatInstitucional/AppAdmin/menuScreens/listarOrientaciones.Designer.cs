@@ -182,7 +182,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(920, 384);
+            this.ClientSize = new System.Drawing.Size(926, 384);
             this.Controls.Add(this.cbModificar);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnIngresar);

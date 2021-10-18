@@ -61,7 +61,7 @@
             this.panelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitulo.Location = new System.Drawing.Point(0, 0);
             this.panelTitulo.Name = "panelTitulo";
-            this.panelTitulo.Size = new System.Drawing.Size(920, 31);
+            this.panelTitulo.Size = new System.Drawing.Size(926, 31);
             this.panelTitulo.TabIndex = 0;
             this.panelTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitulo_MouseDown);
             // 
@@ -97,7 +97,7 @@
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(0, 66);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(920, 384);
+            this.panelContenedor.Size = new System.Drawing.Size(926, 519);
             this.panelContenedor.TabIndex = 5;
             // 
             // subMenuCursos
@@ -106,9 +106,9 @@
             this.subMenuCursos.Controls.Add(this.btnOrientaciones);
             this.subMenuCursos.Controls.Add(this.btnMaterias);
             this.subMenuCursos.Controls.Add(this.btnGrupos);
-            this.subMenuCursos.Location = new System.Drawing.Point(460, 0);
+            this.subMenuCursos.Location = new System.Drawing.Point(463, 0);
             this.subMenuCursos.Name = "subMenuCursos";
-            this.subMenuCursos.Size = new System.Drawing.Size(460, 113);
+            this.subMenuCursos.Size = new System.Drawing.Size(463, 113);
             this.subMenuCursos.TabIndex = 12;
             this.subMenuCursos.Visible = false;
             // 
@@ -122,7 +122,7 @@
             this.btnOrientaciones.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.btnOrientaciones.Location = new System.Drawing.Point(0, 70);
             this.btnOrientaciones.Name = "btnOrientaciones";
-            this.btnOrientaciones.Size = new System.Drawing.Size(460, 35);
+            this.btnOrientaciones.Size = new System.Drawing.Size(463, 35);
             this.btnOrientaciones.TabIndex = 8;
             this.btnOrientaciones.Text = "Orientaciones";
             this.btnOrientaciones.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@
             this.btnMaterias.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.btnMaterias.Location = new System.Drawing.Point(0, 35);
             this.btnMaterias.Name = "btnMaterias";
-            this.btnMaterias.Size = new System.Drawing.Size(460, 35);
+            this.btnMaterias.Size = new System.Drawing.Size(463, 35);
             this.btnMaterias.TabIndex = 7;
             this.btnMaterias.Text = "Materias";
             this.btnMaterias.UseVisualStyleBackColor = true;
@@ -154,7 +154,7 @@
             this.btnGrupos.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.btnGrupos.Location = new System.Drawing.Point(0, 0);
             this.btnGrupos.Name = "btnGrupos";
-            this.btnGrupos.Size = new System.Drawing.Size(460, 35);
+            this.btnGrupos.Size = new System.Drawing.Size(463, 35);
             this.btnGrupos.TabIndex = 6;
             this.btnGrupos.Text = "Grupos";
             this.btnGrupos.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@
             this.subMenuAlumnos.Controls.Add(this.btnUsuariosDelSistema);
             this.subMenuAlumnos.Location = new System.Drawing.Point(0, 0);
             this.subMenuAlumnos.Name = "subMenuAlumnos";
-            this.subMenuAlumnos.Size = new System.Drawing.Size(460, 113);
+            this.subMenuAlumnos.Size = new System.Drawing.Size(463, 113);
             this.subMenuAlumnos.TabIndex = 9;
             this.subMenuAlumnos.Visible = false;
             // 
@@ -182,7 +182,7 @@
             this.btnNuevosAlumnos.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.btnNuevosAlumnos.Location = new System.Drawing.Point(0, 70);
             this.btnNuevosAlumnos.Name = "btnNuevosAlumnos";
-            this.btnNuevosAlumnos.Size = new System.Drawing.Size(460, 35);
+            this.btnNuevosAlumnos.Size = new System.Drawing.Size(463, 35);
             this.btnNuevosAlumnos.TabIndex = 5;
             this.btnNuevosAlumnos.Text = "Verificar ticket de alumno";
             this.btnNuevosAlumnos.UseVisualStyleBackColor = true;
@@ -198,7 +198,7 @@
             this.btnRegi.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.btnRegi.Location = new System.Drawing.Point(0, 35);
             this.btnRegi.Name = "btnRegi";
-            this.btnRegi.Size = new System.Drawing.Size(460, 35);
+            this.btnRegi.Size = new System.Drawing.Size(463, 35);
             this.btnRegi.TabIndex = 4;
             this.btnRegi.Text = "Registrar nuevos usuarios";
             this.btnRegi.UseVisualStyleBackColor = true;
@@ -214,7 +214,7 @@
             this.btnUsuariosDelSistema.ForeColor = System.Drawing.SystemColors.ScrollBar;
             this.btnUsuariosDelSistema.Location = new System.Drawing.Point(0, 0);
             this.btnUsuariosDelSistema.Name = "btnUsuariosDelSistema";
-            this.btnUsuariosDelSistema.Size = new System.Drawing.Size(460, 35);
+            this.btnUsuariosDelSistema.Size = new System.Drawing.Size(463, 35);
             this.btnUsuariosDelSistema.TabIndex = 3;
             this.btnUsuariosDelSistema.Text = "Usuarios del sistema";
             this.btnUsuariosDelSistema.UseVisualStyleBackColor = true;
@@ -240,7 +240,7 @@
             this.btnUsuarios.ForeColor = System.Drawing.Color.Gray;
             this.btnUsuarios.Location = new System.Drawing.Point(0, 0);
             this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(460, 35);
+            this.btnUsuarios.Size = new System.Drawing.Size(463, 35);
             this.btnUsuarios.TabIndex = 0;
             this.btnUsuarios.Text = "USUARIOS";
             this.btnUsuarios.UseVisualStyleBackColor = false;
@@ -253,7 +253,7 @@
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelMenu.Location = new System.Drawing.Point(0, 31);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(920, 35);
+            this.panelMenu.Size = new System.Drawing.Size(926, 35);
             this.panelMenu.TabIndex = 1;
             // 
             // btnCursos
@@ -265,9 +265,9 @@
             this.btnCursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCursos.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCursos.ForeColor = System.Drawing.Color.Gray;
-            this.btnCursos.Location = new System.Drawing.Point(460, 0);
+            this.btnCursos.Location = new System.Drawing.Point(463, 0);
             this.btnCursos.Name = "btnCursos";
-            this.btnCursos.Size = new System.Drawing.Size(460, 35);
+            this.btnCursos.Size = new System.Drawing.Size(463, 35);
             this.btnCursos.TabIndex = 3;
             this.btnCursos.Text = "CURSOS";
             this.btnCursos.UseVisualStyleBackColor = false;
@@ -277,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(920, 450);
+            this.ClientSize = new System.Drawing.Size(926, 585);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelMenu);
             this.Controls.Add(this.panelTitulo);

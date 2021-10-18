@@ -116,7 +116,7 @@ namespace AppAdmin
         private void btnNuevosAlumnos_Click(object sender, EventArgs e)
         {
             Enabled = false;
-            openScreen(new menuScreens.UserList());
+            openScreen(new menuScreens.TicketAlumno());
             Enabled = true;
         }
 
