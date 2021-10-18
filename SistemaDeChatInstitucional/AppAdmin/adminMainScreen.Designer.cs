@@ -40,7 +40,7 @@
             this.subMenuAlumnos = new System.Windows.Forms.Panel();
             this.btnNuevosAlumnos = new System.Windows.Forms.Button();
             this.btnRegi = new System.Windows.Forms.Button();
-            this.btnInfoUser = new System.Windows.Forms.Button();
+            this.btnUsuariosDelSistema = new System.Windows.Forms.Button();
             this.pbImagenInicio = new System.Windows.Forms.PictureBox();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
@@ -165,7 +165,7 @@
             this.subMenuAlumnos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
             this.subMenuAlumnos.Controls.Add(this.btnNuevosAlumnos);
             this.subMenuAlumnos.Controls.Add(this.btnRegi);
-            this.subMenuAlumnos.Controls.Add(this.btnInfoUser);
+            this.subMenuAlumnos.Controls.Add(this.btnUsuariosDelSistema);
             this.subMenuAlumnos.Location = new System.Drawing.Point(0, 0);
             this.subMenuAlumnos.Name = "subMenuAlumnos";
             this.subMenuAlumnos.Size = new System.Drawing.Size(460, 113);
@@ -204,21 +204,21 @@
             this.btnRegi.UseVisualStyleBackColor = true;
             this.btnRegi.Click += new System.EventHandler(this.btnRegi_Click);
             // 
-            // btnInfoUser
+            // btnUsuariosDelSistema
             // 
-            this.btnInfoUser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnInfoUser.FlatAppearance.BorderSize = 0;
-            this.btnInfoUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
-            this.btnInfoUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInfoUser.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInfoUser.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnInfoUser.Location = new System.Drawing.Point(0, 0);
-            this.btnInfoUser.Name = "btnInfoUser";
-            this.btnInfoUser.Size = new System.Drawing.Size(460, 35);
-            this.btnInfoUser.TabIndex = 3;
-            this.btnInfoUser.Text = "Informacion de usuarios";
-            this.btnInfoUser.UseVisualStyleBackColor = true;
-            this.btnInfoUser.Click += new System.EventHandler(this.btnInfoUser_Click);
+            this.btnUsuariosDelSistema.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUsuariosDelSistema.FlatAppearance.BorderSize = 0;
+            this.btnUsuariosDelSistema.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
+            this.btnUsuariosDelSistema.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuariosDelSistema.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuariosDelSistema.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnUsuariosDelSistema.Location = new System.Drawing.Point(0, 0);
+            this.btnUsuariosDelSistema.Name = "btnUsuariosDelSistema";
+            this.btnUsuariosDelSistema.Size = new System.Drawing.Size(460, 35);
+            this.btnUsuariosDelSistema.TabIndex = 3;
+            this.btnUsuariosDelSistema.Text = "Usuarios del sistema";
+            this.btnUsuariosDelSistema.UseVisualStyleBackColor = true;
+            this.btnUsuariosDelSistema.Click += new System.EventHandler(this.btnUsuariosDelSistema_Click);
             // 
             // pbImagenInicio
             // 
@@ -305,7 +305,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel subMenuAlumnos;
         private System.Windows.Forms.Button btnRegi;
-        private System.Windows.Forms.Button btnInfoUser;
+        private System.Windows.Forms.Button btnUsuariosDelSistema;
         private System.Windows.Forms.PictureBox pbImagenInicio;
         private System.Windows.Forms.Panel subMenuCursos;
         private System.Windows.Forms.Button btnOrientaciones;

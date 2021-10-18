@@ -7,7 +7,7 @@ using CapaLogica;
 
 namespace AppAdmin.menuScreens
 {
-    public partial class TicketAlumno : Form
+    public partial class UserList : Form
     {
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
         List<List<string>> alumnos = new List<List<string>>();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]    clave=[5]
@@ -16,10 +16,9 @@ namespace AppAdmin.menuScreens
         Padding padHori = new Padding(3, 3, 3, 10);
         Padding padRestofControls = new Padding(3, 3, 3, 3);
         Padding padPicture = new Padding(10, 10, 3, 10);
+        Font buttonFont = new Font("Cambria", 8, FontStyle.Bold);
 
-        Font buttonFont = new Font("Cambria", 9, FontStyle.Bold);
-
-        public TicketAlumno()
+        public UserList()
         {
             InitializeComponent();
             createControls();
@@ -31,6 +30,7 @@ namespace AppAdmin.menuScreens
             for (int x = 0; x < alumnos.Count; x++)
             {
                 FlowLayoutPanel hori = new FlowLayoutPanel();
+                FlowLayoutPanel vert = new FlowLayoutPanel();
                 PictureBox foto = new PictureBox();
                 Label nombre = new Label();
                 Label apellido = new Label();
@@ -55,11 +55,16 @@ namespace AppAdmin.menuScreens
 
                 foto = definePictureBox(foto, $"pb_{x}", Controlador.obtenerFotoAlumnoTemp(alumnos[x][0]));
 
-                hori = defineFlowPanel(hori, $"flpHori_{x}");
+                hori = defineFlowPanel(hori, $"flpHori_{x}",FlowDirection.LeftToRight);
+                vert = defineFlowPanel(vert,$"flpVert{x}",FlowDirection.TopDown);
 
                 ingreso = defineButton(ingreso, $"btnIngreso_{x}");
                 modificar = defineButton(modificar, $"btnModificar_{x}");
                 delete = defineButton(delete, $"btnDelete_{x}");
+
+                vert.Controls.Add(ingreso);
+                vert.Controls.Add(modificar);
+                vert.Controls.Add(delete);
 
                 hori.Controls.Add(foto);
                 hori.Controls.Add(ci);
@@ -67,9 +72,7 @@ namespace AppAdmin.menuScreens
                 hori.Controls.Add(apellido);
                 hori.Controls.Add(apodo);
                 hori.Controls.Add(groups);
-                hori.Controls.Add(ingreso);
-                hori.Controls.Add(modificar);
-                hori.Controls.Add(delete);
+                hori.Controls.Add(vert);
 
                 flowLayoutPanel1.Controls.Add(hori);
             }
@@ -105,12 +108,10 @@ namespace AppAdmin.menuScreens
 
         private Label defineLabels(Label lbl, string lblName, string lblText)
         {
-            lbl.Font = new Font("Cambria", 11, FontStyle.Bold);
+            lbl.Font = new Font("Cambria", 10, FontStyle.Bold);
             lbl.ForeColor = Color.Black;
             lbl.Dock = DockStyle.Fill;
-            lbl.AutoSize = true;
             lbl.Name = lblName;
-            lbl.AutoSize = true;
             lbl.Text = lblText;
             lbl.AutoSize = false;
             lbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -135,14 +136,15 @@ namespace AppAdmin.menuScreens
             pb.Name = pbName;
             return pb;
         }
-        private FlowLayoutPanel defineFlowPanel(FlowLayoutPanel flp, string flpName)
+        private FlowLayoutPanel defineFlowPanel(FlowLayoutPanel flp, string flpName, FlowDirection dir)
         {
             flp.BackColor = Color.White;
             flp.BorderStyle = BorderStyle.FixedSingle;
-            flp.FlowDirection = FlowDirection.LeftToRight;
+            flp.FlowDirection = dir;
             flp.Name = flpName;
             flp.WrapContents = false;
             flp.AutoSize = true;
+            flp.BorderStyle = BorderStyle.None;
             return flp;
         }
         private Button defineButton(Button b, string bName)
@@ -157,7 +159,6 @@ namespace AppAdmin.menuScreens
             // b.Image = System.
             b.Anchor = AnchorStyles.None;
 
-            //add events for modificar, delete, or ingreso
             if (bName.Contains("Ingreso"))
             {
                 b.Click += new EventHandler(mybutton_Click_Ingreso);
@@ -166,7 +167,6 @@ namespace AppAdmin.menuScreens
             else if (bName.Contains("Modificar"))
             {
                 b.Click += new EventHandler(mybutton_Click_Modificacion);
-
                 b.Text = "Modificar";
             }
             else
