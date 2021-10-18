@@ -12,7 +12,7 @@ namespace AppAdmin.menuScreens
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
         List<List<string>> alumnos = new List<List<string>>();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]    clave=[5]
         List<List<List<string>>> gruposDeAlumnos = new List<List<List<string>>>();   //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo
-        Size pbSize = new Size(100,100);
+        Size pbSize = new Size(100, 100);
         Padding padHori = new Padding(3, 3, 3, 10);
         Padding padRestofControls = new Padding(3, 3, 3, 3);
         Padding padPicture = new Padding(10, 10, 3, 10);

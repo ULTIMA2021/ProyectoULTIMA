@@ -223,7 +223,6 @@ namespace CapaDeDatos
             }
             lector.Close();
             return personas;
-            return obtenerUsuario(this.comando, sessionType);
         }
 
         public byte[] obtenerPersona(string ci)

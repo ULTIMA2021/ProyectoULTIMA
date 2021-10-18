@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicketAlumno));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserList));
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -54,7 +54,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(24, 79);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(15, 3, 15, 15);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(872, 281);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(878, 281);
             this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -70,17 +70,17 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Tickets de alumno nuevos";
             // 
-            // TicketAlumno
+            // UserList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(920, 384);
+            this.ClientSize = new System.Drawing.Size(926, 519);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "TicketAlumno";
+            this.Name = "UserList";
             this.Text = "listarAlumnos";
             this.ResumeLayout(false);
             this.PerformLayout();

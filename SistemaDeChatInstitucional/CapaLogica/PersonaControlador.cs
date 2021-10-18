@@ -179,7 +179,6 @@ namespace CapaLogica
                 return true;
             return false;
         }
-
         public static List<List<string>> obtenerAlumnoTemp()
         {
             List<List<string>> alumnos = new List<List<string>>();
@@ -210,17 +209,55 @@ namespace CapaLogica
             personaString.Add(p.Apellido);
             return string.Join("", personaString);
         }
+        public static List<List<string>> obtenerPersona()
+        {
+            List<List<string>> personas = new List<List<string>>();
+            List<PersonaModelo> admins = new PersonaModelo(Session.type).obtenerAdmin(Session.type);
+            List<PersonaModelo> docentes = new PersonaModelo(Session.type).obtenerDocente(Session.type);
+            List<PersonaModelo> alumnos = new PersonaModelo(Session.type).obtenerAlumno(Session.type);
+
+            for (int i = 0; i < admins.Count; i++)
+            {
+                List<string> p = new List<string>();
+                p.Add(admins[i].Cedula);
+                p.Add(admins[i].Nombre);
+                p.Add(admins[i].Apellido);
+                p.Add(admins[i].Clave);
+                p.Add("A");
+                personas.Add(p);
+            }
+            for (int i = 0; i < docentes.Count; i++)
+            {
+                List<string> p = new List<string>()
+                p.Add(admins[i].Cedula);
+                p.Add(admins[i].Nombre);
+                p.Add(admins[i].Apellido);
+                p.Add(admins[i].Clave);
+                p.Add("D");
+                personas.Add(p);
+            }
+            for (int i = 0; i < alumnos.Count; i++)
+            {
+                List<string> p = new List<string>();
+                p.Add(alumnos[i].Cedula);
+                p.Add(alumnos[i].Nombre);
+                p.Add(alumnos[i].Apellido);
+                p.Add(alumnos[i].Clave);
+                p.Add(alumnos[i].Apodo);
+                p.Add("S");
+                personas.Add(p);
+            }
+            return personas;
+        }
         public static byte[] getFotoPersona(string ci) => new PersonaModelo(Session.type).obtenerPersona(ci);
 
         public static DataTable obtenerDocentes()
         {
-            PersonaModelo u = new PersonaModelo(Session.type);
-            List<PersonaModelo> docentes = u.obtenerDocente(Session.type);
-            DataTable tabla = new DataTable();
+            DataTable tabla = new DataTable(); 
             tabla.Columns.Add("Cedula");
             tabla.Columns.Add("Nombre");
             tabla.Columns.Add("Apellido");
-            foreach (PersonaModelo docente in docentes)
+            foreach (PersonaModelo docente in new PersonaModelo(Session.type).obtenerDocente(Session.type))
             {
                 tabla.Rows.Add(docente.Cedula, docente.Nombre, docente.Apellido);
             }

@@ -90,11 +90,11 @@
     <Compile Include="menuScreens\listarRequerimientos.Designer.cs">
       <DependentUpon>listarRequerimientos.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\UserList.cs">
+    <Compile Include="menuScreens\TicketAlumno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="menuScreens\UserList.Designer.cs">
-      <DependentUpon>UserList.cs</DependentUpon>
+    <Compile Include="menuScreens\TicketAlumno.Designer.cs">
+      <DependentUpon>TicketAlumno.cs</DependentUpon>
     </Compile>
     <Compile Include="menuScreens\UsuarioRegistro.cs">
       <SubType>Form</SubType>
@@ -102,11 +102,11 @@
     <Compile Include="menuScreens\UsuarioRegistro.Designer.cs">
       <DependentUpon>UsuarioRegistro.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\TicketAlumno.cs">
+    <Compile Include="menuScreens\UserList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="menuScreens\TicketAlumno.Designer.cs">
-      <DependentUpon>TicketAlumno.cs</DependentUpon>
+    <Compile Include="menuScreens\UserList.Designer.cs">
+      <DependentUpon>UserList.cs</DependentUpon>
     </Compile>
     <Compile Include="menuScreens\Login.cs">
       <SubType>Form</SubType>
@@ -134,14 +134,14 @@
     <EmbeddedResource Include="menuScreens\listarRequerimientos.resx">
       <DependentUpon>listarRequerimientos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\UserList.resx">
-      <DependentUpon>UserList.cs</DependentUpon>
+    <EmbeddedResource Include="menuScreens\TicketAlumno.resx">
+      <DependentUpon>TicketAlumno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\UsuarioRegistro.resx">
       <DependentUpon>UsuarioRegistro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\TicketAlumno.resx">
-      <DependentUpon>TicketAlumno.cs</DependentUpon>
+    <EmbeddedResource Include="menuScreens\UserList.resx">
+      <DependentUpon>UserList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
