@@ -22,6 +22,7 @@ namespace CapaDeDatos
         public GrupoModelo(byte sessionType) : base(sessionType)
         {
         }
+        public GrupoModelo() : base() { }
 
         public void crearGrupoNuevo()
         {
@@ -380,6 +381,27 @@ namespace CapaDeDatos
                 "AND gm.idMateria=m.idMateria;";
             this.comando.Parameters.AddWithValue("@ci", ci);
             return cargarGM(this.comando,sessionType);
+        }
+        public List<GrupoModelo> getAlumnoGrupos(string ci)
+        {
+            //this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT DISTINCT g.idGrupo, g.nombreGrupo, g.isDeleted FROM grupo g, alumno_tiene_grupo ag, grupo_tiene_materia gm " +
+                "WHERE ag.idGrupo=g.idGrupo " +
+                "AND ag.alumnoCi=@ci " +
+                "AND gm.idGrupo=ag.idGrupo;";
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            GrupoModelo g = new GrupoModelo();
+            List<GrupoModelo> grupos = new List<GrupoModelo>();
+            lector = comando.ExecuteReader();
+            while (lector.Read())
+            {
+                g.idGrupo = int.Parse(lector[0].ToString());
+                g.nombreGrupo = lector[1].ToString();
+                g.isDeleted = lector[2].ToString();
+                grupos.Add(g);
+            }
+            lector.Close();
+            return grupos;
         }
 
         public List<GrupoModelo> getDocenteDictaGM(string ci, byte sessionType)

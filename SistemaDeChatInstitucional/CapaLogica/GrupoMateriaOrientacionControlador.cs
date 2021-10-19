@@ -290,7 +290,36 @@ namespace CapaLogica
             s.Add(g.nombreGrupo);
             return s;
         }
+        public static List<List<string>> obtenerGrupos(int ci)
+        {
+            List<List<string>> grupos = new List<List<string>>();
 
+            foreach (var grupo in new GrupoModelo(Session.type).getAlumnoGrupos(ci.ToString()))
+            {
+                List<string> gString = new List<string>();
+                gString.Add(grupo.idGrupo.ToString());
+                gString.Add(grupo.nombreGrupo.ToString());
+                grupos.Add(gString);
+            }
+            return grupos;
+        }
+        public static List<List<string>> obtenerGrupoMaterias(string ci)
+        {
+            List<List<string>> grupoMaterias = new List<List<string>>();
+            foreach (var gm in new GrupoModelo(Session.type).getDocenteDictaGM(ci, Session.type))
+            {
+                if (gm.isDeleted == "False")
+                {
+                    List<string> gmString = new List<string>();
+                    gmString.Add(gm.idGrupo.ToString());
+                    gmString.Add(gm.nombreGrupo);
+                    gmString.Add(gm.idMateria.ToString());
+                    gmString.Add(gm.nombreMateria);
+                    grupoMaterias.Add(gmString);
+                }
+            }
+            return grupoMaterias;
+        }
 
         public static void actualizarEstadoGrupo(bool isDeleted, string idGrupo) => new GrupoModelo(Session.type).actualizarEstadoDeGrupo(isDeleted, idGrupo);
         public static void actualizarEstadoMateria(bool isDeleted, string idMateria) => new MateriaModelo(Session.type).actualizarEstadoDeMateria(isDeleted, idMateria);

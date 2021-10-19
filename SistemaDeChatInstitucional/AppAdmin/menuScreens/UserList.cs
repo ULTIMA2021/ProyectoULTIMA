@@ -10,8 +10,11 @@ namespace AppAdmin.menuScreens
     public partial class UserList : Form
     {
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
-        List<List<string>> personas = new List<List<string>>();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]    clave=[5]
-        List<List<List<string>>> gruposMateriasDePersonas = new List<List<List<string>>>();   //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo
+        List<List<string>> personas = new List<List<string>>();   //[x][]=indice de alumnoTemp en app  [0]=ci  [1]=nombre  [2]=apellido  [3]=clave  grupos=[4]= type    [5]=apodo (if alumno)
+
+        List<List<List<string>>> gruposMateriasDePersonas = new List<List<List<string>>>();
+        //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo   [][][2]=idMateria   [][][3]=nombreMateria
+
         Size pbSize = new Size(100,100);
         Padding padHori = new Padding(3, 3, 3, 10);
         Padding padRestofControls = new Padding(3, 3, 3, 3);
@@ -35,7 +38,7 @@ namespace AppAdmin.menuScreens
                 Label nombre = new Label();
                 Label apellido = new Label();
                 Label ci = new Label();
-                Label apodo = new Label();
+                //Label apodo = new Label();
                 Label groups = new Label();
 
                 Button btnActividad = new Button();
@@ -46,25 +49,41 @@ namespace AppAdmin.menuScreens
 
                 loadToLists(x);
                 Console.WriteLine("THIS PERSON HAS THE FOLLOWING GROUPS");
-                string groupnameText = prepareGroupLabelText(x);
 
                 ci = defineLabels(ci, $"lblCi_{x}", $"Ci:\n{personas[x][0]}");
                 nombre = defineLabels(nombre, $"lblName_{x}", $"Nombre:\n{personas[x][1]}");
                 apellido = defineLabels(apellido, $"lblApellido_{x}", $"Apellido:\n{personas[x][2]}");
-                apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][3]}");
-                groups = defineLabels(groups, $"g_{x}", groupnameText);
 
-                foto = definePictureBox(foto, $"pb_{x}", Controlador.obtenerFotoAlumnoTemp(personas[x][0]));
+                foto = definePictureBox(foto, $"pb_{x}", Controlador.obtenerFotoPersona(personas[x][0]));
 
-                hori = defineFlowPanel(hori, $"flpHori_{x}",FlowDirection.LeftToRight);
-                vert = defineFlowPanel(vert,$"flpVert{x}",FlowDirection.TopDown);
-
-                btnActividad = defineButton(btnActividad, $"btnActividad_{x}","Actividad");
-                btnModificar = defineButton(btnModificar, $"btnModificar_{x}","Modificar");
-                btnBorrar = defineButton(btnBorrar, $"btnBorrar_{x}","Borrar");
+                btnActividad = defineButton(btnActividad, $"btnActividad_{x}", "Activid");
+                btnModificar = defineButton(btnModificar, $"btnModificar_{x}", "Modificar");
+                btnBorrar = defineButton(btnBorrar, $"btnBorrar_{x}", "Borrar");
                 //btnConsultas = defineButton(btnConsultas, $"btnConsultas_{x}","Consultas");
                 //btnSalas = defineButton(btnSalas, $"btnSalas_{x}","Salas");
 
+                switch (personas[x][4])
+                {
+                    case "S":
+                        //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
+                        groups = defineLabels(groups, $"g_{x}", prepareAlumnoGroupLabelText(x));
+                        hori = defineFlowPanel(hori, $"flpHori_{x}", FlowDirection.LeftToRight,Color.LawnGreen);
+                        vert = defineFlowPanel(vert, $"flpVert{x}", FlowDirection.TopDown, Color.LawnGreen);
+                        break;
+                    case "A":
+                        
+                        //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
+                        groups = defineLabels(groups, $"g_{x}", "    ");
+                        hori = defineFlowPanel(hori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.Lavender);
+                        vert = defineFlowPanel(vert, $"flpVert{x}", FlowDirection.TopDown, Color.Lavender);
+                        break;
+                    case "D":
+                        //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
+                        groups = defineLabels(groups, $"g_{x}", prepareDocenteGroupLabelText(x));
+                        hori = defineFlowPanel(hori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PeachPuff);
+                        vert = defineFlowPanel(vert, $"flpVert{x}", FlowDirection.TopDown, Color.PeachPuff);
+                        break;
+                }
                 vert.Controls.Add(btnActividad);
                 vert.Controls.Add(btnModificar);
                 vert.Controls.Add(btnBorrar);
@@ -75,14 +94,13 @@ namespace AppAdmin.menuScreens
                 hori.Controls.Add(ci);
                 hori.Controls.Add(nombre);
                 hori.Controls.Add(apellido);
-                hori.Controls.Add(apodo);
                 hori.Controls.Add(groups);
                 hori.Controls.Add(vert);
 
                 flowLayoutPanel1.Controls.Add(hori);
             }
         }
-        private string prepareGroupLabelText(int indexOfpersonInApp)
+        private string prepareAlumnoGroupLabelText(int indexOfpersonInApp)
         {
             string target = "Grupos: ";
             for (int i = 0; i < gruposMateriasDePersonas[indexOfpersonInApp].Count; i++)
@@ -92,23 +110,38 @@ namespace AppAdmin.menuScreens
             }
             return target;
         }
+        private string prepareDocenteGroupLabelText(int indexOfpersonInApp)
+        {
+            string target = "Grupo/Materias: ";
+            for (int i = 0; i < gruposMateriasDePersonas[indexOfpersonInApp].Count; i++)
+            {
+                target = $"{target}\n{gruposMateriasDePersonas[indexOfpersonInApp][i][1]}--{gruposMateriasDePersonas[indexOfpersonInApp][i][3]}";
+                //Console.WriteLine(gruposMateriasDePersonas[indexOfpersonInApp][i][1]);
+            }
+            return target;
+        }
         private void loadToLists(int indexOFAlumnoInApp)
         {
-            List<List<string>> grupos = new List<List<string>>();
-            string[] idGrupo = System.Text.RegularExpressions.Regex.Split(personas[indexOFAlumnoInApp][4], @"\D+");
-            foreach (string id in idGrupo)
+            foreach (List<string> persona in personas)
             {
-                List<string> grupo = new List<string>();
-                grupo = Controlador.obtenerGrupo(id);
-                grupos.Add(grupo);
+                List<List <string>> grupoOrGrupoMateria = new List<List<string>>();
+                if (persona[4] == "D")
+                {
+                    grupoOrGrupoMateria = Controlador.obtenerGrupoMaterias(persona[0]);
+                }
+                else if (persona[4] == "S")
+                {
+                    grupoOrGrupoMateria = Controlador.obtenerGrupos(int.Parse(persona[0]));
+                }
+
+                gruposMateriasDePersonas.Add(grupoOrGrupoMateria);
             }
-            gruposMateriasDePersonas.Add(grupos);
         }
         private void preparelists()
         {
             gruposMateriasDePersonas.Clear();
             personas.Clear();
-            personas = Controlador.perso();
+            personas = Controlador.obtenerPersona();
         }
 
         private Label defineLabels(Label lbl, string lblName, string lblText)
@@ -141,9 +174,9 @@ namespace AppAdmin.menuScreens
             pb.Name = pbName;
             return pb;
         }
-        private FlowLayoutPanel defineFlowPanel(FlowLayoutPanel flp, string flpName, FlowDirection dir)
+        private FlowLayoutPanel defineFlowPanel(FlowLayoutPanel flp, string flpName, FlowDirection dir, Color color)
         {
-            flp.BackColor = Color.White;
+            flp.BackColor = color;
             flp.BorderStyle = BorderStyle.FixedSingle;
             flp.FlowDirection = dir;
             flp.Name = flpName;

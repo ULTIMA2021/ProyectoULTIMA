@@ -25,6 +25,7 @@ namespace CapaDeDatos
         public PersonaModelo(byte sessionType) : base(sessionType)
         {
         }
+        public PersonaModelo() { }
 
         public void GuardarPersona()
         {
@@ -126,7 +127,7 @@ namespace CapaDeDatos
             List<PersonaModelo> personas = new List<PersonaModelo>();
             while (lector.Read())
             {
-                PersonaModelo p = new PersonaModelo(sessionType);
+                PersonaModelo p = new PersonaModelo();
                 // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
                 p.Cedula = lector[0].ToString();
                 byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
@@ -233,7 +234,13 @@ namespace CapaDeDatos
             comando.Parameters.AddWithValue("@ci", ci);
             lector = comando.ExecuteReader();
             while (lector.Read())
-                foto = (byte[])lector[0];
+                try
+                {
+                    foto = (byte[])lector[0];
+                }
+                catch (Exception)
+                {
+                }
             lector.Close();
             return foto;
         } 

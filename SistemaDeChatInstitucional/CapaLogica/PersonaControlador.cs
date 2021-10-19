@@ -228,11 +228,11 @@ namespace CapaLogica
             }
             for (int i = 0; i < docentes.Count; i++)
             {
-                List<string> p = new List<string>()
-                p.Add(admins[i].Cedula);
-                p.Add(admins[i].Nombre);
-                p.Add(admins[i].Apellido);
-                p.Add(admins[i].Clave);
+                List<string> p = new List<string>();
+                p.Add(docentes[i].Cedula);
+                p.Add(docentes[i].Nombre);
+                p.Add(docentes[i].Apellido);
+                p.Add(docentes[i].Clave);
                 p.Add("D");
                 personas.Add(p);
             }
@@ -243,13 +243,13 @@ namespace CapaLogica
                 p.Add(alumnos[i].Nombre);
                 p.Add(alumnos[i].Apellido);
                 p.Add(alumnos[i].Clave);
-                p.Add(alumnos[i].Apodo);
                 p.Add("S");
+                p.Add(alumnos[i].Apodo);
                 personas.Add(p);
             }
             return personas;
         }
-        public static byte[] getFotoPersona(string ci) => new PersonaModelo(Session.type).obtenerPersona(ci);
+        public static byte[] obtenerFotoPersona(string ci) => new PersonaModelo(Session.type).obtenerPersona(ci);
 
         public static DataTable obtenerDocentes()
         {

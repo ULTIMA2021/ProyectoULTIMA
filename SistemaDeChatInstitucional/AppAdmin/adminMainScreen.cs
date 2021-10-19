@@ -129,7 +129,9 @@ namespace AppAdmin
 
         private void btnUsuariosDelSistema_Click(object sender, EventArgs e)
         {
-
+            Enabled = false;
+            openScreen(new menuScreens.UserList());
+            Enabled = true;
         }
     }
 }
