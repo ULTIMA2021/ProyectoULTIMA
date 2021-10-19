@@ -248,12 +248,12 @@ namespace AppAdmin.menuScreens
                 groupsToInt.Add(int.Parse(gruposMateriasDePersonas[indexFromButton][i][0]));
             return groupsToInt;
         }
+
         private void myflowLayoutPanel_Click_flpHori(object sender, EventArgs e)
         {
             Control x = (Control)sender;
             Console.WriteLine(x.AccessibleName);
         }
-
         private void mybutton_Click_Actividad(object sender, EventArgs e)
         {
             Enabled = false;
