@@ -90,34 +90,45 @@ namespace AppAdmin
 
         private void btnMaterias_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+
             Enabled = false;
             openScreen(new menuScreens.listarMaterias());
             Enabled = true;
+            Cursor.Current = Cursors.Default;
+
         }
 
         private void btnGrupos_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             Enabled = false;
             openScreen(new menuScreens.listarGrupos());
             Enabled = true;
+            Cursor.Current = Cursors.Default;
         }
 
         private void btnOrientaciones_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             Enabled = false;
             openScreen(new menuScreens.listarOrientaciones());
             Enabled = true;
+            Cursor.Current = Cursors.Default;
+
         }
-                    
+
         private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
 
         private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
 
         private void btnNuevosAlumnos_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             Enabled = false;
             openScreen(new menuScreens.TicketAlumno());
             Enabled = true;
+            Cursor.Current = Cursors.Default;
         }
 
         private void btnRegi_Click(object sender, EventArgs e)
@@ -129,9 +140,12 @@ namespace AppAdmin
 
         private void btnUsuariosDelSistema_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             Enabled = false;
             openScreen(new menuScreens.UserList());
             Enabled = true;
+            Cursor.Current = Cursors.Default;
+
         }
     }
 }

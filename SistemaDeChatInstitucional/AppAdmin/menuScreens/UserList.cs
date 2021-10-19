@@ -32,8 +32,8 @@ namespace AppAdmin.menuScreens
             preparelists();
             for (int x = 0; x < personas.Count; x++)
             {
-                FlowLayoutPanel hori = new FlowLayoutPanel();
-                FlowLayoutPanel vert = new FlowLayoutPanel();
+                FlowLayoutPanel flpHori = new FlowLayoutPanel();
+                FlowLayoutPanel flpVert = new FlowLayoutPanel();
                 PictureBox foto = new PictureBox();
                 Label nombre = new Label();
                 Label apellido = new Label();
@@ -56,48 +56,63 @@ namespace AppAdmin.menuScreens
 
                 foto = definePictureBox(foto, $"pb_{x}", Controlador.obtenerFotoPersona(personas[x][0]));
 
-                btnActividad = defineButton(btnActividad, $"btnActividad_{x}", "Activid");
+                btnActividad = defineButton(btnActividad, $"btnActividad_{x}", "Actividad");
                 btnModificar = defineButton(btnModificar, $"btnModificar_{x}", "Modificar");
                 btnBorrar = defineButton(btnBorrar, $"btnBorrar_{x}", "Borrar");
                 //btnConsultas = defineButton(btnConsultas, $"btnConsultas_{x}","Consultas");
                 //btnSalas = defineButton(btnSalas, $"btnSalas_{x}","Salas");
+                EventHandler testt = new EventHandler(myflowLayoutPanel_Click_flpHori);
 
                 switch (personas[x][4])
                 {
                     case "S":
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareAlumnoGroupLabelText(x));
-                        hori = defineFlowPanel(hori, $"flpHori_{x}", FlowDirection.LeftToRight,Color.LawnGreen);
-                        vert = defineFlowPanel(vert, $"flpVert{x}", FlowDirection.TopDown, Color.LawnGreen);
+                        flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight,Color.PowderBlue);
+                        flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PowderBlue);
+                        flpHori.Click += testt;
+                        groups.Click += testt;
+                        nombre.Click += testt;
+                        apellido.Click += testt;
+                        ci.Click += testt;
+                        foto.Click += testt;
                         break;
                     case "A":
                         
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", "    ");
-                        hori = defineFlowPanel(hori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.Lavender);
-                        vert = defineFlowPanel(vert, $"flpVert{x}", FlowDirection.TopDown, Color.Lavender);
+                        flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PaleVioletRed);
+                        flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PaleVioletRed);
                         break;
                     case "D":
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareDocenteGroupLabelText(x));
-                        hori = defineFlowPanel(hori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PeachPuff);
-                        vert = defineFlowPanel(vert, $"flpVert{x}", FlowDirection.TopDown, Color.PeachPuff);
+                        flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PeachPuff);
+                        flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PeachPuff);
+                       // EventHandler testt = new EventHandler(myflowLayoutPanel_Click_flpHori);
+                        flpHori.Click += testt;
+                        groups.Click += testt;
+                        nombre.Click += testt;
+                        apellido.Click += testt;
+                        ci.Click += testt;
+                        foto.Click += testt;
                         break;
                 }
-                vert.Controls.Add(btnActividad);
-                vert.Controls.Add(btnModificar);
-                vert.Controls.Add(btnBorrar);
+                flpVert.Controls.Add(btnActividad);
+                flpVert.Controls.Add(btnModificar);
+                flpVert.Controls.Add(btnBorrar);
                 //vert.Controls.Add(btnConsultas);
                 //vert.Controls.Add(btnSalas);
 
-                hori.Controls.Add(foto);
-                hori.Controls.Add(ci);
-                hori.Controls.Add(nombre);
-                hori.Controls.Add(apellido);
-                hori.Controls.Add(groups);
-                hori.Controls.Add(vert);
 
-                flowLayoutPanel1.Controls.Add(hori);
+                flpHori.Controls.Add(foto);
+                flpHori.Controls.Add(ci);
+                flpHori.Controls.Add(nombre);
+                flpHori.Controls.Add(apellido);
+                flpHori.Controls.Add(groups);
+                flpHori.Controls.Add(flpVert);
+
+                flowLayoutPanel1.Controls.Add(flpHori);
             }
         }
         private string prepareAlumnoGroupLabelText(int indexOfpersonInApp)
@@ -150,6 +165,7 @@ namespace AppAdmin.menuScreens
             lbl.ForeColor = Color.Black;
             lbl.Dock = DockStyle.Fill;
             lbl.Name = lblName;
+            lbl.AccessibleName = lblName;
             lbl.Text = lblText;
             lbl.AutoSize = false;
             lbl.TextAlign = ContentAlignment.MiddleCenter;
@@ -172,10 +188,12 @@ namespace AppAdmin.menuScreens
             pb.Dock = DockStyle.Top;
             //pb.AutoSize = true;
             pb.Name = pbName;
+            pb.AccessibleName = pbName;
             return pb;
         }
         private FlowLayoutPanel defineFlowPanel(FlowLayoutPanel flp, string flpName, FlowDirection dir, Color color)
         {
+            flp.AccessibleName = flpName;
             flp.BackColor = color;
             flp.BorderStyle = BorderStyle.FixedSingle;
             flp.FlowDirection = dir;
@@ -192,7 +210,8 @@ namespace AppAdmin.menuScreens
             b.Font = buttonFont;
             b.Enabled = true;
             b.AccessibleName = bName;
-            
+            b.BackColor = Color.White;
+
             //aca se podria poner algun icon
             // b.Image = System.
             b.Anchor = AnchorStyles.None;
@@ -208,6 +227,7 @@ namespace AppAdmin.menuScreens
                     break;
                 case "Actividad":
                     b.Click += new EventHandler(mybutton_Click_Actividad);
+                    b.Text = "Actividad";
                     break;
                 //case "Consultas":
                 //    b.Click += new EventHandler(mybutton_Click_btnConsultas);
@@ -227,6 +247,11 @@ namespace AppAdmin.menuScreens
             for (int i = 0; i < gruposMateriasDePersonas[indexFromButton].Count; i++)
                 groupsToInt.Add(int.Parse(gruposMateriasDePersonas[indexFromButton][i][0]));
             return groupsToInt;
+        }
+        private void myflowLayoutPanel_Click_flpHori(object sender, EventArgs e)
+        {
+            Control x = (Control)sender;
+            Console.WriteLine(x.AccessibleName);
         }
 
         private void mybutton_Click_Actividad(object sender, EventArgs e)
