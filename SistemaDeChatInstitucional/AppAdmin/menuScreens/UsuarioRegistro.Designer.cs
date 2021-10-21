@@ -45,9 +45,9 @@
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBoxUser = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblClaveVeri = new System.Windows.Forms.Label();
+            this.lblClave = new System.Windows.Forms.Label();
+            this.lblApodo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtClaveVerificacion = new System.Windows.Forms.TextBox();
             this.txtApodo = new System.Windows.Forms.TextBox();
@@ -61,6 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
@@ -79,6 +80,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
@@ -92,9 +94,9 @@
             this.groupBox1.Controls.Add(this.pbFoto);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.comboBoxUser);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lblClaveVeri);
+            this.groupBox1.Controls.Add(this.lblClave);
+            this.groupBox1.Controls.Add(this.lblApodo);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtClaveVerificacion);
             this.groupBox1.Controls.Add(this.txtApodo);
@@ -245,32 +247,32 @@
             this.comboBoxUser.TabIndex = 14;
             this.comboBoxUser.SelectedIndexChanged += new System.EventHandler(this.comboBoxUser_SelectedIndexChanged);
             // 
-            // label7
+            // lblClaveVeri
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 261);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 17);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Verificar clave:";
+            this.lblClaveVeri.AutoSize = true;
+            this.lblClaveVeri.Location = new System.Drawing.Point(13, 261);
+            this.lblClaveVeri.Name = "lblClaveVeri";
+            this.lblClaveVeri.Size = new System.Drawing.Size(112, 17);
+            this.lblClaveVeri.TabIndex = 13;
+            this.lblClaveVeri.Text = "Verificar clave:";
             // 
-            // label6
+            // lblClave
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(75, 223);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(50, 17);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Clave:";
+            this.lblClave.AutoSize = true;
+            this.lblClave.Location = new System.Drawing.Point(75, 223);
+            this.lblClave.Name = "lblClave";
+            this.lblClave.Size = new System.Drawing.Size(50, 17);
+            this.lblClave.TabIndex = 12;
+            this.lblClave.Text = "Clave:";
             // 
-            // label5
+            // lblApodo
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(67, 185);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Apodo:";
+            this.lblApodo.AutoSize = true;
+            this.lblApodo.Location = new System.Drawing.Point(67, 185);
+            this.lblApodo.Name = "lblApodo";
+            this.lblApodo.Size = new System.Drawing.Size(58, 17);
+            this.lblApodo.TabIndex = 11;
+            this.lblApodo.Text = "Apodo:";
             // 
             // label4
             // 
@@ -331,11 +333,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 112);
+            this.label3.Location = new System.Drawing.Point(6, 112);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.Size = new System.Drawing.Size(119, 17);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Nombre:";
+            this.label3.Text = "Primer nombre:";
             // 
             // txtCedula
             // 
@@ -345,6 +347,7 @@
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(189, 25);
             this.txtCedula.TabIndex = 3;
+            this.txtCedula.TextChanged += new System.EventHandler(this.txtCedula_TextChanged);
             // 
             // clbOpciones
             // 
@@ -394,6 +397,20 @@
             this.label10.TabIndex = 30;
             this.label10.Text = "Los campos con un * se deben llenar";
             // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.Firebrick;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReset.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(133, 220);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(189, 32);
+            this.btnReset.TabIndex = 31;
+            this.btnReset.Text = "Resetear clave";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Visible = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // UsuarioRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,9 +448,9 @@
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblApodo;
+        private System.Windows.Forms.Label lblClaveVeri;
+        private System.Windows.Forms.Label lblClave;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBoxUser;
         private System.Windows.Forms.Button btnFoto;
@@ -448,5 +465,6 @@
         private System.Windows.Forms.Label lblApodoAst;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnReset;
     }
 }

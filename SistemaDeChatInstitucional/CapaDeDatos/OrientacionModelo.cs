@@ -44,7 +44,7 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 OrientacionModelo o = new OrientacionModelo();
-                o.idOrientacion = Int32.Parse(lector[0].ToString());
+                o.idOrientacion = int.Parse(lector[0].ToString());
                 o.nombreOrientacion = lector[1].ToString();
                 listaO.Add(o);
             }

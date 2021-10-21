@@ -198,7 +198,7 @@ namespace AppAdmin.menuScreens
             string apodo = alumnos[indexFromButton][3];
             string clave = alumnos[indexFromButton][5];
             List<int> groupsToInt = GroupsToInt(indexFromButton);
-            Console.WriteLine($"selected:\n{alumnos[indexFromButton][0]}\n{alumnos[indexFromButton][1]}\n{alumnos[indexFromButton][2]}\n{alumnos[indexFromButton][3]}\n{alumnos[indexFromButton][4]}");
+            //Console.WriteLine($"selected:\n{alumnos[indexFromButton][0]}\n{alumnos[indexFromButton][1]}\n{alumnos[indexFromButton][2]}\n{alumnos[indexFromButton][3]}\n{alumnos[indexFromButton][4]}");
             try
             {
                 Controlador.AltaPersona(ci, nombre, apellido, clave,fotoDePersona[indexFromButton]);
@@ -207,7 +207,6 @@ namespace AppAdmin.menuScreens
             }
             catch (Exception ex)
             {
-                //DELETE FROM PERSONA JUST INCASE SHIT FAILS
                 Controlador.bajaPersona(ci);
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
@@ -226,7 +225,15 @@ namespace AppAdmin.menuScreens
             string apodo = alumnos[indexFromButton][3];
             string clave = alumnos[indexFromButton][5];
             List<int> groupsToInt = GroupsToInt(indexFromButton);
-            new UsuarioRegistro(ci, nombre, apellido, apodo, clave, groupsToInt,4).ShowDialog();
+            new UsuarioRegistro(
+                ci, 
+                nombre, 
+                apellido, 
+                apodo, 
+                clave, 
+                gruposDeAlumnos[indexFromButton] ,
+                4,
+                fotoDePersona[indexFromButton]).ShowDialog();
             flowLayoutPanel1.Controls.Clear();
             createControls();
             Enabled = true;

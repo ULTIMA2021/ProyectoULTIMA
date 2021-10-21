@@ -56,7 +56,7 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 MateriaModelo m = new MateriaModelo();
-                m.idMateria = Int32.Parse(lector[0].ToString());
+                m.idMateria = int.Parse(lector[0].ToString());
                 m.nombreMateria = lector[1].ToString();
                 try
                 {

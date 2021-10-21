@@ -38,7 +38,7 @@ namespace AppAlumno.menuScreens
 
         private void btnAbrir_Click(object sender, EventArgs e)
         {
-            idConsultaPrivada = Int32.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
+            idConsultaPrivada = int.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
             asunto = dgvMisMensajes.CurrentRow.Cells[4].Value.ToString();

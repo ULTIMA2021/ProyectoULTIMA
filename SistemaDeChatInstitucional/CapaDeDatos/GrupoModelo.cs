@@ -215,7 +215,7 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 GrupoModelo g = new GrupoModelo();
-                g.idGrupo = Int32.Parse(lector[0].ToString());
+                g.idGrupo = int.Parse(lector[0].ToString());
                 g.nombreGrupo = lector[1].ToString();
                 listaG.Add(g);
             }
@@ -229,8 +229,8 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 GrupoModelo gm = new GrupoModelo();
-                gm.idGrupo = Int32.Parse(lector[0].ToString());
-                gm.idMateria = Int32.Parse(lector[1].ToString());
+                gm.idGrupo = int.Parse(lector[0].ToString());
+                gm.idMateria = int.Parse(lector[1].ToString());
                 gm.nombreGrupo = lector[2].ToString();
                 gm.nombreMateria = lector[3].ToString();
                 listaGM.Add(gm);
@@ -245,8 +245,8 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 GrupoModelo go = new GrupoModelo();
-                go.idGrupo = Int32.Parse(lector[0].ToString());
-                go.idOrientacion = Int32.Parse(lector[1].ToString());
+                go.idGrupo = int.Parse(lector[0].ToString());
+                go.idOrientacion = int.Parse(lector[1].ToString());
                 go.nombreGrupo = lector[2].ToString();
                 go.nombreOrientacion = lector[3].ToString();
                 listaGO.Add(go);
@@ -255,12 +255,12 @@ namespace CapaDeDatos
             return listaGO;
         }
 
-        public List<GrupoModelo> getGrupo(byte sessionType) {
+        public List<GrupoModelo> getGrupo() {
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM grupo WHERE isDeleted = false ORDER BY idGrupo ASC;";
             return cargarGrupoALista(this.comando);
         }
 
-        public string getGrupo(string nombreGrupo, byte sessionType)
+        public string getGrupo(string nombreGrupo)
         {
             string idGrupo="";
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM grupo WHERE nombreGrupo=@nombreGrupo;";
@@ -271,7 +271,7 @@ namespace CapaDeDatos
             lector.Close();
             return idGrupo;
         }
-        public GrupoModelo getGrupo(int id, byte sessionType)
+        public GrupoModelo getGrupo(int id,byte sessionType)
         {
             GrupoModelo g = new GrupoModelo(sessionType);
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM grupo WHERE idGrupo=@idGrupo;";
@@ -342,6 +342,19 @@ namespace CapaDeDatos
             return listaGruposDelAlumno;
         }
 
+        public List<GrupoModelo> grupoMateria()
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT gm.idGrupo, gm.idMateria, g.nombreGrupo, m.nombreMateria " +
+                "FROM grupo_tiene_materia gm, grupo g, materia m " +
+                "WHERE gm.idGrupo = g.idGrupo " +
+                "AND gm.idMateria = m.idMateria " +
+                "AND g.isDeleted = false " +
+                "AND m.isDeleted = false " +
+                "AND gm.isDeleted = false ORDER BY gm.idGrupo ASC;";
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            return cargarGrupoMateriaALista(this.comando);
+        }
         public List<GrupoModelo> grupoMateria(string idMateria)
         {
             this.comando.Parameters.Clear();
@@ -368,7 +381,7 @@ namespace CapaDeDatos
                 "AND m.isDeleted = false " +
                 "AND gm.isDeleted = false;";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
-            return (cargarGrupoMateriaALista(this.comando));
+            return cargarGrupoMateriaALista(this.comando);
         }
 
         public List<GrupoModelo> getAlumnoGrupoyYmaterias(string ci) {
@@ -386,13 +399,13 @@ namespace CapaDeDatos
             this.comando.CommandText = "SELECT DISTINCT g.idGrupo, g.nombreGrupo, g.isDeleted FROM grupo g, alumno_tiene_grupo ag, grupo_tiene_materia gm " +
                 "WHERE ag.idGrupo=g.idGrupo " +
                 "AND ag.alumnoCi=@ci " +
-                "AND gm.idGrupo=ag.idGrupo;";
+                "AND gm.idGrupo=ag.idGrupo ORDER BY g.idGrupo ASC;";
             this.comando.Parameters.AddWithValue("@ci", ci);
-            GrupoModelo g = new GrupoModelo();
             List<GrupoModelo> grupos = new List<GrupoModelo>();
             lector = comando.ExecuteReader();
             while (lector.Read())
             {
+                GrupoModelo g = new GrupoModelo();
                 g.idGrupo = int.Parse(lector[0].ToString());
                 g.nombreGrupo = lector[1].ToString();
                 g.isDeleted = lector[2].ToString();
@@ -408,7 +421,7 @@ namespace CapaDeDatos
                 "FROM docente_dicta_g_m dgm, grupo g, materia m " +
                 "WHERE dgm.docenteCi=@ci " +
                 "AND dgm.idMateria = m.idMateria " +
-                "AND g.idGrupo = dgm.idGrupo;";
+                "AND g.idGrupo = dgm.idGrupo ORDER BY dgm.idGrupo ASC;";
             this.comando.Parameters.AddWithValue("@ci",ci);
             return cargarGM(this.comando);
         }

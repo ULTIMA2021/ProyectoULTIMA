@@ -95,11 +95,19 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
-        public void actualizarPersona(bool isDeleted)
+        public void actualizarPersona(int ci, string clave)
         {
-            this.comando.CommandText = "UPDATE persona SET isDeleted=@isDeleted WHERE ci=@Cedula;";
-            this.comando.Parameters.AddWithValue("Cedula", Cedula);
-            this.comando.Parameters.AddWithValue("isDeleted", isDeleted);
+            this.comando.CommandText = "UPDATE persona SET clave=@clave WHERE ci=@ci;";
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            this.comando.Parameters.AddWithValue("@clave", clave);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
+        public void actualizarPersona(string ci, bool isDeleted)
+        {
+            this.comando.CommandText = "UPDATE persona SET isDeleted=@isDeleted WHERE ci=@ci;";
+            this.comando.Parameters.AddWithValue("@ci", ci);
+            this.comando.Parameters.AddWithValue("@isDeleted", isDeleted);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
@@ -306,7 +314,7 @@ namespace CapaDeDatos
         //retorna tabla entera de alumno con algunos campos de persona
         public List<PersonaModelo> obtenerAlumno()
         {
-            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM alumno a INNER JOIN persona p ON " +
+            this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido, a.apodo FROM alumno a INNER JOIN persona p ON " +
                                          "(a.ci=p.ci);";
             return obtenerUsuario(this.comando);
         }

@@ -94,7 +94,7 @@ namespace AppAlumno.menuScreens
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    Controlador.bajaPersona();
+                    Controlador.deactivatePerson(Session.cedula,true);
                 }
                 //Controlador.bajaPersona();
                 Application.Restart();

@@ -92,7 +92,14 @@ namespace AppDocente.menuScreens
             DialogResult confirmDelete = MessageBox.Show("Realmente desea borrar su cuenta?", "", MessageBoxButtons.YesNo);
             if (DialogResult.Yes == confirmDelete)
             {
-                Controlador.bajaPersona();
+                try
+                {
+                    Controlador.bajaPersona(Session.cedula);
+                }
+                catch (Exception)
+                {
+                    Controlador.deactivatePerson(Session.cedula, true);
+                }
                 Application.Restart();
             }
         }

@@ -243,7 +243,6 @@ namespace AppAlumno
                 Dispose();
                 Application.Restart();
             }
-            
         }
 
         private void panelOpciones_MouseDown(object sender, MouseEventArgs e)

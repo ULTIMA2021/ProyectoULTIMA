@@ -131,10 +131,10 @@ namespace CapaDeDatos
             while (lector.Read())
             {
                 ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo();
-                cp.idConsultaPrivada = Int32.Parse(lector[0].ToString());
-                cp.idMensaje = Int32.Parse(lector[1].ToString());
-                cp.ciDocente = Int32.Parse(lector[2].ToString());
-                cp.ciAlumno = Int32.Parse(lector[3].ToString());
+                cp.idConsultaPrivada = int.Parse(lector[0].ToString());
+                cp.idMensaje = int.Parse(lector[1].ToString());
+                cp.ciDocente = int.Parse(lector[2].ToString());
+                cp.ciAlumno = int.Parse(lector[3].ToString());
                 cp.titulo = lector[4].ToString();
                 cp.cpStatus = lector[5].ToString();
                 cp.cpFechaHora = DateTime.Parse(lector[6].ToString());

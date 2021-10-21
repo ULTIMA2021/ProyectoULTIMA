@@ -15,6 +15,9 @@ namespace AppAdmin.menuScreens
         List<List<List<string>>> gruposMateriasDePersonas = new List<List<List<string>>>();
         //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo   [][][2]=idMateria   [][][3]=nombreMateria
 
+
+        List<byte[]> fotoDePersona = new List<byte[]>();
+
         Size pbSize = new Size(100,100);
         Padding padHori = new Padding(3, 3, 3, 10);
         Padding padRestofControls = new Padding(10, 0, 10, 0);
@@ -50,37 +53,37 @@ namespace AppAdmin.menuScreens
                 //Button btnSalas = new Button();
 
                 loadToLists(x);
-                Console.WriteLine($"{personas[x][0]} HAS THE FOLLOWING GROUPS");
 
                 ci = defineLabels(ci, $"lblCi_{x}", $"Ci:\n{personas[x][0]}");
                 nombre = defineLabels(nombre, $"lblName_{x}", $"Nombre:\n{personas[x][1]}");
                 apellido = defineLabels(apellido, $"lblApellido_{x}", $"Apellido:\n{personas[x][2]}");
 
-                foto = definePictureBox(foto, $"pb_{x}", Controlador.obtenerFotoPersona(personas[x][0]));
+                fotoDePersona.Add(Controlador.obtenerFotoPersona(personas[x][0]));
+                foto = definePictureBox(foto, $"pb_{x}", fotoDePersona[x]);
 
                 btnActividad = defineButton(btnActividad, $"btnActividad_{x}", "Actividad");
                 btnModificar = defineButton(btnModificar, $"btnModificar_{x}", "Modificar");
                 btnBorrar = defineButton(btnBorrar, $"btnBorrar_{x}", "Borrar");
                 //btnConsultas = defineButton(btnConsultas, $"btnConsultas_{x}","Consultas");
                 //btnSalas = defineButton(btnSalas, $"btnSalas_{x}","Salas");
-                EventHandler testt = new EventHandler(myflowLayoutPanel_Click_flpHori);
+                EventHandler clickOnPerson = new EventHandler(myflowLayoutPanel_Click_flpHori);
 
                 switch (personas[x][4])
                 {
-                    case "S":
+                    case "1": //alumno
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareAlumnoGroupLabelText(x));
                         flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight,Color.PowderBlue);
                         flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PowderBlue);
                         flpSpacer.BackColor = Color.PowderBlue;
-                        flpHori.Click += testt;
-                        groups.Click += testt;
-                        nombre.Click += testt;
-                        apellido.Click += testt;
-                        ci.Click += testt;
-                        foto.Click += testt;
+                        flpHori.Click += clickOnPerson;
+                        groups.Click += clickOnPerson;
+                        nombre.Click += clickOnPerson;
+                        apellido.Click += clickOnPerson;
+                        ci.Click += clickOnPerson;
+                        foto.Click += clickOnPerson;
                         break;
-                    case "A":
+                    case "3": //admin
                         
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", "    ");
@@ -89,19 +92,19 @@ namespace AppAdmin.menuScreens
                         flpSpacer.BackColor = Color.PaleVioletRed;
 
                         break;
-                    case "D":
+                    case "2": //docente
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareDocenteGroupLabelText(x));
                         flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PeachPuff);
                         flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PeachPuff);
                         flpSpacer.BackColor = Color.PeachPuff;
-                        // EventHandler testt = new EventHandler(myflowLayoutPanel_Click_flpHori);
-                        flpHori.Click += testt;
-                        groups.Click += testt;
-                        nombre.Click += testt;
-                        apellido.Click += testt;
-                        ci.Click += testt;
-                        foto.Click += testt;
+                        // EventHandler clickOnPerson = new EventHandler(myflowLayoutPanel_Click_flpHori);
+                        flpHori.Click += clickOnPerson;
+                        groups.Click += clickOnPerson;
+                        nombre.Click += clickOnPerson;
+                        apellido.Click += clickOnPerson;
+                        ci.Click += clickOnPerson;
+                        foto.Click += clickOnPerson;
                         break;
                 }
                 flpVert.Controls.Add(btnActividad);
@@ -152,11 +155,11 @@ namespace AppAdmin.menuScreens
             foreach (List<string> persona in personas)
             {
                 List<List <string>> grupoOrGrupoMateria = new List<List<string>>();
-                if (persona[4] == "D")
+                if (persona[4] == "2") //docente 
                 {
                     grupoOrGrupoMateria = Controlador.obtenerGrupoMaterias(persona[0]);
                 }
-                else if (persona[4] == "S")
+                else if (persona[4] == "1") //alumno
                 {
                     grupoOrGrupoMateria = Controlador.obtenerGrupos(int.Parse(persona[0]));
                 }
@@ -312,13 +315,20 @@ namespace AppAdmin.menuScreens
             try
             {
                  apodo = personas[indexFromButton][5];
-
             }
             catch (Exception)
             {
             }
             List<int> groupsToInt = GroupsToInt(indexFromButton);
-            new UsuarioRegistro(ci, nombre, apellido, apodo, clave, groupsToInt,4).ShowDialog();
+            new UsuarioRegistro(
+                ci,
+                nombre,
+                apellido,
+                apodo,
+                clave,
+                gruposMateriasDePersonas[indexFromButton],
+                int.Parse(type),
+                fotoDePersona[indexFromButton]).ShowDialog();
             flowLayoutPanel1.Controls.Clear();
             createControls();
             Enabled = true;
@@ -337,12 +347,11 @@ namespace AppAdmin.menuScreens
                     Controlador.bajaPersona(ci);
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
-                    throw;
+                    Controlador.deactivatePerson(ci,true);
                 }
-                flowLayoutPanel1.Controls.Clear();
+
             }
             catch (Exception ex)
             {

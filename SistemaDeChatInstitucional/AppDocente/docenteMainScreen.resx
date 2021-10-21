@@ -131,7 +131,7 @@
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>128, 15</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+  <data name="label3.TabIndex" type="System.int, mscorlib">
     <value>4</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
@@ -168,7 +168,7 @@
   <data name="btnMinimizar.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 36</value>
   </data>
-  <data name="btnMinimizar.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnMinimizar.TabIndex" type="System.int, mscorlib">
     <value>2</value>
   </data>
   <data name="btnMinimizar.Text" xml:space="preserve">
@@ -217,7 +217,7 @@
   <data name="btnMaximizar.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 36</value>
   </data>
-  <data name="btnMaximizar.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnMaximizar.TabIndex" type="System.int, mscorlib">
     <value>1</value>
   </data>
   <data name="btnMaximizar.ToolTip" xml:space="preserve">
@@ -256,7 +256,7 @@
   <data name="btnExit.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 36</value>
   </data>
-  <data name="btnExit.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnExit.TabIndex" type="System.int, mscorlib">
     <value>0</value>
   </data>
   <data name="btnExit.ToolTip" xml:space="preserve">
@@ -296,7 +296,7 @@
   <data name="btnNormal.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 36</value>
   </data>
-  <data name="btnNormal.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnNormal.TabIndex" type="System.int, mscorlib">
     <value>3</value>
   </data>
   <data name="&gt;&gt;btnNormal.Name" xml:space="preserve">
@@ -320,7 +320,7 @@
   <data name="panelOpciones.Size" type="System.Drawing.Size, System.Drawing">
     <value>926, 36</value>
   </data>
-  <data name="panelOpciones.TabIndex" type="System.Int32, mscorlib">
+  <data name="panelOpciones.TabIndex" type="System.int, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;panelOpciones.Name" xml:space="preserve">
@@ -374,7 +374,7 @@
   <data name="btnSala.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 36</value>
   </data>
-  <data name="btnSala.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnSala.TabIndex" type="System.int, mscorlib">
     <value>12</value>
   </data>
   <data name="btnSala.Text" xml:space="preserve">
@@ -431,7 +431,7 @@
   <data name="btnLogout.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 36</value>
   </data>
-  <data name="btnLogout.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnLogout.TabIndex" type="System.int, mscorlib">
     <value>11</value>
   </data>
   <data name="btnLogout.Text" xml:space="preserve">
@@ -473,7 +473,7 @@
   <data name="btnMisMensajes.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 36</value>
   </data>
-  <data name="btnMisMensajes.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnMisMensajes.TabIndex" type="System.int, mscorlib">
     <value>8</value>
   </data>
   <data name="btnMisMensajes.Text" xml:space="preserve">
@@ -503,7 +503,7 @@
   <data name="subMenuMensajes.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 44</value>
   </data>
-  <data name="subMenuMensajes.TabIndex" type="System.Int32, mscorlib">
+  <data name="subMenuMensajes.TabIndex" type="System.int, mscorlib">
     <value>9</value>
   </data>
   <data name="subMenuMensajes.Visible" type="System.Boolean, mscorlib">
@@ -555,7 +555,7 @@
   <data name="btnMensajes.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 36</value>
   </data>
-  <data name="btnMensajes.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnMensajes.TabIndex" type="System.int, mscorlib">
     <value>8</value>
   </data>
   <data name="btnMensajes.Text" xml:space="preserve">
@@ -609,7 +609,7 @@
   <data name="btnAgenda.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 36</value>
   </data>
-  <data name="btnAgenda.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnAgenda.TabIndex" type="System.int, mscorlib">
     <value>7</value>
   </data>
   <data name="btnAgenda.Text" xml:space="preserve">
@@ -645,7 +645,7 @@
   <data name="btnInstitucion.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 36</value>
   </data>
-  <data name="btnInstitucion.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnInstitucion.TabIndex" type="System.int, mscorlib">
     <value>7</value>
   </data>
   <data name="btnInstitucion.Text" xml:space="preserve">
@@ -681,7 +681,7 @@
   <data name="btnMisAlumnos.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 36</value>
   </data>
-  <data name="btnMisAlumnos.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnMisAlumnos.TabIndex" type="System.int, mscorlib">
     <value>6</value>
   </data>
   <data name="btnMisAlumnos.Text" xml:space="preserve">
@@ -711,7 +711,7 @@
   <data name="subMenuDocentes.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 88</value>
   </data>
-  <data name="subMenuDocentes.TabIndex" type="System.Int32, mscorlib">
+  <data name="subMenuDocentes.TabIndex" type="System.int, mscorlib">
     <value>6</value>
   </data>
   <data name="subMenuDocentes.Visible" type="System.Boolean, mscorlib">
@@ -764,7 +764,7 @@
   <data name="btnAlumnos.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 36</value>
   </data>
-  <data name="btnAlumnos.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnAlumnos.TabIndex" type="System.int, mscorlib">
     <value>5</value>
   </data>
   <data name="btnAlumnos.Text" xml:space="preserve">
@@ -800,7 +800,7 @@
   <data name="btnAsignaturas.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 36</value>
   </data>
-  <data name="btnAsignaturas.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnAsignaturas.TabIndex" type="System.int, mscorlib">
     <value>6</value>
   </data>
   <data name="btnAsignaturas.Text" xml:space="preserve">
@@ -836,7 +836,7 @@
   <data name="btnConfiguracion.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 36</value>
   </data>
-  <data name="btnConfiguracion.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnConfiguracion.TabIndex" type="System.int, mscorlib">
     <value>5</value>
   </data>
   <data name="btnConfiguracion.Text" xml:space="preserve">
@@ -866,7 +866,7 @@
   <data name="subMenuMiPerfil.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 90</value>
   </data>
-  <data name="subMenuMiPerfil.TabIndex" type="System.Int32, mscorlib">
+  <data name="subMenuMiPerfil.TabIndex" type="System.int, mscorlib">
     <value>4</value>
   </data>
   <data name="subMenuMiPerfil.Visible" type="System.Boolean, mscorlib">
@@ -921,7 +921,7 @@
   <data name="btnMiPerfil.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 36</value>
   </data>
-  <data name="btnMiPerfil.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnMiPerfil.TabIndex" type="System.int, mscorlib">
     <value>2</value>
   </data>
   <data name="btnMiPerfil.Text" xml:space="preserve">
@@ -954,7 +954,7 @@
   <data name="lblNombre.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 14</value>
   </data>
-  <data name="lblNombre.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblNombre.TabIndex" type="System.int, mscorlib">
     <value>1</value>
   </data>
   <data name="lblNombre.Text" xml:space="preserve">
@@ -1044,7 +1044,7 @@
   <data name="fotoAlumno.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>StretchImage</value>
   </data>
-  <data name="fotoAlumno.TabIndex" type="System.Int32, mscorlib">
+  <data name="fotoAlumno.TabIndex" type="System.int, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;fotoAlumno.Name" xml:space="preserve">
@@ -1068,7 +1068,7 @@
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 211</value>
   </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+  <data name="panel2.TabIndex" type="System.int, mscorlib">
     <value>3</value>
   </data>
   <data name="&gt;&gt;panel2.Name" xml:space="preserve">
@@ -1092,7 +1092,7 @@
   <data name="panelInfo.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 549</value>
   </data>
-  <data name="panelInfo.TabIndex" type="System.Int32, mscorlib">
+  <data name="panelInfo.TabIndex" type="System.int, mscorlib">
     <value>1</value>
   </data>
   <data name="&gt;&gt;panelInfo.Name" xml:space="preserve">
@@ -1125,7 +1125,7 @@
   <data name="selectIdioma.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 23</value>
   </data>
-  <data name="selectIdioma.TabIndex" type="System.Int32, mscorlib">
+  <data name="selectIdioma.TabIndex" type="System.int, mscorlib">
     <value>3</value>
   </data>
   <data name="selectIdioma.Text" xml:space="preserve">
@@ -1158,7 +1158,7 @@
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>499, 106</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+  <data name="label2.TabIndex" type="System.int, mscorlib">
     <value>1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
@@ -1188,7 +1188,7 @@
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>331, 106</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+  <data name="label1.TabIndex" type="System.int, mscorlib">
     <value>0</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
@@ -1215,7 +1215,7 @@
   <data name="panelContenedor.Size" type="System.Drawing.Size, System.Drawing">
     <value>733, 549</value>
   </data>
-  <data name="panelContenedor.TabIndex" type="System.Int32, mscorlib">
+  <data name="panelContenedor.TabIndex" type="System.int, mscorlib">
     <value>2</value>
   </data>
   <data name="&gt;&gt;panelContenedor.Name" xml:space="preserve">
@@ -1233,7 +1233,7 @@
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.TrayHeight" type="System.int, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>67</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">

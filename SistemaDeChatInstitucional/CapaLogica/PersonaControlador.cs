@@ -75,12 +75,7 @@ namespace CapaLogica
             p.guardarAdmin();
         }
 
-        public static void bajaPersona()
-        {
-            PersonaModelo p = new PersonaModelo(Session.type);
-            p.Cedula = Session.cedula;
-            p.actualizarPersona(true);
-        }
+        public static void deactivatePerson(string ci, bool isDeleted) => new PersonaModelo(Session.type).actualizarPersona(ci, isDeleted);
         public static void bajaPersona(string ci) => new PersonaModelo(Session.type).bajaPersona(ci);
         public static void bajaAlumnoTemp(string ci) => new PersonaModelo(Session.type).bajaAlumnoTemp(ci);
 
@@ -102,6 +97,7 @@ namespace CapaLogica
             }
             return false;
         }
+        public static void actualizarClavePersona(int ci, string claveNueva) => new PersonaModelo(Session.type).actualizarPersona(ci,claveNueva);
 
         public static bool existePersona(string ci)
         {
@@ -223,7 +219,7 @@ namespace CapaLogica
                 p.Add(admins[i].Nombre);
                 p.Add(admins[i].Apellido);
                 p.Add(admins[i].Clave);
-                p.Add("A");
+                p.Add("3");
                 personas.Add(p);
             }
             for (int i = 0; i < docentes.Count; i++)
@@ -233,7 +229,7 @@ namespace CapaLogica
                 p.Add(docentes[i].Nombre);
                 p.Add(docentes[i].Apellido);
                 p.Add(docentes[i].Clave);
-                p.Add("D");
+                p.Add("2");
                 personas.Add(p);
             }
             for (int i = 0; i < alumnos.Count; i++)
@@ -243,7 +239,7 @@ namespace CapaLogica
                 p.Add(alumnos[i].Nombre);
                 p.Add(alumnos[i].Apellido);
                 p.Add(alumnos[i].Clave);
-                p.Add("S");
+                p.Add("1");
                 p.Add(alumnos[i].Apodo);
                 personas.Add(p);
             }

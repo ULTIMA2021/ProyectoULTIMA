@@ -40,7 +40,7 @@ namespace AppAlumno.menuScreens
 
         private void cargarVariables(List<List<string>> mensajes, string asunto) {
             this.mensajes = mensajes;
-            idConsultaPrivada = Int32.Parse(mensajes[0][0]);
+            idConsultaPrivada = int.Parse(mensajes[0][0]);
             idMensaje = mensajes.Count;
             ciAlumno = Session.cedula;
             ciDocente = mensajes[0][2];
@@ -54,8 +54,8 @@ namespace AppAlumno.menuScreens
             DateTime fecha = DateTime.Now;
             List<string> newMsg = new List<string>();
             idMensaje++;
-            Controlador.enviarMensaje(idMensaje, idConsultaPrivada, Int32.Parse(ciDocente), Int32.Parse(ciAlumno),
-                                            txtRespuesta.Text, null, fecha, "recibido", Int32.Parse(ciDocente));
+            Controlador.enviarMensaje(idMensaje, idConsultaPrivada, int.Parse(ciDocente), int.Parse(ciAlumno),
+                                            txtRespuesta.Text, null, fecha, "recibido", int.Parse(ciDocente));
             newMsg.Add(idMensaje.ToString());
             newMsg.Add(idConsultaPrivada.ToString());
             newMsg.Add(ciDocente);

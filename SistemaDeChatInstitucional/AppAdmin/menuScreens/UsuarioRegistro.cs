@@ -11,52 +11,115 @@ namespace AppAdmin.menuScreens
 {
     public partial class UsuarioRegistro : Form
     {
-
+        bool fromUserList = false;
+        bool hasEdited = false;
         char[] seperator = { ' ', ' ', ' ' };
         public UsuarioRegistro()
         {
             InitializeComponent();
             load();
         }
-        public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List<int> checkedItems, int type)
+        public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List<int> checkedItems, int type, byte [] foto)
         {
             InitializeComponent();
             load();
             CenterToScreen();
-            loadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type);
+            //loadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type, foto);
         }
-        private void loadDatos(string ci, string nombre, string apellido, string apodo, string clave, List<int> checkedItems, int type)
+        public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List<List<string>> checkedItems, int type, byte[] foto)
         {
+            InitializeComponent();
+            load();
+            CenterToScreen();
+            NEWWWloadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type, foto);
+        }
+
+        private void NEWWWloadDatos(string ci, string nombre, string apellido, string apodo, string clave, List<List<string>> checkedItems, int type, byte[]foto)
+        {
+            // [x][0]=idGrupo   [x][1]=nombreGrupo  [x][2]=idMateria   [x][3]=nombreMateria
             setFields(ci, nombre, apellido, type);
             switch (type)
             {
                 case 1: //alumno
                     //todosMisGrupos = Controlador.gruposToListForRegister();
+                    fromUserList = true;
+                    lblApodo.Visible = true;
                     comboBoxUser.SelectedIndex = 1;
                     txtApodo.Text = apodo;
-                    checkTheseBoxes(checkedItems);
+                    //checkTheseBoxes(checkedItems);
+                    for (int x = 0; x < checkedItems.Count; x++)
+                        for (int y = 0; y < clbOpciones.Items.Count; y++)
+                            if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
+                                clbOpciones.SetItemCheckState(y, CheckState.Checked);
                     break;
 
                 case 2: //docente
                         //todosMisGrupos = Controlador.grupoMateriaToListForRegister();
+                    fromUserList = true;
+                    lblApodo.Visible = false;
                     comboBoxUser.SelectedIndex = 2;
+                    clbOpciones.DataSource = Controlador.grupoMateriaToListForModification();
+                    clbOpciones.ClearSelected();
 
-                    checkTheseBoxes(checkedItems);
+                    for (int x = 0; x < checkedItems.Count; x++)
+                        for (int y = 0; y < clbOpciones.Items.Count; y++)
+                            if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][1] && clbOpciones.Items[y].ToString().Split(seperator, 2)[1].Trim() == checkedItems[x][3])
+                                clbOpciones.SetItemCheckState(y, CheckState.Checked);
                     break;
 
-                case 4: //alumnotemp
+                case 3: //admin
+                        //todosMisGrupos = Controlador.grupoMateriaToListForRegister();
+                    fromUserList = true;
+                    comboBoxUser.SelectedIndex = 3;
+                    lblApodo.Visible = false;
+
+                    break;
+                case 4: //alumnotemp this is working dont fucking touch it
+                    try
+                    {
+                        var ms = new MemoryStream(Controlador.obtenerFotoAlumnoTemp(ci));
+                        pbFoto.Image = Image.FromStream(ms);
+                    }
+                    catch (Exception ex)
+                    {
+                        //Load the default image
+                    }
+                    lblApodo.Visible = true;
                     comboBoxUser.SelectedIndex = 1;
-                    txtClave.Text = clave;
                     txtClaveVerificacion.Text = clave;
-                    txtClave.Enabled = false;
-                    txtClaveVerificacion.Enabled = false;
                     txtApodo.Text = apodo;
-                    checkTheseBoxes(checkedItems);
-
-
+                    for (int x = 0; x < checkedItems.Count; x++)
+                        for (int y = 0; y < clbOpciones.Items.Count; y++)
+                            if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
+                                clbOpciones.SetItemCheckState(y, CheckState.Checked);
+                    //checkTheseBoxes(checkedItems);
                     break;
             }
+            txtClave.Enabled = false;
+            txtClave.Visible = false;
+            txtClaveVerificacion.Enabled = false;
+            txtClaveVerificacion.Visible = false;
+            lblClave.Visible = false;
+            lblClaveVeri.Visible = false;
+            label11.Visible = false;
+            label17.Visible = false;
+            txtApodo.Enabled = false;
+            btnReset.Visible = true;
+            groupBox1.Text = "Modificar usuario";
+            txtClave.Text = clave;
+            try
+            {
+                var ms = new MemoryStream(foto);
+                pbFoto.Image = Image.FromStream(ms);
+            }
+            catch (Exception ex)
+            {
+                //Load the default image
+            }
         }
+
+        
+
         private void setFields(string ci, string nombre, string apellido, int type)
         {
             comboBoxUser.SelectedIndex = type;
@@ -66,15 +129,6 @@ namespace AppAdmin.menuScreens
             txtCedula.Text = ci;
             txtNombre.Text = nombre;
             txtApellido.Text = apellido;
-            try
-            {
-                var ms = new MemoryStream(Controlador.obtenerFotoAlumnoTemp(ci));
-                pbFoto.Image = Image.FromStream(ms);
-            }
-            catch (Exception ex)
-            {
-                //Load the default image
-            }
         }
         private void checkTheseBoxes(List<int> checkedItems)
         {
@@ -88,8 +142,8 @@ namespace AppAdmin.menuScreens
         {
             comboBoxUser.SelectedIndex = 0;
             label14.Visible = true;
-            pbFoto.Enabled = true;
-            txtApodo.Enabled = true;
+            pbFoto.Enabled = false;
+            txtApodo.Enabled = false;
             lblApodoAst.Visible = false;
             clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
@@ -135,7 +189,7 @@ namespace AppAdmin.menuScreens
                     }
                     else if (comboBoxUser.SelectedIndex == 3)
                         Controlador.AltaAdmin(txtCedula.Text);
-                    if (txtClave.Enabled == false)
+                    if (fromUserList )
                         Dispose();
                     resetFields();
                 }
@@ -198,7 +252,6 @@ namespace AppAdmin.menuScreens
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             Enabled = false;
-            // this.lblGrupo.Location= Point.;
             lblApodoAst.Visible = true;
             pbFoto.Enabled = true;
             clbOpciones.Enabled = true;
@@ -208,22 +261,23 @@ namespace AppAdmin.menuScreens
         }
         private void changeFieldsForUser(int type)
         {
+            lblApodoAst.Visible = true;
+            txtApodo.Visible = true;
+            lblApodo.Visible = true;
+            clbOpciones.Visible = true;
+            lblOptions.Visible = true;
             switch (type)
             {
                 case 0:
                     foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                    {
                         txt.Enabled = false;
-                    }
                     btnIngresar.Enabled = false;
                     btnFoto.Enabled = false;
                     clbOpciones.Enabled = false;
                     break;
                 case 1:
                     foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                    {
                         txt.Enabled = true;
-                    }
                     btnIngresar.Enabled = true;
                     btnFoto.Enabled = true;
                     clbOpciones.Enabled = true;
@@ -236,14 +290,14 @@ namespace AppAdmin.menuScreens
                     break;
                 case 2:
                     foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                    {
                         txt.Enabled = true;
-                    }
                     btnIngresar.Enabled = true;
                     btnFoto.Enabled = true;
                     clbOpciones.Enabled = true;
 
                     lblApodoAst.Visible = false;
+                    txtApodo.Visible = false;
+                    lblApodo.Visible = false;
                     txtApodo.Enabled = false;
                     clbOpciones.DataSource = null;
                     clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
@@ -252,13 +306,15 @@ namespace AppAdmin.menuScreens
                     break;
                 case 3:
                     foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                    {
                         txt.Enabled = true;
-                    }
                     btnIngresar.Enabled = true;
                     btnFoto.Enabled = true;
 
+                    lblOptions.Visible = false;
                     lblApodoAst.Visible = false;
+                    txtApodo.Visible = false;
+                    lblApodo.Visible = false;
+                    clbOpciones.Visible = false;
                     pbFoto.Enabled = false;
                     clbOpciones.Enabled = false;
                     txtApodo.Enabled = false;
@@ -274,6 +330,28 @@ namespace AppAdmin.menuScreens
             return controls.SelectMany(ctrl => GetAll(ctrl, type))
                                       .Concat(controls)
                                       .Where(c => c.GetType() == type);
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmLogout =
+               MessageBox.Show("Esta accion le asignara a este usuario la cedula como clave.\nRealmente quiere hacer este cambio?"
+               , "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == confirmLogout)
+            {
+                string encryptedPw = CryptographyUtils.doEncryption(txtCedula.Text,null, null);
+                Controlador.actualizarClavePersona(int.Parse(txtCedula.Text),encryptedPw);
+            }
+        }
+
+        private void txtCedula_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCedula.ContainsFocus)
+            {
+                txtClave.Text = txtCedula.Text;
+                txtClaveVerificacion.Text = txtCedula.Text;
+
+            }
         }
     }
 }
