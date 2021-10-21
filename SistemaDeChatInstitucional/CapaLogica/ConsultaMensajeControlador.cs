@@ -45,7 +45,7 @@ namespace CapaLogica
         public static int GetidConsultaPrivada(int ciDocente, int ciAlumno)
         {
             ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(Session.type);
-            int idConsultaPrivada = cp.getIdConsultas(ciDocente, ciAlumno, Session.type);
+            int idConsultaPrivada = cp.getIdConsultas(ciDocente, ciAlumno);
             //Console.WriteLine($"EL ID DE LA CONSULTA PREVIA ES: {idConsultaPrivada}");
             idConsultaPrivada++;
            // Console.WriteLine($"EL ID DE LA CONSULTA NUEVA ES: {idConsultaPrivada}");
@@ -58,9 +58,9 @@ namespace CapaLogica
             ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo(Session.type);
             List<ConsultaPrivadaModelo> listaConsulta = null;
             if (Session.type == 0)
-                listaConsulta = consulta.getConsultas(Session.cedula, Session.type);
+                listaConsulta = consulta.getConsultas(Session.cedula);
             else if (Session.type == 1)
-                listaConsulta = consulta.getConsultas(Int32.Parse(Session.cedula), Session.type);
+                listaConsulta = consulta.getConsultas(int.Parse(Session.cedula));
             DataTable tabla = new DataTable();
             tabla.Columns.Add("idConsultaPrivada");
             tabla.Columns.Add("idMensaje");
@@ -82,7 +82,7 @@ namespace CapaLogica
             MensajePrivadoModelo mpm = new MensajePrivadoModelo(Session.type);
             List<List<string>> mensajesDeConsulta = new List<List<string>>();
 
-            foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente, Session.type))
+            foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
                 if (Session.type == 0 || Session.type == 1)
                     m.updateStatus();
@@ -95,7 +95,7 @@ namespace CapaLogica
         {
             MensajePrivadoModelo mpm = new MensajePrivadoModelo(Session.type);
             string contenidoMensaje = "";
-            foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente, Session.type))
+            foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
                 contenidoMensaje = m.contenido;
                // Console.WriteLine($"\n{m.ToString()}\n");

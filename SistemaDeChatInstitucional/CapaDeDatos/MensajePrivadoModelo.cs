@@ -22,6 +22,9 @@ namespace CapaDeDatos
         public MensajePrivadoModelo(byte sessionType) : base(sessionType)
         {
         }
+        public MensajePrivadoModelo() : base()
+        {
+        }
 
         public void enviarMensaje(int idCp_Mensaje, int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
                                    DateTime cp_mensajeFechaHora, string cp_mensajeStatus,int ciDestinatario)
@@ -41,22 +44,22 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
-        private List<MensajePrivadoModelo> cargarMensajePrivadoALista(MySqlCommand commando, byte sessionType)
+        private List<MensajePrivadoModelo> cargarMensajePrivadoALista(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
             List<MensajePrivadoModelo> listaCpm = new List<MensajePrivadoModelo>();
             while (lector.Read())
             {
-                MensajePrivadoModelo cpm = new MensajePrivadoModelo(sessionType);
-                cpm.idConsultaPrivada = Int32.Parse(lector[0].ToString());
-                cpm.ciAlumno = Int32.Parse(lector[1].ToString());
-                cpm.ciDocente = Int32.Parse(lector[2].ToString());
-                cpm.idCp_mensaje = Int32.Parse(lector[3].ToString());
+                MensajePrivadoModelo cpm = new MensajePrivadoModelo();
+                cpm.idConsultaPrivada = int.Parse(lector[0].ToString());
+                cpm.ciAlumno = int.Parse(lector[1].ToString());
+                cpm.ciDocente = int.Parse(lector[2].ToString());
+                cpm.idCp_mensaje = int.Parse(lector[3].ToString());
                 cpm.contenido = lector[4].ToString();
                 //cpm.attachment = null;
                 cpm.cp_mensajeFechaHora = DateTime.Parse(lector[6].ToString());
                 cpm.cp_mensajeStatus = lector[7].ToString();
-                cpm.ciDestinatario = Int32.Parse(lector[8].ToString());
+                cpm.ciDestinatario = int.Parse(lector[8].ToString());
                // Console.WriteLine("mensajesDeConsulta:");
                // Console.WriteLine(cpm.ToString());
                 listaCpm.Add(cpm);
@@ -64,28 +67,28 @@ namespace CapaDeDatos
             lector.Close();
             return listaCpm;
         }
-        public List<MensajePrivadoModelo> mensajesDeConsulta(byte sessionType) {
+        public List<MensajePrivadoModelo> mensajesDeConsulta() {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
                 "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus, cpm.ciDestinatario FROM cp_mensaje cpm; ";
-            return cargarMensajePrivadoALista(this.comando, sessionType);
+            return cargarMensajePrivadoALista(this.comando);
         }
-        public List<MensajePrivadoModelo> mensajesDeConsulta(int ciAlumno, byte sessionType)
+        public List<MensajePrivadoModelo> mensajesDeConsulta(int ciAlumno)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
                 "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus,cpm.ciDestinatario FROM cp_mensaje cpm" +
                 "WHERE cpm.ciAlumno=@ciAlumno; ";
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
-            return cargarMensajePrivadoALista(this.comando, sessionType);
+            return cargarMensajePrivadoALista(this.comando);
         }
-        public List<MensajePrivadoModelo> mensajesDeConsulta(string ciDocente, byte sessionType)
+        public List<MensajePrivadoModelo> mensajesDeConsulta(string ciDocente)
         {
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
                "cpm.attachment, cpm.cp_mensajeFechaHora, cpm.cp_mensajeStatus FROM cp_mensaje cpm" +
                "WHERE cpm.ciDocente=@ciDocente; ";
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
-            return cargarMensajePrivadoALista(this.comando, sessionType);
+            return cargarMensajePrivadoALista(this.comando);
         }
-        public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente, byte sessionType)
+        public List<MensajePrivadoModelo> mensajesDeConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente)
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT cpm.idConsultaPrivada, cpm.ciAlumno, cpm.ciDocente, cpm.idCp_mensaje, cpm.contenido, " +
@@ -94,7 +97,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("idConsultaPrivada", idConsultaPrivada);
             this.comando.Parameters.AddWithValue("ciAlumno", ciAlumno);
             this.comando.Parameters.AddWithValue("ciDocente", ciDocente);
-            return cargarMensajePrivadoALista(this.comando,  sessionType);
+            return cargarMensajePrivadoALista(this.comando);
         }
         public string mensajesDeConsultaCount() {
             string count;

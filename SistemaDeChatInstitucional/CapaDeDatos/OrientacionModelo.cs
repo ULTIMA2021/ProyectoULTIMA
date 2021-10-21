@@ -13,9 +13,8 @@ namespace CapaDeDatos
         public string nombreOrientacion;
         public string errorType="Orientacion";
 
-        public OrientacionModelo(byte sessionType) : base(sessionType)
-        {
-        }
+        public OrientacionModelo(byte sessionType) : base(sessionType){}
+        public OrientacionModelo() : base() { }
 
         public void crearMateriaNueva()
         {
@@ -38,13 +37,13 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@idOrientacion", idOrientacion);
             EjecutarQuery(comando, errorType);
         }
-        private List<OrientacionModelo> cargarOrientacionAlista(MySqlCommand commando, byte sessionType)
+        private List<OrientacionModelo> cargarOrientacionAlista(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
             List<OrientacionModelo> listaO = new List<OrientacionModelo>();
             while (lector.Read())
             {
-                OrientacionModelo o = new OrientacionModelo( sessionType);
+                OrientacionModelo o = new OrientacionModelo();
                 o.idOrientacion = Int32.Parse(lector[0].ToString());
                 o.nombreOrientacion = lector[1].ToString();
                 listaO.Add(o);
@@ -53,13 +52,13 @@ namespace CapaDeDatos
             return listaO;
         }
 
-        public List<OrientacionModelo> getOrientacion(byte sessionType)
+        public List<OrientacionModelo> getOrientacion()
         {
             this.comando.CommandText = "SELECT idOrientacion, nombreOrientacion FROM orientacion;";
-            return cargarOrientacionAlista(this.comando, sessionType);
+            return cargarOrientacionAlista(this.comando);
         }
 
-        public string getOrientacion(string nombreOrientacion, byte sessionType)
+        public string getOrientacion(string nombreOrientacion)
         {
             string idOrientacion;
             this.comando.CommandText = "SELECT idOrientacion FROM orientacion WHERE nombreOrientacion=@nombreOrientacion;";

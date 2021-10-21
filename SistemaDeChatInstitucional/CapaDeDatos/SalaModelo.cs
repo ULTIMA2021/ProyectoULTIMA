@@ -18,9 +18,8 @@ namespace CapaDeDatos
         public bool isDone;
         public DateTime creacion;
         string errorType = "Sala";
-        public SalaModelo(byte sessionType) : base(sessionType)
-        {
-        }
+        public SalaModelo(byte sessionType) : base(sessionType){}
+        public SalaModelo() : base() { }
 
         public void crearSala()
         {
@@ -80,7 +79,7 @@ namespace CapaDeDatos
 
 
         //o las salas abiertas o las cerradas
-        public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria,byte sessionType, bool isDone)
+        public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria, bool isDone)
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
@@ -90,15 +89,15 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Parameters.AddWithValue("@isDone", isDone);
             this.comando.Prepare();
-            return (cargarSalasAlist(this.comando,sessionType));
+            return (cargarSalasAlist(this.comando));
         }
-        private List<SalaModelo> cargarSalasAlist(MySqlCommand command, byte sessionType)
+        private List<SalaModelo> cargarSalasAlist(MySqlCommand command)
         {
             lector = command.ExecuteReader();
             List<SalaModelo> salas = new List<SalaModelo>();
             while (lector.Read())
             {
-                SalaModelo s = new SalaModelo(sessionType);
+                SalaModelo s = new SalaModelo();
                 s.idSala = int.Parse(lector[0].ToString());
                 s.idGrupo = int.Parse(lector[1].ToString()); 
                 s.idMateria = int.Parse(lector[2].ToString());
@@ -113,7 +112,7 @@ namespace CapaDeDatos
             return salas;
         }
 
-        public int salaPorMateriaCount(int idMateria, byte sessionType,bool isDone)
+        public int salaPorMateriaCount(int idMateria,bool isDone)
         {
             int count;
             this.comando.Parameters.Clear();

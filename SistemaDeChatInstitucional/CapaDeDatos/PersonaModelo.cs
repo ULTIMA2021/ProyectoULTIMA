@@ -121,7 +121,7 @@ namespace CapaDeDatos
             EjecutarQuery(comando, errorType);
         }
 
-        private List<PersonaModelo> obtenerUsuario(MySqlCommand commando, byte sessionType)
+        private List<PersonaModelo> obtenerUsuario(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
             List<PersonaModelo> personas = new List<PersonaModelo>();
@@ -140,7 +140,7 @@ namespace CapaDeDatos
             return personas;
         }
 
-        public List<PersonaModelo> validarAlumno(string user, byte sessionType)
+        public List<PersonaModelo> validarAlumno(string user)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido, p.foto FROM alumno a,persona p " +
                 "WHERE p.ci=a.ci AND a.ci=@user AND p.isDeleted=false;";
@@ -149,7 +149,7 @@ namespace CapaDeDatos
             List<PersonaModelo> personas = new List<PersonaModelo>();
             while (lector.Read())
             {
-                PersonaModelo p = new PersonaModelo(sessionType);
+                PersonaModelo p = new PersonaModelo();
                 // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
                 p.Cedula = lector[0].ToString();
                 byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
@@ -169,7 +169,7 @@ namespace CapaDeDatos
            // return obtenerUsuario(this.comando, sessionType);
         }
 
-        public List<PersonaModelo> validarDocente(string user, byte sessionType)
+        public List<PersonaModelo> validarDocente(string user )
         {
             this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido, p.foto FROM docente d,persona p " +
                 "WHERE p.ci=d.ci AND d.ci=@user AND p.isDeleted=false;";
@@ -178,7 +178,7 @@ namespace CapaDeDatos
             List<PersonaModelo> personas = new List<PersonaModelo>();
             while (lector.Read())
             {
-                PersonaModelo p = new PersonaModelo(sessionType);
+                PersonaModelo p = new PersonaModelo();
                 // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
                 p.Cedula = lector[0].ToString();
                 byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
@@ -195,10 +195,9 @@ namespace CapaDeDatos
             }
             lector.Close();
             return personas;
-            return obtenerUsuario(this.comando, sessionType);
         }
 
-        public List<PersonaModelo> validarAdmin(string user ,byte sessionType)
+        public List<PersonaModelo> validarAdmin(string user )
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido, p.foto FROM administrador a, persona p " +
                 "WHERE p.ci = a.ci AND a.ci = @user AND p.isDeleted=false;";
@@ -207,7 +206,7 @@ namespace CapaDeDatos
             List<PersonaModelo> personas = new List<PersonaModelo>();
             while (lector.Read())
             {
-                PersonaModelo p = new PersonaModelo(sessionType);
+                PersonaModelo p = new PersonaModelo();
                 // Console.WriteLine("ci: " + lector[0].ToString() + "    " + lector[1].ToString() + "    " + lector[2].ToString() + "    " + lector[3].ToString());
                 p.Cedula = lector[0].ToString();
                 byte[] claveArray = Encoding.Default.GetBytes(lector[1].ToString());
@@ -226,7 +225,7 @@ namespace CapaDeDatos
             return personas;
         }
 
-        public byte[] obtenerPersona(string ci)
+        public byte[] obtenerPersona(string ci, byte dummy)
         {
             byte[] foto = null;
             comando.Parameters.Clear();
@@ -243,14 +242,14 @@ namespace CapaDeDatos
                 }
             lector.Close();
             return foto;
-        } 
+        }
 
-        public PersonaModelo obtenerPersona(string cedula, byte sessionType)
+        public PersonaModelo obtenerPersona(string cedula)
         {
             this.comando.CommandText = "SELECT p.ci, p.nombre, p.apellido, p.foto, p.enLinea FROM persona p " +
                 "WHERE p.ci=@cedula";
             this.comando.Parameters.AddWithValue("cedula", cedula);
-            PersonaModelo persona = new PersonaModelo(sessionType);
+            PersonaModelo persona = new PersonaModelo();
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {
@@ -265,14 +264,14 @@ namespace CapaDeDatos
             return persona;
         }
 
-        public List<PersonaModelo> obtenerAlumnoTemp(byte sessionType)
+        public List<PersonaModelo> obtenerAlumnoTemp()
         {
             comando.CommandText = "SELECT ci, nombre, apellido, apodo, grupos, foto, clave FROM alumnotemp;";
             lector = comando.ExecuteReader();
             List<PersonaModelo> personas = new List<PersonaModelo>();
             while (lector.Read())
             {
-                PersonaModelo p = new PersonaModelo(sessionType);
+                PersonaModelo p = new PersonaModelo();
                 p.Cedula = lector[0].ToString();
                 p.Nombre = lector[1].ToString();
                 p.Apellido = lector[2].ToString();
@@ -305,40 +304,40 @@ namespace CapaDeDatos
         }
 
         //retorna tabla entera de alumno con algunos campos de persona
-        public List<PersonaModelo> obtenerAlumno(byte sessionType)
+        public List<PersonaModelo> obtenerAlumno()
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM alumno a INNER JOIN persona p ON " +
                                          "(a.ci=p.ci);";
-            return obtenerUsuario(this.comando, sessionType);
+            return obtenerUsuario(this.comando);
         }
 
-        public List<PersonaModelo> obtenerAlumno(string ci, byte sessionType)
+        public List<PersonaModelo> obtenerAlumno(string ci)
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM alumno a, persona p WHERE " +
                                                      "a.ci=p.ci AND a.ci=@ci;";
             this.comando.Parameters.AddWithValue("ci", ci);
-            return obtenerUsuario(this.comando, sessionType);
+            return obtenerUsuario(this.comando);
         }
 
-        public List<PersonaModelo> obtenerDocente(byte sessionType)
+        public List<PersonaModelo> obtenerDocente()
         {
             this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM docente d INNER JOIN persona p ON " +
                                          "(d.ci=p.ci);";
-            return obtenerUsuario(this.comando, sessionType);
+            return obtenerUsuario(this.comando);
         }
 
-        public List<PersonaModelo> obtenerDatosDocente(byte sessionType)
+        public List<PersonaModelo> obtenerDatosDocente()
         {
             this.comando.CommandText = "SELECT p.nombre, p.apellido FROM docente d INNER JOIN persona p ON " +
                                          "(d.ci=p.ci);";
-            return obtenerUsuario(this.comando, sessionType);
+            return obtenerUsuario(this.comando);
         }
 
-        public List<PersonaModelo> obtenerAdmin(byte sessionType)
+        public List<PersonaModelo> obtenerAdmin()
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM administrador a INNER JOIN persona p ON " +
                                          "(a.ci=p.ci);";
-            return obtenerUsuario(this.comando, sessionType);
+            return obtenerUsuario(this.comando);
         }
 
     }

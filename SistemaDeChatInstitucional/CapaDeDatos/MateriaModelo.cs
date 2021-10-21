@@ -14,9 +14,8 @@ namespace CapaDeDatos
         public string isDeleted;
         public string errorType="Materia";
 
-        public MateriaModelo(byte sessionType) : base(sessionType)
-        {
-        }
+        public MateriaModelo(byte sessionType) : base(sessionType){}
+        public MateriaModelo() : base(){}
 
         public void crearMateriaNueva()
         {
@@ -50,13 +49,13 @@ namespace CapaDeDatos
             EjecutarSpecialQuery(this.comando);
         }
 
-        private List<MateriaModelo> cargarMateriaALista(MySqlCommand commando, byte sessionType)
+        private List<MateriaModelo> cargarMateriaALista(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
             List<MateriaModelo> listaM = new List<MateriaModelo>();
             while (lector.Read())
             {
-                MateriaModelo m = new MateriaModelo(sessionType);
+                MateriaModelo m = new MateriaModelo();
                 m.idMateria = Int32.Parse(lector[0].ToString());
                 m.nombreMateria = lector[1].ToString();
                 try
@@ -73,14 +72,14 @@ namespace CapaDeDatos
             return listaM;
         }
 
-        public List<MateriaModelo> getMateria(byte sessionType)
+        public List<MateriaModelo> getMateria()
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT idMateria,nombreMateria FROM materia WHERE isDeleted = FALSE ORDER BY nombreMateria ASC;";
-            return cargarMateriaALista(this.comando, sessionType);
+            return cargarMateriaALista(this.comando);
         }
 
-        public string getMateria(string nombreMateria, byte sessionType)
+        public string getMateria(string nombreMateria)
         {
             string idMateria;
             this.comando.CommandText = "SELECT idMateria, nombreMateria FROM materia WHERE nombreMateria=@nombreMateria ORDER BY nombreMateria ASC;";
@@ -92,14 +91,14 @@ namespace CapaDeDatos
             return idMateria;
         }
 
-        public List<MateriaModelo> getGrupoTieneMateria(string idGrupo, byte sessionType)
+        public List<MateriaModelo> getGrupoTieneMateria(string idGrupo)
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT gm.idMateria, m.nombreMateria " +
                 "FROM grupo_tiene_materia gm, materia m " +
                 "WHERE gm.idGrupo = @idGrupo AND gm.idMateria = m.idMateria; ";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
-            return (cargarMateriaALista(this.comando, sessionType));
+            return (cargarMateriaALista(this.comando));
         }
 
         public string countSalaPorMateria()

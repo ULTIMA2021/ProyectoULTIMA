@@ -85,20 +85,20 @@ namespace CapaLogica
         public static string MateriaPorNombreMateria(string nombreMateria)
         {
             MateriaModelo m = new MateriaModelo(Session.type);
-            return m.getMateria(nombreMateria, Session.type);
+            return m.getMateria(nombreMateria);
         }
 
         public static string orientacionPorNombre(string nombreOrientacion)
         {
             OrientacionModelo o = new OrientacionModelo(Session.type);
-            return o.getOrientacion(nombreOrientacion, Session.type);
+            return o.getOrientacion(nombreOrientacion);
         }
 
 
         public static List<string> obtenerMaterias()
           {
             MateriaModelo m = new MateriaModelo(Session.type);
-            List<MateriaModelo> materias = m.getMateria(Session.type);
+            List<MateriaModelo> materias = m.getMateria();
             List<string> pinga = new List<string>();
 
               foreach (MateriaModelo materia in materias)
@@ -114,7 +114,7 @@ namespace CapaLogica
             data.Columns.Add("idMateria");
             data.Columns.Add("Materia");
 
-            foreach (MateriaModelo materia in m.getMateria(Session.type))
+            foreach (MateriaModelo materia in m.getMateria())
                 data.Rows.Add(materia.idMateria , materia.nombreMateria);
 
             return data;
@@ -124,11 +124,11 @@ namespace CapaLogica
         public static List<int> obtenerMaterias(string idGrupo)
         {
             MateriaModelo m = new MateriaModelo(Session.type);
-            List<MateriaModelo> todasLasMaterias = m.getMateria(Session.type);
+            List<MateriaModelo> todasLasMaterias = m.getMateria();
             string idMateria;
             List<int> checkedListBoxIndexesToCheck = new List<int>();
 
-            foreach (MateriaModelo materia in m.getGrupoTieneMateria(idGrupo, Session.type))
+            foreach (MateriaModelo materia in m.getGrupoTieneMateria(idGrupo))
             {
                 idMateria = materia.idMateria.ToString();
                 //idMateriasDeGrupo.Add(materia.idMateria.ToString());
@@ -146,7 +146,7 @@ namespace CapaLogica
         {
             MateriaModelo materia = new MateriaModelo(Session.type);
             List<string> mString = new List<string>();
-            foreach (MateriaModelo m in materia.getMateria(Session.type))
+            foreach (MateriaModelo m in materia.getMateria())
             {
                 mString.Add($"{m.idMateria}   {m.nombreMateria}");
             }
@@ -169,7 +169,7 @@ namespace CapaLogica
         {
             GrupoModelo grupo = new GrupoModelo(Session.type);
             List<string> gString = new List<string>();
-            foreach (GrupoModelo g in grupo.getGruposSinOrientacion(Session.type))
+            foreach (GrupoModelo g in grupo.getGruposSinOrientacion())
             {
                 gString.Add($"{g.idGrupo}   {g.nombreGrupo}");
             }
@@ -181,7 +181,7 @@ namespace CapaLogica
         {
             OrientacionModelo orientacion = new OrientacionModelo(Session.type);
             List<string> oString = new List<string>();
-            foreach (OrientacionModelo o in orientacion.getOrientacion(Session.type))
+            foreach (OrientacionModelo o in orientacion.getOrientacion())
             {
                 oString.Add($"{o.idOrientacion}   {o.nombreOrientacion}");
             }
@@ -197,7 +197,7 @@ namespace CapaLogica
             List<string> gmString = new List<string>();
             GrupoModelo gm = new GrupoModelo(Session.type);
             string entry;
-            foreach (GrupoModelo g in gm.getDocenteDictaGM(Session.type))
+            foreach (GrupoModelo g in gm.getDocenteDictaGM())
             {
                 entry = $"{g.nombreGrupo}   {g.nombreMateria}";
                 gmString.Add(entry);
@@ -209,7 +209,7 @@ namespace CapaLogica
         {
             List<List <string>> GruposYMaterias = new List<List<string>>();
             GrupoModelo gm = new GrupoModelo(Session.type);
-            foreach (GrupoModelo g in gm.grupoMateria(idMateria, Session.type))
+            foreach (GrupoModelo g in gm.grupoMateria(idMateria))
             {
             List<string> grupoMateriaFila = new List<string>();
                 grupoMateriaFila.Add(g.idGrupo.ToString());
@@ -224,7 +224,7 @@ namespace CapaLogica
         {
             List<List<string>> GruposYMaterias = new List<List<string>>();
             GrupoModelo gm = new GrupoModelo(Session.type);
-            foreach (GrupoModelo g in gm.grupoMateria(idGrupo, Session.type))
+            foreach (GrupoModelo g in gm.grupoMateria(idGrupo))
             {
                 List<string> grupoMateriaFila = new List<string>();
                 grupoMateriaFila.Add(g.idGrupo.ToString());
@@ -239,7 +239,7 @@ namespace CapaLogica
         {
             List<List<string>> gruposDeOrientacion = new List<List<string>>();
             GrupoModelo go = new GrupoModelo(Session.type);
-            foreach (GrupoModelo g in go.getGruposDeOrientacion(idOrientacion, Session.type))
+            foreach (GrupoModelo g in go.getGruposDeOrientacion(idOrientacion))
             {
                 List<string> grupoOrientacion = new List<string>();
                 grupoOrientacion.Add(g.idGrupo.ToString());
@@ -255,7 +255,7 @@ namespace CapaLogica
         public static DataTable obtenerOrientaciones()
         {
             OrientacionModelo o = new OrientacionModelo(Session.type);
-            List<OrientacionModelo> orientaciones = o.getOrientacion(Session.type);
+            List<OrientacionModelo> orientaciones = o.getOrientacion();
             DataTable tabla = new DataTable();
             tabla.Columns.Add("id");
             tabla.Columns.Add("Orientaciones");
@@ -306,7 +306,7 @@ namespace CapaLogica
         public static List<List<string>> obtenerGrupoMaterias(string ci)
         {
             List<List<string>> grupoMaterias = new List<List<string>>();
-            foreach (var gm in new GrupoModelo(Session.type).getDocenteDictaGM(ci, Session.type))
+            foreach (var gm in new GrupoModelo(Session.type).getDocenteDictaGM(ci))
             {
                 if (gm.isDeleted == "False")
                 {

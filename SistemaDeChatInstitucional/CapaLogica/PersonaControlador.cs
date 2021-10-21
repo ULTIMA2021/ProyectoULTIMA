@@ -58,7 +58,7 @@ namespace CapaLogica
             GrupoModelo g = new GrupoModelo(Session.type);
             p.Cedula = cedula;
             p.guardarDocente();
-            List<GrupoModelo> gm = g.getDocenteDictaGM(Session.type);
+            List<GrupoModelo> gm = g.getDocenteDictaGM();
             int idMateria;
             int idGrupo;
             foreach (int grupoMateria in GruposMateriasDeDocente)
@@ -106,7 +106,7 @@ namespace CapaLogica
         public static bool existePersona(string ci)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
-            if (p.obtenerPersona(ci, Session.type).Cedula == ci)
+            if (p.obtenerPersona(ci).Cedula == ci)
             {
                 Console.WriteLine($"PERSON {ci} EXISTS IN SYSTEM");
                 throw new Exception($"Persona-1062");
@@ -130,9 +130,9 @@ namespace CapaLogica
             PersonaModelo p = new PersonaModelo(Session.type);
             return lista(user, pass, Session.type, p.validarAdmin);
         }
-        private static bool lista(string user, string pass, byte sessionType, Func<string, byte, List<PersonaModelo>> metodoObtener)
+        private static bool lista(string user, string pass, byte sessionType, Func<string, List<PersonaModelo>> metodoObtener)
         {
-            List<PersonaModelo> personas = metodoObtener(user, Session.type);
+            List<PersonaModelo> personas = metodoObtener(user);
             if (personas.Count == 1)
             {
                 bool okPassword = CryptographyUtils.comparePasswords(pass, personas[0].Clave);
@@ -150,12 +150,12 @@ namespace CapaLogica
                 case 3:
                     Session.type = 0;
                     GrupoModelo g = new GrupoModelo(Session.type);
-                    Session.saveToCache(per, g.getAlumnoGrupoyYmaterias(per.Cedula, Session.type));
+                    Session.saveToCache(per, g.getAlumnoGrupoyYmaterias(per.Cedula));
                     return;
                 case 4:
                     Session.type = 1;
                     GrupoModelo gm = new GrupoModelo(Session.type);
-                    Session.saveToCache(per, gm.getDocenteDictaGM(per.Cedula, Session.type));
+                    Session.saveToCache(per, gm.getDocenteDictaGM(per.Cedula));
                     return;
                 case 5:
                     Session.type = 2;
@@ -175,14 +175,14 @@ namespace CapaLogica
         public static bool obtenerAlumno(string ci)
         {
             PersonaModelo u = new PersonaModelo(Session.type);
-            if (u.obtenerAlumno(ci, Session.type).Count == 0)
+            if (u.obtenerAlumno(ci).Count == 0)
                 return true;
             return false;
         }
         public static List<List<string>> obtenerAlumnoTemp()
         {
             List<List<string>> alumnos = new List<List<string>>();
-            foreach (var item in new PersonaModelo(Session.type).obtenerAlumnoTemp(Session.type))
+            foreach (var item in new PersonaModelo(Session.type).obtenerAlumnoTemp())
             {
                 List<string> a = new List<string>();
                 a.Add(item.Cedula);
@@ -202,7 +202,7 @@ namespace CapaLogica
         public static string traemeEstaPersona(string ci)
         {
             PersonaModelo p = new PersonaModelo(Session.type);
-            p = p.obtenerPersona(ci, Session.type);
+            p = p.obtenerPersona(ci);
             List<string> personaString = new List<string>();
             personaString.Add(p.Nombre);
             personaString.Add(" ");
@@ -212,9 +212,9 @@ namespace CapaLogica
         public static List<List<string>> obtenerPersona()
         {
             List<List<string>> personas = new List<List<string>>();
-            List<PersonaModelo> admins = new PersonaModelo(Session.type).obtenerAdmin(Session.type);
-            List<PersonaModelo> docentes = new PersonaModelo(Session.type).obtenerDocente(Session.type);
-            List<PersonaModelo> alumnos = new PersonaModelo(Session.type).obtenerAlumno(Session.type);
+            List<PersonaModelo> admins = new PersonaModelo(Session.type).obtenerAdmin();
+            List<PersonaModelo> docentes = new PersonaModelo(Session.type).obtenerDocente();
+            List<PersonaModelo> alumnos = new PersonaModelo(Session.type).obtenerAlumno();
 
             for (int i = 0; i < admins.Count; i++)
             {
@@ -249,7 +249,7 @@ namespace CapaLogica
             }
             return personas;
         }
-        public static byte[] obtenerFotoPersona(string ci) => new PersonaModelo(Session.type).obtenerPersona(ci);
+        public static byte[] obtenerFotoPersona(string ci) => new PersonaModelo(Session.type).obtenerPersona(ci,1);
 
         public static DataTable obtenerDocentes()
         {
@@ -257,7 +257,7 @@ namespace CapaLogica
             tabla.Columns.Add("Cedula");
             tabla.Columns.Add("Nombre");
             tabla.Columns.Add("Apellido");
-            foreach (PersonaModelo docente in new PersonaModelo(Session.type).obtenerDocente(Session.type))
+            foreach (PersonaModelo docente in new PersonaModelo(Session.type).obtenerDocente())
             {
                 tabla.Rows.Add(docente.Cedula, docente.Nombre, docente.Apellido);
             }

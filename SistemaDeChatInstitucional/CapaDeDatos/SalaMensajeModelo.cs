@@ -17,14 +17,16 @@ namespace CapaDeDatos
         public string errorType = "SalaMensaje";
 
         public SalaMensajeModelo(byte sessionType) : base(sessionType) { }
+        public SalaMensajeModelo() : base() { }
 
-        private List<SalaMensajeModelo> cargarMensajesALista(MySqlCommand commando, byte sessionType)
+
+        private List<SalaMensajeModelo> cargarMensajesALista(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();
             List<SalaMensajeModelo> listaMensajes = new List<SalaMensajeModelo>();
             while (lector.Read())
             {
-                SalaMensajeModelo smsg = new SalaMensajeModelo(sessionType);
+                SalaMensajeModelo smsg = new SalaMensajeModelo();
                 smsg.idSala = int.Parse(lector[0].ToString());
                 smsg.idMensaje = int.Parse(lector[1].ToString());
                 smsg.autorCi = int.Parse(lector[2].ToString());
@@ -49,17 +51,17 @@ namespace CapaDeDatos
 
         }
 
-        public List<SalaMensajeModelo> getMensajesDeSala(int idSala,byte sessionType) {
+        public List<SalaMensajeModelo> getMensajesDeSala(int idSala) {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT sm.idSala, sm.idMensaje, sm.autorCi, sm.contenido, sm.fechaHora " +
                 "FROM sala_mensaje sm " +
                 "WHERE sm.idSala = @idSala " +
                 "ORDER BY sm.fechaHora;";
             this.comando.Parameters.AddWithValue("@idSala", idSala);
-            return cargarMensajesALista(this.comando, sessionType);
+            return cargarMensajesALista(this.comando);
         }
 
-        public int getMensajesDeSalaCount(int idSala, byte sessionType)
+        public int getMensajesDeSalaCount(int idSala)
         {
             int count;
             this.comando.Parameters.Clear();
@@ -71,7 +73,6 @@ namespace CapaDeDatos
             lector.Close();
             return count;
         }
-
 
         public List<string> toStringList()
         {
