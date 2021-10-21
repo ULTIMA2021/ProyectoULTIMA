@@ -10,14 +10,14 @@ namespace AppAdmin.menuScreens
     public partial class UserList : Form
     {
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
-        List<List<string>> personas = new List<List<string>>();   //[x][]=indice de alumnoTemp en app  [0]=ci  [1]=nombre  [2]=apellido  [3]=clave  grupos=[4]= type    [5]=apodo (if alumno)
+        List<List<string>> personas = new List<List<string>>();   //[x][]=indice de alumnoTemp en app  [0]=ci  [1]=nombre  [2]=apellido  [3]=clave  [4]= type    [5]=apodo (if alumno)
 
         List<List<List<string>>> gruposMateriasDePersonas = new List<List<List<string>>>();
         //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo   [][][2]=idMateria   [][][3]=nombreMateria
 
         Size pbSize = new Size(100,100);
         Padding padHori = new Padding(3, 3, 3, 10);
-        Padding padRestofControls = new Padding(3, 3, 3, 3);
+        Padding padRestofControls = new Padding(10, 0, 10, 0);
         Padding padPicture = new Padding(10, 10, 3, 10);
         Font buttonFont = new Font("Cambria", 8, FontStyle.Bold);
 
@@ -34,6 +34,8 @@ namespace AppAdmin.menuScreens
             {
                 FlowLayoutPanel flpHori = new FlowLayoutPanel();
                 FlowLayoutPanel flpVert = new FlowLayoutPanel();
+                FlowLayoutPanel flpSpacer = new FlowLayoutPanel();
+
                 PictureBox foto = new PictureBox();
                 Label nombre = new Label();
                 Label apellido = new Label();
@@ -48,7 +50,7 @@ namespace AppAdmin.menuScreens
                 //Button btnSalas = new Button();
 
                 loadToLists(x);
-                Console.WriteLine("THIS PERSON HAS THE FOLLOWING GROUPS");
+                Console.WriteLine($"{personas[x][0]} HAS THE FOLLOWING GROUPS");
 
                 ci = defineLabels(ci, $"lblCi_{x}", $"Ci:\n{personas[x][0]}");
                 nombre = defineLabels(nombre, $"lblName_{x}", $"Nombre:\n{personas[x][1]}");
@@ -70,6 +72,7 @@ namespace AppAdmin.menuScreens
                         groups = defineLabels(groups, $"g_{x}", prepareAlumnoGroupLabelText(x));
                         flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight,Color.PowderBlue);
                         flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PowderBlue);
+                        flpSpacer.BackColor = Color.PowderBlue;
                         flpHori.Click += testt;
                         groups.Click += testt;
                         nombre.Click += testt;
@@ -83,13 +86,16 @@ namespace AppAdmin.menuScreens
                         groups = defineLabels(groups, $"g_{x}", "    ");
                         flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PaleVioletRed);
                         flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PaleVioletRed);
+                        flpSpacer.BackColor = Color.PaleVioletRed;
+
                         break;
                     case "D":
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareDocenteGroupLabelText(x));
                         flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PeachPuff);
                         flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PeachPuff);
-                       // EventHandler testt = new EventHandler(myflowLayoutPanel_Click_flpHori);
+                        flpSpacer.BackColor = Color.PeachPuff;
+                        // EventHandler testt = new EventHandler(myflowLayoutPanel_Click_flpHori);
                         flpHori.Click += testt;
                         groups.Click += testt;
                         nombre.Click += testt;
@@ -110,6 +116,12 @@ namespace AppAdmin.menuScreens
                 flpHori.Controls.Add(nombre);
                 flpHori.Controls.Add(apellido);
                 flpHori.Controls.Add(groups);
+
+                flpSpacer.AutoSize = false;
+                flpSpacer.Height = 2;
+                flpSpacer.Width = flowLayoutPanel1.Width - (ci.Width + foto.Width + nombre.Width + apellido.Width + groups.Width + flpVert.Width + 3);
+                
+                flpHori.Controls.Add(flpSpacer);
                 flpHori.Controls.Add(flpVert);
 
                 flowLayoutPanel1.Controls.Add(flpHori);
@@ -167,7 +179,8 @@ namespace AppAdmin.menuScreens
             lbl.Name = lblName;
             lbl.AccessibleName = lblName;
             lbl.Text = lblText;
-            lbl.AutoSize = false;
+            lbl.Margin = padRestofControls;
+            lbl.AutoSize = true;
             lbl.TextAlign = ContentAlignment.MiddleCenter;
             return lbl;
         }
@@ -258,29 +271,31 @@ namespace AppAdmin.menuScreens
         {
             Enabled = false;
             Button b = (Button)sender;
-            int indexFromButton = int.Parse(b.AccessibleName.Substring(11));
+            int indexFromButton = int.Parse(b.AccessibleName.Substring(13));
             string ci = personas[indexFromButton][0];
             string nombre = personas[indexFromButton][1];
             string apellido = personas[indexFromButton][2];
-            string apodo = personas[indexFromButton][3];
-            string clave = personas[indexFromButton][5];
-            List<int> groupsToInt = GroupsToInt(indexFromButton);
+            string clave = personas[indexFromButton][3];
+            string type = personas[indexFromButton][4];
+            string apodo = "";
+            try
+            {
+                apodo = personas[indexFromButton][5];
+            }
+            catch (Exception)
+            {
+            }
+            //List<int> groupsToInt = GroupsToInt(indexFromButton);
             Console.WriteLine($"selected:\n{personas[indexFromButton][0]}\n{personas[indexFromButton][1]}\n{personas[indexFromButton][2]}\n{personas[indexFromButton][3]}\n{personas[indexFromButton][4]}");
 
             try
             {
-                Controlador.AltaPersona(ci, nombre, apellido, clave,null);
-                Controlador.AltaAlumno(ci,apodo,groupsToInt);
-                Console.WriteLine($"PERSON IS NOW IN SYSTEM");
+                //fetch usesr logs
             }
             catch (Exception ex)
             {
-                //btnBorrar FROM PERSONA JUST INCASE SHIT FAILS
-                Controlador.bajaPersona(ci);
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
-            flowLayoutPanel1.Controls.Clear();
-            createControls();
             Enabled = true;
         }
         private void mybutton_Click_Modificacion(object sender, EventArgs e)
@@ -291,8 +306,17 @@ namespace AppAdmin.menuScreens
             string ci = personas[indexFromButton][0];
             string nombre = personas[indexFromButton][1];
             string apellido = personas[indexFromButton][2];
-            string apodo = personas[indexFromButton][3];
-            string clave = personas[indexFromButton][5];
+            string clave = personas[indexFromButton][3];
+            string type = personas[indexFromButton][4];
+            string apodo = "";
+            try
+            {
+                 apodo = personas[indexFromButton][5];
+
+            }
+            catch (Exception)
+            {
+            }
             List<int> groupsToInt = GroupsToInt(indexFromButton);
             new UsuarioRegistro(ci, nombre, apellido, apodo, clave, groupsToInt,4).ShowDialog();
             flowLayoutPanel1.Controls.Clear();
@@ -308,7 +332,16 @@ namespace AppAdmin.menuScreens
             string ci = personas[indexFromButton][0];
             try
             {
-                Controlador.bajaAlumnoTemp(ci);
+                try
+                {
+                    Controlador.bajaPersona(ci);
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
                 flowLayoutPanel1.Controls.Clear();
             }
             catch (Exception ex)

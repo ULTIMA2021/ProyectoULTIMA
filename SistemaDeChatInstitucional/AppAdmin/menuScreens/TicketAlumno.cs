@@ -12,6 +12,7 @@ namespace AppAdmin.menuScreens
         //List<List<string>> alumnos = Controlador.obtenerAlumnoTemp();
         List<List<string>> alumnos = new List<List<string>>();   //[x][]=indice de alumnoTemp en app     [0]=ci    nombre=[1]  apellido=[2]    apodo=[3]   grupos=[4]    clave=[5]
         List<List<List<string>>> gruposDeAlumnos = new List<List<List<string>>>();   //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo
+        List<byte[]> fotoDePersona = new List<byte[]>(); 
         Size pbSize = new Size(100, 100);
         Padding padHori = new Padding(3, 3, 3, 10);
         Padding padRestofControls = new Padding(3, 3, 3, 3);
@@ -119,6 +120,7 @@ namespace AppAdmin.menuScreens
         }
         private PictureBox definePictureBox(PictureBox pb, string pbName, byte[] imgByte)
         {
+            fotoDePersona.Add(imgByte);
             pb.Padding = padPicture;
             pb.Size = pbSize;
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -197,10 +199,9 @@ namespace AppAdmin.menuScreens
             string clave = alumnos[indexFromButton][5];
             List<int> groupsToInt = GroupsToInt(indexFromButton);
             Console.WriteLine($"selected:\n{alumnos[indexFromButton][0]}\n{alumnos[indexFromButton][1]}\n{alumnos[indexFromButton][2]}\n{alumnos[indexFromButton][3]}\n{alumnos[indexFromButton][4]}");
-
             try
             {
-                Controlador.AltaPersona(ci, nombre, apellido, clave,null);
+                Controlador.AltaPersona(ci, nombre, apellido, clave,fotoDePersona[indexFromButton]);
                 Controlador.AltaAlumno(ci,apodo,groupsToInt);
                 Console.WriteLine($"PERSON IS NOW IN SYSTEM");
             }

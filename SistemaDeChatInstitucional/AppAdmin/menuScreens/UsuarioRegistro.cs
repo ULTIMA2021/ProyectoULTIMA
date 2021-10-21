@@ -59,7 +59,7 @@ namespace AppAdmin.menuScreens
         }
         private void setFields(string ci, string nombre, string apellido, int type)
         {
-            changeFieldsForUser(type);
+            comboBoxUser.SelectedIndex = type;
             txtCedula.Enabled = false;
             comboBoxUser.Enabled = false;
 

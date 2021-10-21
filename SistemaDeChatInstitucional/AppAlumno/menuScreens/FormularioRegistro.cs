@@ -42,7 +42,6 @@ namespace Login
                 Console.WriteLine(ex.Message);
             }
 
-
             if (txtClave.Text == txtClaveVerificacion.Text)
                 try
                 {
