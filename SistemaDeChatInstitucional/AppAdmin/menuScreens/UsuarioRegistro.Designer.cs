@@ -32,6 +32,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -61,7 +62,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
@@ -116,6 +117,20 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registrar nuevo usuario";
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.Firebrick;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnReset.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(133, 220);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(189, 32);
+            this.btnReset.TabIndex = 31;
+            this.btnReset.Text = "Resetear clave";
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Visible = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // label2
             // 
@@ -356,6 +371,7 @@
             this.clbOpciones.Name = "clbOpciones";
             this.clbOpciones.Size = new System.Drawing.Size(227, 104);
             this.clbOpciones.TabIndex = 2;
+            this.clbOpciones.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbOpciones_ItemCheck);
             // 
             // lblOptions
             // 
@@ -397,19 +413,18 @@
             this.label10.TabIndex = 30;
             this.label10.Text = "Los campos con un * se deben llenar";
             // 
-            // btnReset
+            // btnGuardar
             // 
-            this.btnReset.BackColor = System.Drawing.Color.Firebrick;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnReset.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(133, 220);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(189, 32);
-            this.btnReset.TabIndex = 31;
-            this.btnReset.Text = "Resetear clave";
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Visible = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Location = new System.Drawing.Point(510, 344);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(112, 32);
+            this.btnGuardar.TabIndex = 31;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Visible = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // UsuarioRegistro
             // 
@@ -417,6 +432,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(920, 384);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.groupBox1);
@@ -466,5 +482,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }

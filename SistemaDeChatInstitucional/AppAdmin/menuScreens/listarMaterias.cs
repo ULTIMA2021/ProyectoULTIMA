@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+
 using CapaLogica;
+
 
 namespace AppAdmin.menuScreens
 {
@@ -14,26 +16,6 @@ namespace AppAdmin.menuScreens
 
         public listarMaterias() => InitializeComponent();
 
-        private void listarMaterias_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                loadAllGrupos();
-                dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
-                dgvListarMaterias.Columns[0].Visible = false;
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-
-            }
-  
-            clbGrupos.ClearSelected();
-        }
-
-        private void btnExit_Click_1(object sender, EventArgs e) => this.Dispose();
-        
         private List<int> getIdsFromText()
         {
             List<int> actualId = new List<int>();
@@ -44,44 +26,33 @@ namespace AppAdmin.menuScreens
             return actualId;
         }
 
-        private void sacarGrupoDeMateria()
+        private void btnExit_Click_1(object sender, EventArgs e) => this.Dispose();
+        private void btnBorrar_Click(object sender, EventArgs e)
         {
-            for (int z = 0; z < clbGrupos.Items.Count; z++)
+            this.Enabled = false;
+            try
             {
-                if (!clbGrupos.CheckedItems.Contains(clbGrupos.Items[z]))
-                {
-                    int uncheckedIdGrupo = int.Parse(clbGrupos.Items[z].ToString().Split(seperator)[0]);
-                    Console.WriteLine($"The group with ID:{uncheckedIdGrupo} will get deleted from grupoTieneMateria");
-                    try
-                    {
-                        Controlador.sacarGrupoMateria(int.Parse(idMateria), uncheckedIdGrupo);
-                    }
-                    catch (Exception ex)
-                    {
-                        if (ex.Message == "cannot delete grupoTieneMateria-1644")
-                        {
-                            Controlador.actualizarGrupoTieneMateria(idMateria, uncheckedIdGrupo.ToString(), true);
-                            Controlador.updateEstadoSala(idMateria, uncheckedIdGrupo.ToString(), true);
-                            Controlador.actualizarDocenteDictaGM(idMateria, uncheckedIdGrupo.ToString(), true);
-                        }
-                    }
-                }
+                Controlador.deleteMateria(idMateria);
             }
-        }
-        private void cargarGrupoAmateria(List<int> selectedGrupoIds)
-        {
-            for (int i = 0; i < selectedGrupoIds.Count; i++)
+            catch (Exception ex)
             {
-                try
+                if (ex.Message == "set materia isDeleted=TRUE-1644")
                 {
-                    Controlador.asignarMateriasAGrupo(idMateria, selectedGrupoIds[i].ToString());
+                    Console.WriteLine("...OK setting materia isDeleted=true");
+                    Controlador.actualizarEstadoMateria(true, idMateria);
+                    Controlador.actualizarGrupoTieneMateria(int.Parse(idMateria), true);
+                    Controlador.updateEstadoSala(idMateria, true,1);
+                    Controlador.actualizarDocenteDictaGM(int.Parse(idMateria), true);
                 }
-                catch (Exception ex)
-                {
-                    if (ex.Message == "isDeleted set to FALSE docenteDictaGM-1644")
-                        Controlador.actualizarGrupoTieneMateria(idMateria, selectedGrupoIds[i].ToString(), false);
-                }
+                else
+                    MessageBox.Show(Controlador.errorHandler(ex));
             }
+            textBox1.Clear();
+            uncheckAllBoxes();
+            dgvListarMaterias.DataSource = null;
+            dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
+            dgvListarMaterias.Columns[0].Visible = false;
+            this.Enabled = true;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -133,8 +104,45 @@ namespace AppAdmin.menuScreens
             this.Enabled = true;
             clbGrupos.ClearSelected();
         }
-
-        private void dgvListarMaterias_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarMaterias.ClearSelection();
+        private void sacarGrupoDeMateria()
+        {
+            for (int z = 0; z < clbGrupos.Items.Count; z++)
+            {
+                if (!clbGrupos.CheckedItems.Contains(clbGrupos.Items[z]))
+                {
+                    int uncheckedIdGrupo = int.Parse(clbGrupos.Items[z].ToString().Split(seperator)[0]);
+                    Console.WriteLine($"The group with ID:{uncheckedIdGrupo} will get deleted from grupoTieneMateria");
+                    try
+                    {
+                        Controlador.sacarGrupoMateria(int.Parse(idMateria), uncheckedIdGrupo);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message == "cannot delete grupoTieneMateria-1644")
+                        {
+                            Controlador.actualizarGrupoTieneMateria(idMateria, uncheckedIdGrupo.ToString(), true);
+                            Controlador.updateEstadoSala(idMateria, uncheckedIdGrupo.ToString(), true);
+                            Controlador.actualizarDocenteDictaGM(idMateria, uncheckedIdGrupo.ToString(), true);
+                        }
+                    }
+                }
+            }
+        }
+        private void cargarGrupoAmateria(List<int> selectedGrupoIds)
+        {
+            for (int i = 0; i < selectedGrupoIds.Count; i++)
+            {
+                try
+                {
+                    Controlador.asignarMateriasAGrupo(idMateria, selectedGrupoIds[i].ToString());
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message == "isDeleted set to FALSE docenteDictaGM-1644")
+                        Controlador.actualizarGrupoTieneMateria(idMateria, selectedGrupoIds[i].ToString(), false);
+                }
+            }
+        }
 
         private void checkBoxes()
         {
@@ -149,13 +157,30 @@ namespace AppAdmin.menuScreens
                 clbGrupos.SetItemCheckState(i, CheckState.Unchecked);
         }
 
-        private void loadGruposOfSelectedMateria(string idMateria) => gruposDeEstaMateria = Controlador.gruposDeMateria(idMateria);
+        private void listarMaterias_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                loadAllGrupos();
+                dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
+                dgvListarMaterias.Columns[0].Visible = false;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+            }
+  
+            clbGrupos.ClearSelected();
+        }
         private void loadAllGrupos()
         {
             clbGrupos.DataSource = null;
             todosMisGrupos = Controlador.gruposToListForRegister();
             clbGrupos.DataSource = todosMisGrupos;
         }
+        private void loadGruposOfSelectedMateria(string idMateria) => gruposDeEstaMateria = Controlador.gruposDeMateria(idMateria);
         private void cbModificar_CheckedChanged(object sender, EventArgs e)
         {
             Enabled = false;
@@ -181,34 +206,7 @@ namespace AppAdmin.menuScreens
             Enabled = true;
         }
 
-        private void btnBorrar_Click(object sender, EventArgs e)
-        {
-            this.Enabled = false;
-            try
-            {
-                Controlador.deleteMateria(idMateria);
-            }
-            catch (Exception ex)
-            {
-                if (ex.Message == "set materia isDeleted=TRUE-1644")
-                {
-                    Console.WriteLine("...OK setting materia isDeleted=true");
-                    Controlador.actualizarEstadoMateria(true, idMateria);
-                    Controlador.actualizarGrupoTieneMateria(int.Parse(idMateria), true);
-                    Controlador.updateEstadoSala(idMateria, true,1);
-                    Controlador.actualizarDocenteDictaGM(int.Parse(idMateria), true);
-                }
-                else
-                    MessageBox.Show(Controlador.errorHandler(ex));
-            }
-            textBox1.Clear();
-            uncheckAllBoxes();
-            dgvListarMaterias.DataSource = null;
-            dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
-            dgvListarMaterias.Columns[0].Visible = false;
-            this.Enabled = true;
-        }
-
+        private void dgvListarMaterias_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarMaterias.ClearSelection();
         private void dgvListarMaterias_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Enabled = false;

@@ -14,126 +14,22 @@ namespace AppAdmin.menuScreens
         bool fromUserList = false;
         bool hasEdited = false;
         char[] seperator = { ' ', ' ', ' ' };
+        List<string> uncheckedItems = new List<string>();
+        List<List <int>> checkedItemsIndexOnLoad = new List<List<int>>(); //[x][]=indice de item en clb   [][0]=idGrupo  [][1]=nombreGrupo   [][2]=idMateria   [][3]=nombreMateria
+
+
         public UsuarioRegistro()
         {
             InitializeComponent();
             load();
         }
-        public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List<int> checkedItems, int type, byte [] foto)
-        {
-            InitializeComponent();
-            load();
-            CenterToScreen();
-            //loadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type, foto);
-        }
+
         public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List<List<string>> checkedItems, int type, byte[] foto)
         {
             InitializeComponent();
             load();
             CenterToScreen();
-            NEWWWloadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type, foto);
-        }
-
-        private void NEWWWloadDatos(string ci, string nombre, string apellido, string apodo, string clave, List<List<string>> checkedItems, int type, byte[]foto)
-        {
-            // [x][0]=idGrupo   [x][1]=nombreGrupo  [x][2]=idMateria   [x][3]=nombreMateria
-            setFields(ci, nombre, apellido, type);
-            switch (type)
-            {
-                case 1: //alumno
-                    //todosMisGrupos = Controlador.gruposToListForRegister();
-                    fromUserList = true;
-                    lblApodo.Visible = true;
-                    comboBoxUser.SelectedIndex = 1;
-                    txtApodo.Text = apodo;
-                    //checkTheseBoxes(checkedItems);
-                    for (int x = 0; x < checkedItems.Count; x++)
-                        for (int y = 0; y < clbOpciones.Items.Count; y++)
-                            if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
-                                clbOpciones.SetItemCheckState(y, CheckState.Checked);
-                    break;
-
-                case 2: //docente
-                        //todosMisGrupos = Controlador.grupoMateriaToListForRegister();
-                    fromUserList = true;
-                    lblApodo.Visible = false;
-                    comboBoxUser.SelectedIndex = 2;
-                    clbOpciones.DataSource = Controlador.grupoMateriaToListForModification();
-                    clbOpciones.ClearSelected();
-
-                    for (int x = 0; x < checkedItems.Count; x++)
-                        for (int y = 0; y < clbOpciones.Items.Count; y++)
-                            if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][1] && clbOpciones.Items[y].ToString().Split(seperator, 2)[1].Trim() == checkedItems[x][3])
-                                clbOpciones.SetItemCheckState(y, CheckState.Checked);
-                    break;
-
-                case 3: //admin
-                        //todosMisGrupos = Controlador.grupoMateriaToListForRegister();
-                    fromUserList = true;
-                    comboBoxUser.SelectedIndex = 3;
-                    lblApodo.Visible = false;
-
-                    break;
-                case 4: //alumnotemp this is working dont fucking touch it
-                    try
-                    {
-                        var ms = new MemoryStream(Controlador.obtenerFotoAlumnoTemp(ci));
-                        pbFoto.Image = Image.FromStream(ms);
-                    }
-                    catch (Exception ex)
-                    {
-                        //Load the default image
-                    }
-                    lblApodo.Visible = true;
-                    comboBoxUser.SelectedIndex = 1;
-                    txtClaveVerificacion.Text = clave;
-                    txtApodo.Text = apodo;
-                    for (int x = 0; x < checkedItems.Count; x++)
-                        for (int y = 0; y < clbOpciones.Items.Count; y++)
-                            if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
-                                clbOpciones.SetItemCheckState(y, CheckState.Checked);
-                    //checkTheseBoxes(checkedItems);
-                    break;
-            }
-            txtClave.Enabled = false;
-            txtClave.Visible = false;
-            txtClaveVerificacion.Enabled = false;
-            txtClaveVerificacion.Visible = false;
-            lblClave.Visible = false;
-            lblClaveVeri.Visible = false;
-            label11.Visible = false;
-            label17.Visible = false;
-            txtApodo.Enabled = false;
-            btnReset.Visible = true;
-            groupBox1.Text = "Modificar usuario";
-            txtClave.Text = clave;
-            try
-            {
-                var ms = new MemoryStream(foto);
-                pbFoto.Image = Image.FromStream(ms);
-            }
-            catch (Exception ex)
-            {
-                //Load the default image
-            }
-        }
-
-        private void setFields(string ci, string nombre, string apellido, int type)
-        {
-            comboBoxUser.SelectedIndex = type;
-            txtCedula.Enabled = false;
-            comboBoxUser.Enabled = false;
-
-            txtCedula.Text = ci;
-            txtNombre.Text = nombre;
-            txtApellido.Text = apellido;
-        }
-        private void checkTheseBoxes(List<int> checkedItems)
-        {
-            for (int x = 0; x < checkedItems.Count; x++)
-                for (int y = 0; y < clbOpciones.Items.Count; y++)
-                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x].ToString())
-                        clbOpciones.SetItemCheckState(y, CheckState.Checked);
+            loadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type, foto);
         }
 
         private void load()
@@ -147,57 +43,146 @@ namespace AppAdmin.menuScreens
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
         }
 
-        private void btnExit_Click(object sender, EventArgs e) => Dispose();
-
-        private void btnIngresar_Click(object sender, EventArgs e)
+        private void loadDatos(string ci, string nombre, string apellido, string apodo, string clave, List<List<string>> checkedItems, int type, byte[] foto)
         {
-            //-If persona does exist ask if they want to reactivate acc
-            Enabled = false;
-            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
+            // [x][0]=idGrupo   [x][1]=nombreGrupo  [x][2]=idMateria   [x][3]=nombreMateria
+            setFields(ci, nombre, apellido, type);
+            switch (type)
             {
+                case 1:
+                    caseAlumno(apodo, checkedItems);
+                    break;
+
+                case 2:
+                    caseDocente(checkedItems);
+                    break;
+
+                case 3:
+                    fromUserList = true;
+                    comboBoxUser.SelectedIndex = 3;
+                    lblApodo.Visible = false;
+
+                    break;
+                case 4:
+                    caseAlumnoTemp(apodo, checkedItems);
+                    break;
+            }
+            setFieldsMod(clave);
+            loadFoto(foto);
+        }
+        private void caseAlumno(string apodo, List<List<string>> checkedItems)
+        {
+            fromUserList = true;
+            lblApodo.Visible = true;
+            comboBoxUser.SelectedIndex = 1;
+            txtApodo.Text = apodo;
+            for (int x = 0; x < checkedItems.Count; x++)
+                for (int y = 0; y < clbOpciones.Items.Count; y++)
+                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
+                    {
+                        clbOpciones.SetItemCheckState(y, CheckState.Checked);
+                        List<int> entry = new List<int>();
+                        entry.Add(y);  //index en clb 
+                        entry.Add(int.Parse(checkedItems[x][0]));  //idgrupo
+                        checkedItemsIndexOnLoad.Add(entry);
+                        //saveStartingItems(checkedItems);
+                    }
+
+
+            hideButtons();
+        }
+        private void caseDocente(List<List<string>> checkedItems)
+        {
+            fromUserList = true;
+            lblApodo.Visible = false;
+            comboBoxUser.SelectedIndex = 2;
+            clbOpciones.DataSource = Controlador.grupoMateriaToListForModification();
+            clbOpciones.ClearSelected();
+            for (int x = 0; x < checkedItems.Count; x++)
+                for (int y = 0; y < clbOpciones.Items.Count; y++)
+                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][1] && clbOpciones.Items[y].ToString().Split(seperator, 2)[1].Trim() == checkedItems[x][3])
+                        clbOpciones.SetItemCheckState(y, CheckState.Checked);
+            hideButtons();
+        }
+        private void caseAlumnoTemp(string apodo, List<List<string>> checkedItems)
+        {
+            lblApodo.Visible = true;
+            comboBoxUser.SelectedIndex = 1;
+            txtApodo.Text = apodo;
+            for (int x = 0; x < checkedItems.Count; x++)
+                for (int y = 0; y < clbOpciones.Items.Count; y++)
+                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
+                        clbOpciones.SetItemCheckState(y, CheckState.Checked);
+        }
+        private void saveStartingItems(List<List<string>> checkedItems)
+        {
+            for (int i = 0; i < clbOpciones.CheckedIndices.Count; i++)
+            {
+                List<int> entry = new List<int>();
+                entry.Add(clbOpciones.CheckedIndices[i]);  //index en clb 
+                entry.Add(int.Parse(checkedItems[i][0]));  //idgrupo
                 try
                 {
-                    Console.WriteLine("this person is getting registered");
-                    string safePW = txtClave.Text;
-                    if (!fromUserList)
-                        safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
-                    byte[] foto = { };
-                    try
-                    {
-                        MemoryStream ms = new MemoryStream();
-                        pbFoto.Image.Save(ms, pbFoto.Image.RawFormat);
-                        foto = ms.ToArray();
-                    }
-                    catch (Exception er)
-                    { }
-                    Controlador.AltaPersona(
-                        txtCedula.Text.Trim(' '),
-                        txtNombre.Text.Trim(' '),
-                        txtApellido.Text.Trim(' '),
-                        safePW, foto);
-                    if (comboBoxUser.SelectedIndex == 1)
-                    {
-                        Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
-                        clbOpciones.DataSource = Controlador.gruposToListForRegister();
-                    }
-                    else if (comboBoxUser.SelectedIndex == 2)
-                    {
-                        Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
-                        clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
-                    }
-                    else if (comboBoxUser.SelectedIndex == 3)
-                        Controlador.AltaAdmin(txtCedula.Text);
-                    if (fromUserList )
-                        Dispose();
-                    resetFields();
-                }
-                catch (Exception ex)
-                { Controlador.errorHandler(ex); }
-            }
-            else MessageBox.Show("Las contraseñas no coinciden");
 
-            Enabled = true;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                entry.Add(int.Parse(checkedItems[i][0]));
+
+                checkedItemsIndexOnLoad.Add(entry);
+            }
         }
+        private void loadFoto(byte[] foto)
+        {
+            try
+            {
+                var ms = new MemoryStream(foto);
+                pbFoto.Image = Image.FromStream(ms);
+            }
+            catch (Exception ex)
+            {
+                //Load the default image
+            }
+
+        }
+
+        private void hideButtons()
+        {
+            btnIngresar.Enabled = false;
+            btnIngresar.Visible = false;
+            btnGuardar.Enabled = true;
+            btnGuardar.Visible = true;
+        }
+        private void setFieldsMod(string clave)
+        {
+            txtClave.Enabled = false;
+            txtClave.Visible = false;
+            txtClaveVerificacion.Enabled = false;
+            txtClaveVerificacion.Visible = false;
+            lblClave.Visible = false;
+            lblClaveVeri.Visible = false;
+            label11.Visible = false;
+            label17.Visible = false;
+            txtApodo.Enabled = false;
+            btnReset.Visible = true;
+            txtClaveVerificacion.Text = clave;
+            txtClave.Text = clave;
+            groupBox1.Text = "Modificar usuario";
+        }
+        private void setFields(string ci, string nombre, string apellido, int type)
+        {
+            comboBoxUser.SelectedIndex = type;
+            txtCedula.Enabled = false;
+            comboBoxUser.Enabled = false;
+
+            txtCedula.Text = ci;
+            txtNombre.Text = nombre;
+            txtApellido.Text = apellido;
+        }
+
         private void resetFields()
         {
             txtApellido.Clear();
@@ -236,17 +221,14 @@ namespace AppAdmin.menuScreens
             return checkedIndexes;
         }
 
-        private void btnFoto_Click(object sender, EventArgs e)
+        private IEnumerable<Control> GetAll(Control control, Type type)
         {
-            OpenFileDialog abrirFoto = new OpenFileDialog();
-            abrirFoto.Filter = "Imagenes|*.jpg; *.png; *.jpeg";
-            abrirFoto.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            abrirFoto.Title = "Seleccionar imagen";
+            var controls = control.Controls.Cast<Control>();
 
-            if (abrirFoto.ShowDialog() == DialogResult.OK)
-                pbFoto.Image = Image.FromFile(abrirFoto.FileName);
+            return controls.SelectMany(ctrl => GetAll(ctrl, type))
+                                      .Concat(controls)
+                                      .Where(c => c.GetType() == type);
         }
-
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             Enabled = false;
@@ -264,82 +246,71 @@ namespace AppAdmin.menuScreens
             lblApodo.Visible = true;
             clbOpciones.Visible = true;
             lblOptions.Visible = true;
+            foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                txt.Enabled = false;
             switch (type)
             {
                 case 0:
-                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                        txt.Enabled = false;
-                    btnIngresar.Enabled = false;
-                    btnFoto.Enabled = false;
-                    clbOpciones.Enabled = false;
+                    case0();
                     break;
                 case 1:
-                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                        txt.Enabled = true;
-                    btnIngresar.Enabled = true;
-                    btnFoto.Enabled = true;
-                    clbOpciones.Enabled = true;
-
-                    lblApodoAst.Visible = true;
-                    clbOpciones.DataSource = null;
-                    clbOpciones.DataSource = Controlador.gruposToListForRegister();
-                    clbOpciones.ClearSelected();
-                    //lblOptions.Location = new Point(441, 32);
+                    case1();
                     break;
                 case 2:
-                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                        txt.Enabled = true;
-                    btnIngresar.Enabled = true;
-                    btnFoto.Enabled = true;
-                    clbOpciones.Enabled = true;
-
-                    lblApodoAst.Visible = false;
-                    txtApodo.Visible = false;
-                    lblApodo.Visible = false;
-                    txtApodo.Enabled = false;
-                    clbOpciones.DataSource = null;
-                    clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
-                    clbOpciones.ClearSelected();
-                    //lblOptions.Location = new Point(389, 32);
+                    case2();
                     break;
                 case 3:
-                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                        txt.Enabled = true;
-                    btnIngresar.Enabled = true;
-                    btnFoto.Enabled = true;
-
-                    lblOptions.Visible = false;
-                    lblApodoAst.Visible = false;
-                    txtApodo.Visible = false;
-                    lblApodo.Visible = false;
-                    clbOpciones.Visible = false;
-                    pbFoto.Enabled = false;
-                    clbOpciones.Enabled = false;
-                    txtApodo.Enabled = false;
-                    clbOpciones.DataSource = null;
+                    case3();
                     break;
             }
         }
-
-        private IEnumerable<Control> GetAll(Control control, Type type)
+        private void case0()
         {
-            var controls = control.Controls.Cast<Control>();
 
-            return controls.SelectMany(ctrl => GetAll(ctrl, type))
-                                      .Concat(controls)
-                                      .Where(c => c.GetType() == type);
+            btnIngresar.Enabled = false;
+            btnFoto.Enabled = false;
+            clbOpciones.Enabled = false;
         }
-
-        private void btnReset_Click(object sender, EventArgs e)
+        private void case1()
         {
-            DialogResult confirmLogout =
-               MessageBox.Show("Esta accion le asignara a este usuario la cedula como clave.\nRealmente quiere hacer este cambio?"
-               , "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (DialogResult.Yes == confirmLogout)
-            {
-                string encryptedPw = CryptographyUtils.doEncryption(txtCedula.Text,null, null);
-                Controlador.actualizarClavePersona(int.Parse(txtCedula.Text),encryptedPw);
-            }
+            btnIngresar.Enabled = true;
+            btnFoto.Enabled = true;
+            clbOpciones.Enabled = true;
+
+            lblApodoAst.Visible = true;
+            clbOpciones.DataSource = null;
+            clbOpciones.DataSource = Controlador.gruposToListForRegister();
+            clbOpciones.ClearSelected();
+        }
+        private void case2()
+        {
+            btnIngresar.Enabled = true;
+            btnFoto.Enabled = true;
+            clbOpciones.Enabled = true;
+
+            lblApodoAst.Visible = false;
+            txtApodo.Visible = false;
+            lblApodo.Visible = false;
+            txtApodo.Enabled = false;
+            clbOpciones.DataSource = null;
+            clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
+            clbOpciones.ClearSelected();
+            //lblOptions.Location = new Point(389, 32);
+        }
+        private void case3()
+        {
+            btnIngresar.Enabled = true;
+            btnFoto.Enabled = true;
+
+            lblOptions.Visible = false;
+            lblApodoAst.Visible = false;
+            txtApodo.Visible = false;
+            lblApodo.Visible = false;
+            clbOpciones.Visible = false;
+            pbFoto.Enabled = false;
+            clbOpciones.Enabled = false;
+            txtApodo.Enabled = false;
+            clbOpciones.DataSource = null;
         }
 
         private void txtCedula_TextChanged(object sender, EventArgs e)
@@ -348,8 +319,195 @@ namespace AppAdmin.menuScreens
             {
                 txtClave.Text = txtCedula.Text;
                 txtClaveVerificacion.Text = txtCedula.Text;
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e) => Dispose();
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            //-If persona does exist ask if they want to reactivate acc
+            Enabled = false;
+            if (txtClave.Text == txtClaveVerificacion.Text && txtCedula.Text.Length == 8)
+            {
+                try
+                {
+                    Console.WriteLine("this person is getting registered");
+                    string safePW = txtClave.Text;
+
+                    safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
+
+                    Controlador.AltaPersona(
+                        txtCedula.Text.Trim(' '),
+                        txtNombre.Text.Trim(' '),
+                        txtApellido.Text.Trim(' '),
+                        safePW,
+                        getFotoFromPB());
+                    if (comboBoxUser.SelectedIndex == 1)
+                    {
+                        Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
+                        clbOpciones.DataSource = Controlador.gruposToListForRegister();
+                    }
+                    else if (comboBoxUser.SelectedIndex == 2)
+                    {
+                        Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
+                        clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
+                    }
+                    else if (comboBoxUser.SelectedIndex == 3)
+                        Controlador.AltaAdmin(txtCedula.Text);
+                    if (fromUserList)
+                        Dispose();
+                    resetFields();
+                }
+                catch (Exception ex)
+                { Controlador.errorHandler(ex); }
+            }
+            else MessageBox.Show("Las contraseñas no coinciden");
+
+            Enabled = true;
+        }
+        private byte[] getFotoFromPB()
+        {
+            byte[] foto = { };
+            try
+            {
+                MemoryStream ms = new MemoryStream();
+                pbFoto.Image.Save(ms, pbFoto.Image.RawFormat);
+                foto = ms.ToArray();
+            }
+            catch (Exception er)
+            { }
+            return foto;
+        }
+
+        private void btnFoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog abrirFoto = new OpenFileDialog();
+            abrirFoto.Filter = "Imagenes|*.jpg; *.png; *.jpeg";
+            abrirFoto.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            abrirFoto.Title = "Seleccionar imagen";
+
+            if (abrirFoto.ShowDialog() == DialogResult.OK)
+                pbFoto.Image = Image.FromFile(abrirFoto.FileName);
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            DialogResult confirmLogout =
+               MessageBox.Show("Esta accion le asignara a este usuario la cedula como clave.\nRealmente quiere hacer este cambio?"
+               , "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == confirmLogout)
+            {
+                string encryptedPw = CryptographyUtils.doEncryption(txtCedula.Text, null, null);
+                Controlador.actualizarClavePersona(int.Parse(txtCedula.Text), encryptedPw);
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Controlador.actualizarPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text, getFotoFromPB());
+                if (comboBoxUser.SelectedIndex == 1)
+                {
+                    sacarGrupoDeAlumno();
+                    agregarGrupoAlumno();
+                }
+                else if (comboBoxUser.SelectedIndex == 2)
+                {
+                    sacarGMdocente();
+                    agregarGMdocente();
+                }
+            }
+            catch (Exception exa)
+            {
+                MessageBox.Show(Controlador.errorHandler(exa));
+            }
+
+        }
+        private void sacarGrupoDeAlumno()
+        {
+            for (int x = 0; x < checkedItemsIndexOnLoad.Count; x++)
+            {
+                if (!clbOpciones.CheckedIndices.Contains(checkedItemsIndexOnLoad[x][0]))
+                {
+                    //string extractedId = clbOpciones.Items[checkedItemsIndexOnLoad[x][]].ToString().Split(seperator)[0];
+                    try
+                    {
+                        Controlador.sacarAlumnoDeGrupo(txtCedula.Text, checkedItemsIndexOnLoad[x][0].ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message == "delete failed")
+                            Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, checkedItemsIndexOnLoad[x][0].ToString(), true);
+                    }
+                }
 
             }
+
+            //for (int x = 0; x < checkedItemsIndexOnLoad.Count; x++)
+            //    for (int y = 0; y < clbOpciones.CheckedIndices.Count; y++)
+            //    {
+            //        if (checkedItemsIndexOnLoad[x] != clbOpciones.CheckedIndices[y])
+            //        {
+            //            string extractedId = clbOpciones.Items[checkedItemsIndexOnLoad[x]].ToString().Split(seperator)[0];
+            //            try
+            //            {
+            //                Controlador.sacarAlumnoDeGrupo(txtCedula.Text, extractedId);
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                if (ex.Message == "delete failed")
+            //                    Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, true);
+            //            }
+            //        }
+
+            //    }
+        }
+        private void agregarGrupoAlumno()
+        {
+            for (int i = 0; i < clbOpciones.CheckedIndices.Count; i++)
+            {
+                string extractedId = clbOpciones.Items[i].ToString().Split(seperator)[0];
+                try
+                {
+                    Controlador.asignarAlumnoAGrupo(txtCedula.Text, extractedId);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message == "insert failed")
+                        Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, false);
+                }
+            }
+        }
+        private void sacarGMdocente()
+        {
+            for (int x = 0; x < checkedItemsIndexOnLoad.Count; x++)
+                {
+                    if (!clbOpciones.CheckedIndices.Contains(checkedItemsIndexOnLoad[x][]))
+                    {
+                        string extractedId = clbOpciones.Items[checkedItemsIndexOnLoad[x]].ToString().Split(seperator)[0];
+                        try
+                        {
+                            Controlador.sacarAlumnoDeGrupo(txtCedula.Text, extractedId);
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex.Message == "delete failed")
+                                Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, true);
+                        }
+                    }
+                }
+        }
+        private void agregarGMdocente()
+        {
+
+        }
+
+
+        //maybe delete
+        private void clbOpciones_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (checkedItemsIndexOnLoad.Contains(clbOpciones.SelectedIndex))
+                uncheckedItems.Add();
         }
     }
 }

@@ -111,6 +111,18 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+        public void actualizarPersona(string ci, string nombre, string apellido, string clave, byte []foto)
+        {
+            this.comando.CommandText = "UPDATE persona SET nombre=@nombre apellido=@apellido clave=@clave foto=@foto " +
+                "WHERE ci=@ci;";
+            this.comando.Parameters.AddWithValue("@ci",ci);
+            this.comando.Parameters.AddWithValue("@nombre",nombre);
+            this.comando.Parameters.AddWithValue("@apellido",apellido);
+            this.comando.Parameters.AddWithValue("@clave",clave);
+            this.comando.Parameters.AddWithValue("@foto",foto);
+            this.comando.Prepare();
+            EjecutarQuery(comando, errorType);
+        }
 
         public void bajaAlumnoTemp(string ci)
         {

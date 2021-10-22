@@ -43,6 +43,7 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             EjecutarQuery(comando, errorType);
         }
+
         public void sacarFilaGrupoTieneMateria()
         {
             this.comando.Parameters.Clear();
@@ -114,6 +115,7 @@ namespace CapaDeDatos
             EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
         }
+
         public void actualizarDocenteTieneGM(string docenteCi, int idGrupo, int idMateria) {
             command = "UPDATE docente_dicta_g_m SET docenteCi=@docenteCi WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
             this.comando.CommandText = command;
@@ -259,7 +261,6 @@ namespace CapaDeDatos
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM grupo WHERE isDeleted = false ORDER BY idGrupo ASC;";
             return cargarGrupoALista(this.comando);
         }
-
         public string getGrupo(string nombreGrupo)
         {
             string idGrupo="";
@@ -413,6 +414,23 @@ namespace CapaDeDatos
             }
             lector.Close();
             return grupos;
+        }
+
+        public void sacarAlumnoDeGrupo(string ci, string idGrupo)
+        {
+            this.comando.CommandText = "DELETE FROM alumno_tiene_grupo WHERE ci=@ci AND idGrupo=@idGrupo";
+            this.comando.Parameters.AddWithValue("@ci",ci);
+            this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);
+            EjecutarSpecialQuery(comando);
+        }
+        public void actualizarAlumnoTieneGrupo(bool isDeleted, string ci, string idGrupo)
+        {
+            this.comando.CommandText = "UPDATE alumno_tiene_grupo SET isDeleted=@isDeleted WHERE ci=@ci AND idGrupo=@idGrupo";
+            this.comando.Parameters.AddWithValue("@isDeleted",isDeleted);
+            this.comando.Parameters.AddWithValue("@ci",ci);
+            this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(comando,errorType);
         }
 
         public List<GrupoModelo> getDocenteDictaGM(string ci)

@@ -98,6 +98,8 @@ namespace CapaLogica
             return false;
         }
         public static void actualizarClavePersona(int ci, string claveNueva) => new PersonaModelo(Session.type).actualizarPersona(ci,claveNueva);
+        public static void actualizarPersona(string ci, string nombre, string apellido, string clave, byte [] foto) => 
+            new PersonaModelo(Session.type).actualizarPersona(ci, nombre, apellido, clave, foto);
 
         public static bool existePersona(string ci)
         {

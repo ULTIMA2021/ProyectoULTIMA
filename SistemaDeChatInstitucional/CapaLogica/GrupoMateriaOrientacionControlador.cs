@@ -91,7 +91,6 @@ namespace CapaLogica
               
               return pinga;
           }
-
         public static DataTable obtenerMateriass()
         {
             MateriaModelo m = new MateriaModelo(Session.type);
@@ -104,7 +103,6 @@ namespace CapaLogica
 
             return data;
         }
-
         //un forma de darle check a las boxes del checked list
         public static List<int> obtenerMaterias(string idGrupo)
         {
@@ -138,7 +136,6 @@ namespace CapaLogica
             return mString;
 
         }
-
         public static List<string> gruposToListForRegister()
         {
             GrupoModelo grupo = new GrupoModelo(Session.type);
@@ -149,7 +146,6 @@ namespace CapaLogica
             }
             return gString;
         }
-
         public static List<string> gruposSinOrientacion()
         {
             GrupoModelo grupo = new GrupoModelo(Session.type);
@@ -161,7 +157,6 @@ namespace CapaLogica
             return gString;
 
         }
-
         public static List<string> orientacionToListForRegister()
         {
             OrientacionModelo orientacion = new OrientacionModelo(Session.type);
@@ -201,7 +196,6 @@ namespace CapaLogica
             }
             return gmString;
         }
-
 
         public static List<List<string>> gruposDeMateria(string idMateria) //grupos no ocultados de la materia indicada
         {
@@ -340,6 +334,11 @@ namespace CapaLogica
         public static void actualizarDocenteDictaGM(string idMateria, string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, idGrupo, status);
         public static void actualizarDocenteDictaGM(string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idGrupo, status);
         public static void actualizarDocenteDictaGM(int idMateria, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, status);
+
+        public static void sacarAlumnoDeGrupo(string ci, string idGrupo) => new GrupoModelo(Session.type).sacarAlumnoDeGrupo(ci,idGrupo);
+        public static void archivarAlumnoTieneGrupo(string ci, string idGrupo, bool isDeleted) => new GrupoModelo(Session.type).actualizarAlumnoTieneGrupo(isDeleted,ci, idGrupo);
+
+        public static void asignarAlumnoAGrupo(string ci, string idGrupo) => new GrupoModelo(Session.type).nuevoIngresoAlumnoTieneGrupo( ci, int.Parse(idGrupo));
 
     }
 }

@@ -14,8 +14,6 @@ namespace AppAdmin.menuScreens
         char[] seperator = { ' ', ' ', ' ' };
 
         public listarOrientaciones() => InitializeComponent();
-        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
-        
 
         private List<int> getIdsFromText()
         {
@@ -43,33 +41,32 @@ namespace AppAdmin.menuScreens
         }
         private void loadGruposOfSelectedOrientacion(string idOrientacion) => gruposDeEstaOrientacion = Controlador.gruposDeOrientacion(idOrientacion);
 
-        private void sacarGrupoDeOrientacion()
+        private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
+        private void btnBorrar_Click(object sender, EventArgs e)
         {
-            for (int z = 0; z < clbGrupos.Items.Count; z++)
+            Enabled = false;
+            try
             {
-                if (!clbGrupos.CheckedItems.Contains(clbGrupos.Items[z]))
+                Controlador.deleteOrientacion(dgvListarOrientaciones.CurrentRow.Cells["id"].Value.ToString());
+                DialogResult confirmLogout = MessageBox.Show("Realmente desea borrar la orientacion?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (DialogResult.Yes == confirmLogout)
                 {
-                    int uncheckedIdGrupo = int.Parse(clbGrupos.Items[z].ToString().Split(seperator)[0]);
-                    Console.WriteLine($"The group with ID:{uncheckedIdGrupo} will get deleted from orientacion_tiene_grupo");
-                    Controlador.sacarGrupoOrientacion(int.Parse(idOrientacion), uncheckedIdGrupo);
+                    Console.WriteLine("...OK setting orientacion isDeleted=true");
+                    textBox1.Clear();
+                    uncheckAllBoxes();
+                    dgvListarOrientaciones.DataSource = null;
+                    dgvListarOrientaciones.DataSource = Controlador.obtenerOrientaciones();
+                    dgvListarOrientaciones.Columns["id"].Visible = false;
+                    clbGrupos.ClearSelected();
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+            Enabled = true;
         }
-        private void cargarGrupoAOrientacion(List<int> selectedGrupoIds)
-        {
-            for (int i = 0; i < selectedGrupoIds.Count; i++)
-                try
-                {
-                    Controlador.asignarGruposAOrientacion(idOrientacion, selectedGrupoIds[i].ToString());
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Message != "Grupo-1062")
-                        throw ex;
-                    else
-                        takenGroup.Add(selectedGrupoIds[i].ToString());
-                }
-        }
+
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             Enabled = false;
@@ -124,8 +121,33 @@ namespace AppAdmin.menuScreens
                 }
             Enabled = true;
         }
-
-        private void dgvListarOrientaciones_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarOrientaciones.ClearSelection();
+        private void sacarGrupoDeOrientacion()
+        {
+            for (int z = 0; z < clbGrupos.Items.Count; z++)
+            {
+                if (!clbGrupos.CheckedItems.Contains(clbGrupos.Items[z]))
+                {
+                    int uncheckedIdGrupo = int.Parse(clbGrupos.Items[z].ToString().Split(seperator)[0]);
+                    Console.WriteLine($"The group with ID:{uncheckedIdGrupo} will get deleted from orientacion_tiene_grupo");
+                    Controlador.sacarGrupoOrientacion(int.Parse(idOrientacion), uncheckedIdGrupo);
+                }
+            }
+        }
+        private void cargarGrupoAOrientacion(List<int> selectedGrupoIds)
+        {
+            for (int i = 0; i < selectedGrupoIds.Count; i++)
+                try
+                {
+                    Controlador.asignarGruposAOrientacion(idOrientacion, selectedGrupoIds[i].ToString());
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message != "Grupo-1062")
+                        throw ex;
+                    else
+                        takenGroup.Add(selectedGrupoIds[i].ToString());
+                }
+        }
 
         private void uncheckAllBoxes()
         {
@@ -138,31 +160,6 @@ namespace AppAdmin.menuScreens
                 for (int x = 0; x < todosMisGrupos.Count; x++)
                     if (todosMisGrupos[x].Split(seperator)[0] == gruposDeEstaOrientacion[i][0])
                         clbGrupos.SetItemCheckState(x, CheckState.Checked);
-        }
-
-        private void btnBorrar_Click(object sender, EventArgs e)
-        {
-            Enabled = false;
-            try
-            {
-                Controlador.deleteOrientacion(dgvListarOrientaciones.CurrentRow.Cells["id"].Value.ToString());
-                DialogResult confirmLogout = MessageBox.Show("Realmente desea borrar la orientacion?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (DialogResult.Yes == confirmLogout)
-                {
-                    Console.WriteLine("...OK setting orientacion isDeleted=true");
-                    textBox1.Clear();
-                    uncheckAllBoxes();
-                    dgvListarOrientaciones.DataSource = null;
-                    dgvListarOrientaciones.DataSource = Controlador.obtenerOrientaciones();
-                    dgvListarOrientaciones.Columns["id"].Visible = false;
-                    clbGrupos.ClearSelected();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Controlador.errorHandler(ex));
-            }
-            Enabled = true;
         }
 
         private void cbModificar_CheckedChanged(object sender, EventArgs e)
@@ -190,6 +187,7 @@ namespace AppAdmin.menuScreens
             Enabled = true;
         }
 
+        private void dgvListarOrientaciones_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvListarOrientaciones.ClearSelection();
         private void dgvListarOrientaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Enabled = false;
