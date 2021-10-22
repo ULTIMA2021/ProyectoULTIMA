@@ -118,8 +118,6 @@ namespace AppAdmin.menuScreens
             }
         }
 
-        
-
         private void setFields(string ci, string nombre, string apellido, int type)
         {
             comboBoxUser.SelectedIndex = type;
@@ -161,7 +159,7 @@ namespace AppAdmin.menuScreens
                 {
                     Console.WriteLine("this person is getting registered");
                     string safePW = txtClave.Text;
-                    if (txtClave.Enabled == true)
+                    if (!fromUserList)
                         safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
                     byte[] foto = { };
                     try

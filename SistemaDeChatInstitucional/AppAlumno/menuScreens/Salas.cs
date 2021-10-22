@@ -116,7 +116,7 @@ namespace AppAlumno.menuScreens
 
         private void btnUnirse_Click(object sender, EventArgs e)
         {
-            int idSala = Convert.Toint(dgvSalas.CurrentRow.Cells["idSala"].Value);
+            int idSala = int.Parse(dgvSalas.CurrentRow.Cells["idSala"].Value.ToString());
             string asunto = Convert.ToString(dgvSalas.CurrentRow.Cells["resumen"].Value);
             string nombreGrupo = Convert.ToString(dgvSalas.CurrentRow.Cells["Grupo"].Value);
             string nombreMateria = Convert.ToString(dgvSalas.CurrentRow.Cells["Materia"].Value);
