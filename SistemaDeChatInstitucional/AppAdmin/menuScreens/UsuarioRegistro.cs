@@ -15,8 +15,8 @@ namespace AppAdmin.menuScreens
         bool hasEdited = false;
         char[] seperator = { ' ', ' ', ' ' };
         List<string> uncheckedItems = new List<string>();
-        List<List <int>> checkedItemsIndexOnLoad = new List<List<int>>(); //[x][]=indice de item en clb   [][0]=idGrupo  [][1]=nombreGrupo   [][2]=idMateria   [][3]=nombreMateria
-
+        List<List <int>> checkedItemsIndexOnLoad = new List<List<int>>(); //[x][]=indice de item en clb   [][0]=idGrupo  [][1]=nombreGrupo   [][2]=idMateria   [][3]=nombreMateria  [][]
+        List<string> todasMisOpciones = new List<string>();
 
         public UsuarioRegistro()
         {
@@ -76,6 +76,7 @@ namespace AppAdmin.menuScreens
             lblApodo.Visible = true;
             comboBoxUser.SelectedIndex = 1;
             txtApodo.Text = apodo;
+            todasMisOpciones = Controlador.gruposToListForRegister();
             for (int x = 0; x < checkedItems.Count; x++)
                 for (int y = 0; y < clbOpciones.Items.Count; y++)
                     if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
@@ -482,17 +483,16 @@ namespace AppAdmin.menuScreens
         {
             for (int x = 0; x < checkedItemsIndexOnLoad.Count; x++)
                 {
-                    if (!clbOpciones.CheckedIndices.Contains(checkedItemsIndexOnLoad[x][]))
+                    //if (!clbOpciones.CheckedIndices.Contains(checkedItemsIndexOnLoad[x][]))
                     {
-                        string extractedId = clbOpciones.Items[checkedItemsIndexOnLoad[x]].ToString().Split(seperator)[0];
                         try
                         {
-                            Controlador.sacarAlumnoDeGrupo(txtCedula.Text, extractedId);
+                           // Controlador.sacarAlumnoDeGrupo(txtCedula.Text, extractedId);
                         }
                         catch (Exception ex)
                         {
-                            if (ex.Message == "delete failed")
-                                Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, true);
+                            //if (ex.Message == "delete failed")
+                                //Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, true);
                         }
                     }
                 }
@@ -506,8 +506,8 @@ namespace AppAdmin.menuScreens
         //maybe delete
         private void clbOpciones_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (checkedItemsIndexOnLoad.Contains(clbOpciones.SelectedIndex))
-                uncheckedItems.Add();
+            //if (checkedItemsIndexOnLoad.Contains(clbOpciones.SelectedIndex))
+            //    uncheckedItems.Add();
         }
     }
 }
