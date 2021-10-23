@@ -14,7 +14,7 @@ namespace CapaDeDatos
         protected string NombreDb;
         protected string UsuarioDb;
         protected string PasswordDb;
-        protected MySqlConnection conexion;
+        public MySqlConnection conexion;
         protected MySqlCommand comando;
         protected MySqlDataReader lector;
       
