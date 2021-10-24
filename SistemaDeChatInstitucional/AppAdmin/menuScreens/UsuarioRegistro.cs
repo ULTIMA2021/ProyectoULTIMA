@@ -13,9 +13,13 @@ namespace AppAdmin.menuScreens
     {
         bool fromUserList = false;
         bool hasEdited = false;
-        char[] seperator = { ' ', ' ', ' ' };
+        char[] separator = { ' ', ' ', ' ' };
+        char[] sep = { '-', '-' };
+
         List<string> uncheckedItems = new List<string>();
-        List<List <int>> checkedItemsIndexOnLoad = new List<List<int>>(); //[x][]=indice de item en clb   [][0]=idGrupo  [][1]=nombreGrupo   [][2]=idMateria   [][3]=nombreMateria  [][]
+        List<List<int>> checkedItemsIndexOnLoad = new List<List<int>>(); //[x][]=indice de item en clb   [][0]=idGrupo  [][1]=nombreGrupo   [][2]=idMateria   [][3]=nombreMateria  [][]=isDeleted
+
+        List<List<string>> allOptions = new List<List<string>>();
         List<string> todasMisOpciones = new List<string>();
 
         public UsuarioRegistro()
@@ -35,11 +39,6 @@ namespace AppAdmin.menuScreens
         private void load()
         {
             comboBoxUser.SelectedIndex = 0;
-            label14.Visible = true;
-            pbFoto.Enabled = false;
-            txtApodo.Enabled = false;
-            lblApodoAst.Visible = false;
-            clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
         }
 
@@ -79,13 +78,13 @@ namespace AppAdmin.menuScreens
             todasMisOpciones = Controlador.gruposToListForRegister();
             for (int x = 0; x < checkedItems.Count; x++)
                 for (int y = 0; y < clbOpciones.Items.Count; y++)
-                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
+                    if (clbOpciones.Items[y].ToString().Split(separator)[0] == checkedItems[x][0])
                     {
                         clbOpciones.SetItemCheckState(y, CheckState.Checked);
-                        List<int> entry = new List<int>();
-                        entry.Add(y);  //index en clb 
-                        entry.Add(int.Parse(checkedItems[x][0]));  //idgrupo
-                        checkedItemsIndexOnLoad.Add(entry);
+                        //List<int> entry = new List<int>();
+                        //entry.Add(y);  //index en clb 
+                        //entry.Add(int.Parse(checkedItems[x][0]));  //idgrupo
+                        //checkedItemsIndexOnLoad.Add(entry);
                         //saveStartingItems(checkedItems);
                     }
 
@@ -97,11 +96,12 @@ namespace AppAdmin.menuScreens
             fromUserList = true;
             lblApodo.Visible = false;
             comboBoxUser.SelectedIndex = 2;
-            clbOpciones.DataSource = Controlador.grupoMateriaToListForModification();
+            clbOpciones.DataSource = Controlador.grupoMateriaToListForModification(txtCedula.Text);
+            //clbOpciones.DataSource = Controlador.grupoMateriaToListForModification();
             clbOpciones.ClearSelected();
             for (int x = 0; x < checkedItems.Count; x++)
                 for (int y = 0; y < clbOpciones.Items.Count; y++)
-                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][1] && clbOpciones.Items[y].ToString().Split(seperator, 2)[1].Trim() == checkedItems[x][3])
+                    if (clbOpciones.Items[y].ToString().Split(separator)[0] == checkedItems[x][1] && clbOpciones.Items[y].ToString().Split(separator, 2)[1].Trim() == checkedItems[x][3])
                         clbOpciones.SetItemCheckState(y, CheckState.Checked);
             hideButtons();
         }
@@ -112,30 +112,32 @@ namespace AppAdmin.menuScreens
             txtApodo.Text = apodo;
             for (int x = 0; x < checkedItems.Count; x++)
                 for (int y = 0; y < clbOpciones.Items.Count; y++)
-                    if (clbOpciones.Items[y].ToString().Split(seperator)[0] == checkedItems[x][0])
+                    if (clbOpciones.Items[y].ToString().Split(separator)[0] == checkedItems[x][0])
                         clbOpciones.SetItemCheckState(y, CheckState.Checked);
         }
-        private void saveStartingItems(List<List<string>> checkedItems)
-        {
-            for (int i = 0; i < clbOpciones.CheckedIndices.Count; i++)
-            {
-                List<int> entry = new List<int>();
-                entry.Add(clbOpciones.CheckedIndices[i]);  //index en clb 
-                entry.Add(int.Parse(checkedItems[i][0]));  //idgrupo
-                try
-                {
 
-                }
-                catch (Exception)
-                {
+        //private void saveStartingItems(List<List<string>> checkedItems)
+        //{
+        //    for (int i = 0; i < clbOpciones.CheckedIndices.Count; i++)
+        //    {
+        //        List<int> entry = new List<int>();
+        //        entry.Add(clbOpciones.CheckedIndices[i]);  //index en clb 
+        //        entry.Add(int.Parse(checkedItems[i][0]));  //idgrupo
+        //        try
+        //        {
 
-                    throw;
-                }
-                entry.Add(int.Parse(checkedItems[i][0]));
+        //        }
+        //        catch (Exception)
+        //        {
 
-                checkedItemsIndexOnLoad.Add(entry);
-            }
-        }
+        //            throw;
+        //        }
+        //        entry.Add(int.Parse(checkedItems[i][0]));
+
+        //        checkedItemsIndexOnLoad.Add(entry);
+        //    }
+        //}
+
         private void loadFoto(byte[] foto)
         {
             try
@@ -202,7 +204,7 @@ namespace AppAdmin.menuScreens
             int index;
             if (comboBoxUser.SelectedIndex == 1)
             {
-                foreach (Object item in clbOpciones.CheckedItems)
+                foreach (var item in clbOpciones.CheckedItems)
                 {
                     index = clbOpciones.Items.IndexOf(item) + 1;
                     checkedIndexes.Add(index);
@@ -211,7 +213,7 @@ namespace AppAdmin.menuScreens
             }
             else if (comboBoxUser.SelectedIndex == 2)
             {
-                foreach (Object item in clbOpciones.CheckedItems)
+                foreach (object item in clbOpciones.CheckedItems)
                 {
                     index = clbOpciones.Items.IndexOf(item);
                     checkedIndexes.Add(index);
@@ -233,10 +235,6 @@ namespace AppAdmin.menuScreens
         private void comboBoxUser_SelectedIndexChanged(object sender, EventArgs e)
         {
             Enabled = false;
-            lblApodoAst.Visible = true;
-            pbFoto.Enabled = true;
-            clbOpciones.Enabled = true;
-            txtApodo.Enabled = true;
             changeFieldsForUser(comboBoxUser.SelectedIndex);
             Enabled = true;
         }
@@ -247,26 +245,33 @@ namespace AppAdmin.menuScreens
             lblApodo.Visible = true;
             clbOpciones.Visible = true;
             lblOptions.Visible = true;
-            foreach (TextBox txt in GetAll(this, typeof(TextBox)))
-                txt.Enabled = false;
+            
             switch (type)
             {
                 case 0:
                     case0();
                     break;
                 case 1:
+                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                        txt.Enabled = true;
                     case1();
                     break;
                 case 2:
+                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                        txt.Enabled = true;
                     case2();
                     break;
                 case 3:
+                    foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                        txt.Enabled = true;
                     case3();
                     break;
             }
         }
         private void case0()
         {
+            foreach (TextBox txt in GetAll(this, typeof(TextBox)))
+                txt.Enabled = false;
 
             btnIngresar.Enabled = false;
             btnFoto.Enabled = false;
@@ -355,6 +360,8 @@ namespace AppAdmin.menuScreens
                     }
                     else if (comboBoxUser.SelectedIndex == 3)
                         Controlador.AltaAdmin(txtCedula.Text);
+                    MessageBox.Show($"El {comboBoxUser.SelectedText} {txtNombre.Text} {txtApellido.Text} ha sido ingresado al sistema!");
+
                     if (fromUserList)
                         Dispose();
                     resetFields();
@@ -376,7 +383,9 @@ namespace AppAdmin.menuScreens
                 foto = ms.ToArray();
             }
             catch (Exception er)
-            { }
+            {
+                Console.WriteLine("\t\tignore exception, person doesn't have picture");
+            }
             return foto;
         }
 
@@ -404,6 +413,7 @@ namespace AppAdmin.menuScreens
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            Enabled = false;
             try
             {
                 Controlador.actualizarPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text, getFotoFromPB());
@@ -417,91 +427,127 @@ namespace AppAdmin.menuScreens
                     sacarGMdocente();
                     agregarGMdocente();
                 }
+                MessageBox.Show($"Los datos han sido guardados correctamente!");
             }
             catch (Exception exa)
             {
                 MessageBox.Show(Controlador.errorHandler(exa));
             }
+            Enabled = true;
 
         }
         private void sacarGrupoDeAlumno()
         {
-            for (int x = 0; x < checkedItemsIndexOnLoad.Count; x++)
+            for (int z = 0; z < clbOpciones.Items.Count; z++)
             {
-                if (!clbOpciones.CheckedIndices.Contains(checkedItemsIndexOnLoad[x][0]))
+                if (!clbOpciones.CheckedItems.Contains(clbOpciones.Items[z]))
                 {
-                    //string extractedId = clbOpciones.Items[checkedItemsIndexOnLoad[x][]].ToString().Split(seperator)[0];
+                    string uncheckedIdGrupo = clbOpciones.Items[z].ToString().Split(separator)[0];
+                    Console.WriteLine($"The group with ID:{uncheckedIdGrupo} will get deleted from alumnotieneGrupo");
                     try
                     {
-                        Controlador.sacarAlumnoDeGrupo(txtCedula.Text, checkedItemsIndexOnLoad[x][0].ToString());
+                        Controlador.sacarAlumnoDeGrupo(txtCedula.Text, uncheckedIdGrupo);
                     }
                     catch (Exception ex)
                     {
-                        if (ex.Message == "delete failed")
-                            Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, checkedItemsIndexOnLoad[x][0].ToString(), true);
+                        if (ex.Message == "delete failed-1644")
+                        {
+                            Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, uncheckedIdGrupo, true);
+                        }
                     }
                 }
-
             }
-
-            //for (int x = 0; x < checkedItemsIndexOnLoad.Count; x++)
-            //    for (int y = 0; y < clbOpciones.CheckedIndices.Count; y++)
-            //    {
-            //        if (checkedItemsIndexOnLoad[x] != clbOpciones.CheckedIndices[y])
-            //        {
-            //            string extractedId = clbOpciones.Items[checkedItemsIndexOnLoad[x]].ToString().Split(seperator)[0];
-            //            try
-            //            {
-            //                Controlador.sacarAlumnoDeGrupo(txtCedula.Text, extractedId);
-            //            }
-            //            catch (Exception ex)
-            //            {
-            //                if (ex.Message == "delete failed")
-            //                    Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, true);
-            //            }
-            //        }
-
-            //    }
         }
         private void agregarGrupoAlumno()
         {
             for (int i = 0; i < clbOpciones.CheckedIndices.Count; i++)
             {
-                string extractedId = clbOpciones.Items[i].ToString().Split(seperator)[0];
+                string extractedId = clbOpciones.Items[i].ToString().Split(separator)[0];
                 try
                 {
                     Controlador.asignarAlumnoAGrupo(txtCedula.Text, extractedId);
                 }
                 catch (Exception ex)
                 {
-                    if (ex.Message == "insert failed")
+                    if (ex.Message.Contains("Duplicate entry") && ex.Message.Contains("1062"))
                         Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, false);
                 }
             }
         }
         private void sacarGMdocente()
         {
-            for (int x = 0; x < checkedItemsIndexOnLoad.Count; x++)
+            allOptions.Clear();
+            allOptions = Controlador.grupoMateriaToListForMODdataSource(txtCedula.Text);
+            
+            for (int z = 0; z < clbOpciones.Items.Count; z++)
+            {
+                if (!clbOpciones.CheckedItems.Contains(clbOpciones.Items[z]))
                 {
-                    //if (!clbOpciones.CheckedIndices.Contains(checkedItemsIndexOnLoad[x][]))
+                    string nombreGrupo = clbOpciones.Items[z].ToString().Split(separator)[0].Trim();
+                    string nombreMateria = clbOpciones.Items[z].ToString().Split(separator,2)[1].Trim();
+
+                    string idGrupo = "";
+                    string idMateria = "";
+
+                    for (int i = 0; i < allOptions.Count; i++)
                     {
-                        try
+                        if (allOptions[i][1] == nombreGrupo && allOptions[i][3] == nombreMateria)
                         {
-                           // Controlador.sacarAlumnoDeGrupo(txtCedula.Text, extractedId);
-                        }
-                        catch (Exception ex)
-                        {
-                            //if (ex.Message == "delete failed")
-                                //Controlador.archivarAlumnoTieneGrupo(txtCedula.Text, extractedId, true);
-                        }
+                            idGrupo = allOptions[i][0];
+                            idMateria = allOptions[i][2];
+                            break;
+                        } 
+                    }
+
+                    Console.WriteLine($"The group: {idGrupo} materia: {idMateria} will get deleted from alumnotieneGrupo");
+                    try
+                    {
+                        Controlador.actualizarDocenteDictaGM(idGrupo, idMateria);
+
+//                        Controlador.sacarDocenteDictaGM(txtCedula.Text, idGrupo, idMateria );
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                        //if (ex.Message == "delete failed-1644")
+                        //    Controlador.actualizarDocenteDictaGM(idMateria, idGrupo, true);
                     }
                 }
+            }
         }
         private void agregarGMdocente()
         {
-
+            string nombreGrupo = "";
+            string nombreMateria = "";
+            for (int i = 0; i < clbOpciones.CheckedItems.Count; i++)
+            {
+                nombreGrupo = clbOpciones.CheckedItems[i].ToString().Split(separator)[0].Trim();
+                nombreMateria = clbOpciones.CheckedItems[i].ToString().Split(separator,2)[1].Trim();
+                string idGrupo = "";
+                string idMateria = "";
+                for (int z = 0; z < allOptions.Count; z++)
+                {
+                    if (allOptions[z][1] == nombreGrupo && allOptions[z][3] == nombreMateria)
+                    {
+                        idGrupo = allOptions[z][0];
+                        idMateria = allOptions[z][2];
+                        try
+                        {
+                           Controlador.asignarDocenteAGrupoMateria(txtCedula.Text, idGrupo, idMateria );
+                            Console.WriteLine("HERE");
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                            //if (ex.Message == "something")
+                            //    Controlador.actualizarDocenteDictaGM(idMateria,idGrupo,false);
+                        }
+                    }
+                }
+               
+            }
         }
-
 
         //maybe delete
         private void clbOpciones_ItemCheck(object sender, ItemCheckEventArgs e)

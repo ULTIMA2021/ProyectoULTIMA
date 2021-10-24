@@ -22,23 +22,16 @@ namespace AppAdmin.menuScreens
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             Enabled = false;
-            try
+            DialogResult confirmLogout = MessageBox.Show($"Esta seguro que quiere borrar el grupo {textBox1.Text} ?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == confirmLogout)
+                try
             {
                 Controlador.deleteGrupo(idGrupo);
+                MessageBox.Show($"El grupo {textBox1.Text} se borro del sistema!");
             }
             catch (Exception ex)
             {
-                if (ex.Message == "set grupo isDeleted=TRUE-1644")
-                {
-                    Console.WriteLine("...OK setting group isDeleted=true");
-                    Controlador.actualizarEstadoGrupo(true, idGrupo);
-                    Controlador.actualizarGrupoTieneMateria(idGrupo, true);
-                    Controlador.updateEstadoSala(idGrupo, true);
-                    Controlador.actualizarDocenteDictaGM(idGrupo, true);
-                }
-                else
-                    MessageBox.Show(Controlador.errorHandler(ex));
-
+                MessageBox.Show(Controlador.errorHandler(ex));
             }
             textBox1.Clear();
             loadAllMaterias();
@@ -49,6 +42,29 @@ namespace AppAdmin.menuScreens
             Enabled = true;
         }
         private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
+        private void btnArchivar_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            try
+            {
+                Controlador.actualizarEstadoGrupo(true, idGrupo);
+                Controlador.actualizarGrupoTieneMateria(idGrupo, true);
+                Controlador.updateEstadoSala(idGrupo, true);
+                Controlador.actualizarDocenteDictaGM(idGrupo, true);
+                MessageBox.Show("Grupo archivado!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+            textBox1.Clear();
+            loadAllMaterias();
+            dgvListarGrupos.DataSource = null;
+            dgvListarGrupos.DataSource = Controlador.obtenerGrupos();
+            clbMaterias.ClearSelected();
+            allowMod(false);
+            Enabled = true;
+        }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -63,8 +79,10 @@ namespace AppAdmin.menuScreens
                     Controlador.actualizarNombreGrupo(nombreGrupo, idGrupo);
                     sacarMateriasDeGrupo();
                     cargarMateriasAGrupo(materiasSeleccionadas);
+                    MessageBox.Show($"Datos actualizados para el grupo {nombreGrupo}!");
+
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(Controlador.errorHandler(ex));
                 }
@@ -79,6 +97,8 @@ namespace AppAdmin.menuScreens
                     Console.WriteLine($"THE GROUP ID IN THE SYSTEM IS {idGrupo}");
                     if (clbMaterias.SelectedIndices.Count > 0)
                         Controlador.asignarMateriasAGrupo(materiasSeleccionadas, idGrupo);
+                    MessageBox.Show($"El grupo {nombreGrupo} ha sido Ingresada al sistema!");
+
                 }
                 catch (Exception ex)
                 {
@@ -166,15 +186,25 @@ namespace AppAdmin.menuScreens
             if (cbModificar.Checked)
             {
                 btnIngresar.Enabled = false;
+                btnArchivar.Enabled = false;
+                btnArchivar.Visible = true;
+                btnBorrar.Visible = true;
+                btnBorrar.Enabled = false;
                 dgvListarGrupos.ClearSelection();
                 dgvListarGrupos.Enabled = true;
                 groupBox1.Text = "Modificar grupo";
-                btnIngresar.Text = "Guardar cambios";
+                btnIngresar.Text = "Guardar";
             }
             else
             {
                 btnIngresar.Enabled = true;
                 btnBorrar.Enabled = false;
+
+                btnArchivar.Enabled = false;
+                btnArchivar.Visible = false;
+                btnBorrar.Visible = false;
+                btnBorrar.Enabled = false;
+
                 textBox1.Clear();
                 dgvListarGrupos.Enabled = false;
                 clbMaterias.ClearSelected();
@@ -191,6 +221,7 @@ namespace AppAdmin.menuScreens
             {
                 btnBorrar.Enabled = true;
                 btnIngresar.Enabled = true;
+                btnArchivar.Enabled = true;
                 loadAllMaterias();
                 idGrupo = dgvListarGrupos.CurrentRow.Cells[0].Value.ToString();
                 loadMateriasOfSelectedGrupo(idGrupo);
@@ -201,6 +232,7 @@ namespace AppAdmin.menuScreens
             {
                 btnBorrar.Enabled = false;
                 btnIngresar.Enabled = false;
+                btnArchivar.Enabled = false;
             }
 
         }

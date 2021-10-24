@@ -13,7 +13,7 @@ namespace AppAdmin.menuScreens
         List<List<string>> personas = new List<List<string>>();   //[x][]=indice de alumnoTemp en app  [0]=ci  [1]=nombre  [2]=apellido  [3]=clave  [4]= type    [5]=apodo (if alumno)
 
         List<List<List<string>>> gruposMateriasDePersonas = new List<List<List<string>>>();
-        //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo   [][][2]=idMateria   [][][3]=nombreMateria
+        //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo  (SOLO ALUMNOS[][][2]=isDeleted)    DOCENTES( [][][2]=idMateria   [][][3]=nombreMateria   [][][4]=isDeleted )
 
 
         List<byte[]> fotoDePersona = new List<byte[]>();
@@ -136,6 +136,8 @@ namespace AppAdmin.menuScreens
             for (int i = 0; i < gruposMateriasDePersonas[indexOfpersonInApp].Count; i++)
             {
                 target = $"{target}\n{gruposMateriasDePersonas[indexOfpersonInApp][i][1]}";
+                if (gruposMateriasDePersonas[indexOfpersonInApp][i][2] == "True")
+                    target = $"{target}--ARCHIVADO";
                 Console.WriteLine(gruposMateriasDePersonas[indexOfpersonInApp][i][1]);
             }
             return target;
@@ -146,7 +148,8 @@ namespace AppAdmin.menuScreens
             for (int i = 0; i < gruposMateriasDePersonas[indexOfpersonInApp].Count; i++)
             {
                 target = $"{target}\n{gruposMateriasDePersonas[indexOfpersonInApp][i][1]}--{gruposMateriasDePersonas[indexOfpersonInApp][i][3]}";
-                //Console.WriteLine(gruposMateriasDePersonas[indexOfpersonInApp][i][1]);
+                if (gruposMateriasDePersonas[indexOfpersonInApp][i][4] == "True")
+                    target = $"{target}--ARCHIVADO";
             }
             return target;
         }

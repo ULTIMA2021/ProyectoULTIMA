@@ -65,7 +65,7 @@ namespace CapaLogica
             {
                 idMateria = gm[grupoMateria].idMateria;
                 idGrupo = gm[grupoMateria].idGrupo;
-                g.actualizarDocenteTieneGM(cedula, idGrupo, idMateria);
+                g.actualizarDocenteTieneGM(cedula, idGrupo.ToString(), idMateria.ToString());
             }
         }
         public static void AltaAdmin(string cedula)

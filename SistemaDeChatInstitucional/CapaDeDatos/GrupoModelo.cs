@@ -70,7 +70,15 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarSpecialQuery(this.comando);
         }
-
+        public void sacarDocenteDictaGM(string docenteCi, string idGrupo, string  idMateria)
+        {
+            comando.CommandText = "DELETE FROM docente_dicta_g_m WHERE docenteCi=@docenteCi AND idGrupo=@idGrupo AND idMateria=@idMateria;";
+            comando.Parameters.AddWithValue("@docenteCi",docenteCi);
+            comando.Parameters.AddWithValue("@idGrupo",idGrupo);
+            comando.Parameters.AddWithValue("@idMateria", idMateria);
+            comando.Prepare();
+            EjecutarSpecialQuery(comando);
+        }
 
         public string countAlumnoTieneGrupo(string ci)
         {
@@ -99,24 +107,15 @@ namespace CapaDeDatos
             this.comando.Parameters.Clear();
             command = "INSERT INTO alumno_tiene_grupo (alumnoCi,idGrupo) VALUES (@alumnoCi,@idGrupo);";
             this.comando.CommandText = command;
-            this.comando.Parameters.AddWithValue("alumnoCi", alumnoCi);
-            this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
-            this.comando.Prepare();
-            EjecutarQuery(this.comando, errorType);
-            this.comando.Parameters.Clear();
-        }
-        public void nuevoIngresoDocenteTieneGM(string docenteCi, int idGrupo, int idMateria) {
-            command = "INSERT INTO docente_dicta_g_m (docenteCi,idGrupo,idMateria) VALUES (@docenteCi,@idGrupo,@idMateria);";
-            this.comando.CommandText = command;
-            this.comando.Parameters.AddWithValue("docenteCi", docenteCi);
-            this.comando.Parameters.AddWithValue("idGrupo", idGrupo);
-            this.comando.Parameters.AddWithValue("idMateria", idMateria);
+            this.comando.Parameters.AddWithValue("@alumnoCi", alumnoCi);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
             this.comando.Parameters.Clear();
         }
 
-        public void actualizarDocenteTieneGM(string docenteCi, int idGrupo, int idMateria) {
+        public void actualizarDocenteTieneGM(string docenteCi, string idGrupo, string idMateria) {
+            this.comando.Parameters.Clear();
             command = "UPDATE docente_dicta_g_m SET docenteCi=@docenteCi WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
             this.comando.CommandText = command;
             this.comando.Parameters.AddWithValue("docenteCi", docenteCi);
@@ -124,13 +123,22 @@ namespace CapaDeDatos
             this.comando.Parameters.AddWithValue("idMateria", idMateria);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
-            this.comando.Parameters.Clear();
         }
         public void actualizarDocenteTieneGM(string idMateria, string idGrupo, bool status)
         {
             command = "UPDATE docente_dicta_g_m SET isDeleted=@isDeleted WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
             this.comando.CommandText = command;
             this.comando.Parameters.AddWithValue("@isDeleted", status);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+            this.comando.Parameters.Clear();
+        }
+        public void actualizarDocenteTieneGM(string idGrupo, string idMateria)
+        {
+            command = "UPDATE docente_dicta_g_m SET docenteCi=NULL WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.CommandText = command;
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
             this.comando.Prepare();
@@ -235,6 +243,13 @@ namespace CapaDeDatos
                 gm.idMateria = int.Parse(lector[1].ToString());
                 gm.nombreGrupo = lector[2].ToString();
                 gm.nombreMateria = lector[3].ToString();
+                try
+                {
+                    gm.isDeleted = lector[4].ToString();
+                }
+                catch (Exception)
+                {
+                }
                 listaGM.Add(gm);
             }
             lector.Close();
@@ -315,17 +330,29 @@ namespace CapaDeDatos
 
         public List<GrupoModelo> getDocenteDictaGM()
         {
-            this.comando.CommandText = " SELECT dgm.idGrupo, dgm.idMateria, g.nombreGrupo, m.nombreMateria " +
+            this.comando.CommandText = "SELECT dgm.idGrupo, dgm.idMateria, g.nombreGrupo, m.nombreMateria, dgm.isDeleted " +
                 "FROM docente_dicta_g_m dgm, grupo g, materia m " +
-                "WHERE dgm.docenteCi is null " +
+                "WHERE dgm.docenteCi IS NULL " +
                 "AND dgm.idMateria = m.idMateria " +
                 "AND g.idGrupo = dgm.idGrupo;";
             return cargarGrupoMateriaALista(this.comando);
         }
+        //TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+        public List<GrupoModelo> getDocenteDictaNUEVOGM(string docenteCi)
+        {
+            this.comando.CommandText = "SELECT DISTINCT dgm.idGrupo, dgm.idMateria, g.nombreGrupo, m.nombreMateria, dgm.isDeleted " +
+                "FROM docente_dicta_g_m dgm, grupo g, materia m " +
+                "WHERE ( dgm.docenteCi IS NULL " +
+                "OR dgm.docenteCi=@docenteCi ) " +
+                "AND dgm.idMateria = m.idMateria " +
+                "AND g.idGrupo = dgm.idGrupo;";
+            comando.Parameters.AddWithValue("@docenteCi", docenteCi);
+            return cargarGrupoMateriaALista(this.comando);
+        }
 
         //nuevo******************************************************
-        
-            //se deberia modificar el cargar metodo arriba para que no tener 2
+
+        //se deberia modificar el cargar metodo arriba para que no tener 2
         private List<GrupoModelo> cargarGM(MySqlCommand command) {
             lector = this.comando.ExecuteReader();
             List<GrupoModelo> listaGruposDelAlumno = new List<GrupoModelo>();
@@ -418,14 +445,15 @@ namespace CapaDeDatos
 
         public void sacarAlumnoDeGrupo(string ci, string idGrupo)
         {
-            this.comando.CommandText = "DELETE FROM alumno_tiene_grupo WHERE ci=@ci AND idGrupo=@idGrupo";
+            this.comando.CommandText = "DELETE FROM alumno_tiene_grupo WHERE alumnoCi=@ci AND idGrupo=@idGrupo;";
             this.comando.Parameters.AddWithValue("@ci",ci);
             this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);
+
             EjecutarSpecialQuery(comando);
         }
         public void actualizarAlumnoTieneGrupo(bool isDeleted, string ci, string idGrupo)
         {
-            this.comando.CommandText = "UPDATE alumno_tiene_grupo SET isDeleted=@isDeleted WHERE ci=@ci AND idGrupo=@idGrupo";
+            this.comando.CommandText = "UPDATE alumno_tiene_grupo SET isDeleted=@isDeleted WHERE alumnoCi=@ci AND idGrupo=@idGrupo;";
             this.comando.Parameters.AddWithValue("@isDeleted",isDeleted);
             this.comando.Parameters.AddWithValue("@ci",ci);
             this.comando.Parameters.AddWithValue("@idGrupo",idGrupo);

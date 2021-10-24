@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(listarMaterias));
             this.dgvListarMaterias = new System.Windows.Forms.DataGridView();
             this.btnExit = new System.Windows.Forms.Button();
@@ -42,6 +42,7 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.cbModificar = new System.Windows.Forms.CheckBox();
             this.btnBorrar = new System.Windows.Forms.Button();
+            this.btnArchivar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarMaterias)).BeginInit();
             this.gbMaterias.SuspendLayout();
             this.SuspendLayout();
@@ -54,14 +55,14 @@
             this.dgvListarMaterias.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvListarMaterias.BackgroundColor = System.Drawing.Color.DarkGray;
             this.dgvListarMaterias.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListarMaterias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListarMaterias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvListarMaterias.ColumnHeadersHeight = 25;
             this.dgvListarMaterias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvListarMaterias.Enabled = false;
@@ -72,10 +73,10 @@
             this.dgvListarMaterias.ReadOnly = true;
             this.dgvListarMaterias.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvListarMaterias.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvListarMaterias.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvListarMaterias.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvListarMaterias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListarMaterias.Size = new System.Drawing.Size(250, 294);
             this.dgvListarMaterias.TabIndex = 0;
@@ -146,9 +147,9 @@
             // btnIngresar
             // 
             this.btnIngresar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresar.Location = new System.Drawing.Point(548, 340);
+            this.btnIngresar.Location = new System.Drawing.Point(528, 340);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(112, 32);
+            this.btnIngresar.Size = new System.Drawing.Size(105, 32);
             this.btnIngresar.TabIndex = 5;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
@@ -171,13 +172,27 @@
             // 
             this.btnBorrar.Enabled = false;
             this.btnBorrar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBorrar.Location = new System.Drawing.Point(727, 340);
+            this.btnBorrar.Location = new System.Drawing.Point(759, 340);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(112, 32);
+            this.btnBorrar.Size = new System.Drawing.Size(105, 32);
             this.btnBorrar.TabIndex = 7;
-            this.btnBorrar.Text = "Borrar materia";
+            this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Visible = false;
             this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
+            // 
+            // btnArchivar
+            // 
+            this.btnArchivar.Enabled = false;
+            this.btnArchivar.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnArchivar.Location = new System.Drawing.Point(639, 340);
+            this.btnArchivar.Name = "btnArchivar";
+            this.btnArchivar.Size = new System.Drawing.Size(114, 32);
+            this.btnArchivar.TabIndex = 8;
+            this.btnArchivar.Text = "Archivar";
+            this.btnArchivar.UseVisualStyleBackColor = true;
+            this.btnArchivar.Visible = false;
+            this.btnArchivar.Click += new System.EventHandler(this.btnArchivar_Click);
             // 
             // listarMaterias
             // 
@@ -185,6 +200,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(926, 384);
+            this.Controls.Add(this.btnArchivar);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.cbModificar);
             this.Controls.Add(this.btnIngresar);
@@ -216,5 +232,6 @@
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.CheckBox cbModificar;
         private System.Windows.Forms.Button btnBorrar;
+        private System.Windows.Forms.Button btnArchivar;
     }
 }

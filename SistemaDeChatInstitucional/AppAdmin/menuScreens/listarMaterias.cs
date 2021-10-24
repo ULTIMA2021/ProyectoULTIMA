@@ -30,29 +30,80 @@ namespace AppAdmin.menuScreens
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             this.Enabled = false;
+            DialogResult confirmLogout = MessageBox.Show($"Esta seguro que quiere borrar la materia {textBox1.Text} ?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (DialogResult.Yes == confirmLogout)
+            {
+                try
+                {
+                    Controlador.deleteMateria(idMateria);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                }
+            }
+            //try
+            //{
+            //    Controlador.deleteMateria(idMateria);
+            //}
+            //catch (Exception ex)
+            //{
+            //    if (ex.Message == "set materia isDeleted=TRUE-1644")
+            //    {
+            //        Console.WriteLine("...OK setting materia isDeleted=true");
+            //        Controlador.actualizarEstadoMateria(true, idMateria);
+            //        Controlador.actualizarGrupoTieneMateria(int.Parse(idMateria), true);
+            //        Controlador.updateEstadoSala(idMateria, true,1);
+            //        Controlador.actualizarDocenteDictaGM(int.Parse(idMateria), true);
+            //    }
+            //    else
+            //        MessageBox.Show(Controlador.errorHandler(ex));
+            //}
+            textBox1.Clear();
+            uncheckAllBoxes();
+            dgvListarMaterias.DataSource = null;
+            dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
+            dgvListarMaterias.Columns[0].Visible = false;
+
+            dgvListarMaterias.ClearSelection();
+            clbGrupos.ClearSelected();
+            MessageBox.Show($"La materia {textBox1.Text} se borro del sistema!");
+
+            btnBorrar.Enabled = false;
+            btnIngresar.Enabled = false;
+            btnArchivar.Enabled = false;
+
+            this.Enabled = true;
+        }
+        private void btnArchivar_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
             try
             {
-                Controlador.deleteMateria(idMateria);
+                Controlador.actualizarEstadoMateria(true, idMateria);
+                Controlador.actualizarGrupoTieneMateria(int.Parse(idMateria), true);
+                Controlador.updateEstadoSala(idMateria, true, 1);
+                Controlador.actualizarDocenteDictaGM(int.Parse(idMateria), true);
+                MessageBox.Show("Materia archivada!");
             }
             catch (Exception ex)
             {
-                if (ex.Message == "set materia isDeleted=TRUE-1644")
-                {
-                    Console.WriteLine("...OK setting materia isDeleted=true");
-                    Controlador.actualizarEstadoMateria(true, idMateria);
-                    Controlador.actualizarGrupoTieneMateria(int.Parse(idMateria), true);
-                    Controlador.updateEstadoSala(idMateria, true,1);
-                    Controlador.actualizarDocenteDictaGM(int.Parse(idMateria), true);
-                }
-                else
-                    MessageBox.Show(Controlador.errorHandler(ex));
+                MessageBox.Show(Controlador.errorHandler(ex));
             }
             textBox1.Clear();
             uncheckAllBoxes();
             dgvListarMaterias.DataSource = null;
             dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
             dgvListarMaterias.Columns[0].Visible = false;
-            this.Enabled = true;
+            dgvListarMaterias.ClearSelection();
+            clbGrupos.ClearSelected();
+
+            btnBorrar.Enabled = false;
+            btnIngresar.Enabled = false;
+            btnArchivar.Enabled = false;
+
+            Enabled = true;
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -60,11 +111,11 @@ namespace AppAdmin.menuScreens
             this.Enabled = false;
             List<int> gruposSeleccionados = getIdsFromText();
             string nombreMateria = textBox1.Text;
-            idMateria = dgvListarMaterias.CurrentRow.Cells[0].Value.ToString();
             if (cbModificar.Checked)
             {
                 try
-                {   
+                {
+                    idMateria = dgvListarMaterias.CurrentRow.Cells[0].Value.ToString();
                     Controlador.actualizarNombreMateria(textBox1.Text, idMateria);
                     sacarGrupoDeMateria();
                     cargarGrupoAmateria(gruposSeleccionados);
@@ -75,6 +126,13 @@ namespace AppAdmin.menuScreens
                     dgvListarMaterias.DataSource = null;
                     dgvListarMaterias.DataSource = Controlador.obtenerMateriass();
                     dgvListarMaterias.Columns[0].Visible = false;
+
+                    dgvListarMaterias.ClearSelection();
+                    clbGrupos.ClearSelected();
+                    MessageBox.Show($"Datos actualizados para la materia {nombreMateria}!");
+                    btnBorrar.Enabled = false;
+                    btnIngresar.Enabled = false;
+                    btnArchivar.Enabled = false;
                 }
                 catch (Exception ex)
                 {
@@ -95,6 +153,7 @@ namespace AppAdmin.menuScreens
                     textBox1.Clear();
                     uncheckAllBoxes();
                     dgvListarMaterias.Columns[0].Visible = false;
+                    MessageBox.Show($"La materia {nombreMateria} ha sido Ingresada al sistema!");
 
                 }
                 catch (Exception ex)
@@ -186,15 +245,26 @@ namespace AppAdmin.menuScreens
             Enabled = false;
             if (cbModificar.Checked)
             {
-                btnBorrar.Enabled = true;
+                btnBorrar.Visible = true;
+                btnArchivar.Visible = true;
+                btnIngresar.Enabled = false;
+
                 dgvListarMaterias.ClearSelection();
                 dgvListarMaterias.Enabled = true;
+                btnArchivar.Visible = true;
                 gbMaterias.Text = "Modificar materia";
-                btnIngresar.Text = "Guardar cambios";
+                btnIngresar.Text = "Guardar";
             }
             else
             {
+                btnArchivar.Visible = false;
+                btnArchivar.Enabled = false;
+
+                btnBorrar.Visible = false;
                 btnBorrar.Enabled = false;
+
+                btnIngresar.Enabled = true;
+
                 textBox1.Clear();
                 dgvListarMaterias.Enabled = false;
                 clbGrupos.ClearSelected();
@@ -217,8 +287,12 @@ namespace AppAdmin.menuScreens
                 loadGruposOfSelectedMateria(idMateria);
                 textBox1.Text = dgvListarMaterias.CurrentRow.Cells["Materia"].Value.ToString();
                 checkBoxes();
+                btnBorrar.Enabled = true;
+                btnArchivar.Enabled = true;
+                btnIngresar.Enabled = true;
             }
             Enabled = true;
         }
+
     }
 }

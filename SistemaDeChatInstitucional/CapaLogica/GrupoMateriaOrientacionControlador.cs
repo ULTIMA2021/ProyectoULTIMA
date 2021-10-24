@@ -50,11 +50,11 @@ namespace CapaLogica
         public static void asignarMateriasAGrupo(List<int> materiasSeleccionadas, string idGrupo) {
             GrupoModelo g = new GrupoModelo(Session.type);
             foreach (int materia in materiasSeleccionadas)
-                g.cargarMateriasAGrupo(materia.ToString(),idGrupo);
-            
+                g.cargarMateriasAGrupo(materia.ToString(), idGrupo);
+
         }
-        public static void asignarMateriasAGrupo(string idMateria, string idGrupo) => new GrupoModelo(Session.type).cargarMateriasAGrupo( idMateria, idGrupo);
-        public static void asignarGruposAOrientacion(string idOrientacion, string idGrupo) => new GrupoModelo(Session.type).cargarGruposAOrientacion(idOrientacion,idGrupo);
+        public static void asignarMateriasAGrupo(string idMateria, string idGrupo) => new GrupoModelo(Session.type).cargarMateriasAGrupo(idMateria, idGrupo);
+        public static void asignarGruposAOrientacion(string idOrientacion, string idGrupo) => new GrupoModelo(Session.type).cargarGruposAOrientacion(idOrientacion, idGrupo);
         public static void asignarMateriasAGrupo(List<int> gruposSeleccionados, int idMateria)
         {
             GrupoModelo g = new GrupoModelo(Session.type);
@@ -65,7 +65,7 @@ namespace CapaLogica
         {
             GrupoModelo g = new GrupoModelo(Session.type);
             foreach (int grupo in grupoSeleccionados)
-                g.cargarGruposAOrientacion(idOrientacion,grupo.ToString());
+                g.cargarGruposAOrientacion(idOrientacion, grupo.ToString());
         }
 
         public static string countSalaPorMateria(string idMateria)
@@ -81,16 +81,16 @@ namespace CapaLogica
         public static string orientacionPorNombre(string nombreOrientacion) => new OrientacionModelo(Session.type).getOrientacion(nombreOrientacion);
 
         public static List<string> obtenerMaterias()
-          {
+        {
             MateriaModelo m = new MateriaModelo(Session.type);
             List<MateriaModelo> materias = m.getMateria();
             List<string> pinga = new List<string>();
 
-              foreach (MateriaModelo materia in materias)
+            foreach (MateriaModelo materia in materias)
                 pinga.Add(materia.nombreMateria);
-              
-              return pinga;
-          }
+
+            return pinga;
+        }
         public static DataTable obtenerMateriass()
         {
             MateriaModelo m = new MateriaModelo(Session.type);
@@ -99,7 +99,7 @@ namespace CapaLogica
             data.Columns.Add("Materia");
 
             foreach (MateriaModelo materia in m.getMateria())
-                data.Rows.Add(materia.idMateria , materia.nombreMateria);
+                data.Rows.Add(materia.idMateria, materia.nombreMateria);
 
             return data;
         }
@@ -120,7 +120,7 @@ namespace CapaLogica
                     {
                         checkedListBoxIndexesToCheck.Add(y);
                         break;
-                    }   
+                    }
             }
             return checkedListBoxIndexesToCheck;
         }
@@ -184,6 +184,25 @@ namespace CapaLogica
             }
             return gmString;
         }
+        public static List<List<string>> grupoMateriaToListForRegisterDataSource()
+        {
+            GrupoModelo gm = new GrupoModelo(Session.type);
+            List<List<string>> listOfGm = new List<List<string>>();
+            foreach (GrupoModelo g in gm.getDocenteDictaGM())
+            {
+                List<string> gmString = new List<string>();
+                gmString.Add(g.idGrupo.ToString());
+                gmString.Add(g.nombreGrupo);
+                gmString.Add(g.idMateria.ToString());
+                gmString.Add(g.nombreMateria);
+                gmString.Add(g.isDeleted);
+
+                listOfGm.Add(gmString);
+            }
+            return listOfGm;
+        }
+
+
         public static List<string> grupoMateriaToListForModification()
         {
             List<string> gmString = new List<string>();
@@ -196,6 +215,48 @@ namespace CapaLogica
             }
             return gmString;
         }
+        //TESTESETSTSTSTSTSTSTSTSTS
+        public static List<string> grupoMateriaToListForModification(string docenteCi)
+        {
+            List<string> gmString = new List<string>();
+            GrupoModelo gm = new GrupoModelo(Session.type);
+            string entry;
+            foreach (GrupoModelo g in gm.getDocenteDictaNUEVOGM(docenteCi))
+            {
+                entry = $"{g.nombreGrupo}   {g.nombreMateria}";
+                gmString.Add(entry);
+            }
+            return gmString;
+        }
+        public static List<List<string>> grupoMateriaToListForMODdataSource(string docenteCi)
+        {
+            GrupoModelo gm = new GrupoModelo(Session.type);
+            List<List<string>> listOfGm = new List<List<string>>();
+            foreach (GrupoModelo g in gm.getDocenteDictaNUEVOGM(docenteCi))
+            {
+                List<string> gmString = new List<string>();
+                gmString.Add(g.idGrupo.ToString());
+                gmString.Add(g.nombreGrupo);
+                gmString.Add(g.idMateria.ToString());
+                gmString.Add(g.nombreMateria);
+                gmString.Add(g.isDeleted);
+
+                listOfGm.Add(gmString);
+            }
+            return listOfGm;
+        }
+        //public static List<List<string>> grupoMateriaToListForModification()
+        //{
+        //    List<string> gmString = new List<string>();
+        //    GrupoModelo gm = new GrupoModelo(Session.type);
+        //    string entry;
+        //    foreach (GrupoModelo g in gm.grupoMateria())
+        //    {
+        //        entry = $"{g.nombreGrupo}   {g.nombreMateria}";
+        //        gmString.Add(entry);
+        //    }
+        //    return gmString;
+        //}
 
         public static List<List<string>> gruposDeMateria(string idMateria) //grupos no ocultados de la materia indicada
         {
@@ -291,6 +352,7 @@ namespace CapaLogica
                 List<string> gString = new List<string>();
                 gString.Add(grupo.idGrupo.ToString());
                 gString.Add(grupo.nombreGrupo.ToString());
+                gString.Add(grupo.isDeleted);
                 grupos.Add(gString);
             }
             return grupos;
@@ -307,15 +369,13 @@ namespace CapaLogica
             List<List<string>> grupoMaterias = new List<List<string>>();
             foreach (var gm in new GrupoModelo(Session.type).getDocenteDictaGM(ci))
             {
-                if (gm.isDeleted == "False")
-                {
-                    List<string> gmString = new List<string>();
-                    gmString.Add(gm.idGrupo.ToString());
-                    gmString.Add(gm.nombreGrupo);
-                    gmString.Add(gm.idMateria.ToString());
-                    gmString.Add(gm.nombreMateria);
-                    grupoMaterias.Add(gmString);
-                }
+                List<string> gmString = new List<string>();
+                gmString.Add(gm.idGrupo.ToString());
+                gmString.Add(gm.nombreGrupo);
+                gmString.Add(gm.idMateria.ToString());
+                gmString.Add(gm.nombreMateria);
+                gmString.Add(gm.isDeleted);
+                grupoMaterias.Add(gmString);
             }
             return grupoMaterias;
         }
@@ -334,10 +394,11 @@ namespace CapaLogica
         public static void actualizarDocenteDictaGM(string idMateria, string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, idGrupo, status);
         public static void actualizarDocenteDictaGM(string idGrupo, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idGrupo, status);
         public static void actualizarDocenteDictaGM(int idMateria, bool status) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idMateria, status);
+        public static void actualizarDocenteDictaGM(string idGrupo, string idMateria) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(idGrupo,idMateria);
+        public static void asignarDocenteAGrupoMateria(string ci, string idGrupo, string idMateria) => new GrupoModelo(Session.type).actualizarDocenteTieneGM(ci, idGrupo,idMateria); 
 
         public static void sacarAlumnoDeGrupo(string ci, string idGrupo) => new GrupoModelo(Session.type).sacarAlumnoDeGrupo(ci,idGrupo);
-        public static void archivarAlumnoTieneGrupo(string ci, string idGrupo, bool isDeleted) => new GrupoModelo(Session.type).actualizarAlumnoTieneGrupo(isDeleted,ci, idGrupo);
-
+        public static void archivarAlumnoTieneGrupo(string ci, string idGrupo, bool isDeleted) => new GrupoModelo(Session.type).actualizarAlumnoTieneGrupo(isDeleted, ci, idGrupo);
         public static void asignarAlumnoAGrupo(string ci, string idGrupo) => new GrupoModelo(Session.type).nuevoIngresoAlumnoTieneGrupo( ci, int.Parse(idGrupo));
 
     }

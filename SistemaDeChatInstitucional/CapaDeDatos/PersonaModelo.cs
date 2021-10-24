@@ -113,7 +113,7 @@ namespace CapaDeDatos
         }
         public void actualizarPersona(string ci, string nombre, string apellido, string clave, byte []foto)
         {
-            this.comando.CommandText = "UPDATE persona SET nombre=@nombre apellido=@apellido clave=@clave foto=@foto " +
+            this.comando.CommandText = "UPDATE persona SET nombre=@nombre, apellido=@apellido, clave=@clave, foto=@foto " +
                 "WHERE ci=@ci;";
             this.comando.Parameters.AddWithValue("@ci",ci);
             this.comando.Parameters.AddWithValue("@nombre",nombre);
