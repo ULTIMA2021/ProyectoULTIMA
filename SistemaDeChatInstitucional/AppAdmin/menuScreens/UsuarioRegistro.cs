@@ -434,7 +434,6 @@ namespace AppAdmin.menuScreens
                 MessageBox.Show(Controlador.errorHandler(exa));
             }
             Enabled = true;
-
         }
         private void sacarGrupoDeAlumno()
         {
@@ -554,6 +553,17 @@ namespace AppAdmin.menuScreens
         {
             //if (checkedItemsIndexOnLoad.Contains(clbOpciones.SelectedIndex))
             //    uncheckedItems.Add();
+        }
+
+        private void btnSacarFoto_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pbFoto.Image = null;
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

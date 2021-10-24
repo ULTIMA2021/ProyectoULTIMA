@@ -126,7 +126,7 @@ namespace CapaDeDatos
             this.comando.CommandText = "SELECT cp.idConsultaPrivada, m.idCp_mensaje, cp.docenteCi, cp.alumnoCi, cp.titulo, cp.cpStatus, cp.cpFechaHora, m.ciDestinatario " +
                 "FROM consultaprivada cp, cp_mensaje m " +
                 "WHERE cp.idConsultaPrivada = m.idConsultaPrivada " +
-                "AND cp.alumnoCi = m.ciAlumno AND cp.docenteCi = m.ciDestinatario AND m.idCp_mensaje = 1;";
+                "AND cp.alumnoCi = m.ciAlumno AND cp.docenteCi = m.ciDestinatario AND m.idCp_mensaje = 1 ORDER BY cp.cpFechaHora ASC;";
             lector = this.comando.ExecuteReader();
             while (lector.Read())
             {

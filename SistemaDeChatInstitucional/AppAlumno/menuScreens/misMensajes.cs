@@ -35,40 +35,35 @@ namespace AppAlumno.menuScreens
         {
             this.Close();
         }
-
         private void btnAbrir_Click(object sender, EventArgs e)
         {
             idConsultaPrivada = int.Parse(dgvMisMensajes.CurrentRow.Cells[0].Value.ToString());
             ciAlumno = Session.cedula;
             ciDocente = dgvMisMensajes.CurrentRow.Cells[2].Value.ToString();
             asunto = dgvMisMensajes.CurrentRow.Cells[4].Value.ToString();
-            status = dgvMisMensajes.CurrentRow.Cells["Status de consulta"].Value.ToString();
+            status = dgvMisMensajes.CurrentRow.Cells["Status"].Value.ToString();
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
             replyScreen r = new replyScreen(mensajes,asunto,status);
         }
-
-        
 
         private void dgvMisMensajes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             foreach (DataGridViewRow Myrow in dgvMisMensajes.Rows)
             {
-                if ((String)Myrow.Cells["Status de consulta"].Value == "pendiente")
+                if ((String)Myrow.Cells["Status"].Value == "pendiente")
                 {
                    Myrow.Cells[5].Style.BackColor = Color.FromArgb(250, 182, 37);
                                  
                 }
-                else if ((String)Myrow.Cells["Status de consulta"].Value == "resuelta")
+                else if ((String)Myrow.Cells["Status"].Value == "resuelta")
                     Myrow.Cells[5].Style.BackColor = Color.FromArgb(113, 230, 72);
-                    
             }
-
         }
         private void Loadd()
         {
-            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
+            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada(Session.cedula, Session.type);
             dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;
-            dgvMisMensajes.Columns["ciAlumno"].Visible = false;
+            dgvMisMensajes.Columns["Alumno"].Visible = false;
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
             dgvMisMensajes.Columns["Destinatario"].Visible = false;
             dgvMisMensajes.Columns["idMensaje"].Visible = false;
@@ -81,12 +76,10 @@ namespace AppAlumno.menuScreens
             btnEliminar.Text = Resources.btnEliminar;
             btnExit.Text = Resources.btnExit;
 
-
             dgvMisMensajes.Columns[4].HeaderText = Resources.lblAsunto;
             dgvMisMensajes.Columns[5].HeaderText = Resources.colStatus;
             dgvMisMensajes.Columns[6].HeaderText = Resources.colFecha;
             
-
             dgvMisMensajes.ClearSelection();
         }
 

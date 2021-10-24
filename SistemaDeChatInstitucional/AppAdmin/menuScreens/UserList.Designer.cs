@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserList));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -43,12 +43,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblSalas = new System.Windows.Forms.Label();
             this.lblConsultas = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dgvListarOrientaciones = new System.Windows.Forms.DataGridView();
+            this.dgvSalas = new System.Windows.Forms.DataGridView();
+            this.dgvListarConsultasPrivs = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.panelDatagridViews.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListarOrientaciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSalas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListarConsultasPrivs)).BeginInit();
             this.SuspendLayout();
             // 
             // btnExit
@@ -82,8 +82,8 @@
             this.panelDatagridViews.Controls.Add(this.textBox1);
             this.panelDatagridViews.Controls.Add(this.lblSalas);
             this.panelDatagridViews.Controls.Add(this.lblConsultas);
-            this.panelDatagridViews.Controls.Add(this.dataGridView1);
-            this.panelDatagridViews.Controls.Add(this.dgvListarOrientaciones);
+            this.panelDatagridViews.Controls.Add(this.dgvSalas);
+            this.panelDatagridViews.Controls.Add(this.dgvListarConsultasPrivs);
             this.panelDatagridViews.Location = new System.Drawing.Point(24, 363);
             this.panelDatagridViews.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
             this.panelDatagridViews.Name = "panelDatagridViews";
@@ -149,73 +149,75 @@
             this.lblConsultas.TabIndex = 7;
             this.lblConsultas.Text = "Consultas del usuario";
             // 
-            // dataGridView1
+            // dgvSalas
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.DarkGray;
-            this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView1.ColumnHeadersHeight = 25;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView1.Enabled = false;
-            this.dataGridView1.EnableHeadersVisualStyles = false;
-            this.dataGridView1.Location = new System.Drawing.Point(439, 29);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(433, 112);
-            this.dataGridView1.TabIndex = 6;
+            this.dgvSalas.AllowUserToAddRows = false;
+            this.dgvSalas.AllowUserToDeleteRows = false;
+            this.dgvSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSalas.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.dgvSalas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSalas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvSalas.ColumnHeadersHeight = 25;
+            this.dgvSalas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvSalas.EnableHeadersVisualStyles = false;
+            this.dgvSalas.Location = new System.Drawing.Point(439, 29);
+            this.dgvSalas.Margin = new System.Windows.Forms.Padding(0);
+            this.dgvSalas.MultiSelect = false;
+            this.dgvSalas.Name = "dgvSalas";
+            this.dgvSalas.ReadOnly = true;
+            this.dgvSalas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvSalas.RowHeadersVisible = false;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvSalas.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSalas.Size = new System.Drawing.Size(433, 112);
+            this.dgvSalas.TabIndex = 6;
             // 
-            // dgvListarOrientaciones
+            // dgvListarConsultasPrivs
             // 
-            this.dgvListarOrientaciones.AllowUserToAddRows = false;
-            this.dgvListarOrientaciones.AllowUserToDeleteRows = false;
-            this.dgvListarOrientaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvListarOrientaciones.BackgroundColor = System.Drawing.Color.DarkGray;
-            this.dgvListarOrientaciones.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListarOrientaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvListarOrientaciones.ColumnHeadersHeight = 25;
-            this.dgvListarOrientaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dgvListarOrientaciones.Enabled = false;
-            this.dgvListarOrientaciones.EnableHeadersVisualStyles = false;
-            this.dgvListarOrientaciones.Location = new System.Drawing.Point(0, 29);
-            this.dgvListarOrientaciones.Margin = new System.Windows.Forms.Padding(0);
-            this.dgvListarOrientaciones.MultiSelect = false;
-            this.dgvListarOrientaciones.Name = "dgvListarOrientaciones";
-            this.dgvListarOrientaciones.ReadOnly = true;
-            this.dgvListarOrientaciones.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvListarOrientaciones.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvListarOrientaciones.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvListarOrientaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListarOrientaciones.Size = new System.Drawing.Size(433, 112);
-            this.dgvListarOrientaciones.TabIndex = 5;
+            this.dgvListarConsultasPrivs.AllowUserToAddRows = false;
+            this.dgvListarConsultasPrivs.AllowUserToDeleteRows = false;
+            this.dgvListarConsultasPrivs.AllowUserToResizeColumns = false;
+            this.dgvListarConsultasPrivs.AllowUserToResizeRows = false;
+            this.dgvListarConsultasPrivs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvListarConsultasPrivs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvListarConsultasPrivs.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.dgvListarConsultasPrivs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListarConsultasPrivs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvListarConsultasPrivs.ColumnHeadersHeight = 25;
+            this.dgvListarConsultasPrivs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvListarConsultasPrivs.EnableHeadersVisualStyles = false;
+            this.dgvListarConsultasPrivs.Location = new System.Drawing.Point(0, 29);
+            this.dgvListarConsultasPrivs.Margin = new System.Windows.Forms.Padding(0);
+            this.dgvListarConsultasPrivs.MultiSelect = false;
+            this.dgvListarConsultasPrivs.Name = "dgvListarConsultasPrivs";
+            this.dgvListarConsultasPrivs.ReadOnly = true;
+            this.dgvListarConsultasPrivs.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvListarConsultasPrivs.RowHeadersVisible = false;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvListarConsultasPrivs.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvListarConsultasPrivs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListarConsultasPrivs.Size = new System.Drawing.Size(433, 112);
+            this.dgvListarConsultasPrivs.TabIndex = 5;
             // 
             // label1
             // 
@@ -244,8 +246,8 @@
             this.Text = "listarAlumnos";
             this.panelDatagridViews.ResumeLayout(false);
             this.panelDatagridViews.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListarOrientaciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSalas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListarConsultasPrivs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,8 +260,8 @@
         private System.Windows.Forms.Panel panelDatagridViews;
         private System.Windows.Forms.Label lblSalas;
         private System.Windows.Forms.Label lblConsultas;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dgvListarOrientaciones;
+        private System.Windows.Forms.DataGridView dgvSalas;
+        private System.Windows.Forms.DataGridView dgvListarConsultasPrivs;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;

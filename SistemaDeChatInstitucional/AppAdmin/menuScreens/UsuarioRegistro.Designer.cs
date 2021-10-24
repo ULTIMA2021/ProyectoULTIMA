@@ -63,6 +63,7 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnSacarFoto = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnSacarFoto);
             this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label18);
@@ -426,6 +428,19 @@
             this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // btnSacarFoto
+            // 
+            this.btnSacarFoto.BackColor = System.Drawing.Color.Firebrick;
+            this.btnSacarFoto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSacarFoto.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacarFoto.Location = new System.Drawing.Point(565, 147);
+            this.btnSacarFoto.Name = "btnSacarFoto";
+            this.btnSacarFoto.Size = new System.Drawing.Size(76, 32);
+            this.btnSacarFoto.TabIndex = 39;
+            this.btnSacarFoto.Text = "Sacar foto";
+            this.btnSacarFoto.UseVisualStyleBackColor = false;
+            this.btnSacarFoto.Click += new System.EventHandler(this.btnSacarFoto_Click);
+            // 
             // UsuarioRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,5 +498,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnSacarFoto;
     }
 }

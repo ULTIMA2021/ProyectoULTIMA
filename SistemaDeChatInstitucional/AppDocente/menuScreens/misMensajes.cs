@@ -41,20 +41,20 @@ namespace AppDocente.menuScreens
 
         private void btnAbrir_Click(object sender, EventArgs e)
         {
-            asunto = dgvMisMensajes.CurrentRow.Cells["titulo de consulta"].Value.ToString();
+            asunto = dgvMisMensajes.CurrentRow.Cells["Tema"].Value.ToString();
             idConsultaPrivada = int.Parse(dgvMisMensajes.CurrentRow.Cells["idConsultaPrivada"].Value.ToString());
-            ciAlumno = dgvMisMensajes.CurrentRow.Cells["ciAlumno"].Value.ToString();
+            ciAlumno = dgvMisMensajes.CurrentRow.Cells["Alumno"].Value.ToString();
             ciDocente = Session.cedula;
-            status = dgvMisMensajes.CurrentRow.Cells["Status de consulta"].Value.ToString();
+            status = dgvMisMensajes.CurrentRow.Cells["Status"].Value.ToString();
             List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
             replyScreen r = new replyScreen(mensajes,asunto,status);
         }
 
         private void Loadd()
         {
-            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada();
+            dgvMisMensajes.DataSource = Controlador.ConsultasPrivada(Session.cedula, Session.type);
             dgvMisMensajes.Columns["idConsultaPrivada"].Visible = false;
-            dgvMisMensajes.Columns["ciAlumno"].Visible = false;
+            dgvMisMensajes.Columns["Alumno"].Visible = false;
             dgvMisMensajes.Columns["ciDocente"].Visible = false;
             dgvMisMensajes.Columns["Destinatario"].Visible = false;
             dgvMisMensajes.Columns["idMensaje"].Visible = false;
@@ -79,12 +79,12 @@ namespace AppDocente.menuScreens
         {
             foreach (DataGridViewRow Myrow in dgvMisMensajes.Rows)
             {
-                if ((String)Myrow.Cells["Status de consulta"].Value == "pendiente")
+                if ((String)Myrow.Cells["Status"].Value == "pendiente")
                 {
                     Myrow.Cells[5].Style.BackColor = Color.FromArgb(250, 182, 37);
 
                 }
-                else if ((String)Myrow.Cells["Status de consulta"].Value == "resuelta")
+                else if ((String)Myrow.Cells["Status"].Value == "resuelta")
                     Myrow.Cells[5].Style.BackColor = Color.FromArgb(113, 230, 72);
 
             }

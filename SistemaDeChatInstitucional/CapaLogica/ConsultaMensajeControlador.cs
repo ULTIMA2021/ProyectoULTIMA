@@ -53,22 +53,22 @@ namespace CapaLogica
         }
 
         // metodo original
-        public static DataTable ConsultasPrivada()
+        public static DataTable ConsultasPrivada(string ci, byte type)
         {
             ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo(Session.type);
-            List<ConsultaPrivadaModelo> listaConsulta = null;
-            if (Session.type == 0)
-                listaConsulta = consulta.getConsultas(Session.cedula);
-            else if (Session.type == 1)
-                listaConsulta = consulta.getConsultas(int.Parse(Session.cedula));
+            List<ConsultaPrivadaModelo> listaConsulta = new List<ConsultaPrivadaModelo>();
+            if (type == 0)
+                listaConsulta = consulta.getConsultas(ci);
+            else if (type == 1)
+                listaConsulta = consulta.getConsultas(int.Parse(ci));
             DataTable tabla = new DataTable();
             tabla.Columns.Add("idConsultaPrivada");
             tabla.Columns.Add("idMensaje");
             tabla.Columns.Add("ciDocente");
-            tabla.Columns.Add("ciAlumno");
-            tabla.Columns.Add("titulo de consulta");
-            tabla.Columns.Add("Status de consulta");
-            tabla.Columns.Add("Fecha Creada");
+            tabla.Columns.Add("Alumno");
+            tabla.Columns.Add("Tema");
+            tabla.Columns.Add("Status");
+            tabla.Columns.Add("Fecha ultimo mensaje");
             tabla.Columns.Add("Destinatario");
             foreach (ConsultaPrivadaModelo c in listaConsulta)
             {

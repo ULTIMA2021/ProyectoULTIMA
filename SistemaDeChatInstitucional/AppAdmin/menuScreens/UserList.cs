@@ -74,7 +74,7 @@ namespace AppAdmin.menuScreens
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareAlumnoGroupLabelText(x));
                         flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight,Color.PowderBlue);
-                        flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PowderBlue);
+                        flpVert = defineFlowPanel(flpVert, $"flpVert_{x}", FlowDirection.TopDown, Color.PowderBlue);
                         flpSpacer.BackColor = Color.PowderBlue;
                         flpHori.Click += clickOnPerson;
                         groups.Click += clickOnPerson;
@@ -83,20 +83,11 @@ namespace AppAdmin.menuScreens
                         ci.Click += clickOnPerson;
                         foto.Click += clickOnPerson;
                         break;
-                    case "3": //admin
-                        
-                        //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
-                        groups = defineLabels(groups, $"g_{x}", "    ");
-                        flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PaleVioletRed);
-                        flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PaleVioletRed);
-                        flpSpacer.BackColor = Color.PaleVioletRed;
-
-                        break;
                     case "2": //docente
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareDocenteGroupLabelText(x));
                         flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PeachPuff);
-                        flpVert = defineFlowPanel(flpVert, $"flpVert{x}", FlowDirection.TopDown, Color.PeachPuff);
+                        flpVert = defineFlowPanel(flpVert, $"flpVert_{x}", FlowDirection.TopDown, Color.PeachPuff);
                         flpSpacer.BackColor = Color.PeachPuff;
                         // EventHandler clickOnPerson = new EventHandler(myflowLayoutPanel_Click_flpHori);
                         flpHori.Click += clickOnPerson;
@@ -105,6 +96,13 @@ namespace AppAdmin.menuScreens
                         apellido.Click += clickOnPerson;
                         ci.Click += clickOnPerson;
                         foto.Click += clickOnPerson;
+                        break;
+                    case "3": //admin
+                        //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
+                        groups = defineLabels(groups, $"g_{x}", "    ");
+                        flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PaleVioletRed);
+                        flpVert = defineFlowPanel(flpVert, $"flpVert_{x}", FlowDirection.TopDown, Color.PaleVioletRed);
+                        flpSpacer.BackColor = Color.PaleVioletRed;
                         break;
                 }
                 flpVert.Controls.Add(btnActividad);
@@ -174,6 +172,7 @@ namespace AppAdmin.menuScreens
         {
             gruposMateriasDePersonas.Clear();
             personas.Clear();
+            fotoDePersona.Clear();
             personas = Controlador.obtenerPersona();
         }
 
@@ -270,8 +269,62 @@ namespace AppAdmin.menuScreens
 
         private void myflowLayoutPanel_Click_flpHori(object sender, EventArgs e)
         {
-            Control x = (Control)sender;
-            Console.WriteLine(x.AccessibleName);
+            Enabled = false;
+            try
+            {
+                Control x = (Control)sender;
+                int indexOfControl = int.Parse(x.AccessibleName.Substring(x.AccessibleName.IndexOf('_') + 1));
+                Console.WriteLine(indexOfControl);
+                dgvListarConsultasPrivs.DataSource = null;
+
+                if (personas[indexOfControl][4] == "1" || personas[indexOfControl][4] == "2")
+                {
+                    Console.WriteLine("DOCENTE OR ALUMNO");
+                    int indexType = int.Parse(personas[indexOfControl][4])-1;
+                    // Console.WriteLine(x.AccessibleName);
+                    dgvListarConsultasPrivs.DataSource = Controlador.ConsultasPrivada(personas[indexOfControl][0], Convert.ToByte(indexType));
+                    dgvListarConsultasPrivs.Columns["idConsultaPrivada"].Visible = false;
+                    dgvListarConsultasPrivs.Columns["Tema"].Visible = true;
+                    dgvListarConsultasPrivs.Columns["Status"].Visible = false;
+
+                    dgvListarConsultasPrivs.Columns["Alumno"].Visible = true;
+                    dgvListarConsultasPrivs.Columns["ciDocente"].Visible = false;
+                    dgvListarConsultasPrivs.Columns["Destinatario"].Visible = false;
+                    dgvListarConsultasPrivs.Columns["idMensaje"].Visible = false;
+                    dgvListarConsultasPrivs.ClearSelection();
+                    panelDatagridViews.Visible = true;
+                    panelDatagridViews.Enabled = true;
+
+                    foreach (DataGridViewRow Myrow in dgvListarConsultasPrivs.Rows)
+                    {
+                        if ((string)Myrow.Cells["Status"].Value == "pendiente")
+                        {
+                            Myrow.Cells[5].Style.BackColor = Color.FromArgb(250, 182, 37);
+                        }
+                        else if ((string)Myrow.Cells["Status"].Value == "resuelta")
+                            Myrow.Cells[5].Style.BackColor = Color.FromArgb(113, 230, 72);
+                    }
+                    //dgvListarConsultasPrivs.Columns["Alumno"].AutoSizeMode
+                    //dgvListarConsultasPrivs.Columns[""].AutoSizeMode
+                    //dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode
+
+                    //dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode
+                    //dgvListarConsultasPrivs.Visible = true;
+                    //dgvListarConsultasPrivs.Enabled = true;
+                    //dgvSalas.Visible = true;
+                    //dgvSalas.Enabled = true;
+                }
+                else
+                {
+                    panelDatagridViews.Visible = false;
+                    panelDatagridViews.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+            Enabled = true;
         }
         private void mybutton_Click_Actividad(object sender, EventArgs e)
         {
