@@ -95,7 +95,7 @@ namespace CapaDeDatos
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
-        public void actualizarPersona(int ci, string clave)
+        public void actualizarPersona(string ci, string clave)
         {
             this.comando.CommandText = "UPDATE persona SET clave=@clave WHERE ci=@ci;";
             this.comando.Parameters.AddWithValue("@ci", ci);

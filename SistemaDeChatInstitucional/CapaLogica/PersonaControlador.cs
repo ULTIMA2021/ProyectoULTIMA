@@ -86,18 +86,18 @@ namespace CapaLogica
             p.enLinea = state;
             p.actualizarPersona();
         }
-        public static bool actualizarClavePersona(string claveVieja, string claveNueva)
+        public static bool actualizarClavePersona(string claveVieja, string claveNueva, string ci)
         {
-            if (Session.clave == claveVieja)
+            if(CryptographyUtils.comparePasswords(claveVieja,Session.clave))
             {
-                PersonaModelo p = new PersonaModelo(Session.type);
-                p.Cedula = Session.cedula;
-                p.actualizarPersona(claveNueva);
+                string encrypted = CryptographyUtils.doEncryption(claveNueva, null, null);
+                new PersonaModelo(Session.type).actualizarPersona(ci,encrypted);
+                Session.clave = encrypted;
                 return true;
             }
             return false;
         }
-        public static void actualizarClavePersona(int ci, string claveNueva) => new PersonaModelo(Session.type).actualizarPersona(ci,claveNueva);
+        public static void actualizarClavePersona(string ci, string claveNueva) => new PersonaModelo(Session.type).actualizarPersona(ci,claveNueva);
         public static void actualizarPersona(string ci, string nombre, string apellido, string clave, byte [] foto) => 
             new PersonaModelo(Session.type).actualizarPersona(ci, nombre, apellido, clave, foto);
 

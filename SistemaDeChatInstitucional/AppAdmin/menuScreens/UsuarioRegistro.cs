@@ -407,7 +407,7 @@ namespace AppAdmin.menuScreens
             if (DialogResult.Yes == confirmLogout)
             {
                 string encryptedPw = CryptographyUtils.doEncryption(txtCedula.Text, null, null);
-                Controlador.actualizarClavePersona(int.Parse(txtCedula.Text), encryptedPw);
+                Controlador.actualizarClavePersona(txtCedula.Text, encryptedPw);
             }
         }
 
