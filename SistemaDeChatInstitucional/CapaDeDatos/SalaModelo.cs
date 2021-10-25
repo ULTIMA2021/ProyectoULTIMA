@@ -91,6 +91,28 @@ namespace CapaDeDatos
             this.comando.Prepare();
             return (cargarSalasAlist(this.comando));
         }
+        public List<SalaModelo> salaPorGrupo(string idGrupo, bool isDone)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
+                "FROM sala " +
+                "WHERE idGrupo=@idGrupo AND isDone=@isDone AND docenteCi IS NOT NULL;";
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
+            this.comando.Prepare();
+            return (cargarSalasAlist(this.comando));
+        }
+        public List<SalaModelo> salaPorDocente(string docenteCi, bool isDone)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
+                "FROM sala " +
+                "WHERE isDone=@isDone AND docenteCi = @docenteCi;";
+            this.comando.Parameters.AddWithValue("@docenteCi", docenteCi);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
+            this.comando.Prepare();
+            return (cargarSalasAlist(this.comando));
+        }
         private List<SalaModelo> cargarSalasAlist(MySqlCommand command)
         {
             lector = command.ExecuteReader();

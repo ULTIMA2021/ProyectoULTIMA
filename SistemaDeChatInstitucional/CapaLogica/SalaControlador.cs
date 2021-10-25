@@ -51,6 +51,56 @@ namespace CapaLogica
             
             return salasDataTable;
         }
+        public static DataTable loadSalasDePersonaForAdmin(bool isDone, List<List<string>> grupoMaterias, byte type, string ci) 
+            //0-idGrupo 1-nombreGrupo 2-idMateria  3-nombreMateria docentes
+            //
+        {
+            List<SalaModelo> salasPorGM = new List<SalaModelo>();
+            DataTable salasDataTable = new DataTable();
+            //loadTableColumns(salasDataTable);
+            salasDataTable.Columns.Add("idSala");
+            salasDataTable.Columns.Add("idGrupo");
+            salasDataTable.Columns.Add("idMateria");
+            salasDataTable.Columns.Add("Docente");
+            salasDataTable.Columns.Add("anfitrion");
+            salasDataTable.Columns.Add("resumen");
+            salasDataTable.Columns.Add("isDone");
+            salasDataTable.Columns.Add("creacion");
+
+            string idGrupo;
+            if (type == 2)
+            {
+                foreach (SalaModelo sala in new SalaModelo(Session.type).salaPorDocente(ci, isDone))
+                    salasPorGM.Add(sala);
+                    //salasPorGM.AddRange(new SalaModelo(Session.type).salaPorDocente(ci, isDone));
+                
+            }
+            else if (type == 1)
+            {
+                for (int x = 0; x < grupoMaterias.Count; x++)
+                {
+                    idGrupo = grupoMaterias[x][0];
+                    salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupo(idGrupo, isDone));
+                }
+            }
+           
+            salasPorGM.Sort((y, z) => DateTime.Compare(z.creacion, y.creacion));
+
+            foreach (SalaModelo sala in salasPorGM)
+            {
+                salasDataTable.Rows.Add(
+                    sala.idSala,
+                    sala.idGrupo,
+                    sala.idMateria,
+                    sala.docenteCi,
+                    sala.anfitrion,
+                    sala.resumen,
+                    sala.isDone,
+                    sala.creacion);
+
+            }
+            return salasDataTable;
+        }
 
         private static void loadSalasToDataTable(DataTable table, List<SalaModelo>salas) {
             string nombreAnfitron;

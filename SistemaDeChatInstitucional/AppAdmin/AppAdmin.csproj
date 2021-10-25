@@ -66,6 +66,12 @@
     <Compile Include="menuScreens\bienvenido.designer.cs">
       <DependentUpon>bienvenido.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\chatScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\chatScreen.Designer.cs">
+      <DependentUpon>chatScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\listarOrientaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,12 @@
     </Compile>
     <Compile Include="menuScreens\listarRequerimientos.Designer.cs">
       <DependentUpon>listarRequerimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\replyScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\replyScreen.Designer.cs">
+      <DependentUpon>replyScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="menuScreens\TicketAlumno.cs">
       <SubType>Form</SubType>
@@ -122,6 +134,9 @@
     <EmbeddedResource Include="menuScreens\bienvenido.resx">
       <DependentUpon>bienvenido.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\chatScreen.resx">
+      <DependentUpon>chatScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\listarOrientaciones.resx">
       <DependentUpon>listarOrientaciones.cs</DependentUpon>
     </EmbeddedResource>
@@ -133,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\listarRequerimientos.resx">
       <DependentUpon>listarRequerimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\replyScreen.resx">
+      <DependentUpon>replyScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\TicketAlumno.resx">
       <DependentUpon>TicketAlumno.cs</DependentUpon>
@@ -170,6 +188,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppDocente\AppDocente.csproj">
+      <Project>{0C44AF75-D045-4D8A-BDA7-BF8D91504B4E}</Project>
+      <Name>AppDocente</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CapaLogica\CapaLogica.csproj">
       <Project>{66855f56-cf4a-4155-9ae2-9cb50f63982c}</Project>
       <Name>CapaLogica</Name>

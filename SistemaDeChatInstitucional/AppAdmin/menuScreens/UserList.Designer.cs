@@ -33,10 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelDatagridViews = new System.Windows.Forms.Panel();
+            this.cbHistorialSalas = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -76,6 +79,7 @@
             // 
             // panelDatagridViews
             // 
+            this.panelDatagridViews.Controls.Add(this.cbHistorialSalas);
             this.panelDatagridViews.Controls.Add(this.label3);
             this.panelDatagridViews.Controls.Add(this.textBox2);
             this.panelDatagridViews.Controls.Add(this.label2);
@@ -91,6 +95,19 @@
             this.panelDatagridViews.TabIndex = 5;
             this.panelDatagridViews.Visible = false;
             // 
+            // cbHistorialSalas
+            // 
+            this.cbHistorialSalas.AutoSize = true;
+            this.cbHistorialSalas.Font = new System.Drawing.Font("Cambria", 11.25F, System.Drawing.FontStyle.Bold);
+            this.cbHistorialSalas.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.cbHistorialSalas.Location = new System.Drawing.Point(675, 7);
+            this.cbHistorialSalas.Name = "cbHistorialSalas";
+            this.cbHistorialSalas.Size = new System.Drawing.Size(191, 21);
+            this.cbHistorialSalas.TabIndex = 7;
+            this.cbHistorialSalas.Text = "Cargar salas archivadas";
+            this.cbHistorialSalas.UseVisualStyleBackColor = true;
+            this.cbHistorialSalas.CheckedChanged += new System.EventHandler(this.cbHistorialSalas_CheckedChanged);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -101,6 +118,7 @@
             this.label3.Size = new System.Drawing.Size(43, 15);
             this.label3.TabIndex = 12;
             this.label3.Text = "filtrar";
+            this.label3.Visible = false;
             // 
             // textBox2
             // 
@@ -108,6 +126,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(139, 20);
             this.textBox2.TabIndex = 11;
+            this.textBox2.Visible = false;
             // 
             // label2
             // 
@@ -119,6 +138,7 @@
             this.label2.Size = new System.Drawing.Size(43, 15);
             this.label2.TabIndex = 10;
             this.label2.Text = "filtrar";
+            this.label2.Visible = false;
             // 
             // textBox1
             // 
@@ -126,6 +146,8 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(139, 20);
             this.textBox1.TabIndex = 9;
+            this.textBox1.TabStop = false;
+            this.textBox1.Visible = false;
             // 
             // lblSalas
             // 
@@ -153,8 +175,11 @@
             // 
             this.dgvSalas.AllowUserToAddRows = false;
             this.dgvSalas.AllowUserToDeleteRows = false;
-            this.dgvSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvSalas.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.dgvSalas.AllowUserToResizeColumns = false;
+            this.dgvSalas.AllowUserToResizeRows = false;
+            this.dgvSalas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgvSalas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvSalas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSalas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
@@ -166,6 +191,14 @@
             this.dgvSalas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSalas.ColumnHeadersHeight = 25;
             this.dgvSalas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSalas.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSalas.EnableHeadersVisualStyles = false;
             this.dgvSalas.Location = new System.Drawing.Point(439, 29);
             this.dgvSalas.Margin = new System.Windows.Forms.Padding(0);
@@ -174,13 +207,14 @@
             this.dgvSalas.ReadOnly = true;
             this.dgvSalas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvSalas.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvSalas.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvSalas.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvSalas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalas.Size = new System.Drawing.Size(433, 112);
             this.dgvSalas.TabIndex = 6;
+            this.dgvSalas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSalas_CellClick);
             // 
             // dgvListarConsultasPrivs
             // 
@@ -191,18 +225,27 @@
             this.dgvListarConsultasPrivs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvListarConsultasPrivs.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dgvListarConsultasPrivs.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.dgvListarConsultasPrivs.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvListarConsultasPrivs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvListarConsultasPrivs.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvListarConsultasPrivs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(38)))), ((int)(((byte)(89)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvListarConsultasPrivs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvListarConsultasPrivs.ColumnHeadersHeight = 25;
             this.dgvListarConsultasPrivs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvListarConsultasPrivs.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvListarConsultasPrivs.EnableHeadersVisualStyles = false;
             this.dgvListarConsultasPrivs.Location = new System.Drawing.Point(0, 29);
             this.dgvListarConsultasPrivs.Margin = new System.Windows.Forms.Padding(0);
@@ -211,13 +254,14 @@
             this.dgvListarConsultasPrivs.ReadOnly = true;
             this.dgvListarConsultasPrivs.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvListarConsultasPrivs.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvListarConsultasPrivs.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvListarConsultasPrivs.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvListarConsultasPrivs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListarConsultasPrivs.Size = new System.Drawing.Size(433, 112);
             this.dgvListarConsultasPrivs.TabIndex = 5;
+            this.dgvListarConsultasPrivs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListarConsultasPrivs_CellClick);
             // 
             // label1
             // 
@@ -267,5 +311,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.CheckBox cbHistorialSalas;
     }
 }

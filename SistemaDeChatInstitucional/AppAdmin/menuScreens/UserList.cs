@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using AppDocente.menuScreens;
 using CapaLogica;
 
 namespace AppAdmin.menuScreens
@@ -15,7 +16,8 @@ namespace AppAdmin.menuScreens
         List<List<List<string>>> gruposMateriasDePersonas = new List<List<List<string>>>();
         //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo  (SOLO ALUMNOS[][][2]=isDeleted)    DOCENTES( [][][2]=idMateria   [][][3]=nombreMateria   [][][4]=isDeleted )
 
-
+        int indexOfControl=-1;
+        
         List<byte[]> fotoDePersona = new List<byte[]>();
 
         Size pbSize = new Size(100,100);
@@ -270,61 +272,74 @@ namespace AppAdmin.menuScreens
         private void myflowLayoutPanel_Click_flpHori(object sender, EventArgs e)
         {
             Enabled = false;
-            try
-            {
+            
                 Control x = (Control)sender;
-                int indexOfControl = int.Parse(x.AccessibleName.Substring(x.AccessibleName.IndexOf('_') + 1));
+                indexOfControl = int.Parse(x.AccessibleName.Substring(x.AccessibleName.IndexOf('_') + 1));
                 Console.WriteLine(indexOfControl);
-                dgvListarConsultasPrivs.DataSource = null;
+            loadDGV();
+            Enabled = true;
+        }
+        private void loadDGV()
+        {
+            try { 
+            dgvListarConsultasPrivs.DataSource = null;
+            dgvSalas.DataSource = null;
+            if (personas[indexOfControl][4] == "1" || personas[indexOfControl][4] == "2")
+            {
+                Console.WriteLine("DOCENTE OR ALUMNO");
+                int indexType = int.Parse(personas[indexOfControl][4]) - 1;
+                // Console.WriteLine(x.AccessibleName);
+                dgvListarConsultasPrivs.DataSource = Controlador.ConsultasPrivada(personas[indexOfControl][0], Convert.ToByte(indexType));
+                dgvListarConsultasPrivs.Columns["idConsultaPrivada"].Visible = false;
+                dgvListarConsultasPrivs.Columns["Tema"].Visible = true;
+                dgvListarConsultasPrivs.Columns["Status"].Visible = false;
 
-                if (personas[indexOfControl][4] == "1" || personas[indexOfControl][4] == "2")
-                {
-                    Console.WriteLine("DOCENTE OR ALUMNO");
-                    int indexType = int.Parse(personas[indexOfControl][4])-1;
-                    // Console.WriteLine(x.AccessibleName);
-                    dgvListarConsultasPrivs.DataSource = Controlador.ConsultasPrivada(personas[indexOfControl][0], Convert.ToByte(indexType));
-                    dgvListarConsultasPrivs.Columns["idConsultaPrivada"].Visible = false;
-                    dgvListarConsultasPrivs.Columns["Tema"].Visible = true;
-                    dgvListarConsultasPrivs.Columns["Status"].Visible = false;
+                dgvListarConsultasPrivs.Columns["Alumno"].Visible = true;
+                dgvListarConsultasPrivs.Columns["ciDocente"].Visible = false;
+                dgvListarConsultasPrivs.Columns["Destinatario"].Visible = false;
+                dgvListarConsultasPrivs.Columns["idMensaje"].Visible = false;
+                dgvListarConsultasPrivs.ClearSelection();
+                panelDatagridViews.Visible = true;
+                panelDatagridViews.Enabled = true;
+                //dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode= DataGridViewAutoSizeColumnMode.Fill;
+                dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                foreach (DataGridViewColumn col in dgvListarConsultasPrivs.Columns)
+                    col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    dgvListarConsultasPrivs.Columns["Alumno"].Visible = true;
-                    dgvListarConsultasPrivs.Columns["ciDocente"].Visible = false;
-                    dgvListarConsultasPrivs.Columns["Destinatario"].Visible = false;
-                    dgvListarConsultasPrivs.Columns["idMensaje"].Visible = false;
-                    dgvListarConsultasPrivs.ClearSelection();
-                    panelDatagridViews.Visible = true;
-                    panelDatagridViews.Enabled = true;
-
-                    foreach (DataGridViewRow Myrow in dgvListarConsultasPrivs.Rows)
-                    {
-                        if ((string)Myrow.Cells["Status"].Value == "pendiente")
-                        {
-                            Myrow.Cells[5].Style.BackColor = Color.FromArgb(250, 182, 37);
-                        }
-                        else if ((string)Myrow.Cells["Status"].Value == "resuelta")
-                            Myrow.Cells[5].Style.BackColor = Color.FromArgb(113, 230, 72);
-                    }
-                    //dgvListarConsultasPrivs.Columns["Alumno"].AutoSizeMode
-                    //dgvListarConsultasPrivs.Columns[""].AutoSizeMode
-                    //dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode
-
-                    //dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode
+                loadSalas(cbHistorialSalas.Checked, indexOfControl, Convert.ToByte(personas[indexOfControl][4]), personas[indexOfControl][0]);
+                dgvSalas.Columns["creacion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                foreach (DataGridViewColumn col in dgvSalas.Columns)
+                    col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     //dgvListarConsultasPrivs.Visible = true;
                     //dgvListarConsultasPrivs.Enabled = true;
                     //dgvSalas.Visible = true;
                     //dgvSalas.Enabled = true;
-                }
-                else
-                {
-                    panelDatagridViews.Visible = false;
-                    panelDatagridViews.Enabled = false;
-                }
+                    dgvListarConsultasPrivs.ClearSelection();
+                    dgvSalas.ClearSelection();
             }
+            else
+            {
+                panelDatagridViews.Visible = false;
+                panelDatagridViews.Enabled = false;
+            }
+        }
             catch (Exception ex)
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
-            Enabled = true;
+}
+        private void loadSalas(bool loadHistorial, int indexOfControl, byte type, string ci)
+        {
+            dgvSalas.DataSource = Controlador.loadSalasDePersonaForAdmin(loadHistorial,gruposMateriasDePersonas[indexOfControl],type,ci);
+            dgvSalas.Columns["idSala"].Visible = false;
+            dgvSalas.Columns["idGrupo"].Visible = false;
+            dgvSalas.Columns["idMateria"].Visible = false;
+            dgvSalas.Columns["resumen"].Visible = false;
+            dgvSalas.Columns["isDone"].Visible = false;
+
+            dgvSalas.Columns["anfitrion"].Visible = true;
+            dgvSalas.Columns["creacion"].Visible = true;
+            dgvSalas.Columns["Docente"].Visible = true;
         }
         private void mybutton_Click_Actividad(object sender, EventArgs e)
         {
@@ -432,5 +447,59 @@ namespace AppAdmin.menuScreens
             Enabled = true;
         }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
+
+        private void dgvListarConsultasPrivs_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string asunto = dgvListarConsultasPrivs.CurrentRow.Cells["Tema"].Value.ToString();
+            int idConsultaPrivada = int.Parse(dgvListarConsultasPrivs.CurrentRow.Cells["idConsultaPrivada"].Value.ToString());
+            string ciAlumno = dgvListarConsultasPrivs.CurrentRow.Cells["Alumno"].Value.ToString();
+            string ciDocente = dgvListarConsultasPrivs.CurrentRow.Cells["ciDocente"].Value.ToString(); ;
+            string status = dgvListarConsultasPrivs.CurrentRow.Cells["Status"].Value.ToString();
+            List<List<string>> mensajes = Controlador.getMsgsFromConsulta(idConsultaPrivada, ciAlumno, ciDocente);
+
+            byte type = Convert.ToByte(personas[indexOfControl][4]);
+            string ci = personas[indexOfControl][0];
+            string nombre = personas[indexOfControl][1];
+            string apellido = personas[indexOfControl][2];
+
+
+
+            new replyScreen(mensajes, asunto, status,type,ci, nombre, apellido).Show();
+        }
+
+        private void cbHistorialSalas_CheckedChanged(object sender, EventArgs e)
+        {
+            Enabled = false;
+            if (cbHistorialSalas.Checked)
+            {
+                lblSalas.Text = "Salas del usuario archivadas";
+            }
+            else
+            {
+                lblSalas.Text = "Salas del usuario";
+            }
+            loadDGV();
+            Enabled = true;
+        }
+
+        private void dgvSalas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int idSala = int.Parse(dgvSalas.CurrentRow.Cells["idSala"].Value.ToString());
+            string asunto = Convert.ToString(dgvSalas.CurrentRow.Cells["resumen"].Value);
+            string anfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["anfitrion"].Value);
+            bool isDone = Convert.ToBoolean(dgvSalas.CurrentRow.Cells["isDone"].Value);
+
+            string ci = personas[indexOfControl][0];
+            string nombre = personas[indexOfControl][1];
+            string apellido = personas[indexOfControl][2];
+            try
+            {
+                new chatScreen(idSala, asunto, anfitrion, anfitrion, isDone,ci, nombre,apellido).Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+        }
     }
 }

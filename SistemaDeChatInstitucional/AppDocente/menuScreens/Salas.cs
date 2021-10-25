@@ -78,8 +78,6 @@ namespace AppDocente.menuScreens
             dgvSalas.Columns["resumen"].Visible = false;
             dgvSalas.Columns["isDone"].Visible = false;
             dgvSalas.Columns["creacion"].Visible = false;
-
-            
         }
         private void loadGM()
         {
