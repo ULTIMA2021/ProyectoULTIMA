@@ -135,11 +135,13 @@
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
+            this.label7.Enabled = false;
             this.label7.Location = new System.Drawing.Point(109, 191);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 6;
             this.label7.Text = "Apodo:";
+            this.label7.Visible = false;
             // 
             // label8
             // 
@@ -204,12 +206,14 @@
             // 
             this.txtApodo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtApodo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.txtApodo.Enabled = false;
             this.txtApodo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtApodo.Location = new System.Drawing.Point(156, 188);
             this.txtApodo.MaxLength = 20;
             this.txtApodo.Name = "txtApodo";
             this.txtApodo.Size = new System.Drawing.Size(93, 20);
             this.txtApodo.TabIndex = 14;
+            this.txtApodo.Visible = false;
             // 
             // txtClave
             // 
@@ -219,6 +223,7 @@
             this.txtClave.Location = new System.Drawing.Point(146, 402);
             this.txtClave.MaxLength = 16;
             this.txtClave.Name = "txtClave";
+            this.txtClave.PasswordChar = '●';
             this.txtClave.Size = new System.Drawing.Size(103, 20);
             this.txtClave.TabIndex = 16;
             // 
@@ -240,6 +245,7 @@
             this.txtClaveVerificacion.Location = new System.Drawing.Point(146, 428);
             this.txtClaveVerificacion.MaxLength = 16;
             this.txtClaveVerificacion.Name = "txtClaveVerificacion";
+            this.txtClaveVerificacion.PasswordChar = '●';
             this.txtClaveVerificacion.Size = new System.Drawing.Size(103, 20);
             this.txtClaveVerificacion.TabIndex = 18;
             // 
@@ -304,6 +310,7 @@
             // 
             this.lblAsterix.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAsterix.AutoSize = true;
+            this.lblAsterix.Enabled = false;
             this.lblAsterix.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAsterix.ForeColor = System.Drawing.Color.Red;
             this.lblAsterix.Location = new System.Drawing.Point(255, 188);
@@ -311,6 +318,7 @@
             this.lblAsterix.Size = new System.Drawing.Size(16, 20);
             this.lblAsterix.TabIndex = 30;
             this.lblAsterix.Text = "*";
+            this.lblAsterix.Visible = false;
             // 
             // label11
             // 

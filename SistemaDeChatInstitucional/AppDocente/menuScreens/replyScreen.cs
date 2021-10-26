@@ -167,7 +167,6 @@ namespace AppDocente.menuScreens
         private void button1_Click(object sender, EventArgs e)
         {
             Dispose();
-            Close();
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)

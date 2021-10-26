@@ -84,6 +84,12 @@
     <Compile Include="menuScreens\Login.designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\misAsignaturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\misAsignaturas.Designer.cs">
+      <DependentUpon>misAsignaturas.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\misMensajes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\misAsignaturas.resx">
+      <DependentUpon>misAsignaturas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\misMensajes.resx">
       <DependentUpon>misMensajes.cs</DependentUpon>

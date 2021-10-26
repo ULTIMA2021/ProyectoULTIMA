@@ -221,7 +221,6 @@ namespace AppDocente.menuScreens
         {
             timer.Dispose();
             Dispose();
-            Close();
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
@@ -263,7 +262,6 @@ namespace AppDocente.menuScreens
             {
                 Controlador.updateEstadoSala(idSala,true);
                 this.Dispose();
-                this.Close();
             }
         }
 

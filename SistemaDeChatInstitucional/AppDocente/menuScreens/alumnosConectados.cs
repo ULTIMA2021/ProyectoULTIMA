@@ -129,7 +129,6 @@ namespace AppDocente.menuScreens
         {
             timer.Stop();
             Dispose();
-            Close();
         }
 
         private void replyScreen_Resize(object sender, EventArgs e)

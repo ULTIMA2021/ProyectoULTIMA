@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaLogica;
 
-namespace AppAlumno.menuScreens
+namespace AppDocente.menuScreens
 {
     public partial class misAsignaturas : Form
     {
@@ -18,15 +18,9 @@ namespace AppAlumno.menuScreens
         public misAsignaturas()
         {
             InitializeComponent();
-          //  dgvAsignaturas.DataSource = AlumnoControlador.listarMaterias();
         }
         private void btnExit_Click(object sender, EventArgs e) => this.Dispose();
         private void misAsignaturas_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
-
-        private void dgvAsignaturas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            dgvAsignaturas.ClearSelection();
-        }
 
         private void misAsignaturas_Load(object sender, EventArgs e)
         {
@@ -39,13 +33,17 @@ namespace AppAlumno.menuScreens
 
             foreach (List<string> entry in Session.grupoMaterias)
                 if (entry[4] == "True")
-                    dgvSource.Rows.Add(entry[0], entry[1], entry[2], entry[3], "SI");
+                    dgvSource.Rows.Add(entry[0],entry[1],entry[2],entry[3],"SI");
                 else
                     dgvSource.Rows.Add(entry[0], entry[1], entry[2], entry[3], " ");
 
             dgvAsignaturas.DataSource = dgvSource;
             dgvAsignaturas.Columns["idGrupo"].Visible = false;
             dgvAsignaturas.Columns["idMateria"].Visible = false;
+
         }
+
+        private void dgvAsignaturas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e) => dgvAsignaturas.ClearSelection();
+        
     }
 }

@@ -19,7 +19,7 @@ namespace AppDocente.menuScreens
         string ciAlumno;
         string asunto;
         string status;
-        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public delegate void CustomFormClosedHandler(object sender, FormClosedEventArgs e, string text);
         public event CustomFormClosedHandler CustomFormClosed;
         public misMensajes()
         {

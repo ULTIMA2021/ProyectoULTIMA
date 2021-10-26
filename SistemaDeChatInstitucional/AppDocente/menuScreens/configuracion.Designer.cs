@@ -50,6 +50,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnEliminarCuenta = new System.Windows.Forms.Button();
+            this.btnSacarFoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,9 +63,9 @@
             this.lblNombre.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNombre.Location = new System.Drawing.Point(39, 100);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(60, 15);
+            this.lblNombre.Size = new System.Drawing.Size(105, 15);
             this.lblNombre.TabIndex = 0;
-            this.lblNombre.Text = "Nombre:";
+            this.lblNombre.Text = "Primer nombre:";
             // 
             // lblApellido
             // 
@@ -75,9 +76,9 @@
             this.lblApellido.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApellido.Location = new System.Drawing.Point(39, 131);
             this.lblApellido.Name = "lblApellido";
-            this.lblApellido.Size = new System.Drawing.Size(61, 15);
+            this.lblApellido.Size = new System.Drawing.Size(106, 15);
             this.lblApellido.TabIndex = 1;
-            this.lblApellido.Text = "Apellido:";
+            this.lblApellido.Text = "Primer apellido:";
             // 
             // lblUsuario
             // 
@@ -97,7 +98,6 @@
             this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombre.Enabled = false;
             this.txtNombre.Location = new System.Drawing.Point(208, 97);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(168, 20);
@@ -108,7 +108,6 @@
             this.txtApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtApellido.Enabled = false;
             this.txtApellido.Location = new System.Drawing.Point(208, 128);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(168, 20);
@@ -226,6 +225,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContraseñaAnterior.Location = new System.Drawing.Point(357, 311);
             this.txtContraseñaAnterior.Name = "txtContraseñaAnterior";
+            this.txtContraseñaAnterior.PasswordChar = '●';
             this.txtContraseñaAnterior.Size = new System.Drawing.Size(145, 20);
             this.txtContraseñaAnterior.TabIndex = 15;
             // 
@@ -235,6 +235,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNuevaContraseña.Location = new System.Drawing.Point(357, 349);
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
+            this.txtNuevaContraseña.PasswordChar = '●';
             this.txtNuevaContraseña.Size = new System.Drawing.Size(145, 20);
             this.txtNuevaContraseña.TabIndex = 16;
             // 
@@ -310,12 +311,29 @@
             this.btnEliminarCuenta.UseVisualStyleBackColor = false;
             this.btnEliminarCuenta.Click += new System.EventHandler(this.btnEliminarCuenta_Click);
             // 
+            // btnSacarFoto
+            // 
+            this.btnSacarFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSacarFoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnSacarFoto.FlatAppearance.BorderSize = 0;
+            this.btnSacarFoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSacarFoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacarFoto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSacarFoto.Location = new System.Drawing.Point(587, 237);
+            this.btnSacarFoto.Name = "btnSacarFoto";
+            this.btnSacarFoto.Size = new System.Drawing.Size(71, 20);
+            this.btnSacarFoto.TabIndex = 21;
+            this.btnSacarFoto.Text = "Sacar";
+            this.btnSacarFoto.UseVisualStyleBackColor = false;
+            this.btnSacarFoto.Click += new System.EventHandler(this.btnSacarFoto_Click);
+            // 
             // configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(705, 452);
+            this.Controls.Add(this.btnSacarFoto);
             this.Controls.Add(this.btnEliminarCuenta);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnGuardarContraseña);
@@ -369,5 +387,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnEliminarCuenta;
+        private System.Windows.Forms.Button btnSacarFoto;
     }
 }

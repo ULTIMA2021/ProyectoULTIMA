@@ -17,7 +17,7 @@ namespace AppDocente.menuScreens
 {
     public partial class configuracion : Form
     {
-        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public delegate void CustomFormClosedHandler(object sender, FormClosedEventArgs e, string text);
         public event CustomFormClosedHandler CustomFormClosed;
 
         public configuracion() => InitializeComponent();
@@ -50,7 +50,15 @@ namespace AppDocente.menuScreens
             {
                 Console.WriteLine(ex.Message);
             }
-            Controlador.actualizarPersona(Session.cedula, txtNombre.Text, txtApellido.Text,Session.clave, foto);
+            try
+            {
+                Controlador.actualizarPersona(Session.cedula, txtNombre.Text, txtApellido.Text, Session.clave, foto);
+                MessageBox.Show("Datos actualizados! Sus cambios se visualizaran la proxima vez que ingrese");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
         }
 
 
@@ -152,5 +160,10 @@ namespace AppDocente.menuScreens
         }
 
         private void configuracion_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
+
+        private void btnSacarFoto_Click(object sender, EventArgs e)
+        {
+            pbFoto.Image = null;
+        }
     }
 }

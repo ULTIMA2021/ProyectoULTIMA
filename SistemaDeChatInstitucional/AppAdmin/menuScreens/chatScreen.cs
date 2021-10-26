@@ -113,7 +113,6 @@ namespace AppAdmin.menuScreens
         private void button1_Click(object sender, EventArgs e)
         {
             Dispose();
-            Close();
         }
 
         private void replyScreen_Resize(object sender, EventArgs e) => myLoad();

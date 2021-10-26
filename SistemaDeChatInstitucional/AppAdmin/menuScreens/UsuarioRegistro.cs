@@ -12,7 +12,6 @@ namespace AppAdmin.menuScreens
     public partial class UsuarioRegistro : Form
     {
         bool fromUserList = false;
-        bool hasEdited = false;
         char[] separator = { ' ', ' ', ' ' };
         char[] sep = { '-', '-' };
 
@@ -59,7 +58,7 @@ namespace AppAdmin.menuScreens
                 case 3:
                     fromUserList = true;
                     comboBoxUser.SelectedIndex = 3;
-                    lblApodo.Visible = false;
+                    //lblApodo.Visible = false;
 
                     break;
                 case 4:
@@ -72,9 +71,9 @@ namespace AppAdmin.menuScreens
         private void caseAlumno(string apodo, List<List<string>> checkedItems)
         {
             fromUserList = true;
-            lblApodo.Visible = true;
+            //lblApodo.Visible = true;
             comboBoxUser.SelectedIndex = 1;
-            txtApodo.Text = apodo;
+            //txtApodo.Text = apodo;
             todasMisOpciones = Controlador.gruposToListForRegister();
             for (int x = 0; x < checkedItems.Count; x++)
                 for (int y = 0; y < clbOpciones.Items.Count; y++)
@@ -94,7 +93,7 @@ namespace AppAdmin.menuScreens
         private void caseDocente(List<List<string>> checkedItems)
         {
             fromUserList = true;
-            lblApodo.Visible = false;
+            //lblApodo.Visible = false;
             comboBoxUser.SelectedIndex = 2;
             clbOpciones.DataSource = Controlador.grupoMateriaToListForModification(txtCedula.Text);
             //clbOpciones.DataSource = Controlador.grupoMateriaToListForModification();
@@ -107,9 +106,9 @@ namespace AppAdmin.menuScreens
         }
         private void caseAlumnoTemp(string apodo, List<List<string>> checkedItems)
         {
-            lblApodo.Visible = true;
+            //lblApodo.Visible = true;
             comboBoxUser.SelectedIndex = 1;
-            txtApodo.Text = apodo;
+            //txtApodo.Text = apodo;
             for (int x = 0; x < checkedItems.Count; x++)
                 for (int y = 0; y < clbOpciones.Items.Count; y++)
                     if (clbOpciones.Items[y].ToString().Split(separator)[0] == checkedItems[x][0])
@@ -169,7 +168,7 @@ namespace AppAdmin.menuScreens
             lblClaveVeri.Visible = false;
             label11.Visible = false;
             label17.Visible = false;
-            txtApodo.Enabled = false;
+            //txtApodo.Enabled = false;
             btnReset.Visible = true;
             txtClaveVerificacion.Text = clave;
             txtClave.Text = clave;
@@ -191,7 +190,7 @@ namespace AppAdmin.menuScreens
             txtApellido.Clear();
             txtNombre.Clear();
             txtCedula.Clear();
-            txtApodo.Clear();
+            //txtApodo.Clear();
             txtClave.Clear();
             txtClaveVerificacion.Clear();
             clbOpciones.DataSource = null;
@@ -240,9 +239,9 @@ namespace AppAdmin.menuScreens
         }
         private void changeFieldsForUser(int type)
         {
-            lblApodoAst.Visible = true;
-            txtApodo.Visible = true;
-            lblApodo.Visible = true;
+            //lblApodoAst.Visible = true;
+            //txtApodo.Visible = true;
+            //lblApodo.Visible = true;
             clbOpciones.Visible = true;
             lblOptions.Visible = true;
             
@@ -283,7 +282,7 @@ namespace AppAdmin.menuScreens
             btnFoto.Enabled = true;
             clbOpciones.Enabled = true;
 
-            lblApodoAst.Visible = true;
+            //lblApodoAst.Visible = true;
             clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.gruposToListForRegister();
             clbOpciones.ClearSelected();
@@ -294,10 +293,10 @@ namespace AppAdmin.menuScreens
             btnFoto.Enabled = true;
             clbOpciones.Enabled = true;
 
-            lblApodoAst.Visible = false;
-            txtApodo.Visible = false;
-            lblApodo.Visible = false;
-            txtApodo.Enabled = false;
+            //lblApodoAst.Visible = false;
+            //txtApodo.Visible = false;
+            //lblApodo.Visible = false;
+            //txtApodo.Enabled = false;
             clbOpciones.DataSource = null;
             clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
             clbOpciones.ClearSelected();
@@ -309,13 +308,13 @@ namespace AppAdmin.menuScreens
             btnFoto.Enabled = true;
 
             lblOptions.Visible = false;
-            lblApodoAst.Visible = false;
-            txtApodo.Visible = false;
-            lblApodo.Visible = false;
+           // lblApodoAst.Visible = false;
+           // txtApodo.Visible = false;
+            //lblApodo.Visible = false;
             clbOpciones.Visible = false;
             pbFoto.Enabled = false;
             clbOpciones.Enabled = false;
-            txtApodo.Enabled = false;
+           // txtApodo.Enabled = false;
             clbOpciones.DataSource = null;
         }
 
@@ -350,7 +349,7 @@ namespace AppAdmin.menuScreens
                         getFotoFromPB());
                     if (comboBoxUser.SelectedIndex == 1)
                     {
-                        Controlador.AltaAlumno(txtCedula.Text, txtApodo.Text, getIndexesChecklist());
+                        Controlador.AltaAlumno(txtCedula.Text, "apodo", getIndexesChecklist());
                         clbOpciones.DataSource = Controlador.gruposToListForRegister();
                     }
                     else if (comboBoxUser.SelectedIndex == 2)

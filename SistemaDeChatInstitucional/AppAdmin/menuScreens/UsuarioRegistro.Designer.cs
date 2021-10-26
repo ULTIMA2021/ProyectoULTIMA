@@ -32,11 +32,11 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnSacarFoto = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.lblApodoAst = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -48,10 +48,8 @@
             this.comboBoxUser = new System.Windows.Forms.ComboBox();
             this.lblClaveVeri = new System.Windows.Forms.Label();
             this.lblClave = new System.Windows.Forms.Label();
-            this.lblApodo = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtClaveVerificacion = new System.Windows.Forms.TextBox();
-            this.txtApodo = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtClave = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -63,7 +61,6 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.btnSacarFoto = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
@@ -87,7 +84,6 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.lblApodoAst);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
@@ -99,10 +95,8 @@
             this.groupBox1.Controls.Add(this.comboBoxUser);
             this.groupBox1.Controls.Add(this.lblClaveVeri);
             this.groupBox1.Controls.Add(this.lblClave);
-            this.groupBox1.Controls.Add(this.lblApodo);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtClaveVerificacion);
-            this.groupBox1.Controls.Add(this.txtApodo);
             this.groupBox1.Controls.Add(this.txtApellido);
             this.groupBox1.Controls.Add(this.txtClave);
             this.groupBox1.Controls.Add(this.txtNombre);
@@ -119,6 +113,19 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Registrar nuevo usuario";
+            // 
+            // btnSacarFoto
+            // 
+            this.btnSacarFoto.BackColor = System.Drawing.Color.Firebrick;
+            this.btnSacarFoto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSacarFoto.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacarFoto.Location = new System.Drawing.Point(565, 147);
+            this.btnSacarFoto.Name = "btnSacarFoto";
+            this.btnSacarFoto.Size = new System.Drawing.Size(76, 32);
+            this.btnSacarFoto.TabIndex = 39;
+            this.btnSacarFoto.Text = "Sacar foto";
+            this.btnSacarFoto.UseVisualStyleBackColor = false;
+            this.btnSacarFoto.Click += new System.EventHandler(this.btnSacarFoto_Click);
             // 
             // btnReset
             // 
@@ -161,15 +168,6 @@
             this.label17.Size = new System.Drawing.Size(15, 17);
             this.label17.TabIndex = 36;
             this.label17.Text = "*";
-            // 
-            // lblApodoAst
-            // 
-            this.lblApodoAst.AutoSize = true;
-            this.lblApodoAst.Location = new System.Drawing.Point(328, 185);
-            this.lblApodoAst.Name = "lblApodoAst";
-            this.lblApodoAst.Size = new System.Drawing.Size(15, 17);
-            this.lblApodoAst.TabIndex = 35;
-            this.lblApodoAst.Text = "*";
             // 
             // label14
             // 
@@ -282,15 +280,6 @@
             this.lblClave.TabIndex = 12;
             this.lblClave.Text = "Clave:";
             // 
-            // lblApodo
-            // 
-            this.lblApodo.AutoSize = true;
-            this.lblApodo.Location = new System.Drawing.Point(67, 185);
-            this.lblApodo.Name = "lblApodo";
-            this.lblApodo.Size = new System.Drawing.Size(58, 17);
-            this.lblApodo.TabIndex = 11;
-            this.lblApodo.Text = "Apodo:";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -309,15 +298,6 @@
             this.txtClaveVerificacion.Size = new System.Drawing.Size(189, 25);
             this.txtClaveVerificacion.TabIndex = 9;
             this.txtClaveVerificacion.UseSystemPasswordChar = true;
-            // 
-            // txtApodo
-            // 
-            this.txtApodo.Location = new System.Drawing.Point(133, 182);
-            this.txtApodo.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.txtApodo.MaxLength = 20;
-            this.txtApodo.Name = "txtApodo";
-            this.txtApodo.Size = new System.Drawing.Size(189, 25);
-            this.txtApodo.TabIndex = 8;
             // 
             // txtApellido
             // 
@@ -428,19 +408,6 @@
             this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // btnSacarFoto
-            // 
-            this.btnSacarFoto.BackColor = System.Drawing.Color.Firebrick;
-            this.btnSacarFoto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSacarFoto.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSacarFoto.Location = new System.Drawing.Point(565, 147);
-            this.btnSacarFoto.Name = "btnSacarFoto";
-            this.btnSacarFoto.Size = new System.Drawing.Size(76, 32);
-            this.btnSacarFoto.TabIndex = 39;
-            this.btnSacarFoto.Text = "Sacar foto";
-            this.btnSacarFoto.UseVisualStyleBackColor = false;
-            this.btnSacarFoto.Click += new System.EventHandler(this.btnSacarFoto_Click);
-            // 
             // UsuarioRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,11 +442,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.TextBox txtClaveVerificacion;
-        private System.Windows.Forms.TextBox txtApodo;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtClave;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblApodo;
         private System.Windows.Forms.Label lblClaveVeri;
         private System.Windows.Forms.Label lblClave;
         private System.Windows.Forms.Label label8;
@@ -493,7 +458,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label lblApodoAst;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnReset;

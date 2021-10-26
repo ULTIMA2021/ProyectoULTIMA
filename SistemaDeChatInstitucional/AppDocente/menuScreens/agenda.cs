@@ -12,7 +12,7 @@ namespace AppDocente.menuScreens
 {
     public partial class agenda : Form
     {
-        public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
+        public delegate void CustomFormClosedHandler(object sender, FormClosedEventArgs e, string text);
         public event CustomFormClosedHandler CustomFormClosed;
 
         public agenda() => InitializeComponent();

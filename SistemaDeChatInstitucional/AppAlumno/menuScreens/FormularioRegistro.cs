@@ -54,7 +54,7 @@ namespace Login
                                                   txtNombre.Text,
                                                   txtApellido.Text,
                                                   clave,
-                                                  txtApodo.Text,
+                                                  "apodo",
                                                   foto,
                                                   getIndexesChecklist());
 

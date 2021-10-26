@@ -50,6 +50,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnEliminarCuenta = new System.Windows.Forms.Button();
+            this.btnSacarFoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
@@ -227,6 +228,7 @@
             this.txtContraseñaAnterior.Location = new System.Drawing.Point(357, 311);
             this.txtContraseñaAnterior.MaxLength = 15;
             this.txtContraseñaAnterior.Name = "txtContraseñaAnterior";
+            this.txtContraseñaAnterior.PasswordChar = '●';
             this.txtContraseñaAnterior.Size = new System.Drawing.Size(145, 20);
             this.txtContraseñaAnterior.TabIndex = 15;
             // 
@@ -237,6 +239,7 @@
             this.txtNuevaContraseña.Location = new System.Drawing.Point(357, 349);
             this.txtNuevaContraseña.MaxLength = 15;
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
+            this.txtNuevaContraseña.PasswordChar = '●';
             this.txtNuevaContraseña.Size = new System.Drawing.Size(145, 20);
             this.txtNuevaContraseña.TabIndex = 16;
             // 
@@ -312,12 +315,29 @@
             this.btnEliminarCuenta.UseVisualStyleBackColor = false;
             this.btnEliminarCuenta.Click += new System.EventHandler(this.btnEliminarCuenta_Click);
             // 
+            // btnSacarFoto
+            // 
+            this.btnSacarFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSacarFoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnSacarFoto.FlatAppearance.BorderSize = 0;
+            this.btnSacarFoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSacarFoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacarFoto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSacarFoto.Location = new System.Drawing.Point(587, 237);
+            this.btnSacarFoto.Name = "btnSacarFoto";
+            this.btnSacarFoto.Size = new System.Drawing.Size(71, 20);
+            this.btnSacarFoto.TabIndex = 22;
+            this.btnSacarFoto.Text = "Sacar";
+            this.btnSacarFoto.UseVisualStyleBackColor = false;
+            this.btnSacarFoto.Click += new System.EventHandler(this.btnSacarFoto_Click);
+            // 
             // configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(705, 452);
+            this.Controls.Add(this.btnSacarFoto);
             this.Controls.Add(this.btnEliminarCuenta);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnGuardarContraseña);
@@ -370,5 +390,6 @@
         public System.Windows.Forms.Label lblPassNueva;
         public System.Windows.Forms.Button btnGuardarContraseña;
         public System.Windows.Forms.Button btnEliminarCuenta;
+        private System.Windows.Forms.Button btnSacarFoto;
     }
 }

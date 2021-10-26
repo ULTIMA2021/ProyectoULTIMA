@@ -20,7 +20,14 @@ namespace AppDocente
         System.Windows.Forms.Timer timer;
         string msgCount;
 
-        public docenteMainScreen() => InitializeComponent();
+        public docenteMainScreen()
+        {
+            InitializeComponent();
+            btnAgenda.Visible = false;
+            btnAgenda.Enabled = false;
+            btnAlumnos.Visible = false;
+            btnAlumnos.Enabled = false;
+        }
             
         
         // Metodos para desplazar ventana
@@ -119,11 +126,11 @@ namespace AppDocente
             ventana.CustomFormClosed += CloseListener;
             openScreen(ventana);
         }
-        //private void setAsignaturas(menuScreens.misAsignaturas ventana)
-        //{
-        //    ventana.CustomFormClosed += CloseListener;
-        //    openScreen(ventana);
-        //}
+        private void setMisAsignaturas(menuScreens.misAsignaturas ventana)
+        {
+            ventana.CustomFormClosed += CloseListener;
+            openScreen(ventana);
+        }
         private void setSala(menuScreens.Salas ventana)
         {
             ventana.CustomFormClosed += CloseListener;
@@ -185,8 +192,8 @@ namespace AppDocente
         private void btnAsignaturas_Click(object sender, EventArgs e)
         {
             Enabled = false;
-            //menuScreens.asignaturas window = new menuScreens.asignaturas();
-            //setAsignaturas(window);
+            menuScreens.misAsignaturas window = new menuScreens.misAsignaturas();
+            setMisAsignaturas(window);
             enableButtonsExceptSelected(btnAsignaturas);
             Enabled = true;
         }
