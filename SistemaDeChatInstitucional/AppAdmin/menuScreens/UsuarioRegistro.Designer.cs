@@ -61,8 +61,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelTitulo = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panelTitulo.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnIngresar
@@ -408,6 +414,51 @@
             this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panelTitulo);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(920, 384);
+            this.panel1.TabIndex = 32;
+            // 
+            // panelTitulo
+            // 
+            this.panelTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(3)))), ((int)(((byte)(28)))));
+            this.panelTitulo.Controls.Add(this.label5);
+            this.panelTitulo.Controls.Add(this.button1);
+            this.panelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitulo.Location = new System.Drawing.Point(0, 0);
+            this.panelTitulo.Name = "panelTitulo";
+            this.panelTitulo.Size = new System.Drawing.Size(918, 31);
+            this.panelTitulo.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.label5.Location = new System.Drawing.Point(29, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 14);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "           ";
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(886, 1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(34, 27);
+            this.button1.TabIndex = 0;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // UsuarioRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,12 +470,16 @@
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UsuarioRegistro";
             this.Text = "listarDocentes";
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panelTitulo.ResumeLayout(false);
+            this.panelTitulo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -463,5 +518,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelTitulo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
     }
 }
