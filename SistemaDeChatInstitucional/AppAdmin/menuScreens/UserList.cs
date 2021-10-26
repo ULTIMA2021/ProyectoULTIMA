@@ -16,11 +16,11 @@ namespace AppAdmin.menuScreens
         List<List<List<string>>> gruposMateriasDePersonas = new List<List<List<string>>>();
         //[x][][]=indice de alumnoTemp en app      [][x][]=indice de grupo de alumno   [][][0]=idGrupo  [][][1]=nombreGrupo  (SOLO ALUMNOS[][][2]=isDeleted)    DOCENTES( [][][2]=idMateria   [][][3]=nombreMateria   [][][4]=isDeleted )
 
-        int indexOfControl=-1;
-        
+        int indexOfControl = -1;
+
         List<byte[]> fotoDePersona = new List<byte[]>();
 
-        Size pbSize = new Size(100,100);
+        Size pbSize = new Size(100, 100);
         Padding padHori = new Padding(3, 3, 3, 10);
         Padding padRestofControls = new Padding(10, 0, 10, 0);
         Padding padPicture = new Padding(10, 10, 3, 10);
@@ -51,7 +51,7 @@ namespace AppAdmin.menuScreens
                 Button btnActividad = new Button();
                 Button btnModificar = new Button();
                 Button btnBorrar = new Button();
-                //Button btnConsultas = new Button();
+                Button btnDeActivate = new Button();
                 //Button btnSalas = new Button();
 
                 loadToLists(x);
@@ -66,7 +66,7 @@ namespace AppAdmin.menuScreens
                 btnActividad = defineButton(btnActividad, $"btnActividad_{x}", "Actividad");
                 btnModificar = defineButton(btnModificar, $"btnModificar_{x}", "Modificar");
                 btnBorrar = defineButton(btnBorrar, $"btnBorrar_{x}", "Borrar");
-                //btnConsultas = defineButton(btnConsultas, $"btnConsultas_{x}","Consultas");
+                btnDeActivate = defineButton(btnDeActivate, $"btnDeActivate_{x}","Desactivar");
                 //btnSalas = defineButton(btnSalas, $"btnSalas_{x}","Salas");
                 EventHandler clickOnPerson = new EventHandler(myflowLayoutPanel_Click_flpHori);
 
@@ -75,7 +75,7 @@ namespace AppAdmin.menuScreens
                     case "1": //alumno
                         //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{personas[x][5]}");
                         groups = defineLabels(groups, $"g_{x}", prepareAlumnoGroupLabelText(x));
-                        flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight,Color.PowderBlue);
+                        flpHori = defineFlowPanel(flpHori, $"flpHori_{x}", FlowDirection.LeftToRight, Color.PowderBlue);
                         flpVert = defineFlowPanel(flpVert, $"flpVert_{x}", FlowDirection.TopDown, Color.PowderBlue);
                         flpSpacer.BackColor = Color.PowderBlue;
                         flpHori.Click += clickOnPerson;
@@ -110,7 +110,7 @@ namespace AppAdmin.menuScreens
                 flpVert.Controls.Add(btnActividad);
                 flpVert.Controls.Add(btnModificar);
                 flpVert.Controls.Add(btnBorrar);
-                //vert.Controls.Add(btnConsultas);
+                flpVert.Controls.Add(btnDeActivate);
                 //vert.Controls.Add(btnSalas);
 
 
@@ -123,7 +123,7 @@ namespace AppAdmin.menuScreens
                 flpSpacer.AutoSize = false;
                 flpSpacer.Height = 2;
                 flpSpacer.Width = flowLayoutPanel1.Width - (ci.Width + foto.Width + nombre.Width + apellido.Width + groups.Width + flpVert.Width + 3);
-                
+
                 flpHori.Controls.Add(flpSpacer);
                 flpHori.Controls.Add(flpVert);
 
@@ -157,7 +157,7 @@ namespace AppAdmin.menuScreens
         {
             foreach (List<string> persona in personas)
             {
-                List<List <string>> grupoOrGrupoMateria = new List<List<string>>();
+                List<List<string>> grupoOrGrupoMateria = new List<List<string>>();
                 if (persona[4] == "2") //docente 
                 {
                     grupoOrGrupoMateria = Controlador.obtenerGrupoMaterias(persona[0]);
@@ -249,14 +249,14 @@ namespace AppAdmin.menuScreens
                     b.Click += new EventHandler(mybutton_Click_Actividad);
                     b.Text = "Actividad";
                     break;
-                //case "Consultas":
-                //    b.Click += new EventHandler(mybutton_Click_btnConsultas);
-                //    b.Text = "Consultas";
-                //    break;
-                //case "Salas":
-                //    b.Click += new EventHandler(mybutton_Click_btnSalas);
-                //    b.Text = "Salas";
-                //    break;
+                case "Desactivar":
+                    b.Click += new EventHandler(mybutton_Click_btnDeActivate);
+                    b.Text = "Desactivar";
+                    break;
+                    //case "Salas":
+                    //    b.Click += new EventHandler(mybutton_Click_btnSalas);
+                    //    b.Text = "Salas";
+                    //    break;
             }
             return b;
         }
@@ -272,65 +272,66 @@ namespace AppAdmin.menuScreens
         private void myflowLayoutPanel_Click_flpHori(object sender, EventArgs e)
         {
             Enabled = false;
-            
-                Control x = (Control)sender;
-                indexOfControl = int.Parse(x.AccessibleName.Substring(x.AccessibleName.IndexOf('_') + 1));
-                Console.WriteLine(indexOfControl);
+
+            Control x = (Control)sender;
+            indexOfControl = int.Parse(x.AccessibleName.Substring(x.AccessibleName.IndexOf('_') + 1));
+            Console.WriteLine(indexOfControl);
             loadDGV();
             Enabled = true;
         }
         private void loadDGV()
         {
-            try { 
-            dgvListarConsultasPrivs.DataSource = null;
-            dgvSalas.DataSource = null;
-            if (personas[indexOfControl][4] == "1" || personas[indexOfControl][4] == "2")
+            try
             {
-                Console.WriteLine("DOCENTE OR ALUMNO");
-                int indexType = int.Parse(personas[indexOfControl][4]) - 1;
-                // Console.WriteLine(x.AccessibleName);
-                dgvListarConsultasPrivs.DataSource = Controlador.ConsultasPrivada(personas[indexOfControl][0], Convert.ToByte(indexType));
-                dgvListarConsultasPrivs.Columns["idConsultaPrivada"].Visible = false;
-                dgvListarConsultasPrivs.Columns["Tema"].Visible = true;
-                dgvListarConsultasPrivs.Columns["Status"].Visible = false;
+                dgvListarConsultasPrivs.DataSource = null;
+                dgvSalas.DataSource = null;
+                if (personas[indexOfControl][4] == "1" || personas[indexOfControl][4] == "2")
+                {
+                    Console.WriteLine("DOCENTE OR ALUMNO");
+                    int indexType = int.Parse(personas[indexOfControl][4]) - 1;
+                    // Console.WriteLine(x.AccessibleName);
+                    dgvListarConsultasPrivs.DataSource = Controlador.ConsultasPrivada(personas[indexOfControl][0], Convert.ToByte(indexType));
+                    dgvListarConsultasPrivs.Columns["idConsultaPrivada"].Visible = false;
+                    dgvListarConsultasPrivs.Columns["Tema"].Visible = true;
+                    dgvListarConsultasPrivs.Columns["Status"].Visible = false;
 
-                dgvListarConsultasPrivs.Columns["Alumno"].Visible = true;
-                dgvListarConsultasPrivs.Columns["ciDocente"].Visible = false;
-                dgvListarConsultasPrivs.Columns["Destinatario"].Visible = false;
-                dgvListarConsultasPrivs.Columns["idMensaje"].Visible = false;
-                dgvListarConsultasPrivs.ClearSelection();
-                panelDatagridViews.Visible = true;
-                panelDatagridViews.Enabled = true;
-                //dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode= DataGridViewAutoSizeColumnMode.Fill;
-                dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                foreach (DataGridViewColumn col in dgvListarConsultasPrivs.Columns)
-                    col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    dgvListarConsultasPrivs.Columns["Alumno"].Visible = true;
+                    dgvListarConsultasPrivs.Columns["ciDocente"].Visible = false;
+                    dgvListarConsultasPrivs.Columns["Destinatario"].Visible = false;
+                    dgvListarConsultasPrivs.Columns["idMensaje"].Visible = false;
+                    dgvListarConsultasPrivs.ClearSelection();
+                    panelDatagridViews.Visible = true;
+                    panelDatagridViews.Enabled = true;
+                    //dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode= DataGridViewAutoSizeColumnMode.Fill;
+                    dgvListarConsultasPrivs.Columns["Fecha ultimo mensaje"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    foreach (DataGridViewColumn col in dgvListarConsultasPrivs.Columns)
+                        col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                loadSalas(cbHistorialSalas.Checked, indexOfControl, Convert.ToByte(personas[indexOfControl][4]), personas[indexOfControl][0]);
-                dgvSalas.Columns["creacion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                foreach (DataGridViewColumn col in dgvSalas.Columns)
-                    col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    loadSalas(cbHistorialSalas.Checked, indexOfControl, Convert.ToByte(personas[indexOfControl][4]), personas[indexOfControl][0]);
+                    dgvSalas.Columns["creacion"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    foreach (DataGridViewColumn col in dgvSalas.Columns)
+                        col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                     //dgvListarConsultasPrivs.Visible = true;
                     //dgvListarConsultasPrivs.Enabled = true;
                     //dgvSalas.Visible = true;
                     //dgvSalas.Enabled = true;
                     dgvListarConsultasPrivs.ClearSelection();
                     dgvSalas.ClearSelection();
+                }
+                else
+                {
+                    panelDatagridViews.Visible = false;
+                    panelDatagridViews.Enabled = false;
+                }
             }
-            else
-            {
-                panelDatagridViews.Visible = false;
-                panelDatagridViews.Enabled = false;
-            }
-        }
             catch (Exception ex)
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
             }
-}
+        }
         private void loadSalas(bool loadHistorial, int indexOfControl, byte type, string ci)
         {
-            dgvSalas.DataSource = Controlador.loadSalasDePersonaForAdmin(loadHistorial,gruposMateriasDePersonas[indexOfControl],type,ci);
+            dgvSalas.DataSource = Controlador.loadSalasDePersonaForAdmin(loadHistorial, gruposMateriasDePersonas[indexOfControl], type, ci);
             dgvSalas.Columns["idSala"].Visible = false;
             dgvSalas.Columns["idGrupo"].Visible = false;
             dgvSalas.Columns["idMateria"].Visible = false;
@@ -364,7 +365,7 @@ namespace AppAdmin.menuScreens
 
             try
             {
-                //fetch usesr logs
+                new UserLogs(ci, nombre, apellido).Show();
             }
             catch (Exception ex)
             {
@@ -385,7 +386,7 @@ namespace AppAdmin.menuScreens
             string apodo = "";
             try
             {
-                 apodo = personas[indexFromButton][5];
+                apodo = personas[indexFromButton][5];
             }
             catch (Exception)
             {
@@ -407,44 +408,53 @@ namespace AppAdmin.menuScreens
         }
         private void mybutton_Click_btnBorrar(object sender, EventArgs e)
         {
-
             Enabled = false;
             Button b = (Button)sender;
             int indexFromButton = int.Parse(b.AccessibleName.Substring(10));
             string ci = personas[indexFromButton][0];
             try
             {
-                try
-                {
-                    Controlador.bajaPersona(ci);
-
-                }
-                catch (Exception ex)
-                {
-                    Controlador.deactivatePerson(ci,true);
-                }
-
+                Controlador.bajaPersona(ci);
+                MessageBox.Show($"El usuario ha sido borrado del sistema!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(Controlador.errorHandler(ex));
+
+                Controlador.deactivatePerson(ci, true);
             }
             flowLayoutPanel1.Controls.Clear();
             createControls();
             Enabled = true;
         }
-        private void mybutton_Click_btnConsultas(object sender, EventArgs e)
+        private void mybutton_Click_btnDeActivate(object sender, EventArgs e)
         {
 
             Enabled = false;
+            Button b = (Button)sender;
+            int indexFromButton = int.Parse(b.AccessibleName.Substring(14));
+            string ci = personas[indexFromButton][0];
+            string type = personas[indexFromButton][4];
 
+            try
+            {
+                Controlador.deactivatePerson(ci, true);
+                MessageBox.Show($"La cuenta del usuario ha sido desactivada!\nPara re-activarla ingrese la persona en el formulario de registro");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+
+            flowLayoutPanel1.Controls.Clear();
+            createControls();
             Enabled = true;
         }
         private void mybutton_Click_btnSalas(object sender, EventArgs e)
         {
 
             Enabled = false;
-            
+
             Enabled = true;
         }
         private void btnExit_Click(object sender, EventArgs e) => Dispose();
@@ -462,7 +472,7 @@ namespace AppAdmin.menuScreens
             string ci = personas[indexOfControl][0];
             string nombre = personas[indexOfControl][1];
             string apellido = personas[indexOfControl][2];
-            new replyScreen(mensajes, asunto, status,type,ci, nombre, apellido).Show();
+            new replyScreen(mensajes, asunto, status, type, ci, nombre, apellido).Show();
         }
 
         private void cbHistorialSalas_CheckedChanged(object sender, EventArgs e)
@@ -492,7 +502,7 @@ namespace AppAdmin.menuScreens
             string apellido = personas[indexOfControl][2];
             try
             {
-                new chatScreen(idSala, asunto, anfitrion, anfitrion, isDone,ci, nombre,apellido).Show();
+                new chatScreen(idSala, asunto, anfitrion, anfitrion, isDone, ci, nombre, apellido).Show();
             }
             catch (Exception ex)
             {

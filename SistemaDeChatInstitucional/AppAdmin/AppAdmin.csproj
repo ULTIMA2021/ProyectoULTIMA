@@ -102,6 +102,12 @@
     <Compile Include="menuScreens\TicketAlumno.Designer.cs">
       <DependentUpon>TicketAlumno.cs</DependentUpon>
     </Compile>
+    <Compile Include="menuScreens\UserLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\UserLogs.Designer.cs">
+      <DependentUpon>UserLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="menuScreens\UsuarioRegistro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\TicketAlumno.resx">
       <DependentUpon>TicketAlumno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\UserLogs.resx">
+      <DependentUpon>UserLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\UsuarioRegistro.resx">
       <DependentUpon>UsuarioRegistro.cs</DependentUpon>

@@ -155,6 +155,24 @@ namespace CapaDeDatos
             comando.Prepare();
             EjecutarQuery(comando, errorType);
         }
+        public List<List<string>> getUserLogs(string ci)
+        {
+            comando.CommandText = "SELECT login, logOut FROM userlogs WHERE ci=@ci ORDER BY login ASC;";
+            comando.Parameters.AddWithValue("@ci", ci);
+            comando.Prepare();
+            EjecutarQuery(comando, errorType);
+            lector = comando.ExecuteReader();
+            List<List<string>> logs = new List<List<string>>();
+            while (lector.Read())
+            {
+                List<string> l = new List<string>();
+                l.Add(lector[0].ToString());
+                l.Add(lector[1].ToString());
+                logs.Add(l);
+            }
+            lector.Close();
+            return logs;
+        }
 
         private List<PersonaModelo> obtenerUsuario(MySqlCommand commando)
         {

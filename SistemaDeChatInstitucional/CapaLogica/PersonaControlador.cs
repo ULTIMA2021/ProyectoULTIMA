@@ -165,8 +165,9 @@ namespace CapaLogica
                     return;
             }
         }
-        public static void logout()=> new PersonaModelo(Session.type).updateLastUserlog(Session.cedula);
 
+        public static void logout()=> new PersonaModelo(Session.type).updateLastUserlog(Session.cedula);
+        public static List<List<string>> getUserLogs(string ci) => new PersonaModelo(Session.type).getUserLogs(ci);
 
         //public static List<string> obtenerPersona()
         //{

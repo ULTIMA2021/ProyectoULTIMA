@@ -117,18 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAMNJREFUOE+V
+        UlsKAjEQ6y0EH+BN24/2Vvu1F1DR/fCx4E00WaZSsZ2OgUAfSTo7sy6EMIAHcO2MoFY8AzcX8AVewW4I
+        NaKl5+y891ss7jzA+hZj3Ij2BymlFXSTaJ/gfrmwhDTNGVpI15xRCzGbM2DaQfSgAWSzlobxjHci0wHx
+        pxIx918uUZYtAep0vgBDOedZmD9H/09qDSt7olaidbsbYhlVM+SfOVdDsDnxAJwpEG0T1FArniMDRnCy
+        mDMkBFWH8Q1tGiClpAVy2wAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAR1JREFUOE+V
-        kr1KA0EcxEVEJIVYq60hFrY2glj6ELaWPoDVtUHSWokvcKDHfey1B5Z2iqJoa5E2TSySqL/NzZrLEk1u
-        YOBu/jOzu7e35CPP8+0syx7hrqTFEUXRBsEn+G2MOZa8GIqiWCN4Z8O1C4IgWCZ048LiNcc5oHhFtr+B
-        +dILV9ljN1GapkeyT4PB+YzQLA7gmWIT0P7gGf8lC16FYbiq+HgH+ww+feMcthUvgXDiGeaxz8JbipdA
-        uPBMz/ADflW0X9qjKFpCV2mcwf0HSZI0eD5Eu4UjN4dD9OY47MC9rzN4sQZXUAVlLWZvKrC7ONVoAsQd
-        hl37E0maQhzHm3heVdKRXA/ayYiiVFJ9UBDCd73WB99ozxhz/wOXZ3yP/FFJNwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAMNJREFUOE+V
+        UlsKAjEQ6y0EH+BN24/2Vvu1F1DR/fCx4E00WaZSsZ2OgUAfSTo7sy6EMIAHcO2MoFY8AzcX8AVewW4I
+        NaKl5+y891ss7jzA+hZj3Ij2BymlFXSTaJ/gfrmwhDTNGVpI15xRCzGbM2DaQfSgAWSzlobxjHci0wHx
+        pxIx918uUZYtAep0vgBDOedZmD9H/09qDSt7olaidbsbYhlVM+SfOVdDsDnxAJwpEG0T1FArniMDRnCy
+        mDMkBFWH8Q1tGiClpAVy2wAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

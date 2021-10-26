@@ -54,7 +54,7 @@ namespace CapaDeDatos
             }
             catch (MySqlException e)
             {
-                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery:  {e.Number}\n {e.Message}");
+                Console.WriteLine($"MODELO.CS SQL ERROR CODE EjecutarQuery:  {e.Number}\n{e.Message}");
                 throw new Exception($"{errorType}-{e.Number}");
             }
         }

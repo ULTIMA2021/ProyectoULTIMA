@@ -33,6 +33,7 @@ namespace AppAdmin.menuScreens
             load();
             CenterToScreen();
             loadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type, foto);
+
         }
 
         private void load()
@@ -347,19 +348,21 @@ namespace AppAdmin.menuScreens
                         txtApellido.Text.Trim(' '),
                         safePW,
                         getFotoFromPB());
-                    if (comboBoxUser.SelectedIndex == 1)
+                    switch (comboBoxUser.SelectedIndex)
                     {
-                        Controlador.AltaAlumno(txtCedula.Text, "apodo", getIndexesChecklist());
-                        clbOpciones.DataSource = Controlador.gruposToListForRegister();
+                        case 1:
+                            Controlador.AltaAlumno(txtCedula.Text, "apodo", getIndexesChecklist());
+                            clbOpciones.DataSource = Controlador.gruposToListForRegister();
+                            break;
+                        case 2:
+                            Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
+                            clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
+                            break;
+                        case 3:
+                            Controlador.AltaAdmin(txtCedula.Text);
+                            break;
                     }
-                    else if (comboBoxUser.SelectedIndex == 2)
-                    {
-                        Controlador.AltaDocente(txtCedula.Text, getIndexesChecklist());
-                        clbOpciones.DataSource = Controlador.grupoMateriaToListForRegister();
-                    }
-                    else if (comboBoxUser.SelectedIndex == 3)
-                        Controlador.AltaAdmin(txtCedula.Text);
-                    MessageBox.Show($"El {comboBoxUser.SelectedText} {txtNombre.Text} {txtApellido.Text} ha sido ingresado al sistema!");
+                    MessageBox.Show($"{txtNombre.Text} {txtApellido.Text} ha sido ingresado/a al sistema!");
 
                     if (fromUserList)
                         Dispose();
@@ -367,14 +370,11 @@ namespace AppAdmin.menuScreens
                 }
                 catch (Exception ex)
                 {
-                    if (ex.Message == "Persona-1644")
+                    if (ex.Message == "Persona-1062")
                     {
                         DialogResult confirmLogout = MessageBox.Show("Una persona con esa cedula ya existe en el sistema. Quiere reactivar la cuenta del usuario?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (DialogResult.Yes == confirmLogout)
-                        {
-                            Controlador.deactivatePerson(txtCedula.Text.Trim(),false);
-                            MessageBox.Show("Una persona con esa cedula ya existe en el sistema. Quiere reactivar la cuenta del usuario?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                        }
+                            reactivar();
                     }
                     else
                         MessageBox.Show(Controlador.errorHandler(ex));
@@ -398,6 +398,23 @@ namespace AppAdmin.menuScreens
                 Console.WriteLine("\t\tignore exception, person doesn't have picture");
             }
             return foto;
+        }
+        private void reactivar()
+        {
+            Controlador.deactivatePerson(txtCedula.Text.Trim(), false);
+            Controlador.actualizarPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text, getFotoFromPB());
+            switch (comboBoxUser.SelectedIndex)
+            {
+                case 1:
+                    sacarGrupoDeAlumno();
+                    agregarGrupoAlumno();
+                    break;
+                case 2:
+                    sacarGMdocente();
+                    agregarGMdocente();
+                    break;
+            }
+            MessageBox.Show($"La cuenta del usuario con cedula {txtCedula.Text} ha sido reactivada!\n\nLa clave de la cuenta ha sido reseteada", "Reactivada!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnFoto_Click(object sender, EventArgs e)
