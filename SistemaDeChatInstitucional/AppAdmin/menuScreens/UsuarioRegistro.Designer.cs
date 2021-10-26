@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsuarioRegistro));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.btnIngresar = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblOptions = new System.Windows.Forms.Label();
@@ -76,15 +75,6 @@
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Location = new System.Drawing.Point(52, 35);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(262, 103);
-            this.panel1.TabIndex = 32;
             // 
             // btnExit
             // 
@@ -424,7 +414,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(920, 384);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.btnIngresar);
@@ -444,7 +433,6 @@
         #endregion
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblOptions;
