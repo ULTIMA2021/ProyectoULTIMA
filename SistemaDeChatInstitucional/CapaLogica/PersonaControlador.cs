@@ -135,12 +135,16 @@ namespace CapaLogica
             {
                 bool okPassword = CryptographyUtils.comparePasswords(pass, personas[0].Clave);
                 if (okPassword)
+                {
                     setSession(personas[0]);
-                return okPassword;
+                    new PersonaModelo(Session.type).updateLastUserlog(Session.cedula);
+                    new PersonaModelo(Session.type).insertIntoUserLogs(Session.cedula);
+
+                    return okPassword;
+                }
             }
             return false;
         }
-
         private static void setSession(PersonaModelo per)
         {
             switch (Session.type)
@@ -161,6 +165,8 @@ namespace CapaLogica
                     return;
             }
         }
+        public static void logout()=> new PersonaModelo(Session.type).updateLastUserlog(Session.cedula);
+
 
         //public static List<string> obtenerPersona()
         //{

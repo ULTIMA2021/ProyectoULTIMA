@@ -402,6 +402,7 @@ namespace AppAdmin.menuScreens
                 fotoDePersona[indexFromButton]).ShowDialog();
             flowLayoutPanel1.Controls.Clear();
             createControls();
+            panelDatagridViews.Visible = false;
             Enabled = true;
         }
         private void mybutton_Click_btnBorrar(object sender, EventArgs e)
@@ -461,9 +462,6 @@ namespace AppAdmin.menuScreens
             string ci = personas[indexOfControl][0];
             string nombre = personas[indexOfControl][1];
             string apellido = personas[indexOfControl][2];
-
-
-
             new replyScreen(mensajes, asunto, status,type,ci, nombre, apellido).Show();
         }
 

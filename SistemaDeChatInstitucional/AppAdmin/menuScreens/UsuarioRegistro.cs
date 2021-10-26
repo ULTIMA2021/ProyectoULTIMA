@@ -366,7 +366,19 @@ namespace AppAdmin.menuScreens
                     resetFields();
                 }
                 catch (Exception ex)
-                { Controlador.errorHandler(ex); }
+                {
+                    if (ex.Message == "Persona-1644")
+                    {
+                        DialogResult confirmLogout = MessageBox.Show("Una persona con esa cedula ya existe en el sistema. Quiere reactivar la cuenta del usuario?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (DialogResult.Yes == confirmLogout)
+                        {
+                            Controlador.deactivatePerson(txtCedula.Text.Trim(),false);
+                            MessageBox.Show("Una persona con esa cedula ya existe en el sistema. Quiere reactivar la cuenta del usuario?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                        MessageBox.Show(Controlador.errorHandler(ex));
+                }
             }
             else MessageBox.Show("Las contraseñas no coinciden");
 

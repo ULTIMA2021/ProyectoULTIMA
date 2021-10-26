@@ -148,6 +148,7 @@ namespace AppAlumno
         private void btnExit_Click(object sender, EventArgs e)
         {
             //Dispose();
+            CapaLogica.Controlador.logout();
             Application.Exit();
         }
 
@@ -240,6 +241,7 @@ namespace AppAlumno
             DialogResult confirmLogout = MessageBox.Show("Realmente desea cerrar sesion?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == confirmLogout)
             {
+                Controlador.logout();
                 Dispose();
                 Application.Restart();
             }
@@ -324,6 +326,7 @@ namespace AppAlumno
 
         private void alumnoMainScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CapaLogica.Controlador.logout();
             Application.Exit();
         }
     }

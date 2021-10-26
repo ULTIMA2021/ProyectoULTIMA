@@ -163,6 +163,7 @@ namespace AppDocente
         private void btnExit_Click(object sender, EventArgs e)
         {
             //Dispose();
+            CapaLogica.Controlador.logout();
             Application.Exit(); 
         }
 
@@ -231,7 +232,7 @@ namespace AppDocente
             DialogResult confirmLogout = MessageBox.Show("Realmente desea cerrar sesion?", "Atencion!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (DialogResult.Yes == confirmLogout)
             {
-                Dispose();
+                CapaLogica.Controlador.logout();
                 Application.Restart();
             }
         }
@@ -321,6 +322,7 @@ namespace AppDocente
 
         private void docenteMainScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CapaLogica.Controlador.logout();
             Application.Exit();
         }
     }

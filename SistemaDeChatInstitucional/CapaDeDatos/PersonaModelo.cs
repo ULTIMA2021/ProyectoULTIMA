@@ -141,6 +141,21 @@ namespace CapaDeDatos
             EjecutarQuery(comando, errorType);
         }
 
+        public void insertIntoUserLogs(string ci)
+        {
+            comando.CommandText = "INSERT INTO userlogs(ci, login, logout) VALUES(@ci, NOW(), NULL);";
+            comando.Parameters.AddWithValue("@ci",ci);
+            comando.Prepare();
+            EjecutarQuery(comando,errorType);
+        }
+        public void updateLastUserlog(string ci)
+        {
+            comando.CommandText = "UPDATE userlogs SET logout=NOW() WHERE ci=@ci AND logout IS NULL;";
+            comando.Parameters.AddWithValue("@ci", ci);
+            comando.Prepare();
+            EjecutarQuery(comando, errorType);
+        }
+
         private List<PersonaModelo> obtenerUsuario(MySqlCommand commando)
         {
             lector = commando.ExecuteReader();

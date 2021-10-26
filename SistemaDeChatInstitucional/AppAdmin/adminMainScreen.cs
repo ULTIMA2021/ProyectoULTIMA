@@ -78,7 +78,7 @@ namespace AppAdmin
         //    //mostrarSubMenu(subMenuAdmin);
         //}
 
-        private void btnExit_Click(object sender, EventArgs e) => Application.Exit();
+        private void btnExit_Click(object sender, EventArgs e) =>Application.Exit();
 
         private void panelTitulo_MouseDown(object sender, MouseEventArgs e)
         {
@@ -120,7 +120,11 @@ namespace AppAdmin
 
         private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
 
-        private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e) => Application.Exit();
+        private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CapaLogica.Controlador.logout();
+            Application.Exit();
+        }
 
         private void btnNuevosAlumnos_Click(object sender, EventArgs e)
         {
