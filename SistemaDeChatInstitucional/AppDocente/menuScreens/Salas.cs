@@ -13,12 +13,12 @@ namespace AppDocente.menuScreens
 {
     public partial class Salas : Form
     {
-        bool loadFinishedSalas=false;
+        bool loadFinishedSalas = false;
         Timer timer;
         int checker = 0;
         public delegate void CustomFormClosedHandler(object semder, FormClosedEventArgs e, string text);
         public event CustomFormClosedHandler CustomFormClosed;
-        public Salas() => InitializeComponent();            
+        public Salas() => InitializeComponent();
 
         private void timer_Tick(Object sender, EventArgs e)
         {
@@ -67,8 +67,9 @@ namespace AppDocente.menuScreens
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            timer.Dispose();
-            this.Close();
+            // timer.Stop();
+            // timer.Dispose();
+            this.Dispose();
         }
 
         private void myLoad()
@@ -130,7 +131,7 @@ namespace AppDocente.menuScreens
             string anfitrion = Convert.ToString(dgvSalas.CurrentRow.Cells["anfitrion"].Value);
             bool isDone = Convert.ToBoolean(dgvSalas.CurrentRow.Cells["isDone"].Value);
             timer.Stop();
-            Controlador.updateSalaConnection(idSala.ToString(),true);
+            Controlador.updateSalaConnection(idSala.ToString(), true);
             new chatScreen(idSala, asunto, nombreAnfitrion, anfitrion, isDone).ShowDialog();
             dgvSalas.DataSource = Controlador.loadSalasDePersona(loadFinishedSalas);
             dgvSalas.Update();
@@ -177,12 +178,6 @@ namespace AppDocente.menuScreens
             dgvSalas.Columns[5].HeaderText = Resources.colGrupo;
             dgvSalas.Columns[6].HeaderText = Resources.colMateria;
             dgvSalas.Columns[8].HeaderText = Resources.colAnfitrion;
-        }
-
-        private void Salas_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            timer.Stop();
-            timer.Dispose();
         }
 
         private void dgvSalas_ColumnAdded(object sender, DataGridViewColumnEventArgs e) => dgvSalas.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -243,6 +238,12 @@ namespace AppDocente.menuScreens
             timer.Start();
         }
 
-        private void Salas_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
+        private void Salas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timer.Stop();
+            timer.Dispose();
+            CustomFormClosed(sender, e, "Hello World!");
+
+        }
     }
 }

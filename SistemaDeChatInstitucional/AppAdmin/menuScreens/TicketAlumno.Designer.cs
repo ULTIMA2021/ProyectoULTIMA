@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserList));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicketAlumno));
             this.btnExit = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -66,11 +66,11 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label1.Location = new System.Drawing.Point(24, 49);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 27);
+            this.label1.Size = new System.Drawing.Size(277, 27);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Tickets de alumno nuevos";
+            this.label1.Text = "Tickets de alumnos nuevos";
             // 
-            // UserList
+            // TicketAlumno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,7 +80,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "UserList";
+            this.Name = "TicketAlumno";
             this.Text = "listarAlumnos";
             this.ResumeLayout(false);
             this.PerformLayout();

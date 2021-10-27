@@ -180,13 +180,6 @@ namespace AppAlumno.menuScreens
             Enabled = true;
         }
 
-        private void Salas_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            timer.Stop();
-            timer.Dispose();
-            Dispose();
-        }
-
         private void dgvSalas_ColumnAdded(object sender, DataGridViewColumnEventArgs e)=> dgvSalas.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
 
         private void btnCrear_Click(object sender, EventArgs e)
@@ -249,6 +242,12 @@ namespace AppAlumno.menuScreens
             Enabled = true;
         }
 
-        private void Salas_FormClosed(object sender, FormClosedEventArgs e) => CustomFormClosed(sender, e, "Hello World!");
+        private void Salas_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timer.Stop();
+            timer.Dispose();
+            CustomFormClosed(sender, e, "Hello World!");
+
+        }
     }
 }

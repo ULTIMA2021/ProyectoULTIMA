@@ -14,6 +14,7 @@ namespace AppAdmin.menuScreens
         bool fromUserList = false;
         char[] separator = { ' ', ' ', ' ' };
         char[] sep = { '-', '-' };
+        bool alumnoTemp = false;
 
         List<string> uncheckedItems = new List<string>();
         List<List<int>> checkedItemsIndexOnLoad = new List<List<int>>(); //[x][]=indice de item en clb   [][0]=idGrupo  [][1]=nombreGrupo   [][2]=idMateria   [][3]=nombreMateria  [][]=isDeleted
@@ -61,6 +62,7 @@ namespace AppAdmin.menuScreens
                 case 3:
                     fromUserList = true;
                     comboBoxUser.SelectedIndex = 3;
+                    hideButtons();
                     //lblApodo.Visible = false;
 
                     break;
@@ -110,6 +112,7 @@ namespace AppAdmin.menuScreens
         private void caseAlumnoTemp(string apodo, List<List<string>> checkedItems)
         {
             //lblApodo.Visible = true;
+            alumnoTemp = true;
             comboBoxUser.SelectedIndex = 1;
             //txtApodo.Text = apodo;
             for (int x = 0; x < checkedItems.Count; x++)
@@ -179,7 +182,11 @@ namespace AppAdmin.menuScreens
         }
         private void setFields(string ci, string nombre, string apellido, int type)
         {
-            comboBoxUser.SelectedIndex = type;
+            if(type==4)
+                comboBoxUser.SelectedIndex = 1;
+            else
+                comboBoxUser.SelectedIndex = type;
+
             txtCedula.Enabled = false;
             comboBoxUser.Enabled = false;
 
@@ -341,8 +348,8 @@ namespace AppAdmin.menuScreens
                 {
                     Console.WriteLine("this person is getting registered");
                     string safePW = txtClave.Text;
-
-                    safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
+                    if(!alumnoTemp)
+                        safePW = CryptographyUtils.doEncryption(@txtClaveVerificacion.Text, null, null);
 
                     Controlador.AltaPersona(
                         txtCedula.Text.Trim(' '),

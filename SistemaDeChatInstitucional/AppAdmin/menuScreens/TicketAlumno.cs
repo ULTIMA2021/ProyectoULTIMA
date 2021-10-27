@@ -32,11 +32,13 @@ namespace AppAdmin.menuScreens
             {
                 FlowLayoutPanel hori = new FlowLayoutPanel();
                 FlowLayoutPanel vert = new FlowLayoutPanel();
+                FlowLayoutPanel flpSpacer = new FlowLayoutPanel();
+
                 PictureBox foto = new PictureBox();
                 Label nombre = new Label();
                 Label apellido = new Label();
                 Label ci = new Label();
-                Label apodo = new Label();
+                //Label apodo = new Label();
                 Label groups = new Label();
 
                 Button ingreso = new Button();
@@ -51,7 +53,7 @@ namespace AppAdmin.menuScreens
                 ci = defineLabels(ci, $"lblCi_{x}", $"Ci:\n{alumnos[x][0]}");
                 nombre = defineLabels(nombre, $"lblName_{x}", $"Nombre:\n{alumnos[x][1]}");
                 apellido = defineLabels(apellido, $"lblApellido_{x}", $"Apellido:\n{alumnos[x][2]}");
-                apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{alumnos[x][3]}");
+                //apodo = defineLabels(apodo, $"lblApodo_{x}", $"Apodo:\n{alumnos[x][3]}");
                 groups = defineLabels(groups, $"g_{x}", groupnameText);
 
                 foto = definePictureBox(foto, $"pb_{x}", Controlador.obtenerFotoAlumnoTemp(alumnos[x][0]));
@@ -67,12 +69,18 @@ namespace AppAdmin.menuScreens
                 vert.Controls.Add(modificar);
                 vert.Controls.Add(delete);
 
+                flpSpacer.AutoSize = false;
+                flpSpacer.Height = 2;
+                flpSpacer.Width = flowLayoutPanel1.Width - (ci.Width + foto.Width + nombre.Width + apellido.Width + groups.Width + vert.Width + 3);
+
+
                 hori.Controls.Add(foto);
                 hori.Controls.Add(ci);
                 hori.Controls.Add(nombre);
                 hori.Controls.Add(apellido);
-                hori.Controls.Add(apodo);
+                //hori.Controls.Add(apodo);
                 hori.Controls.Add(groups);
+                hori.Controls.Add(flpSpacer);
                 hori.Controls.Add(vert);
 
                 flowLayoutPanel1.Controls.Add(hori);

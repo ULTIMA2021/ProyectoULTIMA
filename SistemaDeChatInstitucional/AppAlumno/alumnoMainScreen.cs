@@ -135,9 +135,14 @@ namespace AppAlumno
 
         private void openScreen(Form ventana)
         {
-            if (ventanaActiva != null)
+            try
             {
                 ventanaActiva.Close();
+            }
+            catch (Exception ed)
+            {
+
+                Console.WriteLine(ed.Message);
             }
             ventanaActiva = ventana;
             ventana.TopLevel = false;
@@ -155,9 +160,14 @@ namespace AppAlumno
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            //Dispose();
-            CapaLogica.Controlador.logout();
-            Application.Exit();
+            try
+            {
+                Application.Exit();
+
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void btnMaximizar_Click(object sender, EventArgs e)
@@ -334,7 +344,7 @@ namespace AppAlumno
 
         private void alumnoMainScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
-            CapaLogica.Controlador.logout();
+            Controlador.logout();
             Application.Exit();
         }
     }

@@ -116,9 +116,15 @@ namespace AppDocente
         private Form ventanaActiva = null;
         public void openScreen(Form ventana)
         {
-            if (ventanaActiva != null)
+
+            try
             {
                 ventanaActiva.Close();
+            }
+            catch (Exception ed)
+            {
+
+                Console.WriteLine(ed.Message);
             }
 
             ventanaActiva = ventana;
@@ -338,7 +344,7 @@ namespace AppDocente
 
         private void docenteMainScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
-            CapaLogica.Controlador.logout();
+            Controlador.logout();
             Application.Exit();
         }
     }
