@@ -73,13 +73,7 @@ namespace CapaLogica
 
         public static List<List<string>> getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente)
         {
-            //List<MensajePrivadoModelo> mpm = new MensajePrivadoModelo(Session.type).mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente);
             List<List<string>> mensajesDeConsulta = new List<List<string>>();
-
-
-
-
-
             foreach (MensajePrivadoModelo m in new MensajePrivadoModelo(Session.type).mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
                 
