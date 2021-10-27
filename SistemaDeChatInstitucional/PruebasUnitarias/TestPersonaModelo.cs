@@ -134,6 +134,7 @@ namespace PruebasUnitarias
 
             try
             {
+                cedula = "11111111";
                 PersonaModelo p = new PersonaModelo();
                 p = p.obtenerPersona(cedula);
 

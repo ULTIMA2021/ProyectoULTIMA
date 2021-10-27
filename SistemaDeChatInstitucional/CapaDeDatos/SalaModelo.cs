@@ -91,7 +91,7 @@ namespace CapaDeDatos
             this.comando.Prepare();
             return (cargarSalasAlist(this.comando));
         }
-        private List<SalaModelo> cargarSalasAlist(MySqlCommand command)
+        public List<SalaModelo> cargarSalasAlist(MySqlCommand command)
         {
             lector = command.ExecuteReader();
             List<SalaModelo> salas = new List<SalaModelo>();
