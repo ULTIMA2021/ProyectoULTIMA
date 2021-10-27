@@ -23,7 +23,9 @@ namespace AppAlumno
         public alumnoMainScreen()
         {
             InitializeComponent();
-            this.Show();   
+            this.Show();
+            btnDocentes.Visible = false;
+            btnDocentes.Enabled = false;
         }
         // Metodos para desplazar ventana
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
