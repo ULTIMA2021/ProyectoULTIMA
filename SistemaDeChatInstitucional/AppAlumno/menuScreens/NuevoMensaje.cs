@@ -23,7 +23,6 @@ namespace AppAlumno.menuScreens
 
         private void btnEnviar_Click(object sender, EventArgs e) => enviarMensaje();
 
-
         private void enviarMensaje()
         {
             string ciDocente = dgvListaDocentes.CurrentRow.Cells[0].Value.ToString();

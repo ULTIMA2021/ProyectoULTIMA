@@ -29,18 +29,12 @@ namespace CapaLogica
         }
 
         public static void prepararMensaje(int idConsultaPrivada, string docenteCi, string alumnoCi,
-            string titulo, string cpStatus, DateTime cpFechaHora)
-        {
-            ConsultaPrivadaModelo cp = new ConsultaPrivadaModelo(Session.type);
-            cp.crearConsultaPrivada(idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora);
-        }
+            string titulo, string cpStatus, DateTime cpFechaHora) => new ConsultaPrivadaModelo(Session.type).crearConsultaPrivada(idConsultaPrivada, docenteCi, alumnoCi, titulo, cpStatus, cpFechaHora);
+
 
         public static void enviarMensaje(int idCp_Mensaje, int idConsultaPrivada, int ciDocente, int ciAlumno, string contenido, string attachment,
-                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus, int ciDestinatario)
-        {
-            MensajePrivadoModelo cpm = new MensajePrivadoModelo(Session.type);
-            cpm.enviarMensaje(idCp_Mensaje, idConsultaPrivada, ciDocente, ciAlumno, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus, ciDestinatario);
-        }
+                                   DateTime cp_mensajeFechaHora, string cp_mensajeStatus, int ciDestinatario) 
+            => new MensajePrivadoModelo(Session.type).enviarMensaje(idCp_Mensaje, idConsultaPrivada, ciDocente, ciAlumno, contenido, attachment, cp_mensajeFechaHora, cp_mensajeStatus, ciDestinatario);
 
         public static int GetidConsultaPrivada(int ciDocente, int ciAlumno)
         {
@@ -79,13 +73,18 @@ namespace CapaLogica
 
         public static List<List<string>> getMsgsFromConsulta(int idConsultaPrivada, string ciAlumno, string ciDocente)
         {
-            MensajePrivadoModelo mpm = new MensajePrivadoModelo(Session.type);
+            //List<MensajePrivadoModelo> mpm = new MensajePrivadoModelo(Session.type).mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente);
             List<List<string>> mensajesDeConsulta = new List<List<string>>();
 
-            foreach (MensajePrivadoModelo m in mpm.mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
+
+
+
+
+            foreach (MensajePrivadoModelo m in new MensajePrivadoModelo(Session.type).mensajesDeConsulta(idConsultaPrivada, ciAlumno, ciDocente))
             {
+                
                 if (Session.type == 0 || Session.type == 1)
-                    m.updateStatus();
+                    new MensajePrivadoModelo(Session.type).updateStatus(Session.cedula, idConsultaPrivada.ToString());
                 mensajesDeConsulta.Add(m.toStringList());
             }
             return mensajesDeConsulta;

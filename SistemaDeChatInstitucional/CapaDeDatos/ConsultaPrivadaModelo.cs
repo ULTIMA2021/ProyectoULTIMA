@@ -153,7 +153,8 @@ namespace CapaDeDatos
             int lastId = 0;
             try
             {
-                lastId = consultas.Last().idConsultaPrivada;
+                lastId = consultas.Count();
+                //lastId = consultas.Last().idConsultaPrivada;
             }
             catch (InvalidOperationException e)
             {
