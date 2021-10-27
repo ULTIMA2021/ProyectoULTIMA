@@ -375,21 +375,21 @@ namespace CapaDeDatos
         public List<PersonaModelo> obtenerDocente()
         {
             this.comando.CommandText = "SELECT d.ci, p.clave, p.nombre, p.apellido FROM docente d INNER JOIN persona p ON " +
-                                         "(d.ci=p.ci);";
+                                         "d.ci=p.ci AND isDeleted = FALSE;";
             return obtenerUsuario(this.comando);
         }
 
         public List<PersonaModelo> obtenerDatosDocente()
         {
             this.comando.CommandText = "SELECT p.nombre, p.apellido FROM docente d INNER JOIN persona p ON " +
-                                         "(d.ci=p.ci);";
+                                         "d.ci=p.ci AND isDeleted=FALSE;";
             return obtenerUsuario(this.comando);
         }
 
         public List<PersonaModelo> obtenerAdmin()
         {
             this.comando.CommandText = "SELECT a.ci, p.clave, p.nombre, p.apellido FROM administrador a INNER JOIN persona p ON " +
-                                         "(a.ci=p.ci);";
+                                         "a.ci=p.ci AND isDeleted=FALSE;";
             return obtenerUsuario(this.comando);
         }
 

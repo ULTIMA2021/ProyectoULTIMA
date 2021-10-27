@@ -34,7 +34,6 @@
             // flowPanelOnline
             // 
             this.flowPanelOnline.AutoScroll = true;
-            this.flowPanelOnline.AutoSize = true;
             this.flowPanelOnline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowPanelOnline.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowPanelOnline.Location = new System.Drawing.Point(0, 0);
@@ -56,7 +55,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.alumnosConectados_FormClosing);
             this.Resize += new System.EventHandler(this.replyScreen_Resize);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

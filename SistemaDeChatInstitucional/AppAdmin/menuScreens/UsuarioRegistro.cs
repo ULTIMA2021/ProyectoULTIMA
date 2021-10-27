@@ -404,7 +404,8 @@ namespace AppAdmin.menuScreens
         private void reactivar()
         {
             Controlador.deactivatePerson(txtCedula.Text.Trim(), false);
-            Controlador.actualizarPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, txtClave.Text, getFotoFromPB());
+            string pw = CryptographyUtils.doEncryption(txtClave.Text,null, null);
+            Controlador.actualizarPersona(txtCedula.Text, txtNombre.Text, txtApellido.Text, pw, getFotoFromPB());
             switch (comboBoxUser.SelectedIndex)
             {
                 case 1:

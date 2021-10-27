@@ -19,7 +19,7 @@ namespace CapaLogica
                     msg = "No se pudo conectar a la base de datos";
                     break;
                 case "Connection-1042":
-                    msg = "La conexion a esa direccion no existe";
+                    msg = "La conexion a esa direccion no existe o se perdio. La aplicacion se reiniciara\n\nSi sigue ocurriendo este problema digale a un administrador de la institucion ";
                     break;
                 case "Connection-":
                     msg = "Hubo un error con la conexion"; 

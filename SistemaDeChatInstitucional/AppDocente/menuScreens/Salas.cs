@@ -35,7 +35,16 @@ namespace AppDocente.menuScreens
             }
             catch (Exception ex)
             {
+                timer.Stop();
+                if (ex.Message.Contains("Connection"))
+                {
+                    timer.Dispose();
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                    Application.Exit();
+                }
+
                 MessageBox.Show(Controlador.errorHandler(ex));
+                timer.Start();
             }
         }
         private Timer setTimer()
@@ -174,7 +183,6 @@ namespace AppDocente.menuScreens
         {
             timer.Stop();
             timer.Dispose();
-            Dispose();
         }
 
         private void dgvSalas_ColumnAdded(object sender, DataGridViewColumnEventArgs e) => dgvSalas.Columns[e.Column.Index].SortMode = DataGridViewColumnSortMode.NotSortable;

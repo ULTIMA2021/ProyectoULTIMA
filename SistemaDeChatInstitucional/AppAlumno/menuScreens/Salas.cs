@@ -22,7 +22,7 @@ namespace AppAlumno.menuScreens
         public Salas() => InitializeComponent();            
         
 
-        private void timer_Tick(Object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -38,7 +38,14 @@ namespace AppAlumno.menuScreens
             }
             catch (Exception ex)
             {
+                timer.Stop();
+                if (ex.Message.Contains("Connection"))
+                {
+                    timer.Dispose();
                 MessageBox.Show(Controlador.errorHandler(ex));
+                    Application.Exit();
+                }
+                timer.Start();
             }
         }
         private Timer setTimer()
@@ -52,7 +59,6 @@ namespace AppAlumno.menuScreens
         {
             if (txtAsuntoSala.Text.Trim() == String.Empty)
                 btnCrear.Enabled = false;
-
         }
 
         private void txtAsuntoSala_Enter(object sender, EventArgs e)

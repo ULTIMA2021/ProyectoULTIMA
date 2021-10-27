@@ -58,7 +58,15 @@ namespace AppAlumno.menuScreens
             }
             catch (Exception ex)
             {
+                timer.Stop();
+                if (ex.Message.Contains("Connection"))
+                {
+                    timer.Dispose();
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                    Application.Exit();
+                }
                 MessageBox.Show(Controlador.errorHandler(ex));
+                timer.Start();
             }
 
         }

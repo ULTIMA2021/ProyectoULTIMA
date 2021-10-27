@@ -39,7 +39,7 @@ namespace AppDocente.menuScreens
             if (anfitrion == Session.cedula && x)
                 btnFinalizar.Visible = true;
         }
-        private void timer_Tick(Object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -60,7 +60,16 @@ namespace AppDocente.menuScreens
             }
             catch (Exception ex)
             {
+                timer.Stop();
+                if (ex.Message.Contains("Connection"))
+                {
+                    timer.Dispose();
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                    Application.Exit();
+                }
+
                 MessageBox.Show(Controlador.errorHandler(ex));
+                timer.Start();
             }
 
         }

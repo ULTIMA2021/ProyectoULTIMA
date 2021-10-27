@@ -35,7 +35,7 @@ namespace AppDocente
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
-        private void timer_Tick(Object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             Console.WriteLine("IM CHECKING");
             try
@@ -45,7 +45,16 @@ namespace AppDocente
             }
             catch (Exception ex)
             {
+                timer.Stop();
+                if (ex.Message.Contains("Connection"))
+                {
+                    timer.Dispose();
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                    Application.Exit();
+                }
+
                 MessageBox.Show(Controlador.errorHandler(ex));
+                timer.Start();
             }
         }
         private void msgLabelAndnotification()
@@ -163,8 +172,15 @@ namespace AppDocente
         private void btnExit_Click(object sender, EventArgs e)
         {
             //Dispose();
-            CapaLogica.Controlador.logout();
-            Application.Exit(); 
+            Controlador.logout();
+            try
+            {
+                Application.Exit();
+
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void btnMaximizar_Click(object sender, EventArgs e)

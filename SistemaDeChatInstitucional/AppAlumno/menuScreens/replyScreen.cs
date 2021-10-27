@@ -28,7 +28,6 @@ namespace AppAlumno.menuScreens
 
         public replyScreen()=>InitializeComponent();
         
-
         public replyScreen(List<List<string>> mensajes, string asunto, string status)
         {
             cargarVariables(mensajes,asunto);
