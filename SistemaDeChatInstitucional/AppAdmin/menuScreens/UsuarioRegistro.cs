@@ -25,8 +25,6 @@ namespace AppAdmin.menuScreens
         {
             InitializeComponent();
             load();
-            panel1.BorderStyle = BorderStyle.None;
-            panelTitulo.Visible = false;
         }
 
         public UsuarioRegistro(string ci, string nombre, string apellido, string apodo, string clave, List<List<string>> checkedItems, int type, byte[] foto)
@@ -35,7 +33,7 @@ namespace AppAdmin.menuScreens
             load();
             CenterToScreen();
             loadDatos(ci, nombre, apellido, apodo, clave, checkedItems, type, foto);
-            btnExit.Visible = false;
+
         }
 
         private void load()
@@ -594,11 +592,6 @@ namespace AppAdmin.menuScreens
             catch (Exception)
             {
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }
