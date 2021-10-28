@@ -99,6 +99,11 @@
     <Compile Include="TestPersonaModelo.cs" />
     <Compile Include="TestSalaModelo.cs" />
     <Compile Include="TestConsultaPrivadaModelo.cs" />
+    <Compile Include="TestGrupoModelo.cs" />
+    <Compile Include="TestMateriaModelo.cs" />
+    <Compile Include="TestSalaMensajeModelo.cs" />
+    <Compile Include="TestOrientacionModelo.cs" />
+    <Compile Include="TestMensajePrivadoModelo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
