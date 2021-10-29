@@ -14,7 +14,7 @@ namespace PruebasUnitarias
 
             try
             {
-                Modelo m = new Modelo();
+                Modelo m = new Modelo(2);
                 Assert.AreEqual("Open", m.conexion.State.ToString());
             }
             catch

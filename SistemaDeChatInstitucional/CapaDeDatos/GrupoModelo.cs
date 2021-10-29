@@ -83,7 +83,7 @@ namespace CapaDeDatos
         public string countAlumnoTieneGrupo(string ci)
         {
             string count;
-            command = "SELECT COUNT(*) FROM alumno_tiene_grupo WHERE alumnoCi=@ci;";
+            this.comando.CommandText = "SELECT COUNT(*) FROM alumno_tiene_grupo WHERE alumnoCi=@ci;";
             this.comando.Parameters.AddWithValue("@ci", ci);
             lector = comando.ExecuteReader();
             lector.Read();
@@ -94,7 +94,7 @@ namespace CapaDeDatos
         public string countDocenteDictaGrupo(string ci)
         {
             string count;
-            command = "SELECT COUNT(*) FROM docente_dicta_g_m WHERE docenteCi = @ci;";
+            this.comando.CommandText = "SELECT COUNT(*) FROM docente_dicta_g_m WHERE docenteCi = @ci;";
             this.comando.Parameters.AddWithValue("@ci", ci);
             lector = comando.ExecuteReader();
             lector.Read();

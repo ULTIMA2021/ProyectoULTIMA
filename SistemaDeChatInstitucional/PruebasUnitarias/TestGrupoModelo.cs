@@ -12,7 +12,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                GrupoModelo grupo = new GrupoModelo();
+                GrupoModelo grupo = new GrupoModelo(2);
                 grupo.nombreGrupo = "Test";
                 grupo.crearGrupoNuevo();
 
@@ -30,9 +30,8 @@ namespace PruebasUnitarias
         {
             try
             {
-                GrupoModelo grupo = new GrupoModelo();
-                grupo.countAlumnoTieneGrupo("11111111");
-
+                GrupoModelo grupo = new GrupoModelo(2);
+                if (grupo.countAlumnoTieneGrupo("11111111")!="0")
                 Assert.IsTrue(true);
             }
             catch
@@ -47,7 +46,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                GrupoModelo grupo = new GrupoModelo();
+                GrupoModelo grupo = new GrupoModelo(2);
                 grupo.countDocenteDictaGrupo("77777777");
 
                 Assert.IsTrue(true);
@@ -65,8 +64,8 @@ namespace PruebasUnitarias
         {
             try
             {
-                GrupoModelo grupo = new GrupoModelo();
-                grupo.nuevoIngresoAlumnoTieneGrupo("11111111", int.Parse("1"));
+                GrupoModelo grupo = new GrupoModelo(2);
+                grupo.nuevoIngresoAlumnoTieneGrupo("11111111", int.Parse("4"));
 
                 Assert.IsTrue(true);
             }
@@ -83,9 +82,8 @@ namespace PruebasUnitarias
         {
             try
             {
-                GrupoModelo grupo = new GrupoModelo();
-                grupo.nuevoIngresoDocenteTieneGM("77777777", int.Parse("1"), int.Parse("1"));
-
+                GrupoModelo grupo = new GrupoModelo(2);
+                grupo.actualizarDocenteTieneGM("77777777", "1", "1");
                 Assert.IsTrue(true);
             }
             catch

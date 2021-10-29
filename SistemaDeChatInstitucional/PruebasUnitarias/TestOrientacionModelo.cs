@@ -12,7 +12,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                OrientacionModelo orientacion = new OrientacionModelo();
+                OrientacionModelo orientacion = new OrientacionModelo(2);
 
                 orientacion.nombreOrientacion = "test";
                 orientacion.crearMateriaNueva();
@@ -31,7 +31,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                OrientacionModelo orientacion = new OrientacionModelo();
+                OrientacionModelo orientacion = new OrientacionModelo(2);
                 orientacion.borrarOrientacion("4");
             }
             catch
@@ -46,7 +46,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                OrientacionModelo orientacion = new OrientacionModelo();
+                OrientacionModelo orientacion = new OrientacionModelo(2);
                 orientacion.actualizarNombreDeOrientacion("desarollo y soporte","1");
 
                 Assert.IsTrue(true);
@@ -64,7 +64,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                OrientacionModelo orientacion = new OrientacionModelo();
+                OrientacionModelo orientacion = new OrientacionModelo(2);
                 orientacion.getOrientacion("desarrollo y soporte");
 
                 Assert.IsNotNull(orientacion.idOrientacion);

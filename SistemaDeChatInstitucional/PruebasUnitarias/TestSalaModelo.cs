@@ -14,12 +14,12 @@ namespace PruebasUnitarias
             {
 
 
-                SalaModelo sala = new SalaModelo();
+                SalaModelo sala = new SalaModelo(2);
 
                 sala.idGrupo = int.Parse("1");
                 sala.idMateria = int.Parse("1");
                 sala.docenteCi = int.Parse("77777777");
-                sala.anfitrion = int.Parse("1");
+                sala.anfitrion = int.Parse("77777777");
                 sala.resumen = "resumen";
                 sala.creacion = new DateTime();
                 sala.isDone = false;
@@ -41,7 +41,7 @@ namespace PruebasUnitarias
             {
 
 
-                SalaModelo sala = new SalaModelo();
+                SalaModelo sala = new SalaModelo(2);
 
              
                 sala.resumen = "resumen";
@@ -62,7 +62,7 @@ namespace PruebasUnitarias
             {
 
 
-                SalaModelo sala = new SalaModelo();
+                SalaModelo sala = new SalaModelo(2);
                 sala.updateEstado("111", true);
             }
             catch

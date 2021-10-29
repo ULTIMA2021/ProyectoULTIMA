@@ -12,9 +12,12 @@ namespace PruebasUnitarias
         {
             try
             {
-                MensajePrivadoModelo mensaje = new MensajePrivadoModelo();
+                MensajePrivadoModelo mensaje = new MensajePrivadoModelo(1);
+                DateTime fecha = DateTime.Now;
+                mensaje.cp_mensajeFechaHora = new DateTime();
+               // new ConsultaPrivadaModelo(1)
 
-                mensaje.enviarMensaje(10, 10, 1, 1, "test", null, cp_mensajeFechaHora, "recibido",1);
+                mensaje.enviarMensaje(10, 7, 77777777, 11111111, "test", null, fecha, "recibido",11111111);
 
                 Assert.IsTrue(true);
             }

@@ -13,7 +13,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                PersonaModelo p = new PersonaModelo();
+                PersonaModelo p = new PersonaModelo(2);
                 p.Cedula = "11111122";
                 p.Nombre = "Juan";
                 p.Apellido = "Aguiar";
@@ -38,7 +38,7 @@ namespace PruebasUnitarias
 
             try
             {
-                PersonaModelo p = new PersonaModelo();
+                PersonaModelo p = new PersonaModelo(2);
                 p.Cedula = "11111222";
                 p.Apodo = "Juancito";
                 p.guardarAlumno();
@@ -59,7 +59,7 @@ namespace PruebasUnitarias
 
             try
             {
-                PersonaModelo p = new PersonaModelo();
+                PersonaModelo p = new PersonaModelo(2);
                 p.Cedula = "11111122";
                 p.Nombre = "Juan";
                 p.Apellido = "Aguiar";
@@ -85,8 +85,9 @@ namespace PruebasUnitarias
 
             try
             {
-                PersonaModelo p = new PersonaModelo();
+                PersonaModelo p = new PersonaModelo(2);
                 p.Cedula = "11111113";
+                //p.GuardarPersona();
                 p.guardarDocente();
 
                 Assert.IsTrue(true);
@@ -105,7 +106,7 @@ namespace PruebasUnitarias
 
             try
             {
-                PersonaModelo p = new PersonaModelo();
+                PersonaModelo p = new PersonaModelo(2);
                 p.Cedula = "11111114";
                 p.guardarAdmin();
 
@@ -135,7 +136,7 @@ namespace PruebasUnitarias
             try
             {
                 cedula = "11111111";
-                PersonaModelo p = new PersonaModelo();
+                PersonaModelo p = new PersonaModelo(2);
                 p = p.obtenerPersona(cedula);
 
                 Assert.IsNotNull(p.Cedula);
@@ -158,7 +159,7 @@ namespace PruebasUnitarias
 
             try
             {
-                PersonaModelo p = new PersonaModelo();
+                PersonaModelo p = new PersonaModelo(2);
                 p.obtenerAlumnoTemp();
 
                 Assert.IsNotNull(p.Cedula);

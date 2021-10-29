@@ -12,10 +12,10 @@ namespace PruebasUnitarias
         {
             try
             {
-                ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo();
+                ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo(2);
                 consulta.cpFechaHora = new DateTime();
                 
-                consulta.crearConsultaPrivada(int.Parse("1"),"1","1","test","pendiente",consulta.cpFechaHora);
+                consulta.crearConsultaPrivada(int.Parse("18"),"77777777","11111111","test","pendiente",consulta.cpFechaHora);
 
 
                 Assert.IsTrue(true);

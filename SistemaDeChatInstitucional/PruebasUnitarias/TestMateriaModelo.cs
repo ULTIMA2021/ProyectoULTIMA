@@ -12,7 +12,7 @@ namespace PruebasUnitarias
         {
             try
             {
-                MateriaModelo materia = new MateriaModelo();
+                MateriaModelo materia = new MateriaModelo(2);
 
                 materia.nombreMateria = "Biologia";
                 materia.crearMateriaNueva();
@@ -32,11 +32,11 @@ namespace PruebasUnitarias
         {
             try
             {
-                MateriaModelo materia = new MateriaModelo();
+                MateriaModelo materia = new MateriaModelo(2);
 
                 materia.actualizarEstadoDeMateria(true, "1");
                 Assert.IsTrue(true);
-                MateriaModelo mate = new MateriaModelo();
+                MateriaModelo mate = new MateriaModelo(2);
                 mate.actualizarEstadoDeMateria(false, "1");
 
 
@@ -55,12 +55,12 @@ namespace PruebasUnitarias
         {
             try
             {
-                MateriaModelo materia = new MateriaModelo();
+                MateriaModelo materia = new MateriaModelo(2);
 
                 materia.actualizarNombreDeMateria("test", "1");
                 Assert.IsTrue(true);
 
-                MateriaModelo mate = new MateriaModelo();
+                MateriaModelo mate = new MateriaModelo(2);
                 mate.actualizarNombreDeMateria("mat1", "1");
 
 
@@ -80,7 +80,7 @@ namespace PruebasUnitarias
             try
             {
                 nombreMateria = "mat1";
-                MateriaModelo materia = new MateriaModelo();
+                MateriaModelo materia = new MateriaModelo(2);
                 materia.getMateria(nombreMateria);
                 Assert.IsNotNull(materia.idMateria);
 
@@ -98,7 +98,7 @@ namespace PruebasUnitarias
             try
             {
 
-                MateriaModelo materia = new MateriaModelo();
+                MateriaModelo materia = new MateriaModelo(2);
                 materia.idMateria = int.Parse("1");
                 materia.countSalaPorMateria();
 
