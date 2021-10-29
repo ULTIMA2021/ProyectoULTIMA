@@ -26,7 +26,7 @@ namespace PruebasUnitarias
         }
 
         [TestMethod]
-        public void TestAlumnoTieneGrupo(string ci)
+        public void TestAlumnoTieneGrupo()
         {
             try
             {
@@ -42,7 +42,7 @@ namespace PruebasUnitarias
         }
 
         [TestMethod]
-        public void TestDocenteTieneGrupo(string ci)
+        public void TestDocenteTieneGrupo()
         {
             try
             {
@@ -60,7 +60,7 @@ namespace PruebasUnitarias
 
 
         [TestMethod]
-        public void TestIngresoAlumnoTieneGrupo(string alumnoCi, int idGrupo)
+        public void TestIngresoAlumnoTieneGrupo()
         {
             try
             {
@@ -78,7 +78,7 @@ namespace PruebasUnitarias
 
 
         [TestMethod]
-        public void TestIngresoDocenteTieneGM(string docenteCi, int idGrupo, int idMateria)
+        public void TestIngresoDocenteTieneGM()
         {
             try
             {

@@ -75,11 +75,11 @@ namespace PruebasUnitarias
         }
 
         [TestMethod]
-        public void TestGetMateria(string nombreMateria)
+        public void TestGetMateria()
         {
             try
             {
-                nombreMateria = "mat1";
+                string nombreMateria = "mat1";
                 MateriaModelo materia = new MateriaModelo(2);
                 materia.getMateria(nombreMateria);
                 Assert.IsNotNull(materia.idMateria);
@@ -99,7 +99,7 @@ namespace PruebasUnitarias
             {
 
                 MateriaModelo materia = new MateriaModelo(2);
-                materia.idMateria = int.Parse("1");
+                materia.idMateria = 1;
                 materia.countSalaPorMateria();
 
                 Assert.IsTrue(true);

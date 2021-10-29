@@ -60,12 +60,12 @@ namespace CapaDeDatos
 
         public string getOrientacion(string nombreOrientacion)
         {
-            string idOrientacion;
+            string idOrientacion="";
             this.comando.CommandText = "SELECT idOrientacion FROM orientacion WHERE nombreOrientacion=@nombreOrientacion;";
             this.comando.Parameters.AddWithValue("@nombreOrientacion", nombreOrientacion);
             lector = comando.ExecuteReader();
-            lector.Read();
-            idOrientacion = lector[0].ToString();
+            while(lector.Read())
+                idOrientacion = lector[0].ToString();
             lector.Close();
             return idOrientacion;
         }

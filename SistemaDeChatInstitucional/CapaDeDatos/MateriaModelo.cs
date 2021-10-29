@@ -105,7 +105,7 @@ namespace CapaDeDatos
         {
             string count = null;
             this.comando.Parameters.Clear();
-            this.comando.CommandText = "SELECT count(*) from Sala WHERE idMateria = @idMateria;";
+            this.comando.CommandText = "SELECT count(*) from sala WHERE idMateria = @idMateria;";
             this.comando.Parameters.AddWithValue("@idMateria", this.idMateria);
             lector = comando.ExecuteReader();
             lector.Read();

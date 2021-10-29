@@ -82,7 +82,7 @@ namespace CapaDeDatos
 
         public string countAlumnoTieneGrupo(string ci)
         {
-            string count;
+            string count="";
             this.comando.CommandText = "SELECT COUNT(*) FROM alumno_tiene_grupo WHERE alumnoCi=@ci;";
             this.comando.Parameters.AddWithValue("@ci", ci);
             lector = comando.ExecuteReader();

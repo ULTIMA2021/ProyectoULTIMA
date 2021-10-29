@@ -19,7 +19,7 @@ namespace PruebasUnitarias
 
                 Assert.IsTrue(true);
             }
-            catch 
+            catch
             {
 
                 Assert.IsTrue(false);
@@ -47,7 +47,7 @@ namespace PruebasUnitarias
             try
             {
                 OrientacionModelo orientacion = new OrientacionModelo(2);
-                orientacion.actualizarNombreDeOrientacion("desarollo y soporte","1");
+                orientacion.actualizarNombreDeOrientacion("desarollo y soporte", "1");
 
                 Assert.IsTrue(true);
 
@@ -62,21 +62,10 @@ namespace PruebasUnitarias
         [TestMethod]
         public void TestGetOrientacion()
         {
-            try
-            {
-                OrientacionModelo orientacion = new OrientacionModelo(2);
-                orientacion.getOrientacion("desarrollo y soporte");
-
-                Assert.IsNotNull(orientacion.idOrientacion);
+            if (new OrientacionModelo(2).getOrientacion("desarrollo y soporte") == "1")
                 Assert.IsTrue(true);
-
-            }
-            catch
-            {
-
+            else
                 Assert.IsTrue(false);
-            }
         }
-
     }
 }

@@ -66,6 +66,13 @@ namespace CapaDeDatos
         }
         public void guardarDocente()
         {
+            try
+            {
+                this.comando.Parameters.Clear();
+            }
+            catch 
+            {
+            }
             this.comando.CommandText = "INSERT INTO docente (ci) VALUES (@cedula);";
             this.comando.Parameters.AddWithValue("@cedula", this.Cedula);
             this.comando.Prepare();
