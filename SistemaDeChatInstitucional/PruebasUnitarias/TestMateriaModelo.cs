@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CapaDeDatos;
+using System.Collections.Generic;
 
 namespace PruebasUnitarias
 {
@@ -28,7 +29,7 @@ namespace PruebasUnitarias
         }
 
         [TestMethod]
-        public void TestEstadoMateria()
+        public void TestModEstadoMateria()
         {
             try
             {
@@ -38,20 +39,15 @@ namespace PruebasUnitarias
                 Assert.IsTrue(true);
                 MateriaModelo mate = new MateriaModelo(2);
                 mate.actualizarEstadoDeMateria(false, "1");
-
-
             }
             catch
             {
-
                 Assert.IsTrue(false);
             }
-
-            
         }
 
         [TestMethod]
-        public void TestNombreMateria()
+        public void TestModMateria()
         {
             try
             {
@@ -62,16 +58,32 @@ namespace PruebasUnitarias
 
                 MateriaModelo mate = new MateriaModelo(2);
                 mate.actualizarNombreDeMateria("mat1", "1");
+            }
+            catch
+            {
+                Assert.IsTrue(false);
+            }
+        }
 
+        [TestMethod]
+        public void TestBajaMateria()
+        {
+            try
+            {
+                new MateriaModelo(2).borrarMateria("15");
+                List<MateriaModelo> materias = new MateriaModelo(2).getMateria();
+                bool valid = true;
+                foreach (MateriaModelo materia in materias)
+                    if (materia.idMateria == 15)
+                        valid = false;
+
+                Assert.IsTrue(valid);
 
             }
             catch
             {
-
                 Assert.IsTrue(false);
             }
-
-
         }
 
         [TestMethod]
@@ -101,16 +113,31 @@ namespace PruebasUnitarias
                 MateriaModelo materia = new MateriaModelo(2);
                 materia.idMateria = 1;
                 materia.countSalaPorMateria();
-
                 Assert.IsTrue(true);
-
             }
             catch
             {
-
                 Assert.IsTrue(false);
             }
         }
 
+        [TestMethod]
+        public void TestAsignarMateriaAGrupo()
+        {
+            try
+            {
+                new GrupoModelo(2).cargarMateriasAGrupo("1","5");
+                List <MateriaModelo> grupoMaterias = new MateriaModelo(2).getGrupoTieneMateria("5");
+                bool valid = false;
+                foreach (MateriaModelo grupoMateria in grupoMaterias)
+                    if (grupoMateria.idMateria == 1)
+                        valid = true;
+                Assert.IsTrue(valid);
+            }
+            catch
+            {
+                Assert.IsTrue(false);
+            }
+        }
     }
 }

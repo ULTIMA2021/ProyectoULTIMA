@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 namespace CapaDeDatos
@@ -278,6 +275,13 @@ namespace CapaDeDatos
         }
         public string getGrupo(string nombreGrupo)
         {
+            try
+            {
+                comando.Parameters.Clear();
+            }
+            catch (Exception)
+            {
+            }
             string idGrupo="";
             this.comando.CommandText = "SELECT idGrupo,nombreGrupo FROM grupo WHERE nombreGrupo=@nombreGrupo;";
             this.comando.Parameters.AddWithValue("@nombreGrupo", nombreGrupo);

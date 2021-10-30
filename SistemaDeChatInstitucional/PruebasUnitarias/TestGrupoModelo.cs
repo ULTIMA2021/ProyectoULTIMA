@@ -20,10 +20,31 @@ namespace PruebasUnitarias
             }
             catch 
             {
-
                 Assert.IsTrue(false);
             }
         }
+
+        [TestMethod]
+        public void TestBajaGrupo()
+        {
+            try
+            {
+                GrupoModelo grupo = new GrupoModelo(2);
+                grupo.nombreGrupo = "BORRAME";
+                grupo.crearGrupoNuevo();
+                grupo.borrarGrupo(grupo.getGrupo("BORRAME"));
+
+                if (string.IsNullOrEmpty(grupo.getGrupo("BORRAME")))
+                    Assert.IsTrue(true);
+                else
+                    Assert.IsTrue(false);
+            }
+            catch
+            {
+                Assert.IsTrue(false);
+            }
+        }
+
 
         [TestMethod]
         public void TestAlumnoTieneGrupo()
@@ -36,7 +57,6 @@ namespace PruebasUnitarias
             }
             catch
             {
-
                 Assert.IsTrue(false);
             }
         }
@@ -53,11 +73,9 @@ namespace PruebasUnitarias
             }
             catch
             {
-
                 Assert.IsTrue(false);
             }
         }
-
 
         [TestMethod]
         public void TestIngresoAlumnoTieneGrupo()
@@ -71,11 +89,9 @@ namespace PruebasUnitarias
             }
             catch
             {
-
                 Assert.IsTrue(false);
             }
         }
-
 
         [TestMethod]
         public void TestIngresoDocenteTieneGM()
@@ -88,7 +104,6 @@ namespace PruebasUnitarias
             }
             catch
             {
-
                 Assert.IsTrue(false);
             }
         }

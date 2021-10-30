@@ -1,9 +1,10 @@
-﻿using CapaLogica;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using CapaLogica;
+
 
 namespace AppAdmin.menuScreens
 {

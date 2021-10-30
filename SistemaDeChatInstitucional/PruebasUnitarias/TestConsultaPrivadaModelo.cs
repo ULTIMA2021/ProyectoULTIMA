@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CapaDeDatos;
+using System.Collections.Generic;
 
 namespace PruebasUnitarias
 {
@@ -12,39 +13,30 @@ namespace PruebasUnitarias
         {
             try
             {
-                ConsultaPrivadaModelo consulta = new ConsultaPrivadaModelo(2);
-                consulta.cpFechaHora = new DateTime();
-                
-                consulta.crearConsultaPrivada(int.Parse("18"),"77777777","11111111","test","pendiente",consulta.cpFechaHora);
-
-
+                new ConsultaPrivadaModelo(2).crearConsultaPrivada(int.Parse("18"),"77777777","11111111","test","pendiente",DateTime.Now);
                 Assert.IsTrue(true);
             }
             catch
             {
                 Assert.IsTrue(false);
-
             }
         }
 
-        //[TestMethod]
-        //public void TestObtenerConsulta(string ciAlumno)
-        //{
-
-        // try
-        // {
-        //ciAlumno = "11111111";
-        //ConsultaPrivadaModelo cons = new ConsultaPrivadaModelo();
-        //cons = cons.getConsultas();
-
-
-        //}
-        //catch
-        //{
-        //Assert.IsTrue(false);
-
-        //}
-
-        //}
+        [TestMethod]
+        public void TestObtenerConsulta()
+        {
+            try
+            {
+                List <ConsultaPrivadaModelo> consultas = new  ConsultaPrivadaModelo(2).getConsultas("11111111");
+                if (consultas[0].idConsultaPrivada > 0)
+                    Assert.IsTrue(true);
+                else
+                    Assert.IsTrue(false);
+            }
+            catch
+            {
+                Assert.IsTrue(false);
+            }
+        }
     }
 }
