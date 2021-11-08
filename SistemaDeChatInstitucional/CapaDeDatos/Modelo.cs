@@ -70,7 +70,7 @@ namespace CapaDeDatos
 
         protected void InicializarConexion(byte sessionType)
         {
-                this.IpDb = "192.168.1.151"; //UTU 192.168.5.150
+                this.IpDb = "192.168.5.50"; //UTU 192.168.5.50  house 192.168.1.151
             this.NombreDb = "ultima";
             this.UsuarioDb = "federico.costa";
             this.PasswordDb = "49800853";
