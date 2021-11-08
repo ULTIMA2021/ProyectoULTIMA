@@ -117,15 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAAIoAAACKAZQiUdsAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAAAqUlEQVQ4T5WSXQrCQAyE9xaCVfD+Z/CpF1BRH9QK3kTnkw2ssD/jwAc2zUxDYpL24iDWPJiiFw/e
-        dBFvcRNOCD304jlT2IhHLtzFJFpaiaug9yV24isnpGkO9UKG5lAtxDaHtmIRGFhWLIwa7yyVk9hfLlWO
-        DaPr/Ki88zPDb+t/UltYuZPuJL1tD0OcUzVD/rlzNeSUCyzLuTM9sdgjhVkwgWMO0StPmj8XaVOdlaxu
-        MwAAAABJRU5ErkJggg==
-</value>
+  <data name="btnAgenda" xml:space="preserve">
+    <value>            Agenda</value>
+  </data>
+  <data name="btnConfiguracion" xml:space="preserve">
+    <value>●  Configuracion</value>
+  </data>
+  <data name="btnDocentes" xml:space="preserve">
+    <value>            Docentes</value>
+  </data>
+  <data name="btnEliminarCuenta" xml:space="preserve">
+    <value>Eliminar cuenta</value>
+  </data>
+  <data name="btnExaminar" xml:space="preserve">
+    <value>Examinar</value>
+  </data>
+  <data name="btnGuardar" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="btnInstitucion" xml:space="preserve">
+    <value>●  Institucion</value>
+  </data>
+  <data name="btnLogout" xml:space="preserve">
+    <value>            Cerrar sesion</value>
+  </data>
+  <data name="btnMensajes" xml:space="preserve">
+    <value>            Mensajes</value>
+  </data>
+  <data name="btnMiPerfil" xml:space="preserve">
+    <value>            Mi perfil</value>
+  </data>
+  <data name="btnMisAsignaturas" xml:space="preserve">
+    <value>●  Mis asignaturas</value>
+  </data>
+  <data name="btnMisDocentes" xml:space="preserve">
+    <value>●  Mis docentes</value>
+  </data>
+  <data name="btnMisMensajes" xml:space="preserve">
+    <value>●  Mis mensajes</value>
+  </data>
+  <data name="btnNuevoMensaje" xml:space="preserve">
+    <value>●  Nuevo mensaje</value>
+  </data>
+  <data name="btnSala" xml:space="preserve">
+    <value>            Salas</value>
+  </data>
+  <data name="lblApellido" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="lblCambiarPass" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+  <data name="lblFoto" xml:space="preserve">
+    <value>Foto:</value>
+  </data>
+  <data name="lblNombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="lblPassNueva" xml:space="preserve">
+    <value>Nueva contraseña:</value>
+  </data>
+  <data name="lblPassVieja" xml:space="preserve">
+    <value>Contraseña anterior:</value>
+  </data>
+  <data name="lblUsuario" xml:space="preserve">
+    <value>Nombre de usuario *</value>
+  </data>
+  <data name="txtContra" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="txtUsuario" xml:space="preserve">
+    <value>Usuario</value>
   </data>
 </root>

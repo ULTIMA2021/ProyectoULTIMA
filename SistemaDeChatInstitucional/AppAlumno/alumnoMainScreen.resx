@@ -336,7 +336,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSala.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 624</value>
+    <value>0, 588</value>
   </data>
   <data name="btnSala.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 0, 0</value>
@@ -393,7 +393,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnLogout.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 660</value>
+    <value>0, 624</value>
   </data>
   <data name="btnLogout.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 0, 0</value>
@@ -504,7 +504,7 @@
     <value>Top</value>
   </data>
   <data name="subMenuMensajes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 533</value>
+    <value>0, 497</value>
   </data>
   <data name="subMenuMensajes.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 91</value>
@@ -553,7 +553,7 @@
     <value>MiddleLeft</value>
   </data>
   <data name="btnMensajes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 497</value>
+    <value>0, 461</value>
   </data>
   <data name="btnMensajes.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 0, 0</value>
@@ -581,60 +581,6 @@
   </data>
   <data name="&gt;&gt;btnMensajes.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="btnAgenda.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="btnAgenda.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnAgenda.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Cambria, 11.25pt, style=Bold</value>
-  </data>
-  <data name="btnAgenda.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAXZJREFUSEvV
-        lk9Kw0AYxUe9g+CfO1hw4RkU9AAeQNzrPk1I1J0r8Q5xXXd6BVeieAY31ioKYvx94Rs6maRlJIPgg0fn
-        e2++eemkncS4yLJsazgcPsCqByfwMkmSRV12Cow75SE8gFdM/NBxKHNY0beny06B8YpxrKWRsWhaBoOe
-        SZqmR1oaU5blEuIAvsFzuCp6VwDaOlu56VI0tWtIj3uh0rSP6O7jo+qtAOqxM89yrHYN6maA/w2KolgR
-        fUaALHhir17GoqldQ3oaARa+ES0AYVluCp+fcMR4V/QZAV1b9KJ2DepmAAtuIz4jfsN3xjeidwWgtW5y
-        nudratdoBVj4RldACP4+AGGAcA2/4BM8E10mRQlgHzcQRzaA8ano0QIsfOP/BFDsILo/01vVo93k4D9a
-        CFoBFr4RLeA3x3UIpKcRQBF8XIdAeuZ+g3nHdQhaARa+0SOg+ci0wIjx0C9g90OfI0NeW+5lQg/Ka8tF
-        VVULxhjzA9tmTe2zhKZ2AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btnAgenda.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="btnAgenda.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 461</value>
-  </data>
-  <data name="btnAgenda.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 0, 0</value>
-  </data>
-  <data name="btnAgenda.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 36</value>
-  </data>
-  <data name="btnAgenda.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="btnAgenda.Text" xml:space="preserve">
-    <value>            Agenda</value>
-  </data>
-  <data name="btnAgenda.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;btnAgenda.Name" xml:space="preserve">
-    <value>btnAgenda</value>
-  </data>
-  <data name="&gt;&gt;btnAgenda.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAgenda.Parent" xml:space="preserve">
-    <value>panelInfo</value>
-  </data>
-  <data name="&gt;&gt;btnAgenda.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="btnInstitucion.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -733,7 +679,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;subMenuDocentes.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="btnDocentes.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -790,7 +736,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;btnDocentes.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="btnAsignaturas.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -889,7 +835,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;subMenuMiPerfil.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="btnMiPerfil.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -947,7 +893,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;btnMiPerfil.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="lblNombre.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1088,7 +1034,7 @@
     <value>panelInfo</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="panelInfo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
@@ -1113,6 +1059,42 @@
   </data>
   <data name="&gt;&gt;panelInfo.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="selectIdioma.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="selectIdioma.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cambria, 9.75pt</value>
+  </data>
+  <data name="selectIdioma.Items" xml:space="preserve">
+    <value>Español/Spanish</value>
+  </data>
+  <data name="selectIdioma.Items1" xml:space="preserve">
+    <value>Ingles/English</value>
+  </data>
+  <data name="selectIdioma.Location" type="System.Drawing.Point, System.Drawing">
+    <value>605, 3</value>
+  </data>
+  <data name="selectIdioma.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 23</value>
+  </data>
+  <data name="selectIdioma.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="selectIdioma.Text" xml:space="preserve">
+    <value>Idioma/Language</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.Name" xml:space="preserve">
+    <value>selectIdioma</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.Parent" xml:space="preserve">
+    <value>panelContenedor</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1145,7 +1127,7 @@
     <value>panelContenedor</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1175,7 +1157,7 @@
     <value>panelContenedor</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="panelContenedor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

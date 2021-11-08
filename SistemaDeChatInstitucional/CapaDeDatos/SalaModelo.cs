@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
 namespace CapaDeDatos
@@ -18,13 +15,12 @@ namespace CapaDeDatos
         public bool isDone;
         public DateTime creacion;
         string errorType = "Sala";
-        public SalaModelo(byte sessionType) : base(sessionType)
-        {
-        }
+        public SalaModelo(byte sessionType) : base(sessionType){}
+        public SalaModelo() : base() { }
 
         public void crearSala()
         {
-            this.comando.CommandText = "INSERT INTO Sala (idGrupo, idMateria, docenteCi, anfitrion, resumen ,creacion,isDone) VALUES(" +
+            this.comando.CommandText = "INSERT INTO sala (idGrupo, idMateria, docenteCi, anfitrion, resumen ,creacion,isDone) VALUES(" +
                                     "@idGrupo,@idMateria,@docenteCi,@anfitrion,@resumen,@creacion,@isDone);";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
@@ -38,39 +34,89 @@ namespace CapaDeDatos
         }
         public void salaResumenUpdate()
         {
-            this.comando.CommandText = "UPDATE Sala SET resumen=@resumen WHERE idSala=@idSala;";
+            this.comando.CommandText = "UPDATE sala SET resumen=@resumen WHERE idSala=@idSala;";
             this.comando.Parameters.AddWithValue("@resumen",resumen);
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
-        public void salaFinalizada(int idSala)
+        public void updateEstado(int idSala, bool estado)
         {
-            this.comando.CommandText = "UPDATE Sala SET isDone=@isDone WHERE idSala=@idSala;";
-            this.comando.Parameters.AddWithValue("@isDone", true);
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idSala=@idSala;";
+            this.comando.Parameters.AddWithValue("@isDone", estado);
             this.comando.Parameters.AddWithValue("@idSala", idSala);
             this.comando.Prepare();
             EjecutarQuery(this.comando, errorType);
         }
+        public void updateEstado(string idGrupo, bool estado)
+        {
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idGrupo=@idGrupo;";
+            this.comando.Parameters.AddWithValue("@isDone", estado);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
+        public void updateEstado(string idMateria, bool estado, byte dummy)
+        {
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idMateria=@idMateria;";
+            this.comando.Parameters.AddWithValue("@isDone", estado);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
+        public void updateEstado(string idMateria, string idGrupo, bool estado)
+        {
+            this.comando.CommandText = "UPDATE sala SET isDone=@isDone WHERE idGrupo=@idGrupo AND idMateria=@idMateria;";
+            this.comando.Parameters.AddWithValue("@isDone", estado);
+            this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Prepare();
+            EjecutarQuery(this.comando, errorType);
+        }
 
-        public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria,byte sessionType)
+
+        //o las salas abiertas o las cerradas
+        public List<SalaModelo> salaPorGrupoMateria(int idGrupo,int idMateria, bool isDone)
         {
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
-                "FROM Sala " +
-                "WHERE idGrupo=@idGrupo AND idMateria=@idMateria AND docenteCi is not null;";
+                "FROM sala " +
+                "WHERE idGrupo=@idGrupo AND idMateria=@idMateria AND isDone=@isDone AND docenteCi IS NOT NULL;";
             this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
             this.comando.Prepare();
-            return (cargarSalasAlist(this.comando,sessionType));
+            return (cargarSalasAlist(this.comando));
         }
-        private List<SalaModelo> cargarSalasAlist(MySqlCommand command, byte sessionType)
+        public List<SalaModelo> salaPorGrupo(string idGrupo, bool isDone)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
+                "FROM sala " +
+                "WHERE idGrupo=@idGrupo AND isDone=@isDone AND docenteCi IS NOT NULL;";
+            this.comando.Parameters.AddWithValue("@idGrupo", idGrupo);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
+            this.comando.Prepare();
+            return (cargarSalasAlist(this.comando));
+        }
+        public List<SalaModelo> salaPorDocente(string docenteCi, bool isDone)
+        {
+            this.comando.Parameters.Clear();
+            this.comando.CommandText = "SELECT idSala,idGrupo,idMateria,docenteCi,anfitrion,resumen,isDone, creacion " +
+                "FROM sala " +
+                "WHERE isDone=@isDone AND docenteCi = @docenteCi;";
+            this.comando.Parameters.AddWithValue("@docenteCi", docenteCi);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
+            this.comando.Prepare();
+            return (cargarSalasAlist(this.comando));
+        }
+        private List<SalaModelo> cargarSalasAlist(MySqlCommand command)
         {
             lector = command.ExecuteReader();
             List<SalaModelo> salas = new List<SalaModelo>();
             while (lector.Read())
             {
-                SalaModelo s = new SalaModelo(sessionType);
+                SalaModelo s = new SalaModelo();
                 s.idSala = int.Parse(lector[0].ToString());
                 s.idGrupo = int.Parse(lector[1].ToString()); 
                 s.idMateria = int.Parse(lector[2].ToString());
@@ -85,14 +131,15 @@ namespace CapaDeDatos
             return salas;
         }
 
-        public int salaPorMateriaCount(int idMateria, byte sessionType)
+        public int salaPorMateriaCount(int idMateria,bool isDone)
         {
             int count;
             this.comando.Parameters.Clear();
             this.comando.CommandText = "SELECT count(*) " +
-                "FROM Sala " +
-                "WHERE idMateria=@idMateria;";
+                "FROM sala " +
+                "WHERE idMateria=@idMateria AND isDone=@isDone;";
             this.comando.Parameters.AddWithValue("@idMateria", idMateria);
+            this.comando.Parameters.AddWithValue("@isDone", isDone);
             this.comando.Prepare();
 
             lector = comando.ExecuteReader();

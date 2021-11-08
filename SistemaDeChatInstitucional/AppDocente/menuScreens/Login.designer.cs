@@ -42,6 +42,7 @@
             this.picOcultar = new System.Windows.Forms.PictureBox();
             this.lblErrorMessage = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.selectIdioma = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictVer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).BeginInit();
@@ -103,6 +104,7 @@
             this.txtUsuario.TabIndex = 2;
             this.txtUsuario.Text = "Usuario";
             this.txtUsuario.Enter += new System.EventHandler(this.txtUusuario_Enter);
+            this.txtUsuario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.txtUsuario.Leave += new System.EventHandler(this.txtUusuario_Leave);
             // 
             // txtContra
@@ -118,6 +120,7 @@
             this.txtContra.TabIndex = 3;
             this.txtContra.Text = "Contraseña";
             this.txtContra.Enter += new System.EventHandler(this.txtContra_Enter);
+            this.txtContra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             this.txtContra.Leave += new System.EventHandler(this.txtContra_Leave);
             // 
             // btnLogin
@@ -179,12 +182,30 @@
             this.lblErrorMessage.Text = "* Error";
             this.lblErrorMessage.Visible = false;
             // 
+            // selectIdioma
+            // 
+            this.selectIdioma.BackColor = System.Drawing.SystemColors.Window;
+            this.selectIdioma.DropDownWidth = 125;
+            this.selectIdioma.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectIdioma.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.selectIdioma.FormattingEnabled = true;
+            this.selectIdioma.Items.AddRange(new object[] {
+            "Español/Spanish",
+            "Ingles/English"});
+            this.selectIdioma.Location = new System.Drawing.Point(3, 3);
+            this.selectIdioma.Name = "selectIdioma";
+            this.selectIdioma.Size = new System.Drawing.Size(106, 20);
+            this.selectIdioma.TabIndex = 13;
+            this.selectIdioma.Text = "Idioma/Language";
+            this.selectIdioma.SelectedIndexChanged += new System.EventHandler(this.selectIdioma_SelectedIndexChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(409, 399);
+            this.Controls.Add(this.selectIdioma);
             this.Controls.Add(this.lblErrorMessage);
             this.Controls.Add(this.pictVer);
             this.Controls.Add(this.pictureBox1);
@@ -197,6 +218,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Login";
             this.Text = "Login";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Login_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictVer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picOcultar)).EndInit();
@@ -219,5 +241,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.TextBox txtUsuario;
         public System.Windows.Forms.TextBox txtContra;
+        private System.Windows.Forms.ComboBox selectIdioma;
     }
 }

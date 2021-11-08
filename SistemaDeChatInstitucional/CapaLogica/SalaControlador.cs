@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CapaDeDatos;
 using System.Data;
 
@@ -21,7 +18,7 @@ namespace CapaLogica
             sala.idGrupo = int.Parse(idGrupo);
             sala.idMateria = int.Parse(idMateria);
             if (string.IsNullOrEmpty(docente))
-                docente = new GrupoModelo(Session.type).getDocenteDictaGM(idGrupo, idMateria, Session.type).ToString();
+                docente = new GrupoModelo(Session.type).getDocenteDictaGM(idGrupo, idMateria).ToString();
             sala.docenteCi = int.Parse(docente);
             sala.anfitrion = int.Parse(anfitrion);
             sala.resumen = resumen;
@@ -30,9 +27,12 @@ namespace CapaLogica
             sala.crearSala();
         }
 
-        public static void finalizarSala(int idSala) => new SalaModelo(Session.type).salaFinalizada(idSala);
+        public static void updateEstadoSala(int idSala, bool estado) => new SalaModelo(Session.type).updateEstado(idSala, estado);
+        public static void updateEstadoSala(string idMateria, string idGrupo, bool estado) => new SalaModelo(Session.type).updateEstado(idMateria, idGrupo, estado);
+        public static void updateEstadoSala(string idMateria, bool estado, byte dummy) => new SalaModelo(Session.type).updateEstado(idMateria, estado,1);
+        public static void updateEstadoSala(string idGrupo, bool estado) => new SalaModelo(Session.type).updateEstado(idGrupo, estado);
 
-        public static DataTable loadSalasDePersona() {
+        public static DataTable loadSalasDePersona(bool isDone) {
             List<SalaModelo> salasPorGM = new List<SalaModelo>();
             DataTable salasDataTable = new DataTable();
             loadTableColumns(salasDataTable);
@@ -41,12 +41,61 @@ namespace CapaLogica
             for (int x = 0; x < Session.grupoMaterias.Count; x++) {
                 idGrupo = int.Parse(Session.grupoMaterias[x][0]);
                 idMateria = int.Parse(Session.grupoMaterias[x][2]);               
-                salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupoMateria(idGrupo, idMateria, Session.type)); 
+                salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupoMateria(idGrupo, idMateria,isDone)); 
             }
             salasPorGM.Sort((y, z) => DateTime.Compare(z.creacion, y.creacion));
             loadSalasToDataTable(salasDataTable, salasPorGM);
             
+            return salasDataTable;
+        }
+        public static DataTable loadSalasDePersonaForAdmin(bool isDone, List<List<string>> grupoMaterias, byte type, string ci) 
+            //0-idGrupo 1-nombreGrupo 2-idMateria  3-nombreMateria docentes
+            //
+        {
+            List<SalaModelo> salasPorGM = new List<SalaModelo>();
+            DataTable salasDataTable = new DataTable();
+            //loadTableColumns(salasDataTable);
+            salasDataTable.Columns.Add("idSala");
+            salasDataTable.Columns.Add("idGrupo");
+            salasDataTable.Columns.Add("idMateria");
+            salasDataTable.Columns.Add("Docente");
+            salasDataTable.Columns.Add("anfitrion");
+            salasDataTable.Columns.Add("resumen");
+            salasDataTable.Columns.Add("isDone");
+            salasDataTable.Columns.Add("creacion");
 
+            string idGrupo;
+            if (type == 2)
+            {
+                foreach (SalaModelo sala in new SalaModelo(Session.type).salaPorDocente(ci, isDone))
+                    salasPorGM.Add(sala);
+                    //salasPorGM.AddRange(new SalaModelo(Session.type).salaPorDocente(ci, isDone));
+                
+            }
+            else if (type == 1)
+            {
+                for (int x = 0; x < grupoMaterias.Count; x++)
+                {
+                    idGrupo = grupoMaterias[x][0];
+                    salasPorGM.AddRange(new SalaModelo(Session.type).salaPorGrupo(idGrupo, isDone));
+                }
+            }
+           
+            salasPorGM.Sort((y, z) => DateTime.Compare(z.creacion, y.creacion));
+
+            foreach (SalaModelo sala in salasPorGM)
+            {
+                salasDataTable.Rows.Add(
+                    sala.idSala,
+                    sala.idGrupo,
+                    sala.idMateria,
+                    sala.docenteCi,
+                    sala.anfitrion,
+                    sala.resumen,
+                    sala.isDone,
+                    sala.creacion);
+
+            }
             return salasDataTable;
         }
 
@@ -116,7 +165,7 @@ namespace CapaLogica
         public static List<List<string>> getMensajesDeSala(int idSala) {
             List<List<string>> listaDeMsgString = new List<List<string>>();
             List<string> msgString = new List<string>();
-            List<SalaMensajeModelo> listaDeMsg = new SalaMensajeModelo(Session.type).getMensajesDeSala(idSala,Session.type);
+            List<SalaMensajeModelo> listaDeMsg = new SalaMensajeModelo(Session.type).getMensajesDeSala(idSala);
         
             string nombreApellido;
             foreach (SalaMensajeModelo mensaje in listaDeMsg) {
@@ -138,17 +187,17 @@ namespace CapaLogica
             msg.enviarMensaje();
         }
 
-        public static int getSalaCount() {
+        public static int getSalaCount(bool isDone) {
             int salasDePersona = 0;
             for (int i = 0; i < Session.grupoMaterias.Count; i++)
-                salasDePersona = salasDePersona + new SalaModelo(Session.type).salaPorMateriaCount(int.Parse(Session.grupoMaterias[i][2]),Session.type);
+                salasDePersona = salasDePersona + new SalaModelo(Session.type).salaPorMateriaCount(int.Parse(Session.grupoMaterias[i][2]),isDone);
             return salasDePersona;
         }
 
-        public static int getMensajesDeSalaCount(int idSala) =>  new SalaMensajeModelo(Session.type).getMensajesDeSalaCount(idSala,Session.type);
+        public static int getMensajesDeSalaCount(int idSala) =>  new SalaMensajeModelo(Session.type).getMensajesDeSalaCount(idSala);
 
         public static List<List<string>> getPersonasEnSala(string idSala) {
-            List<SalaMembersModelo> memberList = new SalaMembersModelo(Session.type).getSalaMembers(idSala,Session.type);
+            List<SalaMembersModelo> memberList = new SalaMembersModelo(Session.type).getSalaMembers(idSala);
             List<List<string>> memberListString = new List<List<string>>();
             foreach (SalaMembersModelo member in memberList) {
 

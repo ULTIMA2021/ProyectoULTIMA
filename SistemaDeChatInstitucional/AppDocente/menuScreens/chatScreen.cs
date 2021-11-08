@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using CapaLogica;
 
 
@@ -39,7 +35,7 @@ namespace AppDocente.menuScreens
             if (anfitrion == Session.cedula && x)
                 btnFinalizar.Visible = true;
         }
-        private void timer_Tick(Object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
         {
             try
             {
@@ -60,7 +56,16 @@ namespace AppDocente.menuScreens
             }
             catch (Exception ex)
             {
+                timer.Stop();
+                if (ex.Message.Contains("Connection"))
+                {
+                    timer.Dispose();
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                    Application.Exit();
+                }
+
                 MessageBox.Show(Controlador.errorHandler(ex));
+                timer.Start();
             }
 
         }
@@ -221,7 +226,6 @@ namespace AppDocente.menuScreens
         {
             timer.Dispose();
             Dispose();
-            Close();
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
@@ -247,6 +251,10 @@ namespace AppDocente.menuScreens
             myLoad();
             setBtnText();
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
+
+            //asigno valores para la traduccion
+            btnEnviar.Text = Resources.btnEnviar;
+            btnFinalizar.Text = Resources.btnFinalizar;
         }
 
         private void btnFinalizar_Click(object sender, EventArgs e)
@@ -257,9 +265,8 @@ namespace AppDocente.menuScreens
             result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                Controlador.finalizarSala(idSala);
+                Controlador.updateEstadoSala(idSala,true);
                 this.Dispose();
-                this.Close();
             }
         }
 

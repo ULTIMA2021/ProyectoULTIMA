@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using CapaLogica;
 
 namespace AppAlumno.menuScreens
@@ -54,11 +50,20 @@ namespace AppAlumno.menuScreens
                 {
                     timer.Stop();
                     setBtnText();
+                    timer.Start();
                 }
             }
             catch (Exception ex)
             {
+                timer.Stop();
+                if (ex.Message.Contains("Connection"))
+                {
+                    timer.Dispose();
+                    MessageBox.Show(Controlador.errorHandler(ex));
+                    Application.Exit();
+                }
                 MessageBox.Show(Controlador.errorHandler(ex));
+                timer.Start();
             }
 
         }
@@ -115,7 +120,7 @@ namespace AppAlumno.menuScreens
                 fecha.Dock = DockStyle.Right;
                 fecha.AutoSize = true;
                 fecha.Name = "labelFecha_" + i;
-                fecha.BackColor = Color.PowderBlue;
+                //fecha.BackColor = Color.PowderBlue;
                 fecha.Text = mensajes[i][4];
 
                 fecha.Margin = dateP;
@@ -135,7 +140,7 @@ namespace AppAlumno.menuScreens
                     nombrePersona.Text = mensajes[i][5];
                     nombrePersona.Dock = DockStyle.Left;
                     nombrePersona.BackColor = Color.PeachPuff;
-                    fecha.BackColor = Color.PeachPuff;
+                    //fecha.BackColor = Color.PeachPuff;
                     fecha.Dock = DockStyle.Left;
                 }
                 t.Text = mensajes[i][3];
@@ -221,7 +226,6 @@ namespace AppAlumno.menuScreens
         {
             timer.Dispose();
             Dispose();
-            Close();
         }
 
         private void btnEnviar_Click(object sender, EventArgs e)
@@ -247,6 +251,11 @@ namespace AppAlumno.menuScreens
             myLoad();
             setBtnText();
             flowLayoutPanel1.AutoScrollPosition = new Point(0, flowLayoutPanel1.DisplayRectangle.Height);
+
+            //asigno valores para la traduccion
+            btnEnviar.Text = Resources.btnEnviar;
+            btnFinalizar.Text = Resources.btnFinalizar; 
+
         }
 
         private void chatScreen_FormClosing(object sender, FormClosingEventArgs e)
@@ -269,9 +278,8 @@ namespace AppAlumno.menuScreens
              result = MessageBox.Show(message,caption,MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                Controlador.finalizarSala(idSala);
+                Controlador.updateEstadoSala(idSala, true);
                 this.Dispose();
-                this.Close();
             }
         }
     }

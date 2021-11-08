@@ -42,7 +42,6 @@
             this.btnMisMensajes = new System.Windows.Forms.Button();
             this.btnNuevoMensaje = new System.Windows.Forms.Button();
             this.btnMensajes = new System.Windows.Forms.Button();
-            this.btnAgenda = new System.Windows.Forms.Button();
             this.subMenuDocentes = new System.Windows.Forms.Panel();
             this.btnInstitucion = new System.Windows.Forms.Button();
             this.btnMisDocentes = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.fotoAlumno = new System.Windows.Forms.PictureBox();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.selectIdioma = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ttInformacion = new System.Windows.Forms.ToolTip(this.components);
@@ -125,7 +125,6 @@
             this.panelInfo.Controls.Add(this.btnLogout);
             this.panelInfo.Controls.Add(this.subMenuMensajes);
             this.panelInfo.Controls.Add(this.btnMensajes);
-            this.panelInfo.Controls.Add(this.btnAgenda);
             this.panelInfo.Controls.Add(this.subMenuDocentes);
             this.panelInfo.Controls.Add(this.btnDocentes);
             this.panelInfo.Controls.Add(this.subMenuMiPerfil);
@@ -198,18 +197,6 @@
             this.btnMensajes.Name = "btnMensajes";
             this.btnMensajes.UseVisualStyleBackColor = false;
             this.btnMensajes.Click += new System.EventHandler(this.btnMensajes_Click);
-            // 
-            // btnAgenda
-            // 
-            this.btnAgenda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            resources.ApplyResources(this.btnAgenda, "btnAgenda");
-            this.btnAgenda.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnAgenda.FlatAppearance.BorderSize = 0;
-            this.btnAgenda.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Blue;
-            this.btnAgenda.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAgenda.Name = "btnAgenda";
-            this.btnAgenda.UseVisualStyleBackColor = false;
-            this.btnAgenda.Click += new System.EventHandler(this.btnAgenda_Click);
             // 
             // subMenuDocentes
             // 
@@ -316,10 +303,23 @@
             // panelContenedor
             // 
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.panelContenedor.Controls.Add(this.selectIdioma);
             this.panelContenedor.Controls.Add(this.label2);
             this.panelContenedor.Controls.Add(this.label1);
             resources.ApplyResources(this.panelContenedor, "panelContenedor");
             this.panelContenedor.Name = "panelContenedor";
+            // 
+            // selectIdioma
+            // 
+            this.selectIdioma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            resources.ApplyResources(this.selectIdioma, "selectIdioma");
+            this.selectIdioma.ForeColor = System.Drawing.SystemColors.Window;
+            this.selectIdioma.FormattingEnabled = true;
+            this.selectIdioma.Items.AddRange(new object[] {
+            resources.GetString("selectIdioma.Items"),
+            resources.GetString("selectIdioma.Items1")});
+            this.selectIdioma.Name = "selectIdioma";
+            this.selectIdioma.SelectedIndexChanged += new System.EventHandler(this.selectIdioma_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -342,6 +342,7 @@
             this.Controls.Add(this.panelOpciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "alumnoMainScreen";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.alumnoMainScreen_FormClosed);
             this.Load += new System.EventHandler(this.alumnoMainScreen_Load);
             this.panelOpciones.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
@@ -374,7 +375,6 @@
         private System.Windows.Forms.Button btnMisDocentes;
         private System.Windows.Forms.Button btnDocentes;
         private System.Windows.Forms.Button btnMensajes;
-        private System.Windows.Forms.Button btnAgenda;
         private System.Windows.Forms.Button btnMinimizar;
         private System.Windows.Forms.Button btnMaximizar;
         private System.Windows.Forms.Button btnExit;
@@ -387,5 +387,6 @@
         private System.Windows.Forms.Button btnNuevoMensaje;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnSala;
+        private System.Windows.Forms.ComboBox selectIdioma;
     }
 }

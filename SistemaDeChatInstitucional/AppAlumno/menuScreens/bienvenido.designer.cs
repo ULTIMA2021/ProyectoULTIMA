@@ -49,14 +49,15 @@
             // 
             // lblUser
             // 
-            this.lblUser.AutoSize = true;
+            this.lblUser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblUser.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblUser.Location = new System.Drawing.Point(271, 116);
+            this.lblUser.Location = new System.Drawing.Point(0, 0);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(121, 37);
+            this.lblUser.Size = new System.Drawing.Size(663, 277);
             this.lblUser.TabIndex = 1;
             this.lblUser.Text = "Usuario";
+            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -84,8 +85,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
             this.ClientSize = new System.Drawing.Size(663, 277);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.lblUser);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "bienvenido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

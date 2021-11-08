@@ -1107,6 +1107,42 @@
   <data name="&gt;&gt;panelInfo.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="selectIdioma.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="selectIdioma.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Cambria, 9.75pt</value>
+  </data>
+  <data name="selectIdioma.Items" xml:space="preserve">
+    <value>Español/Spanish</value>
+  </data>
+  <data name="selectIdioma.Items1" xml:space="preserve">
+    <value>Ingles/English</value>
+  </data>
+  <data name="selectIdioma.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 3</value>
+  </data>
+  <data name="selectIdioma.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 23</value>
+  </data>
+  <data name="selectIdioma.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="selectIdioma.Text" xml:space="preserve">
+    <value>Idioma/Language</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.Name" xml:space="preserve">
+    <value>selectIdioma</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.Parent" xml:space="preserve">
+    <value>panelContenedor</value>
+  </data>
+  <data name="&gt;&gt;selectIdioma.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1138,7 +1174,7 @@
     <value>panelContenedor</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1168,7 +1204,7 @@
     <value>panelContenedor</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="panelContenedor.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>

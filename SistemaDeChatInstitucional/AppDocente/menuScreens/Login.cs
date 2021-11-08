@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using CapaLogica;
 using AppDocente;
-using System.Runtime.InteropServices;
 
 namespace Login
 
@@ -122,6 +115,19 @@ namespace Login
         {
             txtContra.PasswordChar = '●';
             pictVer.BringToFront();
+        }
+
+        private void selectIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin_Click(sender, e);
+            }
         }
     }
 }

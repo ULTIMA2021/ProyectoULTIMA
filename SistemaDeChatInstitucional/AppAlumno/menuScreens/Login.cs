@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using CapaLogica;
 using AppAlumno;
-using System.Runtime.InteropServices;
 
 namespace Login
 
@@ -124,15 +117,45 @@ namespace Login
             pictVer.BringToFront();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lblLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            showRegisterForm(sender, e);
+            showRegisterForm(sender, e);       
         }
 
         private void showRegisterForm(object sender, EventArgs e)
         {
-            FormularioRegistro formularioRegistro = new FormularioRegistro();
-            formularioRegistro.ShowDialog();
+            try
+            {
+                FormularioRegistro formularioRegistro = new FormularioRegistro();
+                formularioRegistro.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(Controlador.errorHandler(ex));
+            }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            //txtUsuario.Text = Resources.txtUsuario;
+            //txtContra.Text = Resources.txtContra;
+            //lblErrorMessage.Text = Resources.lblErrorMessage;
+            //lblRegistro.Text = Resources.lblRegistro;
+            //lblLink.Text = Resources.lblLink;
+        }
+
+        private void selectIdioma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin_Click(sender, e);
+            }
         }
     }
 }

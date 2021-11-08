@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaLogica
 {
@@ -19,7 +15,7 @@ namespace CapaLogica
                     msg = "No se pudo conectar a la base de datos";
                     break;
                 case "Connection-1042":
-                    msg = "La conexion a esa direccion no existe";
+                    msg = "La conexion a esa direccion no existe o se perdio. La aplicacion se reiniciara\n\nSi sigue ocurriendo este problema digale a un administrador de la institucion ";
                     break;
                 case "Connection-":
                     msg = "Hubo un error con la conexion"; 
@@ -41,6 +37,9 @@ namespace CapaLogica
                 case "Grupo-1048":
                     msg = "Todos los campos indicados deben estar llenos";
                     break;
+                case "Grupo-1644":
+                    msg = "el nombre es invalido";
+                    break;
 
                 case "Materia-1062":
                     msg = "esa materia ya existe";
@@ -48,12 +47,18 @@ namespace CapaLogica
                 case "Materia-1048":
                     msg = "Todos los campos indicados deben estar llenos";
                     break;
+                case "Materia-1644":
+                    msg = "el nombre es invalido";
+                    break;
 
                 case "Orientacion-1062":
                     msg = "esa orientacion ya existe";
                     break;
-                case "orientacion-1048":
+                case "Orientacion-1048":
                     msg = "Todos los campos indicados deben estar llenos";
+                    break;
+                case "Orientacion-1644":
+                    msg = "el nombre es invalido";
                     break;
 
                 case "ConsultaPrivada-1062":

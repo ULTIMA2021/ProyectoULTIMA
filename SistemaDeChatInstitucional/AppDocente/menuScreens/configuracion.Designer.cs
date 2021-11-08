@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(configuracion));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblApellido = new System.Windows.Forms.Label();
+            this.lblUsuario = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblFoto = new System.Windows.Forms.Label();
             this.pbFoto = new System.Windows.Forms.PictureBox();
             this.btnExaminar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblCambiarPass = new System.Windows.Forms.Label();
+            this.lblPassVieja = new System.Windows.Forms.Label();
+            this.lblPassNueva = new System.Windows.Forms.Label();
             this.txtContraseñaAnterior = new System.Windows.Forms.TextBox();
             this.txtNuevaContraseña = new System.Windows.Forms.TextBox();
             this.btnGuardarDatos = new System.Windows.Forms.Button();
@@ -50,54 +50,54 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnEliminarCuenta = new System.Windows.Forms.Button();
+            this.btnSacarFoto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblNombre
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(39, 100);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre:";
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombre.Location = new System.Drawing.Point(39, 100);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(105, 15);
+            this.lblNombre.TabIndex = 0;
+            this.lblNombre.Text = "Primer nombre:";
             // 
-            // label2
+            // lblApellido
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(39, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Apellido:";
+            this.lblApellido.AutoSize = true;
+            this.lblApellido.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellido.Location = new System.Drawing.Point(39, 131);
+            this.lblApellido.Name = "lblApellido";
+            this.lblApellido.Size = new System.Drawing.Size(106, 15);
+            this.lblApellido.TabIndex = 1;
+            this.lblApellido.Text = "Primer apellido:";
             // 
-            // label3
+            // lblUsuario
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(39, 165);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Nombre de usuario: **";
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(39, 165);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(142, 15);
+            this.lblUsuario.TabIndex = 2;
+            this.lblUsuario.Text = "Nombre de usuario: **";
             // 
             // txtNombre
             // 
             this.txtNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNombre.Enabled = false;
             this.txtNombre.Location = new System.Drawing.Point(208, 97);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(168, 20);
@@ -108,7 +108,6 @@
             this.txtApellido.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtApellido.Enabled = false;
             this.txtApellido.Location = new System.Drawing.Point(208, 128);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(168, 20);
@@ -146,16 +145,16 @@
             this.lineShape1.Y1 = 289;
             this.lineShape1.Y2 = 289;
             // 
-            // label5
+            // lblFoto
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(553, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 15);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Foto:";
+            this.lblFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFoto.AutoSize = true;
+            this.lblFoto.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFoto.Location = new System.Drawing.Point(553, 47);
+            this.lblFoto.Name = "lblFoto";
+            this.lblFoto.Size = new System.Drawing.Size(36, 15);
+            this.lblFoto.TabIndex = 9;
+            this.lblFoto.Text = "Foto:";
             // 
             // pbFoto
             // 
@@ -184,41 +183,41 @@
             this.btnExaminar.UseVisualStyleBackColor = false;
             this.btnExaminar.Click += new System.EventHandler(this.btnExaminar_Click);
             // 
-            // label6
+            // lblCambiarPass
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblCambiarPass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(39, 313);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 15);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Cambiar contraseña";
+            this.lblCambiarPass.AutoSize = true;
+            this.lblCambiarPass.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCambiarPass.Location = new System.Drawing.Point(39, 313);
+            this.lblCambiarPass.Name = "lblCambiarPass";
+            this.lblCambiarPass.Size = new System.Drawing.Size(128, 15);
+            this.lblCambiarPass.TabIndex = 12;
+            this.lblCambiarPass.Text = "Cambiar contraseña";
             // 
-            // label7
+            // lblPassVieja
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblPassVieja.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(205, 313);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(118, 15);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "Contraseña anterior:";
+            this.lblPassVieja.AutoSize = true;
+            this.lblPassVieja.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassVieja.Location = new System.Drawing.Point(205, 313);
+            this.lblPassVieja.Name = "lblPassVieja";
+            this.lblPassVieja.Size = new System.Drawing.Size(118, 15);
+            this.lblPassVieja.TabIndex = 13;
+            this.lblPassVieja.Text = "Contraseña anterior:";
             // 
-            // label8
+            // lblPassNueva
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblPassNueva.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(205, 351);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(108, 15);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Nueva contraseña:";
+            this.lblPassNueva.AutoSize = true;
+            this.lblPassNueva.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassNueva.Location = new System.Drawing.Point(205, 351);
+            this.lblPassNueva.Name = "lblPassNueva";
+            this.lblPassNueva.Size = new System.Drawing.Size(108, 15);
+            this.lblPassNueva.TabIndex = 14;
+            this.lblPassNueva.Text = "Nueva contraseña:";
             // 
             // txtContraseñaAnterior
             // 
@@ -226,6 +225,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtContraseñaAnterior.Location = new System.Drawing.Point(357, 311);
             this.txtContraseñaAnterior.Name = "txtContraseñaAnterior";
+            this.txtContraseñaAnterior.PasswordChar = '●';
             this.txtContraseñaAnterior.Size = new System.Drawing.Size(145, 20);
             this.txtContraseñaAnterior.TabIndex = 15;
             // 
@@ -235,6 +235,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNuevaContraseña.Location = new System.Drawing.Point(357, 349);
             this.txtNuevaContraseña.Name = "txtNuevaContraseña";
+            this.txtNuevaContraseña.PasswordChar = '●';
             this.txtNuevaContraseña.Size = new System.Drawing.Size(145, 20);
             this.txtNuevaContraseña.TabIndex = 16;
             // 
@@ -310,34 +311,52 @@
             this.btnEliminarCuenta.UseVisualStyleBackColor = false;
             this.btnEliminarCuenta.Click += new System.EventHandler(this.btnEliminarCuenta_Click);
             // 
+            // btnSacarFoto
+            // 
+            this.btnSacarFoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSacarFoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(66)))), ((int)(((byte)(100)))));
+            this.btnSacarFoto.FlatAppearance.BorderSize = 0;
+            this.btnSacarFoto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSacarFoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSacarFoto.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSacarFoto.Location = new System.Drawing.Point(587, 237);
+            this.btnSacarFoto.Name = "btnSacarFoto";
+            this.btnSacarFoto.Size = new System.Drawing.Size(71, 20);
+            this.btnSacarFoto.TabIndex = 21;
+            this.btnSacarFoto.Text = "Sacar";
+            this.btnSacarFoto.UseVisualStyleBackColor = false;
+            this.btnSacarFoto.Click += new System.EventHandler(this.btnSacarFoto_Click);
+            // 
             // configuracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(705, 452);
+            this.Controls.Add(this.btnSacarFoto);
             this.Controls.Add(this.btnEliminarCuenta);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnGuardarContraseña);
             this.Controls.Add(this.btnGuardarDatos);
             this.Controls.Add(this.txtNuevaContraseña);
             this.Controls.Add(this.txtContraseñaAnterior);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblPassNueva);
+            this.Controls.Add(this.lblPassVieja);
+            this.Controls.Add(this.lblCambiarPass);
             this.Controls.Add(this.btnExaminar);
             this.Controls.Add(this.pbFoto);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lblFoto);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.txtApellido);
             this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblUsuario);
+            this.Controls.Add(this.lblApellido);
+            this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.shapeContainer1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "configuracion";
             this.Text = "configuracion";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.configuracion_FormClosed);
             this.Load += new System.EventHandler(this.configuracion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.ResumeLayout(false);
@@ -347,20 +366,20 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblApellido;
+        private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtApellido;
         private System.Windows.Forms.TextBox txtUsuario;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblFoto;
         private System.Windows.Forms.PictureBox pbFoto;
         private System.Windows.Forms.Button btnExaminar;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblCambiarPass;
+        private System.Windows.Forms.Label lblPassVieja;
+        private System.Windows.Forms.Label lblPassNueva;
         private System.Windows.Forms.TextBox txtContraseñaAnterior;
         private System.Windows.Forms.TextBox txtNuevaContraseña;
         private System.Windows.Forms.Button btnGuardarDatos;
@@ -368,5 +387,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnEliminarCuenta;
+        private System.Windows.Forms.Button btnSacarFoto;
     }
 }

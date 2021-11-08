@@ -12,6 +12,22 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>E:\admin installer\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +47,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>AppAdmin.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -66,23 +94,59 @@
     <Compile Include="menuScreens\bienvenido.designer.cs">
       <DependentUpon>bienvenido.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\FormularioRegistro.cs">
+    <Compile Include="menuScreens\chatScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="menuScreens\FormularioRegistro.Designer.cs">
-      <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    <Compile Include="menuScreens\chatScreen.Designer.cs">
+      <DependentUpon>chatScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\listarDocentes.cs">
+    <Compile Include="menuScreens\listarOrientaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="menuScreens\listarDocentes.Designer.cs">
-      <DependentUpon>listarDocentes.cs</DependentUpon>
+    <Compile Include="menuScreens\listarOrientaciones.Designer.cs">
+      <DependentUpon>listarOrientaciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="menuScreens\listarAlumnos.cs">
+    <Compile Include="menuScreens\listarGrupos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="menuScreens\listarAlumnos.Designer.cs">
-      <DependentUpon>listarAlumnos.cs</DependentUpon>
+    <Compile Include="menuScreens\listarGrupos.Designer.cs">
+      <DependentUpon>listarGrupos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\listarMaterias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\listarMaterias.Designer.cs">
+      <DependentUpon>listarMaterias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\replyScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\replyScreen.Designer.cs">
+      <DependentUpon>replyScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\TicketAlumno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\TicketAlumno.Designer.cs">
+      <DependentUpon>TicketAlumno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\UserLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\UserLogs.Designer.cs">
+      <DependentUpon>UserLogs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\UsuarioRegistro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\UsuarioRegistro.Designer.cs">
+      <DependentUpon>UsuarioRegistro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="menuScreens\UserList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuScreens\UserList.Designer.cs">
+      <DependentUpon>UserList.cs</DependentUpon>
     </Compile>
     <Compile Include="menuScreens\Login.cs">
       <SubType>Form</SubType>
@@ -98,14 +162,32 @@
     <EmbeddedResource Include="menuScreens\bienvenido.resx">
       <DependentUpon>bienvenido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\FormularioRegistro.resx">
-      <DependentUpon>FormularioRegistro.cs</DependentUpon>
+    <EmbeddedResource Include="menuScreens\chatScreen.resx">
+      <DependentUpon>chatScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\listarDocentes.resx">
-      <DependentUpon>listarDocentes.cs</DependentUpon>
+    <EmbeddedResource Include="menuScreens\listarOrientaciones.resx">
+      <DependentUpon>listarOrientaciones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="menuScreens\listarAlumnos.resx">
-      <DependentUpon>listarAlumnos.cs</DependentUpon>
+    <EmbeddedResource Include="menuScreens\listarGrupos.resx">
+      <DependentUpon>listarGrupos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\listarMaterias.resx">
+      <DependentUpon>listarMaterias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\replyScreen.resx">
+      <DependentUpon>replyScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\TicketAlumno.resx">
+      <DependentUpon>TicketAlumno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\UserLogs.resx">
+      <DependentUpon>UserLogs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\UsuarioRegistro.resx">
+      <DependentUpon>UsuarioRegistro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuScreens\UserList.resx">
+      <DependentUpon>UserList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="menuScreens\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -138,6 +220,18 @@
       <Project>{66855f56-cf4a-4155-9ae2-9cb50f63982c}</Project>
       <Name>CapaLogica</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

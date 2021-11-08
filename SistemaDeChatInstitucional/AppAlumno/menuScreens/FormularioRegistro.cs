@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using CapaLogica;
 
 namespace Login
@@ -28,21 +24,36 @@ namespace Login
 
         private void btnGuardarDatos_Click(object sender, EventArgs e)
         {
+
             string clave = @txtClave.Text;
+            byte[] foto = { };
+            try
+            {
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();
+                pbFoto.Image.Save(ms, pbFoto.Image.RawFormat);
+                foto = ms.ToArray();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             if (txtClave.Text == txtClaveVerificacion.Text)
                 try
                 {
                     if (Controlador.existePersona(txtCedula.Text))
                     {
-                        clave = CryptographyUtils.encryptThis(clave);
+                        clave = CryptographyUtils.doEncryption(clave, null, null);
                         Console.WriteLine($"original password: {txtClave.Text}\nencrypted is {clave}");
                         Controlador.AltaAlumno(
                                                   txtCedula.Text,
                                                   txtNombre.Text,
                                                   txtApellido.Text,
                                                   clave,
-                                                  txtApodo.Text,
+                                                  "apodo",
+                                                  foto,
                                                   getIndexesChecklist());
+
                         MessageBox.Show($"Ingresado! {txtNombre.Text} {txtApellido.Text}, espere que lo confirme un administrador");
                         resetFields();
                     }
@@ -82,8 +93,6 @@ namespace Login
         private void comboBoxUser_SelectedValueChanged(object sender, EventArgs e)
         {
            // this.lblGrupo.Location= Point.;
-            
-            
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)
@@ -106,6 +115,7 @@ namespace Login
             txtApodo.Clear();
             txtClave.Clear();
             txtClaveVerificacion.Clear();
+            pbFoto.Image = null;
             checkedListBox1.DataSource = null; 
         }
 

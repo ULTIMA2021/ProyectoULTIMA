@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using CapaLogica;
 using AppAdmin;
-using System.Runtime.InteropServices;
 
 namespace Login
 
@@ -41,7 +34,7 @@ namespace Login
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        MessageBox.Show(Controlador.errorHandler(ex));
                     }
 
                 }
@@ -123,6 +116,14 @@ namespace Login
         {
             txtContra.PasswordChar = '●';
             pictVer.BringToFront();
+        }
+
+        private void Login_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin_Click(sender, e);
+            }
         }
     }
 }

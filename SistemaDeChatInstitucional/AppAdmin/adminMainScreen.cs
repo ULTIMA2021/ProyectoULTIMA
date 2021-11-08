@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AppAdmin
@@ -14,11 +7,7 @@ namespace AppAdmin
     public partial class adminMainScreen : Form
     {
 
-        public adminMainScreen()
-        {
-            InitializeComponent();
-
-        }
+        public adminMainScreen() => InitializeComponent();
 
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -26,31 +15,20 @@ namespace AppAdmin
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-
         public void esconderSubMenu()
         {
             if (subMenuAlumnos.Visible == true)
-            {
                 subMenuAlumnos.Visible = false;
-            }
 
-            if (subMenuDocentes.Visible == true)
-            {
-                subMenuDocentes.Visible = false;
-            }
+            //if (subMenuDocentes.Visible == true)
+            //    subMenuDocentes.Visible = false;
 
-            if (subMenuAdmin.Visible == true)
-            {
-                subMenuAdmin.Visible = false;
-            }
+            //if (subMenuAdmin.Visible == true)
+            //    subMenuAdmin.Visible = false;
 
-            if(subMenuCursos.Visible == true)
-            {
+            if (subMenuCursos.Visible == true)
                 subMenuCursos.Visible = false;
-            }
-
         }
-
 
         public void mostrarSubMenu(Panel subMenu)
         {
@@ -61,9 +39,7 @@ namespace AppAdmin
 
             }
             else
-            {
                 subMenu.Visible = false;
-            }
 
         }
 
@@ -71,10 +47,7 @@ namespace AppAdmin
         public void openScreen(Form ventana)
         {
             if (ventanaActiva != null)
-            {
                 ventanaActiva.Close();
-
-            }
 
             ventanaActiva = ventana;
             ventana.TopLevel = false;
@@ -84,60 +57,99 @@ namespace AppAdmin
             ventana.BringToFront();
             ventana.Show();
             subMenuAlumnos.BringToFront();
-            subMenuDocentes.BringToFront();
-            subMenuAdmin.BringToFront();
+            //subMenuDocentes.BringToFront();
+            //subMenuAdmin.BringToFront();
             subMenuCursos.BringToFront();
             esconderSubMenu();
         }
 
-        private void btnAlumno_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuAlumnos);
-        }
+        //private void btnAlumno_Click(object sender, EventArgs e)
+        //{
+        //    mostrarSubMenu(subMenuAlumnos);
+        //}
 
-        private void btnDocente_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuDocentes);
-        }
+        //private void btnDocente_Click(object sender, EventArgs e)
+        //{
+        //   // mostrarSubMenu(subMenuDocentes);
+        //}
 
-        private void btnAdministradores_Click(object sender, EventArgs e)
-        {
-            mostrarSubMenu(subMenuAdmin);
-        }
+        //private void btnAdministradores_Click(object sender, EventArgs e)
+        //{
+        //    //mostrarSubMenu(subMenuAdmin);
+        //}
 
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        private void btnExit_Click(object sender, EventArgs e) =>Application.Exit();
 
-       
-        private void btnListarAlumnos_Click(object sender, EventArgs e)
-        {
-            openScreen(new menuScreens.listarAlumnos());
-        }
-
-       
         private void panelTitulo_MouseDown(object sender, MouseEventArgs e)
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
-        private void btnListarDocentes_Click(object sender, EventArgs e)
+        private void btnCursos_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuCursos);
+
+        private void btnMaterias_Click(object sender, EventArgs e)
         {
-            openScreen(new menuScreens.listarDocentes());
+            Cursor.Current = Cursors.WaitCursor;
+
+            Enabled = false;
+            openScreen(new menuScreens.listarMaterias());
+            Enabled = true;
+            Cursor.Current = Cursors.Default;
+
         }
 
-        private void btnRequerimientoAlumnos_Click(object sender, EventArgs e)
+        private void btnGrupos_Click(object sender, EventArgs e)
         {
-            menuScreens.FormularioRegistro form = new menuScreens.FormularioRegistro();
-            form.Show();
-           
+            Cursor.Current = Cursors.WaitCursor;
+            Enabled = false;
+            openScreen(new menuScreens.listarGrupos());
+            Enabled = true;
+            Cursor.Current = Cursors.Default;
         }
 
-        private void btnCursos_Click(object sender, EventArgs e)
+        private void btnOrientaciones_Click(object sender, EventArgs e)
         {
-            mostrarSubMenu(subMenuCursos);
+            Cursor.Current = Cursors.WaitCursor;
+            Enabled = false;
+            openScreen(new menuScreens.listarOrientaciones());
+            Enabled = true;
+            Cursor.Current = Cursors.Default;
+
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e) => mostrarSubMenu(subMenuAlumnos);
+
+        private void adminMainScreen_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            CapaLogica.Controlador.logout();
+            Application.Exit();
+        }
+
+        private void btnNuevosAlumnos_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Enabled = false;
+            openScreen(new menuScreens.TicketAlumno());
+            Enabled = true;
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void btnRegi_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+            openScreen(new menuScreens.UsuarioRegistro());
+            Enabled = true;
+        }
+
+        private void btnUsuariosDelSistema_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Enabled = false;
+            openScreen(new menuScreens.UserList());
+            Enabled = true;
+            Cursor.Current = Cursors.Default;
+
         }
     }
 }
